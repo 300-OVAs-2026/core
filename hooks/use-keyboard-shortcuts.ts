@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
-
-import { keyboardShortcuts } from '../utils/keyboardShortcuts';
+import { keyboardShortcuts } from '@core/utils';
 
 /**
  * Hook que agrega y elimina los event listeners de los atajos de teclado

@@ -1,6 +1,6 @@
 import { Button, Image } from 'books-ui';
 
-import { usePhraseAndImageContext } from '@/shared/core/components/game-phraseAndImage/game-phrase-context';
+import { usePhraseAndImageContext } from './game-phrase-context';
 
 import css from './phrase-and-image.module.css';
 type ImgType = {

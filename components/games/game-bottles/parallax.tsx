@@ -1,8 +1,6 @@
 import { useRef } from 'react';
-
-import { useA11yAttribute } from '../../hooks/useA11yAttribute';
-import { useReduceMotion } from '../../hooks/useReduceMotion';
-import { FullScreenButton } from '../fullscreen-button';
+import { FullScreenButton } from '@core/components';
+import { useA11yAttribute, useReduceMotion } from "@core/hooks";
 
 import Crab from './Crab';
 

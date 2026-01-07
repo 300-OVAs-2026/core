@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 
-import { loadCSS } from '../../utils/loadCSS';
-
 import { GameCasinoStates, Options } from './types/types';
 import GameCasinoButton from './game-casino-button';
 import { useGameCasinoProvider } from './game-casino-context';
 import CasinoElement from './game-casino-element';
 
-const css = await loadCSS({
-  ui: 'game-casino/game-casino.module.css',
-  local: 'game-casino/game-casino.module.css'
-});
+// import { loadCSS } from '@core/utils';
+import css from './game-casino.module.css';
+
+// const css = await loadCSS({
+//   ui: 'game-casino/game-casino.module.css',
+//   local: 'game-casino/game-casino.module.css'
+// });
 
 interface Props {
   option: Options;

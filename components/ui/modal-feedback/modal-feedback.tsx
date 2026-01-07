@@ -4,14 +4,16 @@ import type { ModalCoreProps } from '@ui/components/modal/modal';
 
 import { useOvaContext } from '@/context/ova-context';
 
-import { loadCSS } from '../../utils/loadCSS';
-
 import { i18n } from './consts';
 
-const css = await loadCSS({
-  ui: 'modal-feedback/modal-feedback.module.css',
-  local: 'modal-feedback/modal-feedback.module.css',
-})
+// import { loadCSS } from '@core/utils';
+import css from './modal-feedback.module.css';
+
+// const css = await loadCSS({
+//   ui: 'modal-feedback/modal-feedback.module.css',
+//   local: 'modal-feedback/modal-feedback.module.css',
+// })
+
 interface Props extends ModalCoreProps {
   addClass?: string;
   type?: 'wrong' | 'success';

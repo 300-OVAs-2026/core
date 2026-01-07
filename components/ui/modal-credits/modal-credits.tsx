@@ -4,14 +4,16 @@ import type { ModalCoreProps } from '@ui/components/modal/modal';
 
 import { useOvaContext } from '@/context/ova-context';
 
-import { loadCSS } from '../../utils/loadCSS';
-
 import { i18n } from './consts';
 
-const css = await loadCSS({
-  ui: 'modal-credits/modal-credits.module.css',
-  local: 'modal-credits/modal-credits.module.css'
-});
+// import { loadCSS } from '@core/utils';
+import css from './modal-credits.module.css';
+
+// const css = await loadCSS({
+//   ui: 'modal-credits/modal-credits.module.css',
+//   local: 'modal-credits/modal-credits.module.css'
+// });
+
 interface Props extends ModalCoreProps {
   addClass?: string;
   school: string;

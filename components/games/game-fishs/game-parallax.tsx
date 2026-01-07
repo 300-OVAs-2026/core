@@ -1,7 +1,5 @@
 import { useRef } from 'react';
-
-import { useA11yAttribute } from '@/shared/core/hooks/useA11yAttribute';
-import { useReduceMotion } from '@/shared/core/hooks/useReduceMotion';
+import { useA11yAttribute, useReduceMotion } from "@core/hooks";
 
 import css from './game.module.css';
 

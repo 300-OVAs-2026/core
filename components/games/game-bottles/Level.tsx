@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { Audio, Col, Panel, Row } from 'books-ui';
+import { FullScreenAlert, Icon } from '@core/components';
 
 import { Button } from '@/shared/ui/components';
-
-import { FullScreenAlert } from '../fullscreen-alert';
-import { Icon } from '../icon';
 
 import { CorrectIcon, WrongIcon } from './icons_/icons';
 import { letterProp, spaceProp, TypeWord } from './types/types';

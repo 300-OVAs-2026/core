@@ -4,15 +4,16 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { useOvaContext } from '@/context/ova-context';
 
-import { loadCSS } from '../../utils/loadCSS';
-
 import { i18n } from './utils/consts';
 import { useTableTrueFalseContext } from './table-true-false-context';
 
-const css = await loadCSS({
-  ui: 'table-true-false/table-true-false.module.css',
-  local: 'table-true-false/table-true-false.module.css'
-});
+// import { loadCSS } from '@core/utils';
+import css from './table-true-false.module.css';
+
+// const css = await loadCSS({
+//   ui: 'table-true-false/table-true-false.module.css',
+//   local: 'table-true-false/table-true-false.module.css'
+// });
 
 
 interface Props {

@@ -1,7 +1,6 @@
-import { ImgContainer } from '@/shared/ui/components';
+import { FullScreenAlert, FullScreenButton } from '@core/components';
 
-import { FullScreenAlert } from '../fullscreen-alert';
-import { FullScreenButton } from '../fullscreen-button';
+import { ImgContainer } from '@/shared/ui/components';
 
 import css from './crossword-input.module.css';
 

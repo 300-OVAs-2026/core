@@ -1,13 +1,14 @@
+// import { loadCSS } from '@core/utils';
 import type { Announcements } from '@dnd-kit/core';
-
-import { loadCSS } from '../../utils/loadCSS';
 
 import { DndClasses, DndTypes } from './types/types';
 
-const css = await loadCSS({
-  ui: 'dnd-activity/dnd.module.css',
-  local: 'dnd-activity/dnd.module.css'
-});
+import css from './dnd.module.css';
+
+// const css = await loadCSS({
+//   ui: 'dnd-activity/dnd.module.css',
+//   local: 'dnd-activity/dnd.module.css'
+// });
 
 
 export const INITIAL_STATE = Object.freeze({

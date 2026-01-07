@@ -3,14 +3,15 @@ import { Panel as PanelUI } from 'books-ui';
 
 import { useOvaContext } from '@/context/ova-context';
 
-import { loadCSS } from '../../utils/loadCSS';
-
 import { i18n } from './const';
 
-const css = await loadCSS({
-  ui: 'game-casino/game-casino.module.css',
-  local: 'game-casino/game-casino.module.css'
-});
+// import { loadCSS } from '@core/utils';
+import css from './game-casino.module.css';
+
+// const css = await loadCSS({
+//   ui: 'game-casino/game-casino.module.css',
+//   local: 'game-casino/game-casino.module.css'
+// });
 
 interface GameCasinoInitProps {
   className?: string;

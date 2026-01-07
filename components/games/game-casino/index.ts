@@ -1,1 +1,1 @@
-export { GameCasino } from '@/shared/core/components/game-casino/game-casino-provider';
+export { GameCasino } from './game-casino-provider';

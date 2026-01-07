@@ -1,35 +1,11 @@
-export * from './icon';
-export * from './select-activity';
-export * from './button-download';
-export * from './dnd-activity';
-export * from './modal-credits';
-export * from './modal-bibliography';
-export * from './modal-feedback';
-export * from './radio-activity';
-export * from './svg-positioner';
-export * from './fullscreen-button';
-export * from './fullscreen-alert';
-export * from './math-container';
-export * from './checkbox-activity';
-export * from './select-group-activity';
-export * from './input-activity';
-export * from './page-not-found';
-export * from './game-space';
-export * from './game-fishs';
-export * from './game-phraseAndImage';
-export * from './game-bottles';
-export * from './stop-game';
-export * from './table-true-false';
-export * from './race-card';
-export * from './true-false';
-export * from './this-or-that-activity';
-export * from './game-ballons';
-export * from './game-question';
-export * from './crossword-input';
-export * from './game-casino';
-export * from './game-money';
-export * from './memory-card';
-export * from './comic-viewer';
-export * from './game-radio-basket';
-export * from './relation-concept-activity';
-export * from './order-phrase';
+// Activities
+export * from './activities';
+
+// Games
+export * from './games';
+
+// Layout
+export * from './layout/';
+
+// UI
+export * from './ui/';

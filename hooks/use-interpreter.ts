@@ -1,8 +1,7 @@
 import { useRef } from 'react';
+import { eventChangeInterpreterVideo } from '@core/utils';
 
-import { eventChangeInterpreterVideo } from '../utils/eventChangeInterpreterVideo';
-
-import { useSessionStorage } from './useSessionStorage';
+import { useSessionStorage } from './use-session-storage';
 
 type VideoStorageMode = 'fixed' | 'dynamic';
 

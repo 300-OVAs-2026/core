@@ -2,19 +2,20 @@ import React, { Children, cloneElement, isValidElement, useReducer } from 'react
 import type { DragAndDropProps } from 'books-ui';
 import { DragAndDrop } from 'books-ui';
 
+// import { loadCSS } from '@core/utils';
 import { useOvaContext } from '@/context/ova-context';
-
-import { loadCSS } from '../../utils/loadCSS';
 
 import type { DndTypes, InitialState } from './types/types';
 import { defaultAnnouncements, DND_CLASSES, i18n, INITIAL_STATE } from './consts';
 import { DndButton } from './dnd-buttons';
 import { DndActivityProvider } from './dnd-context';
 
-const css = await loadCSS({
-  ui: 'dnd-activity/dnd.module.css',
-  local: 'dnd-activity/dnd.module.css'
-});
+import css from './dnd.module.css';
+
+// const css = await loadCSS({
+//   ui: 'dnd-activity/dnd.module.css',
+//   local: 'dnd-activity/dnd.module.css'
+// });
 
 interface Props extends DragAndDropProps {
   onResult?: ({ result }: { result: boolean }) => void;

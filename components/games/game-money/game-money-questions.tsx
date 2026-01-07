@@ -1,10 +1,8 @@
 import { FC, useState } from 'react';
 import { Row } from 'books-ui';
+import { FullScreenButton, ModalFeedback } from "@core/components";
 
 import { Button } from '@/shared/ui/components';
-
-import { FullScreenButton } from '../fullscreen-button';
-import { ModalFeedback } from '../modal-feedback';
 
 import { Modal as ModalType, Question as QuestionType } from './types/types';
 import { GameMoneytButton } from './game-money-buttons';

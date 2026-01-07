@@ -1,11 +1,14 @@
-import { loadCSS } from '../../utils/loadCSS';
+// import { loadCSS } from '@core/utils';
 
 import { GameCasinoStates, silverAmount } from './types/types';
 
-const css = await loadCSS({
-  ui: 'game-casino/game-casino.module.css',
-  local: 'game-casino/game-casino.module.css'
-});
+import css from './game-casino.module.css';
+
+// const css = await loadCSS({
+//   ui: 'game-casino/game-casino.module.css',
+//   local: 'game-casino/game-casino.module.css'
+// });
+
 interface Props extends React.ComponentPropsWithoutRef<'input'> {
   label: string;
   id: string;

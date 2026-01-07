@@ -1,9 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { useA11yAttribute } from '@core/hooks/useA11yAttribute';
-import { useReduceMotion } from '@core/hooks/useReduceMotion';
-
-import { FullScreenButton } from '../fullscreen-button';
+import { FullScreenButton } from '@core/components';
+import { useA11yAttribute,useReduceMotion } from '@core/hooks';
 
 import css from './styles/level.module.css';
 

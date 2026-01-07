@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
-
-import { eventUpdateTitle } from '../utils/eventUpdateTitle';
+import { eventUpdateTitle } from '@core/utils';
 
 /**
  * Hook personalizada para actualizar el título de la página.

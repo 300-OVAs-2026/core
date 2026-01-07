@@ -1,11 +1,9 @@
 import { useId, useRef, useState } from 'react';
 import { Row } from 'books-ui';
+import { useA11yAttribute, useReduceMotion } from '@core/hooks';
 
 import { FullScreenAlert, FullScreenButton, MathContainer, ModalFeedback } from '@/shared/core/components';
 import { Button } from '@/shared/ui/components';
-
-import { useA11yAttribute } from '../../hooks/useA11yAttribute';
-import { useReduceMotion } from '../../hooks/useReduceMotion';
 
 import { UNIVERSE01, UNIVERSE02 } from './data/data';
 import { Modal as ModalType, Option as optionType } from './types/types';

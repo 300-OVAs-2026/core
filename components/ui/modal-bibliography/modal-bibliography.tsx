@@ -1,19 +1,20 @@
 import { Audio } from 'books-ui';
+// import { loadCSS } from '@core/utils';
 import { Modal } from '@ui/components/modal';
 import type { ModalCoreProps } from '@ui/components/modal/modal';
 
 import { useOvaContext } from '@/context/ova-context';
 
-import { loadCSS } from '../../utils/loadCSS';
-
 import { i18n } from './const';
 import { ModalBibliographyGeneralLink } from './modal-bibliography-general-link';
 import { ModalBibliographyLink } from './modal-bibliography-link';
 
-const css = await loadCSS({
-  ui: 'modal-bibliography/modal-bibliography.module.css',
-  local: 'modal-bibliography/modal-bibliography.module.css'
-});
+import css from './modal-bibliography.module.css';
+
+// const css = await loadCSS({
+//   ui: 'modal-bibliography/modal-bibliography.module.css',
+//   local: 'modal-bibliography/modal-bibliography.module.css'
+// });
 
 interface Props extends ModalCoreProps {
   addClass?: string;

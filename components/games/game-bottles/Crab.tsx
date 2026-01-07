@@ -1,9 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react';
 import gsap from 'gsap';
+import { useA11yAttribute, useReduceMotion } from "@core/hooks";
 import { useGSAP } from '@gsap/react';
-
-import { useA11yAttribute } from '../../hooks/useA11yAttribute';
-import { useReduceMotion } from '../../hooks/useReduceMotion';
 
 import css from './styles/crab.module.css';
 
