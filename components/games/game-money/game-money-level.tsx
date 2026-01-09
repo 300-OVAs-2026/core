@@ -1,101 +1,122 @@
-import { FC, useEffect, useReducer } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 
-import type { InitialState, Question as QuestionType } from './types/types';
-import { GameMoneytButton } from './game-money-buttons';
-import { GameMoneyActivityProvider } from './game-money-context';
-import { Question } from './game-money-questions';
+import { FullScreenAlert, FullScreenButton } from '../../ui';
 
-// Estado inicial de la actividad
-const INITIAL_STATE: InitialState = {
-    validation: false,
-    button: true,
-    result: false,
-    selectedOption: null,
-    correctOption: null,
-    questions: []
-};
+import { BACKGROUND, CHARACTER, MONEY } from './const';
+import { useGameMoneyActivityContext } from './game-money-context';
+
+import css from './game-money.module.css';
 
 interface Props {
-    children: JSX.Element | JSX.Element[];
-    questions: QuestionType[];
+  children: JSX.Element | JSX.Element[];
+  addClass?: string;
+  label: string;
 }
 
-type SubComponents = {
-    Button: typeof GameMoneytButton;
-    Question: typeof Question;
+export const GameMoneyLevel: React.FC<Props> = ({ children, label, addClass, ...props }) => {
+  const { validation, options, result } = useGameMoneyActivityContext();
+
+  const safeSrc = (rawSrc: string): string => rawSrc.replace(/\s/g, ''); // Elimina espacios en blanco accidentales
+  const bg = safeSrc(BACKGROUND); // Fondo de pantalla
+
+  const optionsRef = useRef<HTMLDivElement>(null);
+  const [characterLeftPx, setCharacterLeftPx] = useState<number | null>(null);
+
+  // Si solo hay un grupo, basta con el primer seleccionado
+  const selectedId = useMemo(() => options[0]?.id ?? null, [options]);
+
+  /**
+   * Calcula la coordenada x relativa ao contenedor do elemento com o id passado como par metro.
+   *
+   * @param {string} optionId - Id do elemento.
+   * @returns {number | null} Coordenada x relativa ao contenedor ou null se o elemento nao for encontrado.
+   */
+  const computeCenterX = (optionId: string): number | null => {
+    const container = optionsRef.current;
+    if (!container) return null;
+
+    const containerRect = container.getBoundingClientRect();
+    const el = container.querySelector(`[data-option-id="${optionId}"]`) as HTMLElement | null;
+    if (!el) return null;
+
+    const rect = el.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    return centerX - containerRect.left; // px relativo al contenedor
+  };
+
+  /**
+   * Recalcula a coordenada x do personagem para o centro do container
+   * com base na op o selecionada.
+   * Se n o houver nenhuma op o selecionada, retorna null.
+   * @returns {number | null} Coordenada x relativa ao contenedor ou null se n o houver nenhuma op o selecionada.
+   */
+  const recalc = () => {
+    if (!selectedId) {
+      setCharacterLeftPx(null);
+      return;
+    }
+    setCharacterLeftPx(computeCenterX(selectedId));
+  };
+
+  /**
+   * Recalcula a coordenada x do personagem para o centro do container
+   */
+  useLayoutEffect(() => {
+    recalc();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedId, children]);
+
+  /**
+   * Recalcula a coordenada x do personagem para o centro do container
+   */
+  useEffect(() => {
+    const onResize = () => recalc();
+    window.addEventListener('resize', onResize);
+    window.addEventListener('orientationchange', onResize);
+    return () => {
+      window.removeEventListener('resize', onResize);
+      window.removeEventListener('orientationchange', onResize);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedId]);
+
+  const characterImage = validation ? (result ? CHARACTER.success : CHARACTER.wrong) : CHARACTER.normal;
+
+  return (
+    <div className="u-flow">
+      <FullScreenAlert />
+      <div
+        className={` ${css['background']} u-flow ${addClass ? addClass : ''}`}
+        {...props}
+        role="group"
+        id="fullscreen_money"
+        aria-labelledby="question-text"
+        style={{ '--bg-image': `url("${bg}")` } as React.CSSProperties}>
+        <FullScreenButton elementId="fullscreen_money" addClass={css.fullScreen__button} />
+        <div className={css['options-container']} ref={optionsRef}>
+          {children}
+        </div>
+        <div className={css['character-container']} aria-hidden="true">
+          <img
+            src={safeSrc(characterImage)}
+            alt="Personaje"
+            className={css['character']}
+            style={characterLeftPx !== null ? { left: `${characterLeftPx}px`, transform: 'translateX(-50%)' } : {}}
+          />
+          {result && (
+            <img
+              key={`money-${validation}-${result}`} // fuerza remount si cambian flags
+              src={safeSrc(MONEY)}
+              alt="Billetes"
+              className={`${css.money} ${css.moneyFall}`}
+              style={{
+                left: characterLeftPx !== null ? `${characterLeftPx}px` : '50%' // o donde lo quieras
+              }}
+            />
+          )}
+        </div>
+        <p className={`${css['question-text']}`}>{label}</p>
+      </div>
+    </div>
+  );
 };
-
-// Componente principal MoneyLevel
-const MoneyLevel: FC<Props> & SubComponents = ({ children, questions }) => {
-    // Combina el estado inicial con las preguntas pasadas como props
-    const initialStateWithQuestions = { ...INITIAL_STATE, questions };
-
-    // Reducer para manejar el estado de la actividad
-    const reducer = (state: InitialState, action: Partial<InitialState>): InitialState => {
-        return { ...state, ...action };
-    };
-
-    // Hook useReducer para manejar el estado de la actividad
-    const [activity, updateActivity] = useReducer(reducer, initialStateWithQuestions);
-
-    /**
-     * Función para agregar la selección de una respuesta.
-     * @param id - ID de la opcion seleccionada.
-     * @returns {void} - No devuelve nada.
-     */
-    const addSelectedOption = (id: string) => {
-        console.log(id);
-        updateActivity({ selectedOption: id });
-    };
-
-    /**
-     * Función para manejar la validación de la opcion seleccionada.
-     * @return {void} - No devuelve nada.
-     */
-    const handleValidation = () => {
-        updateActivity({ validation: true, button: true });
-
-        // Encuentra la opción correcta y determina si la opción seleccionada es correcta
-        const correctOption = activity.questions.find(q => q.correct)?.id || null;
-        const result = correctOption === activity.selectedOption;
-
-        updateActivity({correctOption, result });
-    };
-
-    /**
-     * Función para reiniciar la actividad a su estado inicial.
-     * @return {void} - No devuelve nada.
-     */
-    const handleReset = () => {
-        updateActivity({ ...INITIAL_STATE, questions });
-    };
-
-    // Efecto para habilitar el botón "Comprobar" solo si hay una opción seleccionada
-    useEffect(() => {
-        if (activity.selectedOption!==null && !activity.validation) {
-            updateActivity({ button: false });
-        }
-    }, [activity.validation, activity.selectedOption]);
-
-    return(
-        <GameMoneyActivityProvider
-            value={{ 
-                ...activity, 
-                addSelectedOption,
-                handleReset,
-                handleValidation,
-                selectedOption: activity.selectedOption,
-                correctOption: activity.correctOption,
-                validation: activity.validation,
-                button: activity.button,
-                result: activity.result 
-            }}>
-            {children}
-        </GameMoneyActivityProvider>
-    );
-}
-
-MoneyLevel.Button = GameMoneytButton;
-MoneyLevel.Question = Question;
-
-export { MoneyLevel };

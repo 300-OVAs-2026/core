@@ -1,9 +1,11 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { FullScreenButton } from '@core/components';
-import { useA11yAttribute,useReduceMotion } from '@core/hooks';
+import { useA11yAttribute, useReduceMotion } from '@core/hooks';
 
-import css from './styles/level.module.css';
+import { BUSH, CLOUDS, MOUNTAINS, SKY } from './const';
+
+import css from './game-balloons.module.css';
 
 const ANIMATION_CLOUD = 45;
 
@@ -11,7 +13,7 @@ interface Props {
   children: JSX.Element[] | JSX.Element;
 }
 
-export const Parallax: React.FC<Props> = ({ children }) => {
+export const GameBalloonsParallax: React.FC<Props> = ({ children }) => {
   const cancelAnimation = useReduceMotion();
   const { stopAnimations } = useA11yAttribute();
 
@@ -22,6 +24,9 @@ export const Parallax: React.FC<Props> = ({ children }) => {
   const refClouds = useRef<HTMLImageElement>(null);
   const refClouds2 = useRef<HTMLImageElement>(null);
 
+  /**
+   * Inicia la animación de las nubes.
+   */
   useEffect(() => {
     const animated1 = gsap.fromTo(
       refClouds.current,
@@ -42,6 +47,11 @@ export const Parallax: React.FC<Props> = ({ children }) => {
     }, 100);
   }, [cancelAnimation, stopAnimations]);
 
+  /**
+   * Función que se encarga de mover las nubes en función de la posición del usuario en la pantalla.
+   * Se utiliza para darle un efecto de profundidad a las nubes.
+   * @param {React.MouseEvent} e - El evento que se desencadena al mover el ratón.
+   */
   const handleDepthMove: React.MouseEventHandler = (e) => {
     if (!cancelAnimation && !stopAnimations) {
       const offsetX = window.innerWidth / 2 - e.nativeEvent.clientX;
@@ -61,20 +71,26 @@ export const Parallax: React.FC<Props> = ({ children }) => {
     }
   };
 
+  const safeSrc = (rawSrc: string): string => rawSrc.replace(/\s/g, ''); // Elimina espacios en blanco accidentales
+  const bg = safeSrc(SKY); // Fondo de pantalla
+
   return (
-    <div className={css.wrapper_depths} onMouseMove={handleDepthMove}>
+    <div
+      className={css.wrapper_depths}
+      onMouseMove={handleDepthMove}
+      style={{ '--bg-image': `url("${bg}")` } as React.CSSProperties}>
+        
       {/* Animacion de Profundidad*/}
-      <img src="assets/images/Fondo_cielo.webp" className={css.image_back} alt="" />
-      <img src="assets/images/Fondo_cielo.webp" className={css.image_depth} ref={refDeph4} alt="" />
-      <img src="assets/images/Fondo_montañas2.webp" className={css.image_depth} ref={refDeph3} alt="" />
+      <img src={safeSrc(SKY)} className={css.image_depth} ref={refDeph4} alt="Cielo" />
+      <img src={safeSrc(MOUNTAINS.mountain2)} className={css.image_depth} ref={refDeph3} alt="Montaña numero dos" />
 
       {/* Nubes */}
-      <img src="assets/images/Fondo nubes.webp" className={css.image_depth_clouds} ref={refClouds} alt="" />
-      <img src="assets/images/Fondo nubes.webp" className={css.image_depth_clouds} ref={refClouds2} alt="" />
-      <img src="assets/images/Fondo_montañas.webp" alt="" ref={refDeph2} className={css.image_depth} />
+      <img src={safeSrc(CLOUDS)} className={css.image_depth_clouds} ref={refClouds} alt="Nubes" />
+      <img src={safeSrc(CLOUDS)} className={css.image_depth_clouds} ref={refClouds2} alt="Nubes" />
+      <img src={safeSrc(MOUNTAINS.mountain1)} alt="Montaña numero uno" ref={refDeph2} className={css.image_depth} />
 
       {/* Bush  */}
-      <img src="assets/images/Fondo_Primer_plano_arbustos.webp" className={css.image_depth} ref={refDeph1} alt="" />
+      <img src={safeSrc(BUSH)} className={css.image_depth} ref={refDeph1} alt="Arboles" />
       <FullScreenButton elementId="fullscreen__section" addClass={css.fullScreen__button} />
 
       {children}
