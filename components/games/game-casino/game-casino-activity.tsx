@@ -18,7 +18,7 @@ interface Props {
   background?: string;
   alt?: string;
   title?: string;
-  onResult: (selected: GameCasinoStates | string) => void;
+  onResult: (state: GameCasinoStates | string, answerNumber: number) => void;
 }
 
 export const Casino = ({
@@ -53,8 +53,11 @@ export const Casino = ({
         handlePoint(amount);
       } else {
         setDisabledButton((prev) => ({ ...prev, reset: false, activity: true }));
+        handlePoint(-amount);
       }
-      onResult(selected);
+      const answerNumber = option.options.findIndex((opt) => opt.id === selectedId) + 1;
+
+      onResult(selected, answerNumber);
     }
   };
 
@@ -64,7 +67,11 @@ export const Casino = ({
     setSelectedId(null);
     setSelectedAmount(null);
     setDisabledButton({ reset: true, activity: true });
-    handlePoint(0);
+    // handlePoint(0);
+
+    if (point < 10) {
+      handlePoint(25 - point);
+    }
   };
 
   return (
@@ -75,7 +82,14 @@ export const Casino = ({
         <span className={css['casino-point']}>${point}</span>
         <div className={css['casino-question']}>
           <div className={css['casino-questino-background']}>
-            <p>{option.question}</p>
+            {point < 10 ? (
+              <p className="u-text-center">
+                Te has quedado sin fichas suficientes para apostar. Presiona el botón Reiniciar para recargar tus fichas
+                y continuar.
+              </p>
+            ) : (
+              <p>{option.question}</p>
+            )}
           </div>
         </div>
 
@@ -83,6 +97,7 @@ export const Casino = ({
           {option?.options?.map(({ id, label, name, state }) => (
             <CasinoElement
               state={state}
+              point={point}
               id={id}
               key={id}
               label={label}
@@ -91,7 +106,10 @@ export const Casino = ({
               isSelected={selectedId === id}
               hasValidated={validated}
               selectedAmount={selectedId === id ? selectedAmount : null}
-              disabled={selectedId !== null && selectedId !== id}
+              // disabled={selectedId !== null && selectedId !== id}
+              disabled={
+                (selectedId !== null && selectedId !== id) || point < (selectedId === id ? (selectedAmount ?? 0) : 0)
+              }
             />
           ))}
         </div>

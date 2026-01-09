@@ -14,7 +14,7 @@ type SubComponent = {
 };
 
 export const GameCasino: React.FC<Props> & SubComponent = ({ children }) => {
-  const [points, setPoints] = useState(0);
+  const [points, setPoints] = useState(25);
 
   const handlePoint = (newPoint: number) => {
     setPoints((prev) => prev + newPoint);
