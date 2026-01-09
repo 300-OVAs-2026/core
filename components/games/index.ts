@@ -1,5 +1,5 @@
 // Game components barrel file
-export { GameBallons } from './game-ballons';
+export { GameBalloons } from './game-balloons';
 export { GameBottle } from './game-bottles';
 export { GameCasino } from './game-casino';
 export { GameFish } from './game-fishs';
