@@ -1,5 +1,8 @@
 import { useEffect, useReducer, useRef } from 'react';
 
+import { useA11yAttribute, useReduceMotion } from '@/shared/core/hooks';
+
+import { moneyConfetti } from './lib/money-confetti';
 import { InitialState, Option, States } from './types/types';
 import { GameMoneytButton } from './game-money-button';
 import { GameMoneyActivityProvider } from './game-money-context';
@@ -18,6 +21,7 @@ interface Props {
   children: JSX.Element | JSX.Element[];
   onResult?: ({ result, options }: { result: boolean; options: Option[] }) => void;
   minSelected?: number;
+  resultDelayMs?: number;
 }
 
 type SubComponents = {
@@ -26,13 +30,23 @@ type SubComponents = {
   Level: typeof GameMoneyLevel;
 };
 
-const GameMoney: React.FC<Props> & SubComponents = ({ children, onResult, minSelected = 1 }) => {
+const GameMoney: React.FC<Props> & SubComponents = ({ children, onResult, minSelected = 1, resultDelayMs = 900 }) => {
   const [activity, updateActivity] = useReducer(
     (prev: InitialState, next: Partial<InitialState>) => ({ ...prev, ...next }),
     INITIAL_STATE
   );
 
+  const cancelAnimation = useReduceMotion();
+  const { stopAnimations } = useA11yAttribute();
+
   const radioElementsId = useRef<string[]>([]); // Ids de los elementos radio
+  const timeoutRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   /**
    * Añade una opción seleccionada al estado de la actividad.
@@ -63,14 +77,20 @@ const GameMoney: React.FC<Props> & SubComponents = ({ children, onResult, minSel
    * @returns void
    */
   const handleValidation = (): void => {
-    const result = activity.options.every(({ state }) => state === States.SUCCESS);
-
-    if (onResult) {
-      onResult({ result, options: activity.options });
-    }
+    const result = activity.options.some(({ state }) => state === States.SUCCESS);
 
     // Actualiza la actividad con el nuevo resultado
     updateActivity({ result: result, validation: true, button: true });
+
+    if (result && !cancelAnimation && !stopAnimations) {
+      moneyConfetti();
+      return;
+    }
+
+    timeoutRef.current = window.setTimeout(() => {
+      onResult?.({ result: result, options: activity.options });
+    }, resultDelayMs);
+
   };
 
   /**
@@ -79,6 +99,9 @@ const GameMoney: React.FC<Props> & SubComponents = ({ children, onResult, minSel
    * @returns void
    */
   const handleReset = (): void => {
+    // ✅ cancela modal pendiente
+    if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
+
     updateActivity({
       validation: false,
       result: false,
