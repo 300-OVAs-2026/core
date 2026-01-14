@@ -36,8 +36,8 @@ export const GameBalloonsLevel: React.FC<GameBalloonsLevelProps> = ({ words, sen
     [words]
   );
 
-  const [balloons, setBalloons] = useState<LetterItem[]>(initialItems); // Evita llamar el estado "words" para no chocar con props.words  
-  const [spaces, setSpaces] = useState<SpaceResult[]>(() => Array.from({ length: words.length }, () => null)); // Estado para los espacios donde se arman las palabras  
+  const [balloons, setBalloons] = useState<LetterItem[]>(initialItems); // Evita llamar el estado "words" para no chocar con props.words
+  const [spaces, setSpaces] = useState<SpaceResult[]>(() => Array.from({ length: words.length }, () => null)); // Estado para los espacios donde se arman las palabras
   const [selectIndex, setSelectIndex] = useState<number>(0); // Índice del espacio seleccionado
 
   const viewState = validation ? (result ? 'success' : 'wrong') : null; // Estado visual
@@ -56,14 +56,13 @@ export const GameBalloonsLevel: React.FC<GameBalloonsLevelProps> = ({ words, sen
     if (!validation) setUserAnswer(PARCIAL_WORD);
   }, [PARCIAL_WORD, setUserAnswer, validation]);
 
-
-/**
- * Maneja la selección de un globo en el espacio actual.
- * Desactiva el globo seleccionado en el espacio actual y activa el globo que se encuentra en el espacio actual.
- * Desplaza el índice del espacio seleccionado hacia adelante.
- * 
- * @param picked - Globo seleccionado.
- */
+  /**
+   * Maneja la selección de un globo en el espacio actual.
+   * Desactiva el globo seleccionado en el espacio actual y activa el globo que se encuentra en el espacio actual.
+   * Desplaza el índice del espacio seleccionado hacia adelante.
+   *
+   * @param picked - Globo seleccionado.
+   */
   const handlePick = (picked: LetterItem) => {
     if (validation) return;
     if (!picked.enable) return;
@@ -83,15 +82,14 @@ export const GameBalloonsLevel: React.FC<GameBalloonsLevelProps> = ({ words, sen
     setSelectIndex((prev) => (prev >= spaces.length - 1 ? 0 : prev + 1));
   };
 
-  
-/**
- * Elimina la letra que se encuentra en el espacio `idx`.
- * Si el espacio `idx` no contiene una letra, no hace nada.
- * Re-habilita el globo que estaba en ese espacio y lo pone disponible para ser seleccionado de nuevo.
- * Limpia el espacio `idx`.
- * 
- * @param idx - Índice del espacio del cual se quiere eliminar la letra.
- */
+  /**
+   * Elimina la letra que se encuentra en el espacio `idx`.
+   * Si el espacio `idx` no contiene una letra, no hace nada.
+   * Re-habilita el globo que estaba en ese espacio y lo pone disponible para ser seleccionado de nuevo.
+   * Limpia el espacio `idx`.
+   *
+   * @param idx - Índice del espacio del cual se quiere eliminar la letra.
+   */
   const removeLetter = (idx: number) => {
     if (validation) return;
     const slot = spaces[idx];
@@ -122,8 +120,18 @@ export const GameBalloonsLevel: React.FC<GameBalloonsLevelProps> = ({ words, sen
         <GameBalloonsParallax>
           <div className={css.container__sentence}>
             <div className={css.container__bottles}>
-              {balloons.map((props, i) => (
-                <GameBalloonsElement key={props.index} balloonRole={i} onClick={() => handlePick(props)} {...props} />
+              {balloons.map((b, i) => (
+                <GameBalloonsElement
+                  key={b.index}
+                  balloonRole={i}
+                  letter={b.letter}
+                  index={b.index}
+                  enable={b.enable}
+                  checked={!b.enable}
+                  onCheckedChange={(isChecked) => {
+                    if (isChecked) handlePick(b);
+                  }}
+                />
               ))}
             </div>
             <div className={`${css.container_word} ${viewState ? css[viewState] : ''}`}>

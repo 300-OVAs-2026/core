@@ -51,20 +51,50 @@ export const GameMoneyLevel: React.FC<Props> = ({ children, label, addClass, ...
    * @returns {number | null} Coordenada x relativa ao contenedor ou null se n o houver nenhuma op o selecionada.
    */
   const recalc = () => {
+    const container = optionsRef.current;
+    if (!container) return;
+
+    const containerRect = container.getBoundingClientRect();
+
+    // Si el contenedor aún no tiene ancho real, no calcules (reintenta luego)
+    if (!containerRect.width) return;
+
+    const fallbackCenter = containerRect.width / 2;
+
     if (!selectedId) {
-      setCharacterLeftPx(null);
+      setCharacterLeftPx(fallbackCenter);
       return;
     }
-    setCharacterLeftPx(computeCenterX(selectedId));
+
+    const x = computeCenterX(selectedId);
+
+    // Si x es null, NaN o 0 (layout aún no listo), usa fallback centro
+    if (x == null || Number.isNaN(x) || x <= 1) {
+      setCharacterLeftPx(fallbackCenter);
+      return;
+    }
+
+    setCharacterLeftPx(x);
   };
 
   /**
    * Recalcula a coordenada x do personagem para o centro do container
    */
   useLayoutEffect(() => {
-    recalc();
+    let raf1 = 0;
+    let raf2 = 0;
+
+    raf1 = requestAnimationFrame(() => {
+      recalc();
+      raf2 = requestAnimationFrame(() => recalc());
+    });
+
+    return () => {
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedId, children]);
+  }, [selectedId, children, validation, result]);
 
   /**
    * Recalcula a coordenada x do personagem para o centro do container

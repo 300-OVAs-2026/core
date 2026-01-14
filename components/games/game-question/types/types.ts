@@ -18,10 +18,12 @@ export interface GameQuestionContextType {
   addRadiosValues: (option: Option) => void;
   handleValidation: () => void;
   handleReset: () => void;
+  addElementsId: (uid: string) => void;
+
   validation: boolean;
   button: boolean;
   result: boolean;
-  addElementsId: (uid: string) => void;
+  options: Option[];
 }
 
 // Enumeración para los estados posibles

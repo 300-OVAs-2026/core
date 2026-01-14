@@ -44,6 +44,25 @@
   padding: 5px 10px;
 }
 
+/** Balloons options **/
+
+.checkbox {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.container__responsive {
+  cursor: pointer;
+  display: inline-block; /* o flex según tu layout */
+  position: relative;
+}
+
+.container[data-disabled="true"] .container__responsive {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-stop-animations='true']) .container {
     animation-name: float;

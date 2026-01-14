@@ -46,7 +46,31 @@ html[data-dark-mode='true'] .background {
   align-items: start;
 }
 
-.option-button {
+
+
+/** Opciones **/
+
+.disabled {
+  pointer-events: none;
+}
+
+.radio {
+  opacity: 0;
+  position: fixed;
+  width: 0;
+}
+
+.options-container>div{
+  height: 100%;
+}
+
+.options-container>div:focus-within label {
+  outline: 2px solid var(--clr-background);
+  outline-offset: 4px;
+  border-radius: 0.5rem;
+}
+
+.button {
   position: relative;
   display: flex;
   align-items: center;
@@ -58,33 +82,26 @@ html[data-dark-mode='true'] .background {
   margin: 5px;
   cursor: pointer;
   box-sizing: border-box;
-  transition:
-    background 0.3s,
-    border 0.3s;
+  transition: background-color 0.3s, border 0.3s;
   height: 100%;
 }
 
-.radio {
-  opacity: 0;
-  position: fixed;
-  width: 0;
-}
-
-.option-button > label {
+.button {
   color: #121212;
+  font-weight: bold;
 }
 
-.option-button.selected {
-  background: #d1e7dd;
+.options-container > div:not(.disabled) .radio:checked + label {
+  background-color: #d1e7dd;
   border-color: #0f5132;
 }
 
-.option-button.correct {
-  background: #a5c965;
+.success {
+  background-color: #a5c965;
   border-color: var(--clr-background);
 }
 
-.option-button.correct::after {
+.success::after {
   content: '✔';
   color: white;
   background-color: #899e2e;
@@ -100,12 +117,12 @@ html[data-dark-mode='true'] .background {
   font-size: 18px;
 }
 
-.option-button.incorrect {
-  background: #f8d7da;
+.wrong {
+  background-color: #f8d7da;
   border-color: var(--clr-background);
 }
 
-.option-button.incorrect::after {
+.wrong::after {
   content: '✖';
   color: white;
   background-color: var(--clr-activity-wrong);
