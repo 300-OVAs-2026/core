@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import { Panel } from '@/shared/ui/components';
 
-import { TypeWord } from './types/types';
+import { TypeWord } from '../game-bottles-refactor/types/types';
 import Level from './Level';
 
 interface props_GameBottle {

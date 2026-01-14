@@ -4,8 +4,9 @@ import { FullScreenAlert, Icon } from '@core/components';
 
 import { Button } from '@/shared/ui/components';
 
+import { letterProp, spaceProp, TypeWord } from '../game-bottles-refactor/types/types';
+
 import { CorrectIcon, WrongIcon } from './icons_/icons';
-import { letterProp, spaceProp, TypeWord } from './types/types';
 import Bottle from './Bottle';
 import { Parallax } from './parallax';
 
@@ -24,7 +25,7 @@ interface propsLevel {
 
 function initialState(word: string | string[]): letterProp[] {
   const letters = Array.isArray(word) ? word : word.split('').sort(() => Math.random() - 0.5);
-  return letters.map(letter => ({
+  return letters.map((letter) => ({
     letter,
     index: crypto.randomUUID(),
     enable: true
