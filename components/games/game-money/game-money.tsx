@@ -90,7 +90,6 @@ const GameMoney: React.FC<Props> & SubComponents = ({ children, onResult, minSel
     timeoutRef.current = window.setTimeout(() => {
       onResult?.({ result: result, options: activity.options });
     }, resultDelayMs);
-
   };
 
   /**
