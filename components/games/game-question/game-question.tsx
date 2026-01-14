@@ -1,10 +1,11 @@
-import { useEffect, useReducer, useRef } from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
 
 import type { InitialState, Option } from './types/types';
 import { States } from './types/types';
-import { GameCard } from './game-card';
 import { GameQuestionButton } from './game-question-button';
+import { GameQuestionCard } from './game-question-card';
 import { GameQuestionProvider } from './game-question-context';
+import { GameQuestionRadio } from './game-question-radio';
 
 // Estado inicial de la actividad
 const INITIAL_STATE: InitialState = Object.freeze({
@@ -22,7 +23,8 @@ interface Props {
 
 type SubComponents = {
   Button: typeof GameQuestionButton;
-  Card: typeof GameCard;
+  Card: typeof GameQuestionCard;
+  Radio: typeof GameQuestionRadio;
 };
 
 /**
@@ -37,6 +39,8 @@ const GameQuestion: React.FC<Props> & SubComponents = ({ children, onResult, min
   );
 
   const elementsId = useRef<string[]>([]); // useRef para almacenar los IDs de los elementos
+  const [options, setOptions] = useState<Option[]>([]);
+  
 
   /**
    * Añade un ID de elemento al estado de la actividad.
@@ -54,10 +58,11 @@ const GameQuestion: React.FC<Props> & SubComponents = ({ children, onResult, min
    * Filtra las opciones anteriores por nombre y agrega la nueva opción seleccionada.
    * @param option - El objeto opción que contiene id, nombre y estado.
    */
-  const addRadiosValues = ({ id, name, state }: Option) => {
-    updateActivity({
-      options: [...activity.options.filter((option) => option.name !== name), { id, name, state }],
-    });
+   const addRadiosValues = ({ id, name, state }: Option) => {
+    setOptions((prev) => [
+      ...prev.filter((opt) => opt.name !== name),
+      { id, name, state },
+    ]);
   };
 
   /**
@@ -98,14 +103,14 @@ const GameQuestion: React.FC<Props> & SubComponents = ({ children, onResult, min
    * Si se alcanza el número mínimo de opciones seleccionadas, activa el botón.
    */
   useEffect(() => {
-    if (!activity.options.length) return;
+    if (!options.length) return;
 
     const MIN_SELECTED = minSelected || Math.ceil(elementsId.current.length / 2);
 
-    if (activity.options.length >= MIN_SELECTED && !activity.validation) {
+    if (options.length >= MIN_SELECTED && !activity.validation) {
       updateActivity({ button: false });
     }
-  }, [activity.options, activity.validation, elementsId, minSelected]);
+  }, [options, activity.validation, elementsId, minSelected]);
 
   return (
     <GameQuestionProvider
@@ -117,6 +122,7 @@ const GameQuestion: React.FC<Props> & SubComponents = ({ children, onResult, min
         button: activity.button,
         result: activity.result,
         validation: activity.validation,
+        options
       }}
     >
       {children}
@@ -126,6 +132,7 @@ const GameQuestion: React.FC<Props> & SubComponents = ({ children, onResult, min
 
 // Asignar los subcomponentes
 GameQuestion.Button = GameQuestionButton;
-GameQuestion.Card = GameCard;
+GameQuestion.Card = GameQuestionCard;
+GameQuestion.Radio = GameQuestionRadio;
 
 export { GameQuestion };

@@ -12,6 +12,7 @@ import css from './game-casino.module.css';
 interface Props extends React.ComponentPropsWithoutRef<'input'> {
   label: string;
   id: string;
+  point: number;
   name: string;
   state: GameCasinoStates | string;
   onValueChange: (id: string, amount: number, state: GameCasinoStates | string) => void;
@@ -23,6 +24,7 @@ interface Props extends React.ComponentPropsWithoutRef<'input'> {
 
 const CasinoElement = ({
   label,
+  point,
   id,
   name,
   state,
@@ -51,7 +53,7 @@ const CasinoElement = ({
         <div className={css['casino-element-amount']}>
           {silverAmount.map((amount, index) => (
             <button
-              disabled={disabled || (isSelected && hasValidated)}
+              disabled={disabled || (isSelected && hasValidated) || point < amount}
               className={isSelected && selectedAmount === amount ? css.selected : ''}
               type="button"
               key={amount + index}

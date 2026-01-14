@@ -1,1 +1,1 @@
-export { MoneyLevel } from './game-money-level';
+export { GameMoney } from './game-money';
