@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
-import Bottle from './Bottle';
-import { useGameBottle } from './useGameBottle';
+import Bottle from './game-bottles-bottle';
+import { useGameBottleContext } from './game-bottles-context';
 
 import css from './styles/level.module.css';
 
@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const Letters = ({ word }: Props) => {
-  const { setTargetWord, words, addLetter } = useGameBottle();
+  const { setTargetWord, words, addLetter } = useGameBottleContext();
   useEffect(() => {
     setTargetWord(word || '');
   }, [word, setTargetWord]);

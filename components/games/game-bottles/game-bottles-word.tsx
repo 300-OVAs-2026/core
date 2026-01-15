@@ -1,13 +1,13 @@
 import { Icon } from '@core/components';
 
 import { CorrectIcon, WrongIcon } from './icons_/icons';
-// import { Button } from '@/shared/ui/components';
-import { useGameBottle } from './useGameBottle';
+import { useGameBottleContext } from './game-bottles-context';
 
+// import { Button } from '@/shared/ui/components';
 import css from './styles/level.module.css';
 
 export const Word = () => {
-  const { spaces, removeLetter, setSelectIndex, selectIndex, openModal, PARCIAL_WORD } = useGameBottle();
+  const { spaces, removeLetter, setSelectIndex, selectIndex, openModal, PARCIAL_WORD } = useGameBottleContext();
   return (
     <div className={`${css.container_word} `}>
       <p aria-live="assertive" className="u-sr-only">

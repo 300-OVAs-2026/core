@@ -3,15 +3,15 @@ import { FullScreenButton } from '@core/components';
 import { useA11yAttribute, useReduceMotion } from '@core/hooks';
 
 import { IMAGENES_BOTELLA, IMAGENES_FONDO } from './assets/images';
-import Crab from './Crab';
-import { useGameBottle } from './useGameBottle';
+import { useGameBottleContext } from './game-bottles-context';
+import Crab from './game-bottles-crab';
 
 import css from './styles/level.module.css';
 interface Props {
   children: React.ReactNode;
 }
 export const Parallax: React.FC<Props> = ({ children }) => {
-  const { containerRef } = useGameBottle();
+  const { containerRef } = useGameBottleContext();
   const cancelAnimation = useReduceMotion();
   const { stopAnimations } = useA11yAttribute();
 
