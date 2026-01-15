@@ -20,10 +20,12 @@ export interface RadioBasketActivityContextType {
   addRadiosValues: (option: Option) => void;
   handleValidation: () => void;
   handleReset: () => void;
+  addRadioElementsId: (uid: string) => void;
+
   validation: boolean;
   button: boolean;
   result: boolean;
-  addRadioElementsId: (uid: string) => void;
+  options: Option[];
 }
 
 // Enumeración para los estados posibles
