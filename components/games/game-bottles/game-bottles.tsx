@@ -1,31 +1,14 @@
-import React, { createContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { letterProp, spaceProp } from './types/types';
-import { Actions } from './Actions';
-import { Description } from './Description';
-import { Letters } from './Letters';
-import { Parallax } from './parallax';
-import { Word } from './Word';
+import { Actions } from './game-bottles-actions';
+import { GameBottleContextProvider } from './game-bottles-context';
+import { Description } from './game-bottles-description';
+import { Letters } from './game-bottles-letters';
+import { Parallax } from './game-bottles-parallax';
+import { Word } from './game-bottles-word';
 
 import css from './styles/game-bottle.module.css';
-
-type GameBottleContextType = {
-  targetWord: string;
-  setTargetWord: (word: string) => void;
-  words: letterProp[];
-  spaces: (spaceProp | null)[];
-  selectIndex: number;
-  setSelectIndex: (index: number) => void;
-  addLetter: (obj: letterProp) => void;
-  removeLetter: () => void;
-  checkAnswer: () => void;
-  reset: () => void;
-  openModal: 'success' | 'wrong' | null;
-  ALREADY_FILL: boolean;
-  PARCIAL_WORD: string;
-  containerRef: React.RefObject<HTMLDivElement>;
-};
-export const GameBottleContext = createContext<GameBottleContextType | null>(null);
 
 interface propsLevel {
   onResult?(result: boolean): void;
@@ -136,15 +119,15 @@ export function GameBottle({ onResult, children }: propsLevel) {
     }
   });
   return (
-    <GameBottleContext.Provider value={value}>
+    <GameBottleContextProvider value={value}>
       <div ref={containerRef} className={css.container}>
         <Parallax>{content}</Parallax>
+        {description} {/* Description */}
         <div className={css.container_controls}>
           {actions} {/* Actions */}
         </div>
-        {description} {/* Description */}
       </div>
-    </GameBottleContext.Provider>
+    </GameBottleContextProvider>
   );
 }
 GameBottle.Letters = Letters;

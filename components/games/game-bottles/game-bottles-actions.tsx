@@ -1,13 +1,13 @@
 import { cloneElement, FC } from 'react';
 
-import { useGameBottle } from './useGameBottle';
+import { useGameBottleContext } from './game-bottles-context';
 
 interface Props {
   type?: 'reset' | 'validation';
   children: React.ReactElement;
 }
 export const Actions: FC<Props> = ({ type, children }) => {
-  const { checkAnswer, reset, openModal, ALREADY_FILL } = useGameBottle();
+  const { checkAnswer, reset, openModal, ALREADY_FILL } = useGameBottleContext();
 
   let disabled = false;
 
