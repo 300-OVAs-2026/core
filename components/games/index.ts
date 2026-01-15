@@ -6,7 +6,7 @@ export { GameFish } from './game-fishs';
 export { GameMoney } from './game-money';
 export { PhraseAndImage } from './game-phrase-and-image';
 export { GameQuestion } from './game-question';
-export * from './game-radio-basket';
+export { GameBasketball } from './game-basketball';
 export { GameSpace } from './game-space';
 export * from './race-card';
 export * from './stop-game';

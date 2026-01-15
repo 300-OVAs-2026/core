@@ -64,10 +64,13 @@ html[data-dark-mode='true'] .background {
   height: 100%;
 }
 
-.options-container>div:focus-within label {
+.options-container > div:focus-within label {
+  outline: none;
+}
+
+.options-container > div input:focus-visible + label {
   outline: 2px solid var(--clr-background);
   outline-offset: 4px;
-  border-radius: 0.5rem;
 }
 
 .button {

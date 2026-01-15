@@ -1,6 +1,6 @@
 import { cloneElement } from 'react';
 
-import { useRadioBasketActivityContext } from './radio-basket-context';
+import { useRadioBasketActivityContext } from './game-basketball-context';
 
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
   children: React.ReactElement;
 }
 
-export const RadioBasketButton: React.FC<Props> = ({ type, children }) => {
+export const GameBasketballButton: React.FC<Props> = ({ type, children }) => {
   const { handleValidation, handleReset, button, validation, result } = useRadioBasketActivityContext();
 
   return cloneElement(children, {

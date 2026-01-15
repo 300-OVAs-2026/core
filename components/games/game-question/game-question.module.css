@@ -12,6 +12,10 @@
   border-radius: 8px;
 }
 
+html[data-dark-mode='true'] .container-element {
+    opacity: 0.8;
+}
+
 .card-element {
   display: flex;
   position: relative;
@@ -85,10 +89,13 @@
   width: 0;
 }
 
-.container-options>div:focus-within label {
+.container-options > div:focus-within label {
+  outline: none;
+}
+
+.container-options > div input:focus-visible + label {
   outline: 2px solid #0a707f;
   outline-offset: 4px;
-  border-radius: 0.5rem;
 }
 
 .button {
@@ -108,8 +115,8 @@
   background-color: #238998;
 }
 
-.container-options > div:not(.disabled) .radioOptions:checked + label {
-  background-color: #238998;
+.container-options > div:not(.disabled) .radioOption:checked + label {
+  background-color: #084650;
 }
 
 .wrong {
@@ -124,8 +131,8 @@
 
 .success::after {
   content: '✔';
-  color: var(--clr-background);
-  background-color: var(--clr-activity-success);
+  color: var(--clr-activity-success);
+  background-color: var(--clr-background);
   box-shadow: 2px 2px 3px 0px #60606057;
   border-radius: 50%;
   width: 1.6rem;
@@ -141,8 +148,8 @@
 
 .wrong::after {
   content: '✖';
-  color: var(--clr-background);
-  background-color: var(--clr-activity-wrong);
+  color: var(--clr-activity-wrong);
+  background-color: var(--clr-background);
   box-shadow: 2px 2px 3px 0px #60606057;
   border-radius: 50%;
   width: 1.6rem;

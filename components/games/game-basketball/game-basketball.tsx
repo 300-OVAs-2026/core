@@ -2,9 +2,10 @@ import { useEffect, useReducer, useRef } from 'react';
 
 import type { InitialState, Option } from './types/types';
 import { States } from './types/types';
-import { RadioBasketButton } from './radio-basket-button';
-import { RadioBasketActivityProvider } from './radio-basket-context';
-import { RadioBasketElement } from './radio-basket-element';
+import { GameBasketballRadio } from './game-backetball-radio';
+import { GameBasketballButton } from './game-basketball-button';
+import { RadioBasketActivityProvider } from './game-basketball-context';
+import { GameBasketballLevel } from './game-basketball-level';
 
 const INITIAL_STATE = Object.freeze({
   validation: false,
@@ -16,14 +17,16 @@ const INITIAL_STATE = Object.freeze({
 interface Props {
   children: JSX.Element | JSX.Element[];
   onResult?: ({ result, options }: { result: boolean; options: Option[] }) => void;
+  resultDelayMs?: number;
 }
 
 type SubComponents = {
-  Radio: typeof RadioBasketElement;
-  Button: typeof RadioBasketButton;
+  Radio: typeof GameBasketballRadio;
+  Button: typeof GameBasketballButton;
+  Provider: typeof GameBasketballLevel;
 };
 
-const RadiosBasket: React.FC<Props> & SubComponents = ({ children, onResult }) => {
+const GameBasketball: React.FC<Props> & SubComponents = ({ children, onResult, resultDelayMs = 900 }) => {
   const [activity, updateActivity] = useReducer(
     (prev: InitialState, next: Partial<InitialState>) => ({ ...prev, ...next }),
     INITIAL_STATE
@@ -31,6 +34,7 @@ const RadiosBasket: React.FC<Props> & SubComponents = ({ children, onResult }) =
 
   // Referencia mutable para almacenar los uid de cada componente <RadioElement/>
   const radioElementsId = useRef<string[]>([]);
+  const timeoutRef = useRef<number | null>(null);
 
   /**
    * Agrega el ID de un componente RadioElement
@@ -44,15 +48,13 @@ const RadiosBasket: React.FC<Props> & SubComponents = ({ children, onResult }) =
   };
 
   /**
-   * Creada para almacenar los radio seleccionados,
-   * se crea un nuevo objecto con el id de la pregunta y el valor del radio.
-   *
-   * @param {String} id - id de la pregunta.
-   * @param {Object} value - valor del radio seleccionado.
+   * Agrega un valor de radio seleccionado al estado de la actividad.
+   * Filtra las opciones anteriores por id y agrega la nueva opción seleccionada.
+   * @param {Option} option - El objeto opción que contiene id, nombre y estado.
    */
   const addRadiosValues = ({ id, name, state }: Option) => {
     updateActivity({
-      options: [...activity.options.filter((option) => option.id !== id), { id, name, state }]
+      options: [...activity.options.filter((option) => option.name !== name), { id, name, state }]
     });
   };
 
@@ -62,17 +64,13 @@ const RadiosBasket: React.FC<Props> & SubComponents = ({ children, onResult }) =
    * seleccionadas se igual al total de las correctas.
    */
   const handleValidation = () => {
-    updateActivity({ validation: true, button: true });
-
     const result = activity.options.every(({ state }) => state === States.SUCCESS);
 
-    if (onResult) {
-      onResult({ result, options: activity.options });
-      console.log({ result, options: activity.options });
-    }
+    updateActivity({ result, validation: true, button: true });
 
-    // Actualiza la actividad con el nuevo resultado
-    updateActivity({ result: result });
+    timeoutRef.current = window.setTimeout(() => {
+      onResult?.({ result, options: activity.options });
+    }, resultDelayMs);
   };
 
   /**
@@ -113,14 +111,16 @@ const RadiosBasket: React.FC<Props> & SubComponents = ({ children, onResult }) =
         handleReset,
         button: activity.button,
         result: activity.result,
-        validation: activity.validation
+        validation: activity.validation,
+        options: activity.options
       }}>
       {children}
     </RadioBasketActivityProvider>
   );
 };
 
-RadiosBasket.Radio = RadioBasketElement;
-RadiosBasket.Button = RadioBasketButton;
+GameBasketball.Radio = GameBasketballRadio;
+GameBasketball.Button = GameBasketballButton;
+GameBasketball.Provider = GameBasketballLevel;
 
-export { RadiosBasket };
+export { GameBasketball };

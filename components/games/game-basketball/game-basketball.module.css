@@ -4,8 +4,12 @@
   height: auto;
 }
 
+html[data-dark-mode='true'] .radios__container {
+    opacity: 0.8;
+}
+
 .radio__options {
-  background: url(assets/images/background.webp);
+  background-image: var(--bg-image);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -34,6 +38,15 @@
   width: fit-content;
 }
 
+.radio__option > :first-child {
+  flex: 0 0 auto; /* fit-content */
+}
+
+.radio__option > :last-child {
+  flex: 1 1 0; /* ocupa todo el espacio restante */
+  min-width: 0; /* importante para que no desborde */
+}
+
 .radio_red {
   position: relative;
   width: fit-content;
@@ -52,13 +65,26 @@
 /** Radio button **/
 
 .radio_button {
-  transform: translate(-12%, -50%);
+  transform: none;
+  margin-left: -10%;
+  margin-top: -10%;
 }
 
 .radioButton {
   opacity: 0;
   position: fixed;
   width: 0;
+}
+
+/* Quitar el outline genérico */
+.radio__options_container > div:focus-within label {
+  outline: none;
+}
+
+/* Mostrar outline solo cuando el foco es "visible" (teclado) */
+.radio__options_container > div input:focus-visible + label {
+  outline: 2px solid var(--clr-background);
+  outline-offset: 4px;
 }
 
 .buttons {
@@ -72,13 +98,13 @@
   display: inline-block;
   padding: 0.2rem 0;
   border: 0.15rem solid #d84a36;
-  border-radius: 12rem;
+  border-radius: 2rem;
   background: white;
   color: #333333;
-  min-width: 13rem;
+  min-width: 14rem;
   cursor: pointer;
   text-align: center;
-  padding-left: 2.5rem;
+  padding-left: 3rem;
   padding-right: 0.6rem;
   font-weight: bold;
   font-size: var(--fs-300);
@@ -94,8 +120,8 @@
 
 .success {
   background-color: var(--clr-activity-success);
-  border: 3px solid #ffffff !important;
-  color: white;
+  border: 3px solid var(--clr-background) !important;
+  color: var(--clr-background);
   position: relative;
 }
 
@@ -105,8 +131,8 @@
   background-color: var(--clr-background);
   box-shadow: 2px 2px 3px 0px #60606057;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 1.6rem;
+  height: 1.6rem;
   display: flex;
   font-size: 1rem;
   align-items: center;
@@ -118,8 +144,8 @@
 
 .wrong {
   background-color: var(--clr-activity-wrong);
-  border: 0.18rem solid #ffffff !important;
-  color: white;
+  border: 0.18rem solid var(--clr-background) !important;
+  color: var(--clr-background);
   position: relative;
 }
 
@@ -129,8 +155,8 @@
   background-color: var(--clr-background);
   box-shadow: 2px 2px 3px 0px #60606057;
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
+  width: 1.6rem;
+  height: 1.6rem;
   display: flex;
   font-size: 1rem;
   align-items: center;

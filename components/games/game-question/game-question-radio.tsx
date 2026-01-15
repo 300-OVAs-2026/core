@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useId, useMemo } from 'react';
 
 import { RadioStates } from './types/types';
 import { useGameQuestionContext } from './game-question-context';
@@ -15,11 +15,22 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 export const GameQuestionRadio: React.FC<Props> = ({ id, addClass, state, label, name, ...props }) => {
   const reactId = useId();
 
-  const { addRadiosValues, addElementsId, validation } = useGameQuestionContext();
-  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const { addRadiosValues, addElementsId, validation, options } = useGameQuestionContext();
 
   const uid = id || reactId;
   const radioName = `radio-group-question-${name}`;
+
+  // ✅ seleccionado sale del CONTEXTO
+  const isSelected = useMemo(() => {
+    return options?.some((opt) => opt.name === radioName && opt.id === uid);
+  }, [options, radioName, uid]);
+
+  /**
+   * Maneja el evento onChange.
+   */
+  const handleChange = () => {
+    addRadiosValues({ id: uid, name: radioName, state });
+  };
 
   /**
    * Maneja el evento onChange.
@@ -33,13 +44,12 @@ export const GameQuestionRadio: React.FC<Props> = ({ id, addClass, state, label,
    * dependiendo de si está seleccionado, si es valido o no, y si es correcto o no.
    * @param inputId - ID del input
    * @param state - Estado del input
-   * @returns 
+   * @returns
    */
-  const getLabelClass = (inputId: string, state: 'success' | 'wrong') => {
-    if (!validation || selectedId !== inputId) return css.button;
+  const getLabelClass = (state: 'success' | 'wrong') => {
+    if (!validation || !isSelected) return css.button;
     return `${css.button} ${state === 'success' ? css.success : css.wrong}`;
   };
-
 
   return (
     <div className={`${validation ? css.disabled : ''} ${addClass ?? ''}`}>
@@ -51,13 +61,10 @@ export const GameQuestionRadio: React.FC<Props> = ({ id, addClass, state, label,
         name={radioName}
         disabled={validation}
         className={css.radioOption}
-        checked={selectedId === uid}
-        onChange={() => {
-          setSelectedId(uid);
-          addRadiosValues({ id: uid, name: radioName, state });
-        }}
+        checked={isSelected}
+        onChange={handleChange}
       />
-      <label htmlFor={uid} className={getLabelClass(uid, state)}>
+      <label htmlFor={uid} className={getLabelClass(state)}>
         {label}
       </label>
     </div>
