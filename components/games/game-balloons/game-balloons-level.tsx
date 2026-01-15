@@ -116,7 +116,7 @@ export const GameBalloonsLevel: React.FC<GameBalloonsLevelProps> = ({ words, sen
   return (
     <div>
       <FullScreenAlert />
-      <div id="fullscreen__section">
+      <div>
         <GameBalloonsParallax>
           <div className={css.container__sentence}>
             <div className={css.container__bottles}>
