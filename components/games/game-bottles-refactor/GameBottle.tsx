@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useEffect, useRef, useState } from 'react';
 
 import { letterProp, spaceProp } from './types/types';
 import { Actions } from './Actions';
@@ -23,6 +23,7 @@ type GameBottleContextType = {
   openModal: 'success' | 'wrong' | null;
   ALREADY_FILL: boolean;
   PARCIAL_WORD: string;
+  containerRef: React.RefObject<HTMLDivElement>;
 };
 export const GameBottleContext = createContext<GameBottleContextType | null>(null);
 
@@ -41,6 +42,7 @@ function initialState(word: string): letterProp[] {
     .sort(() => Math.random() - 0.5);
 }
 export function GameBottle({ onResult, children }: propsLevel) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [targetWord, setTargetWord] = useState('');
   const [openModal, setOpenModal] = useState<'success' | 'wrong' | null>(null);
   const [words, setWords] = useState([] as letterProp[]);
@@ -119,7 +121,8 @@ export function GameBottle({ onResult, children }: propsLevel) {
     checkAnswer,
     reset,
     ALREADY_FILL,
-    PARCIAL_WORD
+    PARCIAL_WORD,
+    containerRef
   };
   React.Children.forEach(children, (child) => {
     if (!React.isValidElement(child)) return;
@@ -134,11 +137,13 @@ export function GameBottle({ onResult, children }: propsLevel) {
   });
   return (
     <GameBottleContext.Provider value={value}>
-      <Parallax>{content}</Parallax>
-      <div className={css.container_controls}>
-        {actions} {/* Actions */}
+      <div ref={containerRef} className={css.container}>
+        <Parallax>{content}</Parallax>
+        <div className={css.container_controls}>
+          {actions} {/* Actions */}
+        </div>
+        {description} {/* Description */}
       </div>
-      {description} {/* Description */}
     </GameBottleContext.Provider>
   );
 }

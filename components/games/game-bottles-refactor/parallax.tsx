@@ -1,16 +1,17 @@
 import { useRef } from 'react';
-// import { FullScreenButton } from '@/shared/core/components/FullScreenButton';
 import { FullScreenButton } from '@core/components';
 import { useA11yAttribute, useReduceMotion } from '@core/hooks';
 
 import { IMAGENES_BOTELLA, IMAGENES_FONDO } from './assets/images';
 import Crab from './Crab';
+import { useGameBottle } from './useGameBottle';
 
 import css from './styles/level.module.css';
 interface Props {
   children: React.ReactNode;
 }
 export const Parallax: React.FC<Props> = ({ children }) => {
+  const { containerRef } = useGameBottle();
   const cancelAnimation = useReduceMotion();
   const { stopAnimations } = useA11yAttribute();
 
@@ -38,7 +39,6 @@ export const Parallax: React.FC<Props> = ({ children }) => {
       if (refDeph4.current) refDeph4.current.style.top = offsetY / 100 + 'px';
     }
   };
-
   return (
     <div className={`u-mt-3  ${css.wrapper_depths}`} onMouseMove={handleDepthMove}>
       {/* Animacion de Profundidad*/}
@@ -59,7 +59,7 @@ export const Parallax: React.FC<Props> = ({ children }) => {
       </div>
 
       <img src="assets/images/Fondo_Primer_plano.webp" className={css.image_depth} ref={refDeph1} alt="" />
-      <FullScreenButton elementId="fullscreen__section" addClass={css.fullScreen__button} />
+      <FullScreenButton elementRef={containerRef.current} addClass={css.fullScreen__button} />
 
       {/* Burbujas */}
       {[...Array(8)].map((_, index) => (

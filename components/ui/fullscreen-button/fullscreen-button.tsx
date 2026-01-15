@@ -12,14 +12,14 @@ import { i18n } from './const';
 import css from './fullscreen-button.module.css';
 
 interface Props extends ButtonPropsUI {
-  elementId: string;
+  elementRef: HTMLDivElement | null;
   label?: string;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   controlFullScreen?: boolean;
 }
 
 export const FullScreenButton: React.FC<Props> = ({
-  elementId,
+  elementRef,
   label,
   addClass,
   controlFullScreen,
@@ -27,7 +27,7 @@ export const FullScreenButton: React.FC<Props> = ({
   ...props
 }) => {
   const { lang } = useOvaContext();
-  const [isFullScreen, toggleFullScreen] = useFullScreen(elementId);
+  const [isFullScreen, toggleFullScreen] = useFullScreen(elementRef);
 
   // Verifica si el modo de pantalla completa está habilitado en el navegador
   const isFullScreenEnabled = useMemo(() => document.fullscreenEnabled, []);

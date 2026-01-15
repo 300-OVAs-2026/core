@@ -13,11 +13,13 @@ button.button {
     margin: .312rem;
 }
 
-@media screen and (max-width: 1280px)  {
-    button.button  {
+@media screen and (max-width: 1280px) {
+    button.button {
         display: block;
     }
 }
+
+
 
 button.button::first-letter {
     text-transform: uppercase;
