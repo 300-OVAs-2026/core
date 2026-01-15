@@ -83,7 +83,7 @@ const GameMoney: React.FC<Props> & SubComponents = ({ children, onResult, minSel
     updateActivity({ result: result, validation: true, button: true });
 
     if (result && !cancelAnimation && !stopAnimations) {
-      // moneyConfetti();
+      moneyConfetti();
       return;
     }
 
