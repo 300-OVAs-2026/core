@@ -5,7 +5,7 @@
 }
 
 html[data-dark-mode='true'] .radios__container {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .radio__options {
@@ -21,7 +21,7 @@ html[data-dark-mode='true'] .radios__container {
 
 .radio__options_container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
   justify-items: center;
   gap: 1rem;
 }
@@ -196,7 +196,7 @@ html[data-dark-mode='true'] .radios__container {
     left: 50%;
     top: 28%;
     transform: translateX(-50%);
-    z-index: 3;
+    z-index: 2;
   }
 
   html:not([data-stop-animations='true']) .ball__success {

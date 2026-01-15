@@ -169,8 +169,12 @@ html[data-dark-mode='true'] .container-element {
   }
 }
 
-/*** Dark mode ***/
+/* Dark mode */
 
 html[data-dark-mode='true'] .card-element {
   color: var(--clr-dark-mode);
+}
+
+html[data-dark-mode='true'] .wrong {
+  background-color: #641f08;
 }

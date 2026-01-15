@@ -114,10 +114,10 @@ export const GameBalloonsLevel: React.FC<GameBalloonsLevelProps> = ({ words, sen
   }, [reset, initialItems, words.length]);
 
   return (
-    <div>
+    <div className='u-flow'>
       <FullScreenAlert />
       <div>
-        <GameBalloonsParallax>
+        <GameBalloonsParallax >
           <div className={css.container__sentence}>
             <div className={css.container__bottles}>
               {balloons.map((b, i) => (

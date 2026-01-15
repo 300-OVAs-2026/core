@@ -7,7 +7,7 @@ interface Props {
   children: React.ReactElement;
 }
 
-export const SpaceButton: React.FC<Props> = ({ type, children }) => {
+export const GameSpaceButton: React.FC<Props> = ({ type, children }) => {
   const { handleValidation, handleReset, button, validation, result } = useGameSpaceContext();
 
   return cloneElement(children, {
