@@ -2,7 +2,7 @@
 export { GameBalloons } from './game-balloons';
 export { GameBottle } from './game-bottles';
 export { GameCasino } from './game-casino';
-export { GameFish } from './game-fishs';
+export { GameFish } from './game-fish';
 export { GameMoney } from './game-money';
 export { PhraseAndImage } from './game-phrase-and-image';
 export { GameQuestion } from './game-question';
