@@ -8,5 +8,5 @@ export { PhraseAndImage } from './game-phrase-and-image';
 export { GameQuestion } from './game-question';
 export { GameBasketball } from './game-basketball';
 export { GameSpace } from './game-space';
-export * from './race-card';
+export { RaceCard } from './game-race-card';
 export * from './stop-game';

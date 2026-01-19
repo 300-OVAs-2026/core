@@ -10,7 +10,7 @@ import css from './game-space.module.css';
 interface GalaxyProps {
   addClass?: string;
   question: string | JSX.Element;
-  universeType?: number;
+  universeType?: '1' | '2';
   children: JSX.Element | JSX.Element[];
 }
 
@@ -28,7 +28,7 @@ export const GameSpaceGalaxy: React.FC<GalaxyProps> = ({
 
   const safeSrc = (rawSrc: string): string => rawSrc.replace(/\s/g, '');
   const background = universeData.find((item) => item.cover)?.cover;
-  console.log(universeData);
+  
   const bg = safeSrc(background ?? '');
 
   const refAsteroid = useRef<HTMLImageElement>(null);

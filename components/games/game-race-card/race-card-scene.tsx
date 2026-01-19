@@ -1,225 +1,62 @@
-import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
-import { ModalFeedback } from '@core/components';
+import React, { memo, useEffect, useMemo, useRef } from 'react';
 import { Button } from '@ui/components';
 
 import { useOvaContext } from '@/context/ova-context';
 
-import type { ActivityOptions, DriversType, ModalName, modalType } from './types/types';
+import type { DriversType } from './types/types';
 import { i18n } from './const';
+import { GameQuestionButton } from './race-card-button';
 import { useGameContext } from './race-card-context';
-import { Carts, Feedback,Road, Score, Sky } from './svg-parts';
+import { Carts, Feedback, Road, Score, Sky } from './svg-parts';
 
 import css from './svg-card.module.css';
 
-
 interface Props {
   question: string;
-  selected: string;
-  toShowModal?: boolean;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  resetSelected: () => void;
-  modalFinal: modalType;
-  drivers?: DriversType;
   id: string;
+  drivers?: DriversType;
 }
 
-const POINTS_FOR_CORRECT_ANSWER = 100;
-const MOVE_DISTANCE = Math.floor(Math.random() * (70 - 40 + 1)) + 40;
 const HALF_DAY = 12;
-const PASSING_PERCENTAGE = 0.6; 
-const PLAYERS = Object.freeze({
-  player1: 1,
-  player2: 2
-});
+const PASSING_PERCENTAGE = 0.6;
 
-const RaceCard: React.FC<Props> = ({ id, question, selected, toShowModal = false, modalFinal, resetSelected, drivers }) => {
- const { lang } = useOvaContext();
-  const { game, updateGame, questionCount } = useGameContext();
+const RaceCard: React.FC<Props> = ({ question, id, drivers }) => {
+  const { lang } = useOvaContext();
+  const { game, questionCount, validation } = useGameContext();
+
   const refQuestion = useRef<HTMLDivElement>(null);
-
-  const [winner, setWinner] = useState<number | null>(null);
-  const [modal, setModal] = useState<ModalName | null>(null);
-  const [activity, setActivity] = useState<ActivityOptions>({
-    validation: true,
-    button: true,
-    showFeedback: false,
-    lastFeedback: false
-  });
 
   const SKY_COLOR = new Date().getHours() < HALF_DAY ? '#AFCFF1' : '#ffb36b';
 
   /**
-   * Updates the game state and determines the winner based on the player's action.
-   *
-   * @param {number} player - The player number (e.g., PLAYERS.player1 or PLAYERS.player2).
-   * @param {string} dataState - The new state to be set for the data elements.
-   * @param {(winner: number) => void} callback - A callback function that is called with the winner's number.
+   * Determina si el jugador ha acertado la pregunta.
    */
-  const updateStateAndWinner = (player: number, dataState: string, callback: (winner: number) => void) => {
-    let winner;
-    const dataElement = document.querySelectorAll('section:not([aria-hidden="true"]) input[type="radio"][data-state]');
-
-    dataElement.forEach((element) => element.setAttribute('data-state', dataState));
-
-    if (player === PLAYERS.player1) {
-      updateGame({
-        pointplayer1: game.pointplayer1 + POINTS_FOR_CORRECT_ANSWER,
-        move1: game.move1 + MOVE_DISTANCE,
-        answeredCount: game.answeredCount + 1,
-        rightAnswers: game.rightAnswers + 1
-      });
-      winner = PLAYERS.player1;
-    } else {
-      updateGame({
-        pointplayer2: game.pointplayer2 + POINTS_FOR_CORRECT_ANSWER,
-        move2: game.move2 + MOVE_DISTANCE,
-        answeredCount: game.answeredCount + 1
-      });
-      winner = PLAYERS.player2;
-    }
-
-    setWinner(winner);
-    callback(winner);
-  };
+  const isRight = useMemo(() => {
+    if (!questionCount) return false;
+    return game.rightAnswers / questionCount >= PASSING_PERCENTAGE;
+  }, [game.rightAnswers, questionCount]);
 
   /**
-   * Determines the speed based on the selected state and updates the state and winner accordingly.
-   *
-   * If the selected state is 'success', it updates the state and winner for player1 as 'correct'.
-   * Otherwise, it updates the state and winner for player2 as 'incorrect'.
-   *
-   * @function
-   * @returns {void}
+   * Determina si el jugador ha respondido todas las preguntas.
    */
-  const speed = () => {
-    if (selected === 'success') {
-      updateStateAndWinner(PLAYERS.player1, 'correct', showResult);
-    } else {
-      updateStateAndWinner(PLAYERS.player2, 'incorrect', showResult);
-    }
-  };
+  const lastFeedback = useMemo(() => {
+    return game.answeredCount === questionCount && validation;
+  }, [game.answeredCount, questionCount, validation]);
+
 
   /**
-   * Displays the result based on the winner.
-   *
-   * @param {number} winner - The winner of the race. Should be a number representing the player.
-   * @returns {void} - Does not return anything.
-   *
-   * If the winner is not provided or the modal should not be shown, the function exits early.
-   * If the winner is `PLAYERS.player1`, it sets the modal to 'correct', otherwise it sets it to 'incorrect'.
+   * Determina si el jugador ha respondido todas las preguntas.
+   * Cuando el juego ha terminado, se detienen las animaciones CSS.
    */
-  const showResult = (winner: number) => {
-    if (!winner || !toShowModal) return;
-    setModal(winner === PLAYERS.player1 ? 'correct' : 'incorrect');
-  };
-
-  /**
-   * Disables all radio input elements within the currently visible section,
-   * triggers the speed function, updates the activity state, and resets the selected state.
-   *
-   * @function validationActivity
-   * @returns {void}
-   */
-  const validationActivity = () => {
-    const inputElements = document.querySelectorAll(
-      `section:not([aria-hidden="true"]) input[type="radio"][name="radio-svg-question-${id}"][data-input="svg"]`
-    );
-
-    inputElements.forEach((element) => {
-      (element as HTMLInputElement).disabled = true;
-    });
-
-    speed();
-
-    const newActivityState = {
-      button: selected === 'success',
-      validation: true,
-      showFeedback: true
-    };
-
-    setActivity((prev) => ({
-      ...prev,
-      ...newActivityState
-    }));
-
-    resetSelected();
-  };
-
-  const closeModal = () => setModal(null);
-
-  /**
-   * Resets the activity state by closing the modal, enabling and unchecking all radio input elements,
-   * updating the game state based on the winner, and resetting the activity state.
-   *
-   * - Enables and unchecks all radio input elements with a specific name and data attribute.
-   * - Updates the game state by decrementing the move and points of the winning player.
-   * - Resets the winner state to null.
-   * - Resets the activity state to show feedback as false, button as true, and validation as true.
-   */
-  const resetActivity = () => {
-    closeModal();
-
-    const inputElements = document.querySelectorAll(
-      `input[type="radio"][name="radio-svg-question-${id}"][data-input="svg"]`
-    );
-
-    inputElements.forEach((element) => {
-      (element as HTMLInputElement).disabled = false;
-      (element as HTMLInputElement).checked = false;
-      (element as HTMLInputElement).setAttribute('data-state', '');
-    });
-
-    if (winner === PLAYERS.player1) {
-      updateGame({
-        move1: game.move1 - MOVE_DISTANCE,
-        pointplayer1: game.pointplayer1 - POINTS_FOR_CORRECT_ANSWER,
-        answeredCount: game.answeredCount > 0 ? game.answeredCount - 1 : 0
-      });
-    } else if (winner === PLAYERS.player2) {
-      updateGame({
-        move2: game.move2 - MOVE_DISTANCE,
-        pointplayer2: game.pointplayer2 - POINTS_FOR_CORRECT_ANSWER,
-        answeredCount: game.answeredCount > 0 ? game.answeredCount - 1 : 0,
-      });
-    }
-
-    setWinner(null);
-    setActivity((prev) => ({
-      ...prev,
-      showFeedback: false,
-      button: true,
-      validation: true,
-      lastFeedback: false
-    }));
-  };
-
-  const handleFinalFeedback = () => {
-    setActivity((prev) => ({
-      ...prev,
-      lastFeedback: true
-    }));
-  };
-
-  // Check if the last feedback should be shown
-  const isReadyToShowLastFeedback = useMemo(
-    () => game.answeredCount === questionCount && activity.validation,
-    [game.answeredCount, questionCount, activity.validation]
-  );
-
-  // Calculate if the player has enough right answers to pass
-  const isRight = game.rightAnswers / questionCount >= PASSING_PERCENTAGE;
-
   useEffect(() => {
-    if (selected && activity.button) {
-      setActivity((prev) => ({ ...prev, validation: false }));
-    }
-  }, [selected, activity.button]);
+    const root = document.documentElement; 
 
-  useEffect(() => {
-    if (isReadyToShowLastFeedback) {
-      handleFinalFeedback();
+    if (lastFeedback) {
+      root.setAttribute('data-stop-animations', 'true');
+    } else {
+      root.removeAttribute('data-stop-animations');
     }
-  }, [isReadyToShowLastFeedback]);
+  }, [lastFeedback]);
 
   return (
     <>
@@ -227,6 +64,7 @@ const RaceCard: React.FC<Props> = ({ id, question, selected, toShowModal = false
         id="svg-sld14-game"
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
+        data-game-over={lastFeedback ? 'true' : 'false'}
         x="0px"
         y="0px"
         viewBox="0 0 777.6 500"
@@ -562,8 +400,8 @@ const RaceCard: React.FC<Props> = ({ id, question, selected, toShowModal = false
 
         <Sky />
         <Road />
-        <Carts />
-        <Score drivers={drivers}/>
+        {!lastFeedback && <Carts />}
+        <Score drivers={drivers} />
 
         {/* Question */}
         <foreignObject x="150" y="10" width="500" height="200">
@@ -573,39 +411,21 @@ const RaceCard: React.FC<Props> = ({ id, question, selected, toShowModal = false
             </div>
             {/* Button check */}
             <div className={css['question__validation-buttons']}>
-              <Button disabled={activity.validation} onClick={validationActivity} label={i18n[lang]['check-button']} />
-              <Button disabled={activity.button} onClick={resetActivity} label={i18n[lang]['restar-button']} />
+              <GameQuestionButton sceneId={id}>
+                <Button label={i18n[lang]['check-button']} />
+              </GameQuestionButton>
+              <GameQuestionButton type="reset" sceneId={id}>
+                <Button label={i18n[lang]['restar-button']} />
+              </GameQuestionButton>
             </div>
           </div>
         </foreignObject>
 
-         {/* Feedback */}
+        {/* Feedback */}
         <foreignObject x="150" y="200" width="500" height="280">
-          {activity.lastFeedback && <Feedback isRight={isRight} />}
+          {lastFeedback && <Feedback isRight={isRight} />}
         </foreignObject>
       </svg>
-
-      <ModalFeedback
-        type="success"
-        id="modal-sld14-correct"
-        isOpen={modal === 'correct'}
-        onClose={closeModal}
-        finalFocusRef=".js-button-correct"
-        audio={modalFinal?.audioSuccess}
-        interpreter={{ contentURL: modalFinal?.interpreterSuccess }}>
-        <p dangerouslySetInnerHTML={{ __html: modalFinal?.textSuccess }}></p>
-      </ModalFeedback>
-
-      <ModalFeedback
-        type="wrong"
-        id="modal-sld14-incorrect"
-        isOpen={modal === 'incorrect'}
-        onClose={closeModal}
-        finalFocusRef=".js-button-incorrect"
-        audio={modalFinal?.audioWrong}
-        interpreter={{ contentURL: modalFinal?.interpreterWrong }}>
-        <p dangerouslySetInnerHTML={{ __html: modalFinal.textWrong }}></p>
-      </ModalFeedback>
     </>
   );
 };

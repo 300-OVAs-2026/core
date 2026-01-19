@@ -9,19 +9,17 @@ import css from './svg-card.module.css';
 
 interface Props {
   messageInitial: string;
-  title: string;
-  alt: string;
   section?: number;
 }
 
 const HALF_DAY = 12;
 
-export const RaceCardInitial: React.FC<Props> = ({ messageInitial, title, alt, section = 1 }) => {
+export const RaceCardInitial: React.FC<Props> = ({ messageInitial, section = 1 }) => {
   const { lang } = useOvaContext();
   const IS_NOON = new Date().getHours() < HALF_DAY;
 
   return (
-    <figure className={`${css['game']}`}>
+    <div className={`${css['game']}`}>
       <svg
         id="svg-sld14-initial"
         xmlns="http://www.w3.org/2000/svg"
@@ -5134,10 +5132,6 @@ export const RaceCardInitial: React.FC<Props> = ({ messageInitial, title, alt, s
           </PanelUI.Button>
         </foreignObject>
       </svg>
-
-      <figcaption className="u-text-center u-font-italic">
-        <strong>{title}</strong> {alt}
-      </figcaption>
-    </figure>
+    </div>
   );
 };
