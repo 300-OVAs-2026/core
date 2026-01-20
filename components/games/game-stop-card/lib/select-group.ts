@@ -1,7 +1,6 @@
 /**
- * Disables all radio inputs with the given groupName.
- * Sets the "disabled" property of all radio inputs to true.
- * @param {string} groupName - The name of the radio inputs to disable.
+ * Disable all radio inputs in the given group.
+ * @param {string} groupName - The name of the group to disable.
  */
 export const disableGroup = (groupName: string) => {
   const inputs = document.querySelectorAll(
@@ -11,10 +10,8 @@ export const disableGroup = (groupName: string) => {
 };
 
 /**
- * Enables all radio inputs with the given groupName and clears their state.
- * Sets the "disabled" property of all radio inputs to false and the "checked" property to false.
- * Removes the "data-state" attribute from all radio inputs.
- * @param {string} groupName - The name of the radio inputs to enable and clear.
+ * Enables all radio inputs in the given group and sets their state to the initial one.
+ * @param {string} groupName - The name of the group to enable and clear.
  */
 export const enableAndClearGroup = (groupName: string) => {
   const inputs = document.querySelectorAll(
@@ -29,10 +26,10 @@ export const enableAndClearGroup = (groupName: string) => {
 };
 
 /**
- * Sets the "data-state" attribute of all radio inputs with the given groupName to the given value.
- * This is used to visually indicate the correct or incorrect state of the radio inputs.
- * @param {string} groupName - The name of the radio inputs to select.
- * @param {string} value - The value to set the "data-state" attribute to.
+ * Sets the data-state attribute for all radio inputs in the given group.
+ * This is used to update the visual state of the radio buttons after validation.
+ * @param {string} groupName - The name of the group to update.
+ * @param {string} value - The value to set for the data-state attribute.
  */
 export const setGroupStateAttr = (groupName: string, value: string) => {
   const inputs = document.querySelectorAll(

@@ -1,6 +1,6 @@
 import { cloneElement } from 'react';
 
-import { useGameContext } from './race-card-context';
+import { useStopGame } from './stop-card-context';
 
 interface Props {
   type?: 'reset';
@@ -8,23 +8,23 @@ interface Props {
   children: React.ReactElement;
 }
 
-export const RaceCardButton: React.FC<Props> = ({ type, sceneId, children }) => {
-  const { handleValidation, handleReset, button, validation, result, game } = useGameContext();
-
-  const isThisSceneActive = game.activeSceneId === sceneId;
-  const isThisSceneValidated = game.lastValidatedSceneId === sceneId;
+export const StopCardButton: React.FC<Props> = ({ type, sceneId, children }) => {
+  const { handleValidation, handleReset, game } = useStopGame();
+  
+  const validated = sceneId ? Boolean(game.validatedByScene?.[sceneId]) : false;
+  const correct = sceneId ? Boolean(game.resultByScene?.[sceneId]) : false;
 
   const disabled =
     type !== 'reset'
       ? // Validar: solo se habilita si es la escena activa
-        !isThisSceneActive
+        !sceneId || validated 
         ? true
-        : button
+        : game.button
       : // Reset: solo aplica si esta escena fue la validada más reciente
-        !isThisSceneValidated
+        !sceneId || !validated || correct
         ? true
-        : validation
-          ? result
+        : game.validation
+          ? game.result
           : true;
 
   return cloneElement(children, {

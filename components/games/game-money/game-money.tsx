@@ -84,7 +84,6 @@ const GameMoney: React.FC<Props> & SubComponents = ({ children, onResult, minSel
 
     if (result && !cancelAnimation && !stopAnimations) {
       moneyConfetti();
-      return;
     }
 
     timeoutRef.current = window.setTimeout(() => {

@@ -5,7 +5,7 @@ import { useOvaContext } from '@/context/ova-context';
 
 import type { DriversType } from './types/types';
 import { i18n } from './const';
-import { GameQuestionButton } from './race-card-button';
+import { RaceCardButton } from './race-card-button';
 import { useGameContext } from './race-card-context';
 import { Carts, Feedback, Road, Score, Sky } from './svg-parts';
 
@@ -411,12 +411,12 @@ const RaceCard: React.FC<Props> = ({ question, id, drivers }) => {
             </div>
             {/* Button check */}
             <div className={css['question__validation-buttons']}>
-              <GameQuestionButton sceneId={id}>
+              <RaceCardButton sceneId={id}>
                 <Button label={i18n[lang]['check-button']} />
-              </GameQuestionButton>
-              <GameQuestionButton type="reset" sceneId={id}>
+              </RaceCardButton>
+              <RaceCardButton type="reset" sceneId={id}>
                 <Button label={i18n[lang]['restar-button']} />
-              </GameQuestionButton>
+              </RaceCardButton>
             </div>
           </div>
         </foreignObject>

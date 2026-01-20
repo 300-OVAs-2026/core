@@ -9,4 +9,4 @@ export { GameQuestion } from './game-question';
 export { GameBasketball } from './game-basketball';
 export { GameSpace } from './game-space';
 export { RaceCard } from './game-race-card';
-export * from './stop-game';
+export { StopCard } from './game-stop-card';
