@@ -1,67 +1,42 @@
-// import { loadCSS } from '@core/utils';
-
-import { GameCasinoStates, silverAmount } from './types/types';
+import { silverAmount } from './types/types';
+import { BG } from './const';
+import { useGameCasinoProvider } from './game-casino-context';
 
 import css from './game-casino.module.css';
 
-// const css = await loadCSS({
-//   ui: 'game-casino/game-casino.module.css',
-//   local: 'game-casino/game-casino.module.css'
-// });
-
-interface Props extends React.ComponentPropsWithoutRef<'input'> {
-  label: string;
+interface Props {
   id: string;
-  point: number;
   name: string;
-  state: GameCasinoStates | string;
-  onValueChange: (id: string, amount: number, state: GameCasinoStates | string) => void;
-  isSelected?: boolean;
-  hasValidated?: boolean;
-  selectedAmount?: number | null;
-  disabled?: boolean;
+  label: string;
+  state: 'success' | 'wrong';
+  bullet: string;
 }
 
-const CasinoElement = ({
-  label,
-  point,
-  id,
-  name,
-  state,
-  isSelected,
-  hasValidated,
-  selectedAmount,
-  disabled,
+export const CasinoElement = ({ id, name, label, state, bullet }: Props) => {
+  const { addSelectedOption, options, validation, point } = useGameCasinoProvider();
 
-  onValueChange,
-  ...rest
-}: Props) => {
-  const handleButtonClick = (id: string, amount: number, state: GameCasinoStates | string) => {
-    onValueChange(id, amount, state);
-  };
+  const selectedOption = options[0];
+  const isSelected = selectedOption?.id === id;
 
   return (
     <div className={css['casino-element']}>
       <article
-        data-label={label.charAt(0).toUpperCase()}
+        data-label={bullet} // <--- Atributo clave para el CSS
         className={`
-          ${isSelected && hasValidated && state === 'success' ? css['success'] : ''} 
-          ${isSelected && hasValidated && state === 'wrong' ? css['wrong'] : ''}
-        `}>
-        <label htmlFor={id}>{label}</label>
-        <input className={css['hidden-input']} type="radio" name={name} id={id} {...rest} />
+        ${isSelected && validation && state === 'success' ? css.success : ''}
+        ${isSelected && validation && state === 'wrong' ? css.wrong : ''}
+      `}>
+        <label>{label}</label>
         <div className={css['casino-element-amount']}>
-          {silverAmount.map((amount, index) => (
+          {silverAmount.map((amt) => (
             <button
-              disabled={disabled || (isSelected && hasValidated) || point < amount}
-              className={isSelected && selectedAmount === amount ? css.selected : ''}
+              key={amt}
               type="button"
-              key={amount + index}
-              onClick={() => handleButtonClick(id, amount, state)}>
-              <span>${amount}</span>
-              {amount === 10 && <img width={30} height={30} src="assets/images/moneda-1.webp" alt="Moneda 1." />}
-              {amount === 15 && <img width={30} height={30} src="assets/images/moneda-2.webp" alt="Moneda 2." />}
-              {amount === 25 && <img width={30} height={30} src="assets/images/moneda-3.webp" alt="Moneda 3." />}
+              disabled={validation || (options.length > 0 && !isSelected) || point < amt}
+              className={isSelected && selectedOption?.amount === amt ? css.selected : ''}
+              onClick={() => addSelectedOption({ id, name, label, state, amount: amt })}>
+              <span>${amt}</span>
+              <img src={amt === 10 ? BG.moneda1 : amt === 15 ? BG.moneda2 : BG.moneda3} alt="" />
             </button>
           ))}
         </div>
@@ -69,5 +44,3 @@ const CasinoElement = ({
     </div>
   );
 };
-
-export default CasinoElement;

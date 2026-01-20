@@ -1,1 +1,1 @@
-export { GameCasino } from './game-casino-provider';
+export { GameCasino } from './game-casino';
