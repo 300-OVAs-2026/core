@@ -8,6 +8,8 @@ interface RadioActivityContextType {
   openModal: boolean;
   handleSelectImage: (imageUrl: string, join: number, alt: string) => void;
   handleOpenModal: (id: number, join: number) => void;
+  handleSelectText: (join: number, children: JSX.Element | JSX.Element[] | null) => void;
+  handleSelectAudio: (urlAudio: string, join: number) => void;
 }
 
 export const [PhraseAndImageProvider, usePhraseAndImageContext] = createContext<RadioActivityContextType>({

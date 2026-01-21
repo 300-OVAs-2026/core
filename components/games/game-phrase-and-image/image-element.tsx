@@ -19,7 +19,6 @@ export const ImageElement: React.FC<ImgType> = ({ id, join, url, alt, ...props }
       data-join={join}
       onClick={() => handleSelectImage(url, join, alt)}>
       <Image size="100%" addClass={css.imageQuestion} noCaption src={url} alt={alt} />
-      {/* <img src="assets/images/prueba.jpg" alt={item} /> */}
     </Button>
   );
 };
