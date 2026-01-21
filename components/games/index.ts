@@ -10,3 +10,4 @@ export { GameBasketball } from './game-basketball';
 export { GameSpace } from './game-space';
 export { RaceCard } from './game-race-card';
 export { StopCard } from './game-stop-card';
+export { GameThisOrThat } from './game-this-or-that';

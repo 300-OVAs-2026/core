@@ -1,14 +1,17 @@
-import { cloneElement } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+import { cloneElement, FC } from 'react';
 
-import { useThisOrThatActivityContext } from './this-or-that-activity-context';
+import { useThisOrThatGameContext } from './game-this-or-that-context';
+
 
 interface Props {
   type?: 'reset';
   children: React.ReactElement;
 }
 
-export const ThisOrThatButton: React.FC<Props> = ({ type, children }) => {
-  const { handleValidation, handleReset, button, validation, result } = useThisOrThatActivityContext();
+
+export const GameThisOrThatButton: FC<Props> = ({ type, children }) => {
+  const { handleValidation, handleReset, button, validation, result } = useThisOrThatGameContext();
 
   return cloneElement(children, {
     ...children.props,

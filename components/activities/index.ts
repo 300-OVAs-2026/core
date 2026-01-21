@@ -10,5 +10,4 @@ export { RelationConcept } from './relation-concept-activity';
 export { Selects } from './select-activity';
 export { SelectsGroup } from './select-group-activity';
 export { TableTrueFalse } from './table-true-false';
-export { ThisOrThat } from './this-or-that-activity';
 export { TrueFalse } from './true-false';
