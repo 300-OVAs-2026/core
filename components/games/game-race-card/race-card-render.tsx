@@ -62,10 +62,10 @@ export const RaceCardRender: React.FC<Props> = ({ question, id, children, onResu
       <FullScreenAlert />
       <FullScreenButton elementRef={gameEl} />
       <div id={id} className={css['game-wrapper']} ref={setRef}  data-fullscreen>
-        <div className={css['game-wrapper__options']}>{children}</div>
         <div className={css['game-wrapper__scene']}>
           <RaceCardScene question={question} {...props} id={id} drivers={props.drivers} />
         </div>
+        <div className={css['game-wrapper__options']}>{children}</div>
       </div>
     </div>
   );

@@ -9,23 +9,28 @@
   place-content: center;
   display: grid;
   gap: 0.5em;
-  grid-template-columns: 30ch 1fr;
+  grid-template-columns: 1fr;
 }
 
 @media screen and (max-width: 1219px) {
   .game-wrapper {
     grid-template-columns: 1fr;
   }
+
+  .game-wrapper__options {
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)) !important;
+  }
 }
 
 .game-wrapper__options {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   justify-content: center;
   align-items: center;
   gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
   padding: 0.5rem;
   background-color: var(--container-bg-clr, var(--clr-secondary-dark));
+  position: relative;
 }
 
 .game-wrapper__scene {
@@ -42,6 +47,10 @@
 
   .game-wrapper[data-fullscreen] .radio__svg label {
     min-height: auto;
+  }
+
+  .game-wrapper[data-fullscreen] .game-wrapper__options {
+    order: -1;
   }
 }
 
