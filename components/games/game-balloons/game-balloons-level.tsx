@@ -114,10 +114,10 @@ export const GameBalloonsLevel: React.FC<GameBalloonsLevelProps> = ({ words, sen
   }, [reset, initialItems, words.length]);
 
   return (
-    <div className='u-flow'>
+    <div className="u-flow">
       <FullScreenAlert />
       <div>
-        <GameBalloonsParallax >
+        <GameBalloonsParallax>
           <div className={css.container__sentence}>
             <div className={css.container__bottles}>
               {balloons.map((b, i) => (
@@ -143,24 +143,36 @@ export const GameBalloonsLevel: React.FC<GameBalloonsLevelProps> = ({ words, sen
                 const isSelected = selectIndex === i;
                 const canRemove = !!obj && isSelected && !validation;
 
+                const letterLabel = obj?.letter ? `la letra ${obj.letter}` : 'este espacio';
+                const hintId = `remove-hint-${i}`;
+
                 return (
                   <div key={obj?.index || i} className={css.spaceWrap}>
                     <button
                       disabled={validation}
-                      className={isSelected ? css.select : undefined}
+                      className={!validation && isSelected ? css.select : undefined}
                       onClick={() => setSelectIndex(i)}
-                      type="button">
+                      type="button"
+                      aria-current={isSelected ? 'true' : undefined}
+                      aria-label={obj?.letter ? `Espacio ${i + 1}, contiene ${obj.letter}` : `Espacio ${i + 1}, vacío`}>
                       {obj?.letter || '____'}
                     </button>
 
                     {canRemove && (
-                      <button
-                        className={css.spaceRemove}
-                        onClick={() => removeLetter(i)}
-                        aria-label="eliminar palabra seleccionada"
-                        type="button">
-                        <span>&#10005;</span>
-                      </button>
+                      <>
+                        {/* Texto de ayuda solo para lectores de pantalla */}
+                        <span id={hintId} className="u-sr-only">
+                          {`Seleccionado. Puedes eliminar ${letterLabel} presionando el botón eliminar.`}
+                        </span>
+                        <button
+                          className={css.spaceRemove}
+                          onClick={() => removeLetter(i)}
+                          aria-label={`Eliminar ${letterLabel} del espacio ${i + 1}`}
+                          aria-describedby={hintId}
+                          type="button">
+                          <span>&#10005;</span>
+                        </button>
+                      </>
                     )}
                   </div>
                 );

@@ -12,10 +12,6 @@
   }
 }
 
-.container:hover {
-  background-color: #0003;
-}
-
 .container:focus {
   background-color: #0003;
   outline: none;
@@ -47,13 +43,35 @@
   width: 0;
 }
 
+.checkbox:focus-visible + .container__responsive {
+  outline: 3px solid #bf6f42; /* usa tu color */
+  outline-offset: 6px; /* separa el outline del globo */
+  border-radius: 18px; /* para que siga la forma */
+}
+
 .container__responsive {
   cursor: pointer;
   display: inline-block; /* o flex según tu layout */
   position: relative;
+  border-radius: 15px;
 }
 
-.container[data-disabled="true"] .container__responsive {
+/* Hover SOLO si el input está habilitado */
+.checkbox:not(:disabled) + .container__responsive:hover {
+  background-color: #0003;
+}
+
+/* Si está disabled, explícitamente sin hover */
+.checkbox:disabled + .container__responsive:hover {
+  background-color: transparent;
+}
+
+.container[data-disabled='true'] .container__responsive {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.checkbox:disabled + .container__responsive {
   cursor: not-allowed;
   opacity: 0.6;
 }
@@ -135,13 +153,13 @@
   justify-content: center;
 }
 
-.container__sentence{
+.container__sentence {
   padding: 2.5rem 0.75rem 1rem 0.75rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   row-gap: 1rem;
-  
+
   width: 100%;
   height: 100%;
   min-height: inherit;
@@ -233,7 +251,6 @@
   font-size: 18px;
 }
 
-
 .spaceWrap {
   position: relative;
   display: inline-flex;
@@ -261,7 +278,6 @@ button.spaceRemove {
 .spaceRemove:hover {
   filter: brightness(1.2);
 }
-
 
 @media (prefers-reduced-motion: no-preference) {
   html:not([data-stop-animations='true']) .fish {
