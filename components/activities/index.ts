@@ -3,7 +3,6 @@ export { Checkboxs } from './checkbox-activity';
 export * from './crossword-input';
 export { DndActivity } from './dnd-activity';
 export { Inputs } from './input-activity';
-export { MemoryCardActivity } from './memory-card';
 export * from './order-phrase';
 export { Radios } from './radio-activity';
 export { RelationConcept } from './relation-concept-activity';
