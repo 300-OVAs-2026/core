@@ -1,0 +1,48 @@
+/* ===== VARIABLES DE COLOR PARA NOTAS ===== */
+:root {
+  /* Colores Primarios */
+  --notes-primary: #00294a;
+  --notes-primary-hover: #003d6b;
+  --notes-primary-light: #286a9f14;
+  
+  /* Colores de Fondo */
+  --notes-bg-white: #ffffff;
+  --notes-bg-gray-50: #f9fafb;
+  --notes-bg-gray-100: #f7f7f7;
+  --notes-bg-gray-200: #e7e7e7;
+  
+  /* Colores de Texto */
+  --notes-text-dark: #1f2937;
+  --notes-text-medium: #374151;
+  --notes-text-gray: #6b7280;
+  --notes-text-light: #9ca3af;
+  --notes-text-secondary: #313e58;
+  --notes-text-white: #ffffff;
+  
+  /* Colores de Borde */
+  --notes-border-gray: #e5e7eb;
+  --notes-border-medium: #d1d5db;
+  --notes-border-dark: #9ca3af;
+  --notes-border-blockquote: rgb(103, 103, 103);
+  
+  /* Colores de Estado */
+  --notes-badge-danger: #ef4444;
+  --notes-delete-text: hsl(0 70% 45%);
+  --notes-delete-border: hsl(0 70% 70%);
+  --notes-delete-bg: hsl(0 70% 97%);
+  
+  /* Sombras */
+  --notes-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --notes-shadow-md: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --notes-shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --notes-shadow-xl: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --notes-shadow-panel: 2px 2px 4px 1px #818181;
+  --notes-shadow-badge: 0 2px 4px rgba(0, 0, 0, 0.2);
+  
+  /* Opacidades */
+  --notes-opacity-overlay: rgba(255, 255, 255, 0.1);
+  
+  /* Focus */
+  --notes-outline-offset: -0.32rem;
+  --notes-outline-width: 2px;
+}

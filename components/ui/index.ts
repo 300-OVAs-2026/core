@@ -9,3 +9,4 @@ export { ModalBibliography } from './modal-bibliography';
 export { ModalCredits } from './modal-credits';
 export { ModalFeedback } from './modal-feedback';
 export * from './svg-positioner';
+export * from './notes';
