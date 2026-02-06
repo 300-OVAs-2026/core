@@ -10,3 +10,4 @@ export { Selects } from './select-activity';
 export { SelectsGroup } from './select-group-activity';
 export { TableTrueFalse } from './table-true-false';
 export { TrueFalse } from './true-false';
+export { PairLogicItems } from './pair-logic';
