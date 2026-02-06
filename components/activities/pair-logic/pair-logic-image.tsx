@@ -10,6 +10,8 @@ import css from './pair-logic.module.css';
 export const PairLogicImage = ({ children }: { children: React.ReactNode }) => {
   const { imageSelected, lockedJoins, updateActivity, validation, endActivity } = useGameJoinContext();
   const imageRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const interactionLocked = validation !== null || endActivity;
   const handleSelectImage = (child: React.ReactElement) => {
     const join = child.props.id;
 
@@ -27,8 +29,8 @@ export const PairLogicImage = ({ children }: { children: React.ReactNode }) => {
     const isLocked = lockedJoins.includes(join);
 
     return React.cloneElement(child, {
-      disabled: isLocked,
-      onClick: () => handleSelectImage(child)
+      disabled: isLocked || interactionLocked,
+      onClick: interactionLocked || isLocked ? undefined : () => handleSelectImage(child)
     });
   });
 
@@ -49,10 +51,20 @@ export const PairLogicImage = ({ children }: { children: React.ReactNode }) => {
       }
     );
   }, [imageSelected.src]);
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    if (validation !== null || endActivity) {
+      containerRef.current.setAttribute('inert', '');
+    } else {
+      containerRef.current.removeAttribute('inert');
+    }
+  }, [validation, endActivity]);
 
   return (
     <div className={css.containerImage}>
       <div
+        ref={containerRef}
         aria-label="acontinuacion encontrara elementos tendra que seleccionar uno presionando enter sobre el que quieras."
         className={css.images}>
         {enhancedChildren}
@@ -62,7 +74,10 @@ export const PairLogicImage = ({ children }: { children: React.ReactNode }) => {
         <IconArrow idIcon="arrowImage" />
       </div>
 
-      <div className={`${css.imageSeleccionado}`} aria-label="contenedor donde se aloja la imagen seleccionada">
+      <div
+        ref={imageRef}
+        className={`${css.imageSeleccionado}`}
+        aria-label="contenedor donde se aloja la imagen seleccionada">
         {validation !== null && (
           <div className={css.validation} data-validation={validation}>
             <div className={css.stampCircle} aria-label="Sello">
@@ -93,7 +108,7 @@ export const PairLogicImage = ({ children }: { children: React.ReactNode }) => {
             </p>
           </>
         ) : (
-          <div ref={imageRef}>
+          <div className={css.imageSelected} ref={imageRef}>
             <Image noCaption src={imageSelected.src} alt={imageSelected.alt ?? ''} />
           </div>
         )}

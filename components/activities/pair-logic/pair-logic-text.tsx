@@ -21,11 +21,12 @@ export const PairLogicText = ({ children, ...props }: Props) => {
     updateActivity({ text: { text: textValue, join } });
   };
   const enhancedChildren = React.Children.map(children, (child) => {
+    const interactionLocked = validation !== null || endActivity;
     if (!React.isValidElement(child)) return child;
     const isLocked = lockedJoins.includes(child.props.id);
     return React.cloneElement(child, {
-      disabled: isLocked,
-      'aria-checked': isLocked,
+      disabled: isLocked || interactionLocked,
+      'aria-checked': isLocked || interactionLocked,
       onClick: isLocked ? undefined : () => handleSelectText(child)
     });
   });

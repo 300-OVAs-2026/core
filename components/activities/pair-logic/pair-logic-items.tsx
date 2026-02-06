@@ -63,6 +63,7 @@ export const PairLogicItems: React.FC<Props> & SubComponents = ({ children, onRe
   );
   const [liveMessage, setLiveMessage] = useState<string>('');
   const { button, validation, result, lockedJoins, imageSelected, text, buttonsCount, endActivity } = activity;
+
   const handleValidation = () => {
     const result = text.join === imageSelected.join;
     if (onResult) {

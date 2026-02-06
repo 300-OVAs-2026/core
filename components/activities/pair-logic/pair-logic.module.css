@@ -314,3 +314,8 @@ button:disabled {
     padding-right: 1rem;
     text-align: center;
 }
+
+.imageSelected {
+    max-width: 200px;
+    width: auto;
+}
