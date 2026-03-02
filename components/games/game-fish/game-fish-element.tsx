@@ -1,9 +1,9 @@
 import { useMemo, useRef } from 'react';
 
-import { GameFishStates } from './types/types';
-// 1. Importamos el objeto BG
-import { BG } from './const';
 import { useGameFishActivityContext } from './game-fish-context';
+import { BG } from './lib/constant';
+
+import type { GameFishStates } from './types/types';
 
 import css from './game-fish.module.css';
 

@@ -1,7 +1,8 @@
 import { useEffect, useId, useMemo } from 'react';
 
-import { RadioStates } from './types/types';
 import { useGameQuestionContext } from './game-question-context';
+
+import type { RadioStates } from './types/types';
 
 import css from './game-question.module.css';
 

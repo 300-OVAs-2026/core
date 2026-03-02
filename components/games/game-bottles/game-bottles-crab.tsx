@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef } from 'react';
-import gsap from 'gsap';
-import { useA11yAttribute, useReduceMotion } from '@core/hooks';
 import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
-import { IMAGENES_CANGREJO } from './assets/images';
+import { useA11yAttribute, useReduceMotion } from '@shared/hooks';
+
+import { IMAGENES_CANGREJO } from './lib/constant';
 
 import css from './styles/crab.module.css';
 

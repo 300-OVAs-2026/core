@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react';
 
-import type { GroupOfOptionList,InitialState, Option, OptionList } from './types/types';
-import { States } from './types/types';
 import { SelectGroupActivityProvider } from './select-group-activity-context';
 import { SelectButton } from './select-group-button';
 import { SelectElement } from './select-group-element';
+
+import type { GroupOfOptionList,InitialState, Option, OptionList } from './types/types';
+import { States } from './types/types';
 
 const INITIAL_STATE: InitialState = Object.freeze({
   validation: false,

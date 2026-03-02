@@ -15,6 +15,7 @@ type card = {
   type: 'image' | 'text' | 'audio';
   textChildren?: JSX.Element | JSX.Element[] | null;
 };
+
 export const CardElement: React.FC<card> = ({
   id,
   join,

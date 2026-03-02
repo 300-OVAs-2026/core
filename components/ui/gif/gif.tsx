@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { useA11yAttribute, useReduceMotion} from '@core/hooks';
 
-import { poster } from './poster';
+import { useA11yAttribute, useReduceMotion} from '@shared/hooks';
+
+import { poster } from './lib/poster';
 
 import css from './gif.module.css';
 

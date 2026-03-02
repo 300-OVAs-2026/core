@@ -1,19 +1,19 @@
-import { InputHTMLAttributes, useEffect, useId, useMemo, useRef } from 'react';
+import type { InputHTMLAttributes} from 'react';
+import { useEffect, useId, useMemo, useRef } from 'react';
 import gsap from 'gsap';
 
-import { SpaceResult } from './types/types';
-import { BALLONS } from './const';
+import { BALLONS } from './lib/constant';
+
+import type { SpaceResult } from './types/types';
 
 import css from './game-balloons.module.css';
 
 export interface GameBalloonsElementProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
-  balloonRole: number; // <- antes "role"
+  balloonRole: number; 
   letter: string;
   index: string;
   enable: boolean;
   onResult?: (result: SpaceResult) => void;
-
-  // opcional: controlar selección desde fuera
   checked?: boolean;
   onCheckedChange?: (checked: boolean) => void;
 }
@@ -53,7 +53,7 @@ export const GameBalloonsElement: React.FC<GameBalloonsElementProps> = ({
 
   return (
     <div className={css.container} style={{ animationDelay: `${balloonRole * 0.5}s` }}>
-      {/* Checkbox real (accesible) */}
+   
       <input
         {...props}
         id={id}
@@ -65,7 +65,7 @@ export const GameBalloonsElement: React.FC<GameBalloonsElementProps> = ({
         aria-label={letter}
       />
 
-      {/* Label hace de “botón” visual */}
+
       <label htmlFor={id} className={css.container__responsive}>
         <img src={balloonSrc} alt="" />
         <div ref={refWord} className={css.letter}>

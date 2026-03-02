@@ -1,11 +1,13 @@
-import { ReactNode, useReducer } from 'react';
+import type { ReactNode} from 'react';
+import { useReducer } from 'react';
 
-import { GameResult, InitialState, Option } from './types/types';
 import { GameCasinoButton } from './game-casino-button';
 import { GameCasinoProvider } from './game-casino-context';
 import { CasinoElement } from './game-casino-element';
 import { GameCasinoInit } from './game-casino-init';
 import { GameCasinoLevel } from './game-casino-level';
+
+import type { GameResult, InitialState, Option } from './types/types';
 
 const INITIAL_STATE: InitialState = {
   validation: false,

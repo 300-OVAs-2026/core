@@ -2,11 +2,13 @@ import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 
 import { getActiveSceneIdFromInputId } from './lib/get-active-scene-id';
 import { disableGroup, enableAndClearGroup, setGroupStateAttr } from './lib/select-group';
-import { InitialState, Radio, States } from './types/types';
 import { StopGameContextProvider } from './stop-card-context';
 import { StopCardInitial } from './stop-card-initial';
 import { StopCardRadio } from './stop-card-radio';
 import { StopCardScene } from './stop-card-scene';
+
+import type { InitialState, Radio } from './types/types';
+import { States } from './types/types';
 
 const INITIAL_GAME: InitialState = {
   validation: false,

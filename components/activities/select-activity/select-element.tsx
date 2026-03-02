@@ -4,16 +4,11 @@ import { Item } from 'react-stately';
 import type { SelectProps as SelectPropsUI } from 'books-ui';
 import { Select } from 'books-ui';
 
-// import { loadCSS } from '@core/utils';
-import { States } from './types/types';
 import { useSelectActivityContext } from './select-activity-context';
 
-import css from './select.module.css';
+import { States } from './types/types';
 
-// const css = await loadCSS({
-//   ui: 'select-activity/select.module.css',
-//   local: 'select-activity/select.module.css'
-// });
+import css from './select.module.css';
 
 type OptionType = {
   id: string;

@@ -1,10 +1,11 @@
 import { useEffect, useReducer, useRef } from 'react';
 
-import type { InitialState, Option } from './types/types';
-import { States } from './types/types';
 import { CheckboxActivityProvider } from './checkbox-activity-context';
 import { CheckboxButton } from './checkbox-button';
 import { CheckboxElement } from './checkbox-element';
+
+import type { InitialState, Option } from './types/types';
+import { States } from './types/types';
 
 const INITIAL_STATE = Object.freeze({
   validation: false,

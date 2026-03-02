@@ -1,10 +1,11 @@
 import { useEffect, useReducer, useRef } from 'react';
 
-import type { InitialState, Option } from './types/types';
-import { States } from './types/types';
 import { SelectActivityProvider } from './select-activity-context';
 import { SelectButton } from './select-button';
 import { SelectElement } from './select-element';
+
+import type { InitialState, Option } from './types/types';
+import { States } from './types/types';
 
 const INITIAL_STATE = Object.freeze({
   validation: false,

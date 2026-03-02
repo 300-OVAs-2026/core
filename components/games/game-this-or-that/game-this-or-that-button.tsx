@@ -1,16 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
-import { cloneElement, FC } from 'react';
+import { cloneElement } from 'react';
 
 import { useThisOrThatGameContext } from './game-this-or-that-context';
-
 
 interface Props {
   type?: 'reset';
   children: React.ReactElement;
 }
 
-
-export const GameThisOrThatButton: FC<Props> = ({ type, children }) => {
+export const GameThisOrThatButton: React.FC<Props> = ({ type, children }) => {
   const { handleValidation, handleReset, button, validation, result } = useThisOrThatGameContext();
 
   return cloneElement(children, {
@@ -20,7 +17,7 @@ export const GameThisOrThatButton: FC<Props> = ({ type, children }) => {
       if (children.props.onClick) {
         children.props.onClick(event);
       }
-      type === 'reset' ? handleReset() : handleValidation();
+      (type === 'reset' ? handleReset : handleValidation)();
     }
   });
 };

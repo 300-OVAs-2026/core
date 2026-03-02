@@ -1,6 +1,6 @@
 import { useOvaContext } from '@/context/ova-context';
 
-import { i18n } from '../const';
+import { i18n } from '../lib/constant';
 import { useGameContext } from '../race-card-context';
 import { DriversType } from '../types/types';
 

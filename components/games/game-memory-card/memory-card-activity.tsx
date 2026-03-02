@@ -1,20 +1,20 @@
-import { FC, ReactNode, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { useOvaContext } from '@/context/ova-context';
 
-import { CardBack, CardFront, CardItem } from './card-item'; // Importamos los nuevos componentes
+import { CardBack, CardFront, CardItem } from './card-item'; 
 import { MemoryBoard } from './memory-board';
 import { MemoryCardButton } from './memory-card-button';
 import { MemoryActivityProvider } from './memory-card-context';
-import { CardType } from './types';
+
+import type { CardType } from './types/types';
 
 interface Props {
   onResult: (result: boolean) => void;
-  children?: ReactNode;
+  children?: React.ReactNode;
 }
 
-// Actualizamos la interfaz para incluir CardFront y CardBack sin el punto
-export const MemoryCardActivity: FC<Props> & {
+export const MemoryCardActivity: React.FC<Props> & {
   Board: typeof MemoryBoard;
   Button: typeof MemoryCardButton;
   Card: typeof CardItem;

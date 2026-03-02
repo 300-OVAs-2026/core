@@ -1,21 +1,21 @@
-import React, { ReactNode, useEffect } from 'react';
+import { Children, useEffect } from 'react';
 
 import { useMemoryActivityContext } from './memory-card-context';
 
 // Definimos los componentes por separado para poder usarlos como tipos de referencia
-export const CardFront = ({ children }: { children: ReactNode }) => <>{children}</>;
-export const CardBack = ({ children }: { children: ReactNode }) => <>{children}</>;
+export const CardFront = ({ children }: { children: React.ReactNode }) => <>{children}</>;
+export const CardBack = ({ children }: { children: React.ReactNode }) => <>{children}</>;
 
 interface Props {
   id: number;
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export const CardItem = ({ id, children }: Props) => {
   const { registerCard } = useMemoryActivityContext();
 
   useEffect(() => {
-    const childrenArray = React.Children.toArray(children) as React.ReactElement[];
+    const childrenArray = Children.toArray(children) as React.ReactElement[];
 
     // Ahora buscamos específicamente por el tipo de componente CardFront y CardBack
     const front = childrenArray.find((child) => child.type === CardFront);

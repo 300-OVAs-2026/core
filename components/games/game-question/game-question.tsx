@@ -1,11 +1,12 @@
 import { useEffect, useReducer, useRef } from 'react';
 
-import type { InitialState, Option } from './types/types';
-import { States } from './types/types';
 import { GameQuestionButton } from './game-question-button';
 import { GameQuestionCard } from './game-question-card';
 import { GameQuestionProvider } from './game-question-context';
 import { GameQuestionRadio } from './game-question-radio';
+
+import type { InitialState, Option } from './types/types';
+import { States } from './types/types';
 
 // Estado inicial de la actividad
 const INITIAL_STATE: InitialState = Object.freeze({

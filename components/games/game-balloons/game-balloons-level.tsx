@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
+import { FullScreenAlert } from '@features/full-screen-alert';
 
-import { FullScreenAlert } from '../../ui';
-
-import { SpaceResult } from './types/types';
 import { useGameBalloonsContext } from './game-balloons-context';
 import { GameBalloonsElement } from './game-balloons-element';
 import { GameBalloonsParallax } from './game-balloons-parallax';
+
+import type { SpaceResult } from './types/types';
 
 import css from './game-balloons.module.css';
 
@@ -19,13 +19,13 @@ interface GameBalloonsLevelProps {
 export const GameBalloonsLevel: React.FC<GameBalloonsLevelProps> = ({ words, sentence }) => {
   const { validation, result, reset, addBallonsValues, setUserAnswer } = useGameBalloonsContext();
 
-  // 1) Registrar opción en context UNA sola vez (o cuando cambien props)
+
   useEffect(() => {
     addBallonsValues({ word: words, sentence });
     setUserAnswer(''); // al iniciar, respuesta vacía
   }, [addBallonsValues, setUserAnswer, words, sentence]);
 
-  // 2. Construye el estado inicial a partir de props.words
+
   const initialItems = useMemo<LetterItem[]>(
     () =>
       words.map((letter) => ({

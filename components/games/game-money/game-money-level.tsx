@@ -1,9 +1,8 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { FullScreenAlert } from '@features/full-screen-alert';
 
-import { FullScreenAlert } from '../../ui';
-
-import { BACKGROUND, CHARACTER, MONEY } from './const';
 import { useGameMoneyActivityContext } from './game-money-context';
+import { BACKGROUND, CHARACTER, MONEY } from './lib/constant';
 
 import css from './game-money.module.css';
 

@@ -1,11 +1,12 @@
 import { useEffect, useReducer, useRef } from 'react';
 
-import type { InitialState, Option } from './types/types';
-import { States } from './types/types';
 import { GameSpaceButton } from './game-space-button';
 import { GameSpaceProvider } from './game-space-context';
 import { GameSpaceGalaxy } from './game-space-galaxy';
 import { GameSpaceRadio } from './game-space-radio';
+
+import type { InitialState, Option } from './types/types';
+import { States } from './types/types';
 
 // Estado inicial de la actividad
 const INITIAL_STATE: InitialState = Object.freeze({

@@ -1,10 +1,10 @@
-import React, { cloneElement, ReactElement } from 'react';
+import { cloneElement } from 'react';
 
 import { useGameCasinoProvider } from './game-casino-context';
 
 interface Props {
   type?: 'reset';
-  children: ReactElement;
+  children: React.ReactElement;
 }
 
 export const GameCasinoButton = ({ type, children }: Props) => {

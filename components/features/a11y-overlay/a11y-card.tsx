@@ -1,5 +1,4 @@
-import React from 'react';
-import { Icon } from '@core/components';
+import { Icon } from '@ui';
 
 import css from './a11y-overlay.module.css';
 

@@ -1,6 +1,7 @@
-import { silverAmount } from './types/types';
-import { BG } from './const';
 import { useGameCasinoProvider } from './game-casino-context';
+import { BG } from './lib/constant';
+
+import { silverAmount } from './types/types';
 
 import css from './game-casino.module.css';
 

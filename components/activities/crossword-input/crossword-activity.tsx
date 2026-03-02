@@ -1,6 +1,4 @@
-import { FullScreenAlert, FullScreenButton } from '@core/components';
-
-import { ImgContainer } from '@core/components';
+import { ImgContainer } from '@ui';
 
 import css from './crossword-input.module.css';
 
@@ -18,8 +16,6 @@ type Subcomponent = {
 export const CrosswordActivity: React.FC<Props> & Subcomponent = ({ children, title, background, addClass }: Props) => {
   return (
     <div id="crossword">
-      <FullScreenAlert />
-      <FullScreenButton elementId="crossword" />
       <ImgContainer background={background} padding="20px" backgroundSize="70px">
         <div className={`${css['crossword-wrapper']} ${addClass}`}>{children}</div>
       </ImgContainer>

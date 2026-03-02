@@ -1,13 +1,15 @@
 import { useEffect, useReducer, useRef } from 'react';
 
-import { useA11yAttribute, useReduceMotion } from '@/shared/core/hooks';
+import { useA11yAttribute, useReduceMotion } from '@shared/hooks';
 
-import { moneyConfetti } from './lib/money-confetti';
-import { InitialState, Option, States } from './types/types';
 import { GameMoneytButton } from './game-money-button';
 import { GameMoneyActivityProvider } from './game-money-context';
 import { GameMoneyLevel } from './game-money-level';
 import { GameMoneyRadio } from './game-money-radio';
+import { moneyConfetti } from './lib/money-confetti';
+
+import type { InitialState, Option} from './types/types';
+import { States } from './types/types';
 
 // Estado inicial de la actividad
 const INITIAL_STATE: InitialState = {

@@ -1,10 +1,12 @@
 import { useEffect, useReducer, useRef } from 'react';
 
-import { InitialState, Option, States } from './types/types';
 import { GameThisOrThatButton } from './game-this-or-that-button';
 import { ThisOrThatGameProvider } from './game-this-or-that-context';
 import { GameThisOrThatLevel } from './game-this-or-that-level';
 import { GameThisOrThatRadio } from './game-this-or-that-radio';
+
+import type { InitialState, Option} from './types/types';
+import { States } from './types/types';
 
 const INITIAL_STATE = Object.freeze({
   validation: false,

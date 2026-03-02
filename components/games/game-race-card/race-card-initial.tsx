@@ -3,7 +3,7 @@ import { Panel as PanelUI } from 'books-ui';
 
 import { useOvaContext } from '@/context/ova-context';
 
-import { i18n } from './const';
+import { i18n } from './lib/constant';
 
 import css from './svg-card.module.css';
 

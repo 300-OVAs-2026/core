@@ -2,12 +2,6 @@ import { useId } from 'react';
 
 import css from './modal-bibliography.module.css';
 
-// import { loadCSS } from '@core/utils';
-// const css = await loadCSS({
-//   ui: 'modal-bibliography/modal-bibliography.module.css',
-//   local: 'modal-bibliography/modal-bibliography.module.css'
-// });
-
 interface Props {
   authors: string;
   name: string;

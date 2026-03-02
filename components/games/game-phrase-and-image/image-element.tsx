@@ -9,8 +9,10 @@ type ImgType = {
   url: string;
   alt: string;
 };
+
 export const ImageElement: React.FC<ImgType> = ({ id, join, url, alt, ...props }) => {
   const { handleSelectImage } = usePhraseAndImageContext();
+  
   return (
     <Button
       {...props}

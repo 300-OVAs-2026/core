@@ -1,4 +1,4 @@
-import { Modal } from '@shared/ui/components';
+import { Modal } from '@ui';
 
 import { usePhraseAndImageContext } from './game-phrase-context';
 

@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { useA11yAttribute, useReduceMotion } from '@core/hooks';
 
-import { BUSH, CLOUDS, MOUNTAINS, SKY } from './const';
+import { useA11yAttribute, useReduceMotion } from '@shared/hooks';
+
+import { BUSH, CLOUDS, MOUNTAINS, SKY } from './lib/constant';
 
 import css from './game-balloons.module.css';
 

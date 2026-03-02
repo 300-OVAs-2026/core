@@ -1,13 +1,13 @@
-import { cloneElement, FC, ReactElement } from 'react';
+import { cloneElement } from 'react';
 
 import { useMemoryActivityContext } from './memory-card-context';
 
 interface Props {
   type?: 'reset';
-  children: ReactElement;
+  children: React.ReactElement;
 }
 
-export const MemoryCardButton: FC<Props> = ({ type, children }) => {
+export const MemoryCardButton: React.FC<Props> = ({ type, children }) => {
   const { checkGameStatus, restartGame, buttonsDisabled, isReset } = useMemoryActivityContext();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {

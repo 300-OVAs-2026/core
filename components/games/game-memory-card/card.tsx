@@ -1,4 +1,4 @@
-import { CardType } from './types';
+import type { CardType } from './types/types';
 
 import css from './memory-card.module.css';
 

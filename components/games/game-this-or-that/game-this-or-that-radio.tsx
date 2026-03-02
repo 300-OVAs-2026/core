@@ -1,8 +1,9 @@
 import { useEffect, useId, useMemo } from 'react';
 
-import { parseLabel } from './lib/parse-label';
-import { RadioStates } from './types/types';
 import { useThisOrThatGameContext } from './game-this-or-that-context';
+import { parseLabel } from './lib/parse-label';
+
+import type { RadioStates } from './types/types';
 
 import css from './this-or-that.module.css';
 

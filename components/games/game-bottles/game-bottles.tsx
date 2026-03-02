@@ -1,12 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { letterProp, spaceProp } from './types/types';
 import { Actions } from './game-bottles-actions';
 import { GameBottleContextProvider } from './game-bottles-context';
 import { Description } from './game-bottles-description';
 import { Letters } from './game-bottles-letters';
 import { Parallax } from './game-bottles-parallax';
 import { Word } from './game-bottles-word';
+
+import type { letterProp, spaceProp } from './types/types';
 
 import css from './styles/game-bottle.module.css';
 

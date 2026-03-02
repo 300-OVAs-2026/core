@@ -1,9 +1,10 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import gsap from 'gsap';
 
-import { RadioStates } from './types/types';
-import { BALL, RED } from './const';
 import { useRadioBasketActivityContext } from './game-basketball-context';
+import { BALL, RED } from './lib/constant';
+
+import type { RadioStates } from './types/types';
 
 import css from './game-basketball.module.css';
 

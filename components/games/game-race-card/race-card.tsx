@@ -2,11 +2,12 @@ import React, { useCallback, useReducer, useRef } from 'react';
 
 import { getActiveSceneIdFromInputId } from './lib/get-active-scene-id';
 import { disableGroup, enableAndClearGroup, setGroupStateAttr } from './lib/select-group';
-import type { RaceCardStateType, Radio, RadioStates } from './types/types';
 import { ContextGame } from './race-card-context';
 import { RaceCardInitial } from './race-card-initial';
 import { RaceCardInput } from './race-card-input';
 import { RaceCardRender } from './race-card-render';
+
+import type { RaceCardStateType, Radio, RadioStates } from './types/types';
 
 const POINTS_FOR_CORRECT_ANSWER = 100;
 const MOVE_DISTANCE = Math.floor(Math.random() * (70 - 40 + 1)) + 40;

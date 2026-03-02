@@ -1,4 +1,4 @@
-import { BACKGROUND } from './const';
+import { BACKGROUND } from './lib/constant';
 
 import css from './game-basketball.module.css';
 
@@ -19,9 +19,9 @@ export const GameBasketballLevel: React.FC<PropsGameBasketballLevel> = ({ questi
       </div>
       <div className={css.radio__question}>
         <div className={css.radio__question_container}>
-          <img src={safeSrc(BACKGROUND.left)} />
+          <img src={safeSrc(BACKGROUND.left)} alt="" />
           <span dangerouslySetInnerHTML={{ __html: question }} />
-          <img src={safeSrc(BACKGROUND.right)} />
+          <img src={safeSrc(BACKGROUND.right)} alt="" />
         </div>
       </div>
     </div>

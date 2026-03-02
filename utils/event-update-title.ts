@@ -1,4 +1,4 @@
-import { EVENTS } from '../consts/events';
+import { EVENTS } from '../constants/events';
 
 /**
  * Función para actualizar el título de la página.

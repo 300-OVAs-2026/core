@@ -1,6 +1,7 @@
 import { Children, cloneElement } from 'react';
 import { useDragAndDropContext } from 'books-ui';
-import { focusMainElement } from '@core/utils';
+
+import { focusMainElement } from '@shared/utils';
 
 import { useDndActivityContext } from './dnd-context';
 

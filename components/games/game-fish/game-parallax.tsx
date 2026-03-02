@@ -1,7 +1,8 @@
 import { useRef } from 'react';
-import { useA11yAttribute, useReduceMotion } from '@core/hooks';
 
-import { BG } from './const';
+import { useA11yAttribute, useReduceMotion } from '@shared/hooks';
+
+import { BG } from './lib/constant';
 
 import css from './game-fish.module.css';
 

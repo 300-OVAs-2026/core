@@ -1,8 +1,8 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-import { BG } from './const';
 import { useGameFishActivityContext } from './game-fish-context';
 import { GameParallax } from './game-parallax';
+import { BG } from './lib/constant';
 
 import css from './game-fish.module.css';
 

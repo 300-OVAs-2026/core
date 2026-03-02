@@ -1,8 +1,10 @@
 import { useCallback, useState } from 'react';
 import { useLocalStorage } from 'books-ui';
-import { KEY_LOCAL_STORAGE_A11Y } from '@core/consts';
 
-import { INITIAL_STATE, INVALID_VALUES } from '../consts';
+import { KEY_LOCAL_STORAGE_A11Y } from '@/shared/constants';
+
+import { INITIAL_STATE, INVALID_VALUES } from '../lib/constant';
+
 import type { ConfigA11y } from '../types/types';
 
 type toggleHTMLDataAttributeType = (property: keyof ConfigA11y, value?: string) => void;

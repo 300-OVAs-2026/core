@@ -1,7 +1,8 @@
 import { useEffect, useId, useMemo } from 'react';
 
-import { RadioStates } from './types/types';
 import { useStopGame } from './stop-card-context';
+
+import type { RadioStates } from './types/types';
 
 import css from './stop-card.module.css';
 

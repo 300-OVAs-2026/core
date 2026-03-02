@@ -1,9 +1,9 @@
 import { useEffect, useId, useMemo } from 'react';
+import { MathContainer } from '@features/math-container';
 
-import { MathContainer } from '../../ui';
-
-import { RadioStates } from './types/types';
 import { useGameSpaceContext } from './game-space-context';
+
+import type { RadioStates } from './types/types';
 
 import css from './game-space.module.css';
 

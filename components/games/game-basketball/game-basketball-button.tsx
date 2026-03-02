@@ -2,7 +2,6 @@ import { cloneElement } from 'react';
 
 import { useRadioBasketActivityContext } from './game-basketball-context';
 
-
 interface Props {
   type?: 'reset';
   children: React.ReactElement;

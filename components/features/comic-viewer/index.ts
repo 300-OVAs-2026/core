@@ -1,1 +1,1 @@
-export {ComicViewer} from './ComicViewer';
+export { ComicViewer } from './comic-viewer';

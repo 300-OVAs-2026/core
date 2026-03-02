@@ -1,6 +1,6 @@
 import { createContext } from 'books-ui';
 
-import { CardType } from './types';
+import type { CardType } from './types/types';
 
 export interface MemoryContextType {
   cards: CardType[];

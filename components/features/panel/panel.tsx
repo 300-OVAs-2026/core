@@ -1,13 +1,13 @@
 import { useState } from 'react';
+import { PageTitle } from '@layout/page-title';
 import type { PanelProps } from 'books-ui';
 import { Panel as PanelUI } from 'books-ui';
 
-import { PageTitle } from '../../layout/page-title';
-
-import type { InterpreterSource } from './types/types';
 import { PanelCoreProvider } from './panel-context';
 import { PanelProgress } from './panel-progress';
 import { PanelSection } from './panel-section';
+
+import type { InterpreterSource } from './types/types';
 
 import css from './panel.module.css';
 

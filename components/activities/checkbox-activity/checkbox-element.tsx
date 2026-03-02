@@ -1,8 +1,9 @@
 import { useEffect, useId } from 'react';
 import { CheckBox } from 'books-ui';
 
-import type { CheckboxStates } from './types/types';
 import { useCheckboxActivityContext } from './checkbox-activity-context';
+
+import type { CheckboxStates } from './types/types';
 
 import css from './checkbox-activity.module.css';
 

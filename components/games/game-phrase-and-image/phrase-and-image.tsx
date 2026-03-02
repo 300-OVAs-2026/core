@@ -1,7 +1,6 @@
 import { useReducer, useState } from 'react';
 
 import { AudioElement } from './audio-element.tsx';
-// import { Card } from '../../activities/memory-card/card.tsx';
 import { CardElement } from './card-element.tsx';
 import { PhraseAndImageProvider } from './game-phrase-context.ts';
 import { ImageElement } from './image-element.tsx';

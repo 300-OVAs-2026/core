@@ -1,15 +1,16 @@
 import { forwardRef, useEffect, useMemo, useRef } from 'react';
 import { Tooltip, useMedia, usePanelContext as usePanel } from 'books-ui';
-import { useInterpreter } from '@core/hooks';
-import { eventUpdateTitle } from '@core/utils';
 
+import { REMOVE_HTML_TAGS_REGEX } from '@/shared/constants';
+import { useInterpreter } from '@shared/hooks';
+import { eventUpdateTitle } from '@shared/utils';
 import { useOvaContext } from '@/context/ova-context';
-import { REMOVE_HTML_TAGS_REGEX } from '@/shared/core/consts';
 
 import { usePaginationRange } from './hooks/usePaginationRange';
-import type { InterpreterSource } from './types/types';
-import { i18n } from './consts';
+import { i18n } from './lib/constant';
 import { usePanelCoreContext } from './panel-context';
+
+import type { InterpreterSource } from './types/types';
 
 import css from './panel.module.css';
 

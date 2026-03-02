@@ -1,4 +1,5 @@
-import { FullScreenAlert, FullScreenButton } from '@core/components';
+import { FullScreenAlert } from '@features/full-screen-alert';
+import {  FullScreenButton } from '@features/full-screen-button';
 
 import { useRelationConceptActivityContext } from './relation-concept-activity-context';
 

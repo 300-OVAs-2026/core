@@ -1,4 +1,4 @@
-import { BASIC_VALUES, CONTRAST } from '../consts';
+import type { BASIC_VALUES, CONTRAST } from '../lib/constant';
 
 export type ContrastType =
   | 'high-contrast'

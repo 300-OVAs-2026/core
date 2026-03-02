@@ -1,15 +1,15 @@
-import { createElement, ElementType, ReactNode } from 'react';
+import { createElement } from 'react';
 
 import css from './img-container.module.css';
 
 type ImgContainerProps = {
-  children?: ReactNode;
+  children?: React.ReactNode;
   addClass?: string;
   height?: string;
   width?: string;
   background?: string;
   backgroundSize?: string;
-  element?: ElementType;
+  element?: React.ElementType;
   padding?: string;
   zIndex?: string;
 } & React.HTMLAttributes<HTMLElement>;

@@ -1,9 +1,8 @@
-import { Icon } from '@core/components';
+import { Icon } from '@ui';
 
-import { CorrectIcon, WrongIcon } from './icons_/icons';
 import { useGameBottleContext } from './game-bottles-context';
+import { CorrectIcon, WrongIcon } from './lib/icons';
 
-// import { Button } from '@/shared/ui/components';
 import css from './styles/level.module.css';
 
 export const Word = () => {

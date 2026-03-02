@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { FullScreenAlert } from '@features/full-screen-alert';
+import { FullScreenButton } from '@features/full-screen-button';
+import { Button } from '@ui';
 
-import { Button } from '@core/components';
-
-import { FullScreenAlert, FullScreenButton } from '../../ui';
-
-import { Radio } from './types/types';
-import { background, markers, MARKERS_LAYOUT } from './const';
+import { background, markers, MARKERS_LAYOUT } from './lib/constant';
 import { StopCardButton } from './stop-card-button';
 import { useStopGame } from './stop-card-context';
+
+import type { Radio } from './types/types';
 
 import css from './stop-card.module.css';
 
@@ -95,7 +95,8 @@ export const StopCardScene: React.FC<Props> = ({ question, id, children, onResul
       onFocusCapture={() => setActiveSceneId(id)}>
       <FullScreenAlert />
       <div id="stop-game" className={css['stop-game-container']} ref={setRef} data-fullscreen {...props}>
-        <FullScreenButton elementRef={gameEl} addClass={css['fullScreen__button']} />
+        {/* TODO: Fix this bug */}
+        <FullScreenButton elementId="2002" addClass={css['fullScreen__button']} />
         <svg
           id="svg-stop-game"
           xmlns="http://www.w3.org/2000/svg"

@@ -1,5 +1,6 @@
-import { EVENTS } from '../consts/events';
-import type { VideoURLs } from '../hooks/useInterpreter';
+import type { VideoURLs } from '@shared/hooks';
+
+import { EVENTS } from '../constants/events';
 
 /**
  * Función para despachar un evento personalizado para cambiar las fuentes de video del intérprete.

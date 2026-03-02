@@ -1,13 +1,11 @@
-import { ReactNode } from 'react';
-
-import { BG } from './const';
 import { useGameCasinoProvider } from './game-casino-context';
+import { BG } from './lib/constant';
 
 import css from './game-casino.module.css';
 
 interface Props {
-  children: ReactNode;
-  label: string; // La pregunta
+  children: React.ReactNode;
+  label: string; 
   background?: string;
 }
 

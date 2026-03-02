@@ -1,11 +1,13 @@
-import { ReactNode, useReducer } from 'react';
 
-import { InitialState, Option } from './types/types';
+import { useReducer } from 'react';
+
 import { GameFishButton } from './game-fish-button';
 import { GameFishActivityProvider } from './game-fish-context';
 import { GameFishElement } from './game-fish-element';
 import { GameFishInit } from './game-fish-init';
 import { GameFishLevel } from './game-fish-level';
+
+import type { InitialState, Option } from './types/types';
 
 const INITIAL_STATE: InitialState = {
   validation: false,
@@ -26,7 +28,7 @@ interface GameResult {
 }
 
 interface Props {
-  children: ReactNode;
+  children: React.ReactNode;
   onResult?: (data: GameResult) => void;
 }
 

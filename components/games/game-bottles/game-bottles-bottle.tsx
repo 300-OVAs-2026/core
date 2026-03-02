@@ -1,8 +1,8 @@
 import { useRef } from 'react';
-import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
 
-import { IMAGENES_BOTELLA } from './assets/images';
+import { IMAGENES_BOTELLA } from './lib/constant';
 
 import css from './styles/bottle.module.css';
 

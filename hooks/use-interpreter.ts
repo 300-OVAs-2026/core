@@ -1,5 +1,6 @@
 import { useRef } from 'react';
-import { eventChangeInterpreterVideo } from '@core/utils';
+
+import { eventChangeInterpreterVideo } from '@shared/utils';
 
 import { useSessionStorage } from './use-session-storage';
 

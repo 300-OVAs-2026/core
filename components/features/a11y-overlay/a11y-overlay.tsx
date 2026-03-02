@@ -1,18 +1,19 @@
 import { useId, useRef } from 'react';
+import { Icon } from '@ui';
 import { Accordion, Filter, Kbd } from 'books-ui';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Icon } from '@core/components';
-import { useKeyboardShortcuts } from '@core/hooks';
 
+import { useKeyboardShortcuts } from '@shared/hooks';
 import { useOvaContext } from '@/context/ova-context';
 
-import { useA11y } from './hooks/useA11y';
-import { useModal } from './hooks/useModal';
-import type { BasicValuesType, ContrastValues } from './types/types';
-import { ConfigA11yProperty } from './types/types';
 import { A11yButtton } from './a11y-button';
 import { A11yCard } from './a11y-card';
-import { BASIC_VALUES, CONTRAST, i18n } from './consts';
+import { useA11y } from './hooks/useA11y';
+import { useModal } from './hooks/useModal';
+import { BASIC_VALUES, CONTRAST, i18n } from './lib/constant';
+
+import type { BasicValuesType, ContrastValues } from './types/types';
+import { ConfigA11yProperty } from './types/types';
 
 import css from './a11y-overlay.module.css';
 

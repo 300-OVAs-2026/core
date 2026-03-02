@@ -1,18 +1,12 @@
+import type { ModalCoreProps } from '@ui';
+import { Modal } from '@ui';
 import { Audio } from 'books-ui';
-import { Modal } from '@ui/components/modal';
-import type { ModalCoreProps } from '@ui/components/modal/modal';
 
 import { useOvaContext } from '@/context/ova-context';
 
-import { i18n } from './consts';
+import { i18n } from './lib/constant';
 
-// import { loadCSS } from '@core/utils';
 import css from './modal-credits.module.css';
-
-// const css = await loadCSS({
-//   ui: 'modal-credits/modal-credits.module.css',
-//   local: 'modal-credits/modal-credits.module.css'
-// });
 
 interface Props extends ModalCoreProps {
   addClass?: string;

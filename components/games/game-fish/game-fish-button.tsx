@@ -1,13 +1,14 @@
-import { cloneElement, FC, ReactElement } from 'react';
+
+import { cloneElement } from 'react';
 
 import { useGameFishActivityContext } from './game-fish-context';
 
 interface Props {
   type?: 'reset';
-  children: ReactElement;
+  children: React.ReactElement;
 }
 
-export const GameFishButton: FC<Props> = ({ type, children }) => {
+export const GameFishButton: React.FC<Props> = ({ type, children }) => {
   const { handleValidation, handleReset, button, validation } = useGameFishActivityContext();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {

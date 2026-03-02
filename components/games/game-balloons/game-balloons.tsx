@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react';
 
-import { InitialState, TypeWord } from './types/types';
 import { GameBalloonsButton } from './game-balloons-button';
 import { GameBalloonsProvider } from './game-balloons-context';
 import { GameBalloonsLevel } from './game-balloons-level';
+
+import type { InitialState, TypeWord } from './types/types';
 
 const INITIAL_STATE = Object.freeze({
   validation: false,

@@ -1,9 +1,9 @@
 import { useRef } from 'react';
-import { useA11yAttribute, useReduceMotion } from '@core/hooks';
+import { FullScreenAlert } from '@features/full-screen-alert';
 
-import { FullScreenAlert } from '../../ui';
+import { useA11yAttribute, useReduceMotion } from '@shared/hooks';
 
-import { ASTEROID, ASTRONAUT, ICON, UNIVERSE01, UNIVERSE02 } from './const';
+import { ASTEROID, ASTRONAUT, ICON, UNIVERSE01, UNIVERSE02 } from './lib/constant';
 
 import css from './game-space.module.css';
 

@@ -1,13 +1,14 @@
 import React, { memo, useEffect, useMemo, useRef } from 'react';
-import { Button } from '@ui/components';
+import { Button } from '@ui';
 
 import { useOvaContext } from '@/context/ova-context';
 
-import type { DriversType } from './types/types';
-import { i18n } from './const';
+import { i18n } from './lib/constant';
 import { RaceCardButton } from './race-card-button';
 import { useGameContext } from './race-card-context';
 import { Carts, Feedback, Road, Score, Sky } from './svg-parts';
+
+import type { DriversType } from './types/types';
 
 import css from './svg-card.module.css';
 

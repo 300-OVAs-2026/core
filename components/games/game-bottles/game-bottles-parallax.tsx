@@ -1,17 +1,17 @@
 import { useRef } from 'react';
-import { FullScreenButton } from '@core/components';
-import { useA11yAttribute, useReduceMotion } from '@core/hooks';
+import { FullScreenButton } from '@features/full-screen-button';
 
-import { IMAGENES_BOTELLA, IMAGENES_FONDO } from './assets/images';
-import { useGameBottleContext } from './game-bottles-context';
+import { useA11yAttribute, useReduceMotion } from '@shared/hooks';
+
 import Crab from './game-bottles-crab';
+import { IMAGENES_BOTELLA, IMAGENES_FONDO } from './lib/constant';
 
 import css from './styles/level.module.css';
 interface Props {
   children: React.ReactNode;
 }
 export const Parallax: React.FC<Props> = ({ children }) => {
-  const { containerRef } = useGameBottleContext();
+
   const cancelAnimation = useReduceMotion();
   const { stopAnimations } = useA11yAttribute();
 
@@ -59,7 +59,8 @@ export const Parallax: React.FC<Props> = ({ children }) => {
       </div>
 
       <img src="assets/images/Fondo_Primer_plano.webp" className={css.image_depth} ref={refDeph1} alt="" />
-      <FullScreenButton elementRef={containerRef.current} addClass={css.fullScreen__button} />
+      {/* TODO: Fix the elementId */}
+      <FullScreenButton elementId="test" addClass={css.fullScreen__button} />
 
       {/* Burbujas */}
       {[...Array(8)].map((_, index) => (

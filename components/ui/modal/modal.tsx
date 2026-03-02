@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react';
+import { Icon } from '@ui';
 import type { ModalProps } from 'books-ui';
 import { Modal as ModalUI } from 'books-ui';
-import { Icon } from '@core/components';
-import type { VideoURLs } from '@core/hooks';
-import { useInterpreter } from '@core/hooks';
 
+import type { VideoURLs } from '@shared/hooks';
+import { useInterpreter } from '@shared/hooks';
 import { useOvaContext } from '@/context/ova-context';
 
-import { i18n } from './consts';
+import { i18n } from './lib/constant';
 
 import css from './modal.module.css';
 

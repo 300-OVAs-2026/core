@@ -1,4 +1,4 @@
-import { BACKGROUND } from './const';
+import { BACKGROUND } from './lib/constant';
 
 import css from './this-or-that.module.css';
 

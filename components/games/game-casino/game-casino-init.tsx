@@ -3,7 +3,7 @@ import { Panel as PanelUI } from 'books-ui';
 
 import { useOvaContext } from '@/context/ova-context';
 
-import { BG, i18n } from './const';
+import { BG, i18n } from './lib/constant';
 
 import css from './game-casino.module.css';
 

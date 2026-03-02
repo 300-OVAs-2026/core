@@ -1,16 +1,12 @@
 import { useEffect, useId } from 'react';
 import { Radio } from 'books-ui';
 
-// import { loadCSS } from '@core/utils';
-import type { RadioStates } from './types/types';
 import { useRadioActivityContext } from './radio-activity-context';
+
+import type { RadioStates } from './types/types';
 
 import css from './radio-activity.module.css';
 
-// const css = await loadCSS({
-//   ui: 'radio-activity/radio-activity.module.css',
-//   local: 'radio-activity/radio-activity.module.css'
-// });
 
 const STATES: Partial<Record<RadioStates, 'wrong' | 'right'>> = {
   wrong: 'wrong',

@@ -1,7 +1,8 @@
 import { useEffect, useId, useMemo } from 'react';
 
-import { RadioStates } from './types/types';
 import { useGameMoneyActivityContext } from './game-money-context';
+
+import type { RadioStates } from './types/types';
 
 import css from './game-money.module.css';
 
@@ -24,7 +25,6 @@ export const GameMoneyRadio: React.FC<Props> = ({ id, addClass, state, label, na
   const uid = id || reactId;
   const radioName = `radio-group-money-${name}`;
 
-  // ✅ seleccionado sale del CONTEXTO
   const isSelected = useMemo(() => {
     return options?.some((opt) => opt.name === radioName && opt.id === uid);
   }, [options, radioName, uid]);

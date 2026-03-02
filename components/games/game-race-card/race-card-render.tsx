@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { FullScreenAlert, FullScreenButton } from '@core/components';
+import { FullScreenAlert } from '@features/full-screen-alert';
+import { FullScreenButton } from '@features/full-screen-button';
 
-import { DriversType, Radio } from './types/types';
 import { useGameContext } from './race-card-context';
 import { RaceCardScene } from './race-card-scene';
+
+import type { DriversType, Radio } from './types/types';
 
 import css from './svg-card.module.css';
 
@@ -60,7 +62,8 @@ export const RaceCardRender: React.FC<Props> = ({ question, id, children, onResu
   return (
     <div className={css['game']}>
       <FullScreenAlert />
-      <FullScreenButton elementRef={gameEl} />
+      {/* TODO: Fix this problem */}
+      <FullScreenButton elementId='test' />
       <div id={id} className={css['game-wrapper']} ref={setRef}  data-fullscreen>
         <div className={css['game-wrapper__scene']}>
           <RaceCardScene question={question} {...props} id={id} drivers={props.drivers} />

@@ -126,8 +126,8 @@ import { DndActivity } from './core/components/activities/dnd-activity'
 import { GameBallons } from './core/components/games/game-ballons'
 import { GameBottles } from './core/components/games/game-bottles'
 
-// UI
-import { ButtonDownload } from './core/components/ui/button-download'
+// Features
+import { DownloadLink } from './components/features/download-link'
 import { FullscreenButton } from './core/components/ui/fullscreen-button'
 ```
 

@@ -1,7 +1,7 @@
 import { Panel as PanelUI } from 'books-ui';
 
-import { BG } from './const';
 import { GameParallax } from './game-parallax';
+import { BG } from './lib/constant';
 
 import css from './game-fish.module.css';
 

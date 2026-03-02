@@ -4,7 +4,7 @@ import { Audio } from 'books-ui';
 import { useOvaContext } from '@/context/ova-context';
 
 import { ArrowBack, ArrowForward } from './icons/Icons';
-import { i18n } from './const';
+import { i18n } from './lib/constant';
 
 import css from './crossword-input.module.css';
 
