@@ -1,6 +1,9 @@
 // Activities
 export * from './activities';
 
+// Features
+export * from './features';
+
 // Games
 export * from './games';
 

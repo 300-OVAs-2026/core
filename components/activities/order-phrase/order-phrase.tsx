@@ -17,7 +17,7 @@ import {
 } from '@dnd-kit/sortable';
 
 import { useOvaContext } from '@/context/ova-context';
-import { Button } from '@/shared/ui/components';
+import { Button } from '@core/components';
 
 import { i18n } from './const';
 import { SortableItemPhrase } from './sortable-item-phrase';

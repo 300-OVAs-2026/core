@@ -1,4 +1,4 @@
-import { Icon } from '../icon';
+import { Icon } from '../../ui/icon';
 
 import css from './button-download.module.css';
 

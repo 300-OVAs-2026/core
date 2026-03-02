@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Audio, Col, Row } from 'books-ui';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 
-import { Content } from '@ui/components';
+import { Content } from '@core/components';
 import { useOvaContext } from '@/context/ova-context';
 import { useNotesStore } from '../store/notesStore';
 import { groupNotesByPage, formatRelativeTime, exportNotesToTXT, prepareNotesForPDF } from '../utils/exportNotes';

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { Button } from '@/shared/ui/components';
+import { Button } from '@core/components';
 
 import { FullScreenAlert, FullScreenButton } from '../../ui';
 
