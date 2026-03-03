@@ -2,7 +2,7 @@ import { useCallback, useLayoutEffect, useState } from 'react';
 import { Interpreter } from '@features/interpreter';
 import { FloatingNotes } from '@features/notes';
 import { Footer, Header } from '@layouts';
-import { MotionConfig } from 'framer-motion';
+import { MotionConfig } from 'motion/react';
 import { useHashLocation } from 'wouter/use-hash-location';
 
 import { REMOVE_HTML_TAGS_REGEX } from '@/shared/constants';

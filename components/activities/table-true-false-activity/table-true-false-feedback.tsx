@@ -1,6 +1,6 @@
 import { useEffect, useId, useState } from 'react';
 import { Audio } from 'books-ui';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 
 import { useOvaContext } from '@/context/ova-context';
 

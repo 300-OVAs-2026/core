@@ -1,7 +1,7 @@
 import { useId, useRef } from 'react';
 import { Icon } from '@ui';
 import { Accordion, Filter, Kbd } from 'books-ui';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'motion/react';
 
 import { useKeyboardShortcuts } from '@shared/hooks';
 import { useOvaContext } from '@/context/ova-context';

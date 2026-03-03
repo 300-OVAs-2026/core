@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useId, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useHashLocation } from 'wouter/use-hash-location';
 
 import { EVENTS } from '@/shared/constants/events';

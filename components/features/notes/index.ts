@@ -4,5 +4,4 @@ export { NotesList } from './notes-list';
 export { AllNotes } from './page/all-notes-page';
 export { RichTextEditor } from './rich-text-editor';
 export { useNotesStore } from './store/notesStore';
-export * from './types/types';
 export * from './utils/utils';

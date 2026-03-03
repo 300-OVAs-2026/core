@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { usePanelContext as usePanel } from 'books-ui';
-import { useAnimate } from 'framer-motion';
+import { useAnimate } from 'motion/react';
 
 import { usePanelCoreContext } from '../panel-context';
 
