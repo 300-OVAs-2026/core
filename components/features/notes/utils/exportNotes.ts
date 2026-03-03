@@ -3,10 +3,7 @@ import type { Note } from '../types/types';
 /**
  * Agrupa las notas por página
  */
-export const groupNotesByPage = (
-  pageNotes: Record<string, Note[]>,
-  globalNotes: Note[]
-): Map<string, Note[]> => {
+export const groupNotesByPage = (pageNotes: Record<string, Note[]>, globalNotes: Note[]): Map<string, Note[]> => {
   const grouped = new Map<string, Note[]>();
 
   // Agregar notas globales
@@ -75,10 +72,7 @@ export const jsonContentToPlainText = (content: any): string => {
 /**
  * Exporta las notas a formato TXT
  */
-export const exportNotesToTXT = (
-  pageNotes: Record<string, Note[]>,
-  globalNotes: Note[]
-): void => {
+export const exportNotesToTXT = (pageNotes: Record<string, Note[]>, globalNotes: Note[]): void => {
   const grouped = groupNotesByPage(pageNotes, globalNotes);
   let textContent = '=== MIS NOTAS ===\n\n';
 
@@ -88,11 +82,11 @@ export const exportNotesToTXT = (
     notes.forEach((note, index) => {
       textContent += `${index + 1}. ${note.title}\n`;
       textContent += `Fecha: ${new Date(note.timestamp).toLocaleString('es-ES')}\n`;
-      
+
       if (note.selectedText) {
         textContent += `Texto capturado: "${note.selectedText}"\n`;
       }
-      
+
       const plainContent = jsonContentToPlainText(note.content);
       textContent += `Contenido:\n${plainContent}\n\n`;
       textContent += '---\n\n';

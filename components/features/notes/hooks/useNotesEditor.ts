@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import type { JSONContent } from '@tiptap/react';
+
 import { useNotesStore } from '../store/notesStore';
 
 const INITIAL_CONTENT: JSONContent = {
   type: 'doc',
   content: [
     {
-      type: 'paragraph',
-    },
-  ],
+      type: 'paragraph'
+    }
+  ]
 };
 
 type ViewType = 'list' | 'editor';
@@ -20,11 +21,11 @@ interface UseNotesEditorReturn {
   noteTitle: string;
   noteContent: JSONContent;
   capturedText: string;
-  
+
   // Setters
   setNoteTitle: (title: string) => void;
   setNoteContent: (content: JSONContent) => void;
-  
+
   // Acciones
   handleNewNote: () => void;
   handleSelectNote: (noteId: string) => void;
@@ -80,14 +81,14 @@ export const useNotesEditor = (): UseNotesEditorReturn => {
       updateNote(currentNoteId, {
         title: noteTitle || 'Sin título',
         content: noteContent,
-        selectedText: capturedText,
+        selectedText: capturedText
       });
     } else {
       // Crear nueva nota
       addNote({
         title: noteTitle || 'Sin título',
         content: noteContent,
-        selectedText: capturedText,
+        selectedText: capturedText
       });
     }
     handleBackToList();
@@ -120,16 +121,16 @@ export const useNotesEditor = (): UseNotesEditorReturn => {
     noteTitle,
     noteContent,
     capturedText,
-    
+
     // Setters
     setNoteTitle,
     setNoteContent,
-    
+
     // Acciones
     handleNewNote,
     handleSelectNote,
     handleSaveNote,
     handleBackToList,
-    handleCaptureText,
+    handleCaptureText
   };
 };

@@ -30,6 +30,6 @@ export const useFloatingPanel = (): UseFloatingPanelReturn => {
     isMinimized,
     toggleOpen,
     setIsOpen,
-    setIsMinimized,
+    setIsMinimized
   };
 };

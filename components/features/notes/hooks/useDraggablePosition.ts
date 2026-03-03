@@ -27,12 +27,12 @@ export const useDraggablePosition = (): UseDraggablePositionReturn => {
 
     return {
       x: 0 - 8,
-      y: windowHeight - containerTop - panelHeight - 55,
+      y: windowHeight - containerTop - panelHeight - 55
     };
   };
 
   const [positionDrag, setPositionDrag] = useState({
-    deltaPosition: getInitialPosition(),
+    deltaPosition: getInitialPosition()
   });
 
   /**
@@ -44,8 +44,8 @@ export const useDraggablePosition = (): UseDraggablePositionReturn => {
     setPositionDrag({
       deltaPosition: {
         x: x + data.deltaX,
-        y: y + data.deltaY,
-      },
+        y: y + data.deltaY
+      }
     });
   };
 
@@ -54,13 +54,13 @@ export const useDraggablePosition = (): UseDraggablePositionReturn => {
    */
   const resetPosition = () => {
     setPositionDrag({
-      deltaPosition: getInitialPosition(),
+      deltaPosition: getInitialPosition()
     });
   };
 
   return {
     position: positionDrag.deltaPosition,
     handleDrag,
-    resetPosition,
+    resetPosition
   };
 };

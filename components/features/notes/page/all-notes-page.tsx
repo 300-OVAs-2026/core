@@ -1,24 +1,25 @@
 import { useState } from 'react';
-import { Audio, Col, Row } from 'books-ui';
+import { Content } from '@layouts';
 import { PDFDownloadLink } from '@react-pdf/renderer';
+import { Audio, Col, Row } from 'books-ui';
 
-import { Content } from '@core/components';
 import { useOvaContext } from '@/context/ova-context';
-import { useNotesStore } from '../store/notesStore';
-import { groupNotesByPage, formatRelativeTime, exportNotesToTXT, prepareNotesForPDF } from '../utils/exportNotes';
+
 import { NotePDFDocument } from '../components/NotePDFDocument';
+import { DownloadIcon } from '../notes-icons';
+import { useNotesStore } from '../store/notesStore';
+import { exportNotesToTXT, formatRelativeTime, groupNotesByPage, prepareNotesForPDF } from '../utils/exportNotes';
 
 import css from './all-notes-page.module.css';
-import { DownloadIcon } from '../notes-icons';
 
-const AllNotes = () => {
+export const AllNotes = () => {
   const { pageNotes, globalNotes } = useNotesStore();
   const { titles, routes } = useOvaContext();
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
 
   const groupedNotes = groupNotesByPage(pageNotes, globalNotes);
   const totalNotes = [...groupedNotes.values()].reduce((sum, notes) => sum + notes.length, 0);
-  
+
   // Preparar datos para PDF
   const pdfData = prepareNotesForPDF(pageNotes, globalNotes);
 
@@ -28,20 +29,20 @@ const AllNotes = () => {
   const getPageTitle = (page: string): string => {
     if (page === 'Global') return 'Todas las páginas';
     if (page === '/') return 'Portada';
-    
+
     // Buscar el índice del route que coincide
-    const routeIndex = routes.findIndex(route => route === page);
-    
+    const routeIndex = routes.findIndex((route) => route === page);
+
     if (routeIndex !== -1 && titles[routeIndex]) {
       return titles[routeIndex];
     }
-    
+
     // Fallback: extraer número de página
     const match = page.match(/\/page-(\d+)/);
     if (match) {
       return `Página ${match[1]}`;
     }
-    
+
     return page;
   };
 
@@ -80,7 +81,7 @@ const AllNotes = () => {
       <Row justifyContent="center" alignItems="center">
         <Col xs="11" mm="10" md="9" lg="8" hd="8" addClass="u-flow">
           <Audio addClass="u-my-0" src="assets/audios/aud_ova-04_g4_sld-1.mp3" />
-          
+
           <div className={css['notes-header']}>
             <h1 className={css['notes-title']}>Mis Notas</h1>
             <p className={css['notes-subtitle']}>
@@ -110,12 +111,8 @@ const AllNotes = () => {
                       return (
                         <>
                           <tr key={page} className={css['table-row']}>
-                            <td className={css['col-module']}>
-                              {getPageTitle(page)}
-                            </td>
-                            <td className={css['col-lesson']}>
-                              {formatRelativeTime(mostRecentTime)}
-                            </td>
+                            <td className={css['col-module']}>{getPageTitle(page)}</td>
+                            <td className={css['col-lesson']}>{formatRelativeTime(mostRecentTime)}</td>
                             <td className={css['col-count']}>
                               <span className={css['count-badge']}>{notes.length}</span>
                             </td>
@@ -124,13 +121,12 @@ const AllNotes = () => {
                                 type="button"
                                 className={css['expand-button']}
                                 onClick={() => toggleExpand(page)}
-                                aria-label={isExpanded ? 'Contraer' : 'Expandir'}
-                              >
+                                aria-label={isExpanded ? 'Contraer' : 'Expandir'}>
                                 {isExpanded ? 'CONTRAER' : 'EXPANDIR'}
                               </button>
                             </td>
                           </tr>
-                          
+
                           {isExpanded && (
                             <tr key={`${page}-expanded`} className={css['expanded-row']}>
                               <td colSpan={4} className={css['expanded-content']}>
@@ -144,9 +140,7 @@ const AllNotes = () => {
                                         </span>
                                       </div>
                                       {note.selectedText && (
-                                        <div className={css['note-item-captured']}>
-                                          "{note.selectedText}"
-                                        </div>
+                                        <div className={css['note-item-captured']}>"{note.selectedText}"</div>
                                       )}
                                       <div className={css['note-item-preview']}>
                                         {note.content?.content?.[0]?.content?.[0]?.text || 'Sin contenido'}
@@ -165,23 +159,18 @@ const AllNotes = () => {
               </div>
 
               <div className={css['export-section']}>
-                <button
-                  type="button"
-                  className={css['export-button']}
-                  onClick={handleExportTXT}
-                >
-                  <DownloadIcon  />
+                <button type="button" className={css['export-button']} onClick={handleExportTXT}>
+                  <DownloadIcon />
                   <span>Exportar TXT</span>
                 </button>
 
                 <PDFDownloadLink
                   document={<NotePDFDocument notes={pdfData.notes} pageTitle={pdfData.title} />}
                   fileName={`notas-${Date.now()}.pdf`}
-                  className={css['export-button-link']}
-                >
+                  className={css['export-button-link']}>
                   {({ loading }) => (
                     <>
-                      <DownloadIcon  />
+                      <DownloadIcon />
                       <span>{loading ? 'Preparando PDF...' : 'Exportar PDF'}</span>
                     </>
                   )}
@@ -205,4 +194,4 @@ const AllNotes = () => {
   );
 };
 
-export default AllNotes;
+

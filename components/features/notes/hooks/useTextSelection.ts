@@ -1,4 +1,6 @@
-import { useEffect, useState, RefObject } from 'react';
+import type { RefObject } from 'react';
+import { useEffect, useState } from 'react';
+
 import { captureSelectedText } from '../utils/utils';
 
 interface Position {
@@ -21,10 +23,7 @@ interface UseTextSelectionReturn {
  * Hook para manejar la selección de texto y mostrar un tooltip de captura.
  * Detecta cuando el usuario selecciona texto en la página (excepto dentro del contenedor de notas).
  */
-export const useTextSelection = ({
-  containerRef,
-  onCapture,
-}: UseTextSelectionProps): UseTextSelectionReturn => {
+export const useTextSelection = ({ containerRef, onCapture }: UseTextSelectionProps): UseTextSelectionReturn => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState<Position>({ x: 0, y: 0 });
 
@@ -41,16 +40,14 @@ export const useTextSelection = ({
           // Verificar si la selección está dentro del panel de notas
           const commonAncestor = range.commonAncestorContainer;
           const isInsideNotesPanel = containerRef.current?.contains(
-            commonAncestor.nodeType === Node.ELEMENT_NODE
-              ? (commonAncestor as Element)
-              : commonAncestor.parentElement
+            commonAncestor.nodeType === Node.ELEMENT_NODE ? (commonAncestor as Element) : commonAncestor.parentElement
           );
 
           // Solo mostrar tooltip si NO está dentro del panel de notas
           if (!isInsideNotesPanel) {
             setTooltipPosition({
               x: rect.left + rect.width / 2,
-              y: rect.top - 50,
+              y: rect.top - 50
             });
             setShowTooltip(true);
           } else {
@@ -88,6 +85,6 @@ export const useTextSelection = ({
   return {
     showTooltip,
     tooltipPosition,
-    handleCaptureText,
+    handleCaptureText
   };
 };

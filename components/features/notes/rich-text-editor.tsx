@@ -1,12 +1,9 @@
 import { useEffect } from 'react';
+import TextAlign from '@tiptap/extension-text-align';
+import Underline from '@tiptap/extension-underline';
 import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
-import Underline from '@tiptap/extension-underline';
-import TextAlign from '@tiptap/extension-text-align';
 
-import type { RichTextEditorProps } from './types/types';
-
-import css from './floating-notes.module.css';
 import {
   BlockquoteIcon,
   BoldIcon,
@@ -23,11 +20,11 @@ import {
   UndoIcon
 } from './notes-icons';
 
-export const RichTextEditor: React.FC<RichTextEditorProps> = ({
-  content,
-  onChange,
-  placeholder
-}) => {
+import type { RichTextEditorProps } from './types/types';
+
+import css from './floating-notes.module.css';
+
+export const RichTextEditor: React.FC<RichTextEditorProps> = ({ content, onChange, placeholder }) => {
   const editor = useEditor({
     extensions: [
       StarterKit.configure({

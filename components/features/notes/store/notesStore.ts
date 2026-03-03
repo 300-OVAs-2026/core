@@ -8,7 +8,8 @@ import type { Note, NotesState } from '../types/types';
  * Soporta notas globales y notas específicas por página.
  * Utiliza el middleware persist para guardar en localStorage.
  */
-export const useNotesStore = create<NotesState>()(  persist(
+export const useNotesStore = create<NotesState>()(
+  persist(
     (set, get) => ({
       globalNotes: [],
       pageNotes: {},
@@ -59,9 +60,7 @@ export const useNotesStore = create<NotesState>()(  persist(
         if (isGlobal) {
           set((state) => ({
             globalNotes: state.globalNotes.map((note) =>
-              note.id === id
-                ? { ...note, ...updates, timestamp: Date.now() }
-                : note
+              note.id === id ? { ...note, ...updates, timestamp: Date.now() } : note
             )
           }));
         } else {
@@ -70,9 +69,7 @@ export const useNotesStore = create<NotesState>()(  persist(
             pageNotes: {
               ...state.pageNotes,
               [currentPage]: (state.pageNotes[currentPage] || []).map((note) =>
-                note.id === id
-                  ? { ...note, ...updates, timestamp: Date.now() }
-                  : note
+                note.id === id ? { ...note, ...updates, timestamp: Date.now() } : note
               )
             }
           }));
@@ -94,9 +91,7 @@ export const useNotesStore = create<NotesState>()(  persist(
           set((state) => ({
             pageNotes: {
               ...state.pageNotes,
-              [currentPage]: (state.pageNotes[currentPage] || []).filter(
-                (note) => note.id !== id
-              )
+              [currentPage]: (state.pageNotes[currentPage] || []).filter((note) => note.id !== id)
             }
           }));
         }

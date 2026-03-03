@@ -1,14 +1,11 @@
-import type { NotesListProps } from './types/types';
+import { ClockIcon, EditIcon, NotesIcon, TrashIcon } from './notes-icons';
 import { extractPlainText, formatDate, truncateText } from './utils/utils';
 
-import css from './floating-notes.module.css';
-import { ClockIcon, EditIcon, NotesIcon, TrashIcon } from './notes-icons';
+import type { NotesListProps } from './types/types';
 
-export const NotesList: React.FC<NotesListProps> = ({ 
-  notes, 
-  onSelectNote, 
-  onDeleteNote
-}) => {
+import css from './floating-notes.module.css';
+
+export const NotesList: React.FC<NotesListProps> = ({ notes, onSelectNote, onDeleteNote }) => {
   const handleDelete = (e: React.MouseEvent, noteId: string) => {
     e.stopPropagation();
     onDeleteNote(noteId);
@@ -26,14 +23,13 @@ export const NotesList: React.FC<NotesListProps> = ({
             <div className={css['fn-empty-state-icon']}>
               <NotesIcon />
             </div>
-            <p className={css['fn-empty-state-text']}>
-              No tienes notas aún
-            </p>
+            <p className={css['fn-empty-state-text']}>No tienes notas aún</p>
             <p className={css['fn-empty-state-hint']}>
               Ver todas tus notas guardadas aquí.
               <br />
-              <a href="#/notas" className={css['fn-empty-state-link']}>Ir a la página de notas</a>
-
+              <a href="#/notas" className={css['fn-empty-state-link']}>
+                Ir a la página de notas
+              </a>
             </p>
           </div>
         ) : (
@@ -43,29 +39,23 @@ export const NotesList: React.FC<NotesListProps> = ({
               const preview = note.selectedText || plainText;
 
               return (
-                <li 
-                  key={note.id} 
-                  className={css['fn-note-item']}>
+                <li key={note.id} className={css['fn-note-item']}>
                   <div className={css['fn-note-item-content']}>
                     <div className={css['fn-note-item-header']}>
-                      <h4 className={css['fn-note-item-title']}>
-                        {note.title || 'Sin título'}
-                      </h4>
+                      <h4 className={css['fn-note-item-title']}>{note.title || 'Sin título'}</h4>
                       <p className={css['fn-note-item-date']}>
-                        <ClockIcon  />
+                        <ClockIcon />
                         {formatDate(note.timestamp)}
                       </p>
                     </div>
-                    <p className={css['fn-note-item-preview']}>
-                      {truncateText(preview, 80)}
-                    </p>
+                    <p className={css['fn-note-item-preview']}>{truncateText(preview, 80)}</p>
                     <div className={css['fn-note-item-actions']}>
                       <button
                         type="button"
                         className={css['fn-btn_note'] + ' ' + css['fn-btn--delete']}
                         onClick={(e) => handleDelete(e, note.id)}
                         aria-label="Eliminar nota">
-                          <TrashIcon />
+                        <TrashIcon />
                         <span className={css['fn-btn_note-text']}>Eliminar</span>
                       </button>
                       <button
@@ -73,7 +63,7 @@ export const NotesList: React.FC<NotesListProps> = ({
                         className={css['fn-btn_note'] + ' ' + css['fn-btn--edit']}
                         onClick={() => onSelectNote(note.id)}
                         aria-label="Editar nota">
-                          <EditIcon />
+                        <EditIcon />
                         <span className={css['fn-btn_note-text']}>Editar</span>
                       </button>
                     </div>

@@ -1,4 +1,4 @@
 export { useDraggablePosition } from './useDraggablePosition';
-export { useTextSelection } from './useTextSelection';
-export { useNotesEditor } from './useNotesEditor';
 export { useFloatingPanel } from './useFloatingPanel';
+export { useNotesEditor } from './useNotesEditor';
+export { useTextSelection } from './useTextSelection';
