@@ -1,3 +1,11 @@
-/* Estilos globales */
+/* Global styles */
 @import url('./stylesheet/global.css');
 
+/* Fonts */
+@import url('./stylesheet/fonts.css');
+
+/* Dark mode */
+@import url('./stylesheet/dark-mode.css');
+
+/* Accesibilitiy */
+@import url('./stylesheet/a11y.css');
