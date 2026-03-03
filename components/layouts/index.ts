@@ -6,3 +6,4 @@ export * from './header'
 export * from './layout'
 export * from './page-not-found';
 export * from './page-title'
+export * from './panel'
