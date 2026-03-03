@@ -1,5 +1,6 @@
-import classNames from 'classnames';
 import { Link, useRoute } from 'wouter';
+
+import { cn } from '@shared/utils';
 
 import css from './header.module.css';
 
@@ -15,7 +16,7 @@ export const MenuLink: React.FC<Props> = ({ href, title, itemNumber }) => {
   return (
     <Link
       to={href}
-      className={classNames(css['menu-list__button'], {
+      className={cn(css['menu-list__button'], {
         [css['menu-list__button--active']]: isActive
       })}
       {...(isActive && { 'aria-current': 'page' })}>
