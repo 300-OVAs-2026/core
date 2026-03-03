@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PageTitle } from '@layout/page-title';
+import { PageTitle } from '@layouts';
 import type { PanelProps } from 'books-ui';
 import { Panel as PanelUI } from 'books-ui';
 
