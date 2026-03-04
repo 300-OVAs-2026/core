@@ -182,19 +182,15 @@ html[data-dark-mode="true"] .u-white-bg {
 
 /* Elements */
 .c-audio__bar {
-  --audio-background-color: var(--clr-brand);
-  --audio-icon-color: #ffffff;
-  --audio-slider-color: #ffffff;
-  --audio-border-radius: .5rem;
-  padding: .4rem;
+  --audio-background-color: var(--secondary-100);
+  --audio-icon-color: var(--secondary-400);
+  --audio-border-radius: 2rem;
+  font-size: var(--fs-300);
+  padding: 0.2rem 0.4rem;
 }
 
-@media screen and (max-width: 1219px) {
-  .c-audio__bar {
-    padding: .2rem 0.4rem;
-    font-size: var(--fs-200);
-  }
-
+.c-audio__bar svg {
+  --icon-size: 1.5rem;
 }
 
 .c-audio__button {
