@@ -1,92 +1,24 @@
-import { useMemo } from 'react';
-import { Icon } from '@ui';
-import { Pagination, Tooltip, useMedia } from 'books-ui';
-import { Link, useLocation } from 'wouter';
-
-import { REMOVE_HTML_TAGS_REGEX } from '@/shared/constants';
-import { focusMainElement } from '@shared/utils';
-import { useOvaContext } from '@/context/ova-context';
-
-import { i18n, ICON_TYPE, PAGINATION_ITEM_TYPE, QUARTER } from './lib/constant';
-
-import type { PaginationItemProps, PaginationItemType, Props } from './types/types';
+import { Link } from 'wouter';
 
 import css from './footer.module.css';
 
-export const Footer: React.FC<Props> = ({ currentPage }) => {
-  const [, navigate] = useLocation();
-  const { routes, lang, titles } = useOvaContext();
-
-  // Calcula el número de elementos límite para la paginación
-  const boundaryCount = useMedia<number>(['(min-width: 1536px)'], [Math.floor(routes.length / QUARTER)], 1);
-
-  const disabledTooltip = useMedia<boolean>(['(min-width: 768px)'], [false], true);
-
-  /**
-   * Maneja la navegación cuando se cambia la página en la paginación.
-   */
-  const handleNavigation = (_: React.MouseEvent<HTMLButtonElement>, value: number) => {
-    navigate(`/page-${value}`);
-  };
-
-  // Limpia el titulo de cualquier etiqueta HTML que tenga.
-  const parsedTitles = useMemo(() => titles.map((title) => title.replace(REMOVE_HTML_TAGS_REGEX, '')), [titles]);
-
+export const Footer = () => {
   return (
-    <footer className={`${css.footer} u-py-1`}>
-      <Pagination
-        boundaryCount={boundaryCount}
-        count={routes.length}
-        addClass="js-pagination-element"
-        defaultPage={currentPage}
-        onChange={handleNavigation}
-        renderItem={(item) => (
-          <PaginationItem item={item} lang={lang} titles={parsedTitles} disabledTooltip={disabledTooltip} />
-        )}
-      />
-    </footer>
-  );
-};
+    <footer className={css.footer}>
+      <Link to="/path" className={css.button}>
+        <svg xmlns="http://www.w3.org/2000/svg" className={css['icon']} viewBox="0 0 400 400">
+          <circle cx="200" className={css['icon__dash']} cy="200" r="115" />
 
-const PaginationItem: React.FC<PaginationItemProps> = ({ item, lang, titles, disabledTooltip }) => {
-  const { onClick, type, page, disabled } = item;
+          <circle cx="200" cy="200" r="110" fill="var(--primary-500)" />
+          <circle cx="200" cy="200" r="70" fill="var(--primary-400)" />
 
-  // Obtiene el título de la página actual
-  const currentTitle = titles[page! - 1];
-
-  /**
-   * Maneja el evento de clic en el ítem de paginación.
-   *
-   * @param event - Evento de clic
-   */
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    onClick?.(event);
-    focusMainElement();
-  };
-
-  return type === PAGINATION_ITEM_TYPE.PAGE ? (
-    <Tooltip label={currentTitle} hasArrow isDisabled={disabledTooltip} addClass={css['footer__nav-tooltip']}>
-      <Link
-        to={`/page-${page}`}
-        className={css['footer__nav-link']}
-        onClick={focusMainElement}
-        aria-label={`${i18n[lang].page} ${page}, ${currentTitle}`}
-        aria-current={item['aria-current']}>
-        {page}
+          <rect className={css['icon__shadow']} x="163" y="163" width="33" height="33" fill="white" />
+          <rect className={css['icon__shadow']} x="203" y="163" width="33" height="33" fill="white" />
+          <rect className={css['icon__shadow']} x="163" y="203" width="33" height="33" fill="white" />
+          <rect className={css['icon__shadow']} x="203" y="203" width="33" height="33" rx="12" fill="white" />
+        </svg>
+        <span className={css['button__text']}>Menu</span>
       </Link>
-    </Tooltip>
-  ) : type === PAGINATION_ITEM_TYPE.NEXT || type === PAGINATION_ITEM_TYPE.PREVIOUS ? (
-    <button
-      className={`${css['footer__nav-button']} u-px-2 ${type === PAGINATION_ITEM_TYPE.NEXT ? 'js-pagination-link-next' : 'js-pagination-link-previous'}`}
-      onClick={handleClick}
-      data-type={type}
-      data-page={page}
-      aria-label={type === PAGINATION_ITEM_TYPE.NEXT ? i18n[lang].nextA11y : i18n[lang].previousA11y}
-      disabled={disabled}>
-      <Icon addClass={css['footer__nav-button-icon']} name={ICON_TYPE[type as PaginationItemType]} />
-      <span>{type === PAGINATION_ITEM_TYPE.NEXT ? i18n[lang].next : i18n[lang].previous}</span>
-    </button>
-  ) : (
-    <span className={css['footer__nav-ellipsis']}>...</span>
+    </footer>
   );
 };
