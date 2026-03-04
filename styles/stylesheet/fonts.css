@@ -1,36 +1,78 @@
-/* Heebo - Page title */
+/* BlenderPro - Fuente principal del proyecto */
+
+/* Thin */
 @font-face {
-  font-family: 'Exo';
-  src: url('assets/fonts/Exo-Black.woff2') format('woff2');
-  font-weight: 900; /* Black: peso más pesado */
+  font-family: 'BlenderPro';
+  src: url('/assets/fonts/BlenderPro-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Exo';
-  src: url('assets/fonts/Exo-Bold.woff2') format('woff2');
-  font-weight: 700; /* Bold: peso estándar para negrita */
+  font-family: 'BlenderPro';
+  src: url('/assets/fonts/BlenderPro-ThinItalic.woff2') format('woff2');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Book (Regular) */
+@font-face {
+  font-family: 'BlenderPro';
+  src: url('/assets/fonts/BlenderPro-Book.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Exo';
-  src: url('assets/fonts/Exo-Italic.woff2') format('woff2');
-  font-weight: 400; /* Peso normal */
-  font-style: italic; /* Estilo en cursiva */
+  font-family: 'BlenderPro';
+  src: url('/assets/fonts/BlenderPro-BookItalic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Medium */
+@font-face {
+  font-family: 'BlenderPro';
+  src: url('/assets/fonts/BlenderPro-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Exo';
-  src: url('assets/fonts/Exo-Medium.woff2') format('woff2');
-  font-weight: 500; /* Medium: peso intermedio */
+  font-family: 'BlenderPro';
+  src: url('/assets/fonts/BlenderPro-MediumItalic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Bold */
+@font-face {
+  font-family: 'BlenderPro';
+  src: url('/assets/fonts/BlenderPro-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Exo';
-  src: url('assets/fonts/Exo-Regular.woff2') format('woff2');
-  font-weight: 400; /* Regular: peso normal */
+  font-family: 'BlenderPro';
+  src: url('/assets/fonts/BlenderPro-BoldItalic.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Heavy */
+@font-face {
+  font-family: 'BlenderPro';
+  src: url('/assets/fonts/BlenderPro-Heavy.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
   font-display: swap;
 }
