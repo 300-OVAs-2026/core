@@ -9,14 +9,14 @@ import { colorNames } from '../_theme/colors';
 
 /**
  * Genera reglas dinámicas para text color utilizando las CSS custom properties.
- * Ejemplos: u-text-color-brand, u-text-color-accent, u-text-color-highlight
+ * Ejemplos: u-text-primary, u-text-accent, u-text-primary-500
  */
 export const textColor: Rule[] = [
   [
-    /^u-text-color-(.+)$/,
+    /^u-text-(.+)$/,
     ([, color]: string[]) => {
       if (colorNames.includes(color)) {
-        return { color: `var(--clr-${color})` };
+        return { color: `var(--${color})` };
       }
     }
   ]
@@ -24,14 +24,14 @@ export const textColor: Rule[] = [
 
 /**
  * Genera reglas dinámicas para background color utilizando las CSS custom properties.
- * Ejemplos: u-bg-brand, u-bg-accent, u-bg-highlight
+ * Ejemplos: u-bg-primary, u-bg-accent, u-bg-secondary-200
  */
 export const backgroundColor: Rule[] = [
   [
     /^u-bg-(.+)$/,
     ([, color]: string[]) => {
       if (colorNames.includes(color)) {
-        return { 'background-color': `var(--clr-${color})` };
+        return { 'background-color': `var(--${color})` };
       }
     }
   ]
@@ -39,14 +39,14 @@ export const backgroundColor: Rule[] = [
 
 /**
  * Genera reglas dinámicas para border color utilizando las CSS custom properties.
- * Ejemplos: u-border-brand, u-border-accent, u-border-highlight
+ * Ejemplos: u-border-primary, u-border-accent, u-border-primary-300
  */
 export const borderColor: Rule[] = [
   [
     /^u-border-(.+)$/,
     ([, color]: string[]) => {
       if (colorNames.includes(color)) {
-        return { 'border-color': `var(--clr-${color})` };
+        return { 'border-color': `var(--${color})` };
       }
     }
   ]

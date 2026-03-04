@@ -9,3 +9,6 @@
 
 /* Accesibilitiy */
 @import url('./stylesheet/a11y.css');
+
+/* Color */
+@import url('./stylesheet/color.css');
