@@ -73,7 +73,6 @@ export const CoverTitle: React.FC<Props> = ({
         src={currentURL}
         alt=""
       />
-      <div style={{ gridArea: 'menu'}}></div>
     </motion.section>
   );
 };

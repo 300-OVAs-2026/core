@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { A11yOverlay } from '@features/a11y-overlay';
+
+import { Menu } from '../menu';
 
 import { HeaderProvider } from './header-context';
-import { Menu } from './menu';
-import { MenuA11y } from './menu-a11y';
-import { SkipToMain } from './skip-to-main';
 
 import type { PropertyType } from './types/types';
 import { type MenuExpanded, MenuOptions } from './types/types';
@@ -43,20 +41,21 @@ export const Header = () => {
 
   return (
     <HeaderProvider value={{ expanded, handleExpanded }}>
-      <header id="header" className={`${css['header']}`}>
-        <SkipToMain />
-        <img
-          className={css['logo']}
-          src="assets/base/logo.svg"
-          alt="UNAD: Universidad Nacional Abierta y a Distancia"
-          // width="135"
-          // height="102"
-        />
-        <Menu />
-        <MenuA11y />
-        {/* <HeaderTitle /> */}
+      <header id="header" className={css['header']}>
+        <div className={css['header__container']}>
+          <Menu />
+          <div className={css['logo']}>
+            <img
+              src="assets/base/logo.svg"
+              alt="UNAD: Universidad Nacional Abierta y a Distancia"
+              className="u-px-2"
+              width={250}
+              height={250}
+            />
+          </div>
+        </div>
       </header>
-      <A11yOverlay isOpen={expanded.a11y} onClose={() => handleExpanded(MenuOptions.A11Y)} />
+      {/* <A11yOverlay isOpen={expanded.a11y} onClose={() => handleExpanded(MenuOptions.A11Y)} /> */}
     </HeaderProvider>
   );
 };

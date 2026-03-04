@@ -4,13 +4,14 @@ import { useHashLocation } from 'wouter/use-hash-location';
 
 import { useOvaContext } from '@/context/ova-context';
 
-import { useHeaderContext } from './header-context';
-import { HOME_PATH, i18n } from './lib/constant';
+import { useHeaderContext } from '../header/header-context';
+
+import {  i18n } from './lib/constant';
 
 import { MenuOptions } from './types/types';
 import { ConfigA11yProperty } from '@features/a11y-overlay/types/types';
 
-import css from './header.module.css';
+import css from './menu.module.css';
 
 export const MenuA11y = () => {
   const { lang } = useOvaContext();
@@ -25,7 +26,7 @@ export const MenuA11y = () => {
   return (
     <ul
       className={`${css['menu-a11y']} u-px-.5 `}
-      data-home={location === HOME_PATH}
+      data-home={location}
       data-expanded={expanded.help || expanded.menu}>
       <li>
         <button
@@ -38,7 +39,7 @@ export const MenuA11y = () => {
         </button>
       </li>
 
-      <li className={css['list__item']} hidden={location === HOME_PATH}>
+      <li className={css['list__item']}>
         <button
           aria-label={i18n[lang].a11y}
           aria-pressed={expanded.a11y}
