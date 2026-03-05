@@ -2,10 +2,12 @@ import { useCallback, useEffect, useId, useState } from 'react';
 import { motion } from 'motion/react';
 import { useHashLocation } from 'wouter/use-hash-location';
 
-import { EVENTS } from '@/shared/constants/events';
 import { useOvaContext } from '@/context/ova-context';
+import { EVENTS } from '@/shared/constants/events';
 
-import { HOME_PATH, PATH_REGEX } from './lib/constant';
+import { Icon } from '../../ui';
+
+import { PATH_REGEX } from './lib/constant';
 
 import css from './page-title.module.css';
 
@@ -70,17 +72,30 @@ export const PageTitle = () => {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={`${css['title-slide']} u-wrapper u-mb-2`}>
-      {location !== HOME_PATH ? (
-        <>
-          <span className={css['title-slide__number']} aria-hidden="true">
-            {title.number}.
-          </span>
-          <h1 aria-describedby={uid} aria-hidden="true" dangerouslySetInnerHTML={{ __html: title.title }} />
-          <h1 id={uid} className="u-sr-only">
-            Página {title.number}, {title.title}
-          </h1>
-        </>
-      ) : null}
+      <div className={css['title-slide__title']} aria-live="polite">
+        <span aria-hidden="true">
+          {title.number}.
+        </span>
+        <h1 aria-describedby={uid} aria-hidden="true" dangerouslySetInnerHTML={{ __html: title.title }} />
+        <h1 id={uid} className="u-sr-only">
+          Página {title.number}, {title.title}
+        </h1>
+      </div>
+      <div className={css['title-slide__indicator']}>
+        <div className={css['page-indicator']}>
+          <Icon name="home" />
+         <span>2&nbsp;/&nbsp;10</span>
+        </div>
+        <div
+          className={css['progress-bar']}
+          role="meter"
+          aria-valuemin={1}
+          aria-valuemax={100}
+          aria-valuenow={5}
+          aria-label="Progreso de la unidad">
+          <div></div>
+        </div>
+      </div>
     </motion.div>
   );
 };
