@@ -1,122 +1,107 @@
-:root {
-    --cover-background-trasparency: 10%;
+html:not([data-dark-mode]) body:has(main[data-home="true"]) {
+    background-color: var(--primary-800) !important;
+}
+
+@media screen and (max-width: 1024px) {
+    .cover-image-wrapper {
+        display: none;
+    }
+}
+
+.cover-image-wrapper {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    isolation: isolate;
+    background-image: url(assets/base/cover.webp);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .cover-title {
     --title-size: 70ch;
-    place-items: center;
+
     display: grid;
-    grid-template-rows: auto 1fr var(--header-cover-height);
-    grid-template-areas: 'audio audio'
-                        'title image'
-                        'menu image';
-    grid-template-columns: repeat(2, 1fr);
-    position: relative;
     height: 100%;
-}
-
-.background {
-    mix-blend-mode: multiply;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: var(--header-column-width);
-    height: 100%;
-    transition: background-color 120ms ease-in-out;
-    background-color: color-mix(in srgb, var(--clr-brand), transparent var(--cover-background-trasparency));
-}
-
-html[data-dark-mode="true"] .background {
-    mix-blend-mode: normal;
-    background-color: var(--clr-brand);
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 3.75rem 1fr;
 }
 
 .cover-title__audio {
-    grid-area: audio;
+    grid-column: 1 / -1;
 }
 
 .cover-title__title {
-    grid-area: title;
-    place-content: center;
-    isolation: isolate;
-    display: grid;
-    gap: 1em;
+    justify-self: center;
     max-width: var(--title-size);
+    display: grid;
+    place-content: start;
+    gap: 1em;
 }
 
 .cover-title h1 {
     font-size: var(--fs-700);
-    font-weight: bold;
-    text-align: left;
-}
-
-.cover-title strong {
-    color: var(--clr-accent);
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--white);
 }
 
 .cover-title__link {
     --outline-offset: -4px;
-    text-decoration-color: transparent;
+
     display: inline-flex;
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    padding: 0.4em 1.4em;
     width: fit-content;
-    padding: 0.3em 1.3em;
-    transition: background-color 120ms ease-in-out;
-    background-color: var(--clr-accent);
-    border: 1px solid transparent;
-    border-radius: 100vw;
+    background-color: var(--white);
     font-size: var(--fs-300);
+    color: currentColor;
+    text-transform: uppercase;
+    text-decoration-color: transparent;
+    border: none;
+    box-shadow: inset .75rem 0px 0 0px var(--accent);
     font-weight: bold;
-    color: var(--clr-text-secondary);
+    transition: box-shadow 200ms cubic-bezier(0.13, 0, 0.39, 0);
+}
+
+.cover-title__link svg {
+    stroke-width: 3;
+    stroke-linejoin: bevel;
 }
 
 .cover-title__link:is(:hover, :focus) {
-    background-color: color-mix(in srgb, var(--clr-accent), white 20%);
+    box-shadow: inset -.75rem 0px 0 0px var(--accent);
 }
 
 .cover-title__link>svg {
     --icon-size: 1.9rem;
 }
 
-
-.cover-title__img {
-    --position: 3%;
-    position: relative;
-    top: var(--position);
-    right: var(--position);
-    height: var(--header-cover-image-size, auto);
-    grid-area: image;
-    align-self: start;
-}
-
 @media screen and (max-width: 1024px) {
-
     .cover-title {
-        place-items: center;
-        grid-template-rows: auto 3fr 1fr;
+        grid-template-rows: auto 1fr;
+        text-align: center;
         grid-template-columns: 1fr;
-    }
-
-    .background {
-        display: none;
+        place-items: center;
     }
 
     .cover-title__title {
-        --title-size: 80ch;
-        place-items: center;
+        --title-size: 100%;
         display: grid;
+        place-items: center;
     }
 
     .cover-title h1 {
         font-size: var(--fs-600);
-        text-align: center;
     }
 }
 
 @media screen and (max-width: 640px) {
-
     .cover-title h1 {
         font-size: var(--fs-400);
     }
