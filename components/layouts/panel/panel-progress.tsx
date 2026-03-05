@@ -1,10 +1,11 @@
 import { forwardRef, useEffect, useMemo, useRef } from 'react';
+import { Icon } from '@ui';
 import { Tooltip, useMedia, usePanelContext as usePanel } from 'books-ui';
 
-import { REMOVE_HTML_TAGS_REGEX } from '@/shared/constants';
 import { useInterpreter } from '@shared/hooks';
 import { eventUpdateTitle } from '@shared/utils';
 import { useOvaContext } from '@/context/ova-context';
+import { REMOVE_HTML_TAGS_REGEX } from '@/shared/constants';
 
 import { usePaginationRange } from './hooks/usePaginationRange';
 import { i18n } from './lib/constant';
@@ -163,9 +164,6 @@ export const PanelProgress = () => {
       <p className="u-sr-only" aria-atomic="true" aria-live="polite">
         {i18n[lang].a11y} {currentSection + 1} {i18n[lang].sectionBy} {sectionsId.length}
       </p>
-      <p aria-hidden="true">
-        {i18n[lang].section} {currentSection + 1} de {sectionsId.length}
-      </p>
       <ul
         ref={refButtonList}
         className={css['progress__list']}
@@ -178,6 +176,7 @@ export const PanelProgress = () => {
             className={`js-panel-previous-button ${css['progress__button']} ${css['progress__button--prev']}`}
             aria-label={i18n[lang].ariaPrev}
             disabled={currentSection <= FIRST_SECTION_INDEX}>
+            <Icon name="arrow-left-panel" />
             {i18n[lang].previous}
           </button>
         </li>
@@ -186,7 +185,6 @@ export const PanelProgress = () => {
             key={`section-${uid}`}
             uid={sectionsId[uid - 1]}
             section={uid}
-            beforeToActive={uid - 1 < currentSection + 1}
             isSelected={validation(sectionsId[uid - 1])}
             handleNavigation={handleClick}
             handleKeyDown={handleKeyTrap}
@@ -200,6 +198,7 @@ export const PanelProgress = () => {
             aria-label={i18n[lang].ariaNext}
             disabled={currentSection >= (LAST_SECTION_INDEX || 0)}>
             {i18n[lang].next}
+            <Icon name="arrow-right-panel" />
           </button>
         </li>
       </ul>
@@ -211,14 +210,13 @@ interface PanelProgresItemProps {
   uid: string;
   section: number;
   isSelected: boolean;
-  beforeToActive: boolean;
   disabledTooltip: boolean;
   handleNavigation: (uid: string) => void;
   handleKeyDown: (event: React.KeyboardEvent<HTMLButtonElement>) => void;
 }
 
 const PanelProgressItem = forwardRef<HTMLButtonElement, PanelProgresItemProps>(function PanelProgressItem(
-  { uid, section, isSelected, beforeToActive, handleKeyDown, handleNavigation, disabledTooltip },
+  { uid, section, isSelected, handleKeyDown, handleNavigation, disabledTooltip },
   ref: React.Ref<HTMLButtonElement>
 ) {
   const { lang } = useOvaContext();
@@ -237,7 +235,7 @@ const PanelProgressItem = forwardRef<HTMLButtonElement, PanelProgresItemProps>(f
     <li role="presentation" className={css['progress__item']}>
       <Tooltip
         label={currentTitle}
-        placement="bottom"
+        placement="left"
         hasArrow
         distance={15}
         isDisabled={disabledTooltip}
@@ -245,19 +243,13 @@ const PanelProgressItem = forwardRef<HTMLButtonElement, PanelProgresItemProps>(f
         <button
           ref={ref}
           role="tab"
-          className={`${css['progress__item-button']} ${beforeToActive ? css['progress__item-button--active'] : ''}`}
+          className={css['progress__item-button']}
           tabIndex={isSelected ? 0 : -1}
           aria-selected={isSelected}
           onClick={() => handleNavigation(uid)}
           onKeyDown={handleKeyDown}
           aria-label={`Sección ${section}`}>
-          <svg width="0" height="0" viewBox="0 0 100 100">
-            <defs>
-              <clipPath id="clipPath" clipPathUnits="objectBoundingBox">
-                <path d="M 0.2,0.088 Q 0.936,0.392 0.938,0.518 Q 0.934,0.642 0.216,0.908 Q 0.076,0.99 0.074,0.826 L 0.076,0.152 Q 0.072,0.01 0.2,0.088 Z"></path>
-              </clipPath>
-            </defs>
-          </svg>
+          {section < 10 ? `0${section}` : section}
         </button>
       </Tooltip>
     </li>
