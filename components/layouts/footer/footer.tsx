@@ -11,8 +11,8 @@ export const Footer = () => {
         <svg xmlns="http://www.w3.org/2000/svg" className={css['icon']} viewBox="0 0 400 400">
           <circle cx="200" className={css['icon__dash']} cy="200" r="115" />
 
-          <circle cx="200" cy="200" r="110" fill="var(--primary-500)" />
-          <circle cx="200" cy="200" r="70" fill="var(--primary-400)" />
+          <circle cx="200" cy="200" r="110" fill="var(--primary-700)" />
+          <circle cx="200" cy="200" r="70" fill="var(--primary-500)" />
 
           <rect className={css['icon__shadow']} x="163" y="163" width="33" height="33" fill="white" />
           <rect className={css['icon__shadow']} x="203" y="163" width="33" height="33" fill="white" />
