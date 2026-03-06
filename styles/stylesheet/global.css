@@ -20,7 +20,6 @@ body {
   font-size: var(--fs-200);
   font-family: 'BlenderPro', sans-serif;
   color: var(--clr-text-main);
-
 }
 
 
@@ -31,7 +30,7 @@ body {
   gap: 1rem;
   height: 100vh;
   overflow-y: auto;
-    scrollbar-gutter: stable;
+  scrollbar-gutter: stable;
 }
 
 
@@ -71,8 +70,7 @@ button[aria-label="Comprobar"]+button[aria-label="Reintentar"] {
 
 ::-webkit-scrollbar {
   width: .625rem;
-  background-color: #f5f5f5;
-  border-radius: .625rem;
+  background-color: var(--secondary-100);
 }
 
 ::-webkit-scrollbar-track {
@@ -81,7 +79,7 @@ button[aria-label="Comprobar"]+button[aria-label="Reintentar"] {
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--primary);
-  border: 2px solid #f5f5f5;
+  border: .125rem solid var(--secondary-100);
   border-radius: .4375rem;
 }
 
@@ -186,8 +184,8 @@ html[data-dark-mode="true"] .u-white-bg {
 
 /* Elements */
 .c-audio__bar {
-  --audio-background-color: var(--secondary-100);
-  --audio-icon-color: var(--secondary-400);
+  --audio-background-color: var(--secondary-200);
+  --audio-icon-color: var(--secondary-700);
   --audio-border-radius: 2rem;
   font-size: var(--fs-300);
   padding: 0.2rem 0.4rem;
