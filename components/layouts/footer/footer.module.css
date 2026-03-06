@@ -1,40 +1,37 @@
 .footer {
     display: flex;
-    justify-content: end;
+    justify-content: center;
     align-items: center;
-    width: 100%;
-    min-height: 150px;
-    position: relative;
-    border: 1px solid red;
     position: fixed;
     bottom: 0;
+    right: 0;
+    width: 160px;
+    min-height: 150px;
 }
+
 
 .figure-circle,
 .figure-triangle {
-
+    aspect-ratio: 1;
+    pointer-events: none;
     position: absolute;
     width: 200px;
     height: auto;
-    aspect-ratio: 1;
     background-color: var(--bg-color);
-    pointer-events: none;
 }
 
 .figure-circle {
     --bg-color: #e8e8e8;
-
-    bottom: 60%;
-    left: 98%;
-    border-radius: 50%;
     box-shadow: 0 0 .625rem 0 var(--secondary-300);
+    bottom: 60%;
+    left: 67%;
+    border-radius: 50%;
 }
 
 .figure-triangle {
     --bg-color: var(--accent);
-
     top: -13%;
-    left: 95%;
+    left: 30%;
     transform: rotate(45deg);
 }
 
@@ -46,11 +43,11 @@
     align-items: center;
     gap: 0.5rem;
     position: relative;
+    z-index: 1;
     font-weight: 500;
     color: currentColor;
     text-decoration: none;
     text-transform: capitalize;
-    z-index: 1;
 }
 
 .icon {
