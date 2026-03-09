@@ -39,7 +39,15 @@ export const Menu = () => {
             aria-label="Menú principal"
             aria-expanded={isOpen}
             onClick={handleOpen}>
-            <svg viewBox="0 0 80 64">
+            <svg viewBox="0 0 206.341 235.122" className={css['svg-background']}>
+              <polygon points="0 0 205.414 0 205.414 148.231 79.562 219.324 0 173.945"></polygon>
+              <path
+                d="M 196.072 0 L 196.072 162.634 L 79.964 232.316 L 0 185.129"
+                fill="none"
+                stroke="#FFFFFF"
+                stroke-width="2"></path>
+            </svg>
+            <svg viewBox="0 0 80 64" className={css['svg-hamburger']}>
               <motion.line
                 initial={false}
                 animate={{
@@ -72,6 +80,8 @@ export const Menu = () => {
                 transition={{ duration: 0.3, ease: [0.64, 0.01, 0.25, 1.0] }}
               />
             </svg>
+
+            <span className="u-sr-only">Menu</span>
           </button>
           <button className={css['menu__button--audio']} aria-label="Activar audio">
             <Icon name="play" />

@@ -17,22 +17,38 @@
 
 /* Hamburger button */
 .menu__button--hamburger {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--accent);
-    border: 1px solid transparent;
-    padding-inline: 1rem;
+    width: 100px;
+    display: grid;
+    grid-template-areas: "stack";
+    background-color: transparent;
+    border: none;
+    padding: 0;
     z-index: calc(var(--z-index-menu) + 2);
 }
 
-.menu__button--hamburger:is(:hover, :focus-visible) {
-    background-color: var(--accent-600);
+.menu__button--hamburger>* {
+    grid-area: stack;
 }
 
-.menu__button--hamburger svg {
+.svg-background {
+    position: relative;
+    inset: 0;
+    pointer-events: none;
+}
+
+.svg-background polygon {
+    fill: var(--accent);
+}
+
+.menu__button--hamburger:is(:hover, :focus-visible) .svg-background polygon {
+    fill: var(--accent-400);
+}
+
+
+.svg-hamburger {
     --icon-size: 3rem;
 
+    position: relative;
     display: block;
     width: var(--icon-size);
     height: var(--icon-size);
@@ -41,6 +57,7 @@
     stroke: var(--primary-700);
     stroke-linecap: round;
     stroke-width: 8;
+    z-index: 1;
 }
 
 /* Audio and Accessibility buttons */
@@ -58,6 +75,8 @@
     text-transform: uppercase;
     letter-spacing: 0.025em;
     color: var(--white);
+    height: fit-content;
+    padding-block: 1rem;
 }
 
 .menu__button--audio {
@@ -65,7 +84,7 @@
 }
 
 .menu__button--accessibility {
-    background-color: var(--primary-500);
+    background-color: var(--primary-700);
 }
 
 .menu__button--audio svg,
