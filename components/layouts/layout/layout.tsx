@@ -58,7 +58,7 @@ export const Layout: React.FC<Props> = ({ children }) => {
       <main id="main" className='u-flex u-flex-1 u-px-2 u-py-2 h-full' data-home={location === HOME_PATH} tabIndex={-1}>
         {children}
       </main>
-      {location !== HOME_PATH ? <Footer currentPage={currentPage} /> : null}
+      {location !== HOME_PATH ? <Footer /> : null}
     </MotionConfig>
   );
 };

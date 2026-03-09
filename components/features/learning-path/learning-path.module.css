@@ -1,0 +1,213 @@
+.navigation {
+  width: 100%;
+  padding: 3rem 2rem;
+  overflow-x: auto;
+}
+
+.navigation__block {
+  position: relative;
+  border: 1px solid blue;
+  max-width: fit-content;
+  margin-inline: auto;
+}
+
+.list-wrapper {
+  display: grid;
+  /* columnas fijas en rem → permite calcular bridge coords en JS sin medir el DOM
+     COL_W_REM = 10rem (debe coincidir con la constante en learning-path.tsx)      */
+  grid-template-columns: repeat(6, 10rem);
+  width: max-content;
+}
+
+/* Capa de conectores: overlay absoluto sobre list-wrapper */
+.bridge-wrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Línea horizontal entre dos nodos: top/left/width calculados en JS */
+.bridge-line-h {
+  position: absolute;
+  height: 2px;
+  background: var(--color-gray-300, #ccc);
+  transform: translateY(-50%); /* centra la línea en el top dado */
+}
+
+
+.list-item {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5rem;    /* NODE_W_REM — debe coincidir con la constante en learning-path.tsx */
+  height: 8rem;   /* ROW_H_REM  — debe coincidir con la constante en learning-path.tsx */
+  justify-self: self-start;
+  /* posición dinámica via CSS custom properties calculadas en JS */
+  grid-row:    var(--pos-row);
+  grid-column: var(--pos-col);
+}
+
+
+/* Nodos de página */
+.pageNode {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex: 1;
+  padding: .5rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--color-background, #f5f5f5);
+  border: 2px solid var(--color-border, #e0e0e0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.pageNode:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Estados específicos */
+.pageNode.inicio {
+  background: var(--color-inicio, #4CAF50);
+  color: white;
+  border-color: var(--color-inicio, #4CAF50);
+}
+
+.pageNode.fin {
+  background: var(--color-fin, #2196F3);
+  color: white;
+  border-color: var(--color-fin, #2196F3);
+}
+
+.pageNode.contenido {
+  background: var(--color-contenido, #FF9800);
+  color: white;
+  border-color: var(--color-contenido, #FF9800);
+}
+
+/* Contenedor del icono */
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 0.5rem;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+}
+
+/* Título */
+.title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+  word-break: break-word;
+  max-width: 90px;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* Arco lateral que conecta filas:
+   position absolute dentro de rowWrapper (position relative)
+   top: 50% del pathRow → bottom: 50% del siguiente pathRow
+   Con padding-bottom: 64px en rowWrapper, la curva ocupa
+   ese espacio + se extiende hacia arriba con margin-top negativo */
+.curveSection {
+  position: absolute;
+  bottom: 0;
+  width: 60px;
+  /* altura = mitad de la fila (aprox 74px) + gap (64px) = 138px */
+  height: 138px;
+  color: var(--color-connector, #999);
+  /* z-index mayor que pathRow (que no tiene z-index) para pintar encima */
+  z-index: 1;
+}
+
+.curveSection svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Arco derecho */
+.curveDown {
+  right: 1rem;
+}
+
+/* Arco izquierdo */
+.curveUp {
+  left: 1rem;
+}
+
+/* ── Tablet: 4 columnas, 2 items/fila ─────────────────────────── */
+@media (max-width: 1023px) {
+  .list-wrapper {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .list-item {
+    grid-row:    var(--pos-row-t);
+    grid-column: var(--pos-col-t);
+  }
+
+  .navigation {
+    padding: 2rem 1rem;
+  }
+
+  .pageNode {
+    padding: 1rem 0.75rem;
+  }
+
+  .iconContainer {
+    width: 45px;
+    height: 45px;
+  }
+
+  .title {
+    font-size: 0.7rem;
+  }
+}
+
+/* ── Mobile: 2 columnas, zigzag ────────────────────────────────── */
+@media (max-width: 639px) {
+  .list-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .list-item {
+    grid-row:    var(--pos-row-m);
+    grid-column: var(--pos-col-m);
+  }
+
+  .navigation {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .pageNode {
+    padding: 0.75rem 0.5rem;
+    border-radius: 8px;
+  }
+
+  .iconContainer {
+    width: 38px;
+    height: 38px;
+  }
+
+  .title {
+    font-size: 0.65rem;
+  }
+}
