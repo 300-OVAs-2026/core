@@ -95,7 +95,7 @@
 }
 
 .progress__item-button[aria-selected="true"] {
-    --button-text-clr: var(--accent-500);
+    --button-text-clr: var(--accent);
 }
 
 .progress__list li:not(:nth-last-child(-n+2)) .progress__item-button {

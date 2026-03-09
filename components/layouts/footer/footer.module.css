@@ -21,7 +21,7 @@
 }
 
 .figure-circle {
-    --bg-color: #e8e8e8;
+    --bg-color: var(--secondary-100);
     box-shadow: 0 0 .625rem 0 var(--secondary-300);
     bottom: 60%;
     left: 67%;
