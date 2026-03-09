@@ -39,7 +39,7 @@ export const Menu = () => {
             aria-label="Menú principal"
             aria-expanded={isOpen}
             onClick={handleOpen}>
-            <svg viewBox="0 0 206.341 235.122" className={css['svg-background']}>
+            <svg viewBox="0 0 206.341 235.122" className={css['svg-background']} clipPathUnits="objectBoundingBox">
               <polygon points="0 0 205.414 0 205.414 148.231 79.562 219.324 0 173.945"></polygon>
               <path
                 d="M 196.072 0 L 196.072 162.634 L 79.964 232.316 L 0 185.129"
@@ -84,12 +84,30 @@ export const Menu = () => {
             <span className="u-sr-only">Menu</span>
           </button>
           <button className={css['menu__button--audio']} aria-label="Activar audio">
-            <Icon name="play" />
-            <span>Activar Audio</span>
+            <svg width="0" height="0" className={css['menu__button--audio_clip-path']}>
+              <defs>
+                <clipPath id="menu-diagonal-cut" clipPathUnits="objectBoundingBox">
+                  <path d="M 0,0 L 1,0 L 0.93, 1 L 0, 1 Z" />
+                </clipPath>
+              </defs>
+            </svg>
+            <span className={css['menu__button-content']}>
+              <Icon name="play" />
+              <span>Activar Audio</span>
+            </span>
           </button>
           <button className={css['menu__button--accessibility']} aria-label="Activar intérprete">
-            <Icon name="hand-a11y" />
-            <span>Activar Intérprete</span>
+             <svg width="0" height="0" className={css['menu__button--audio_clip-path']}>
+              <defs>
+                <clipPath id="menu-doble-diagonal-cut" clipPathUnits="objectBoundingBox">
+                  <path d="M 0.055,0 L 1,0 L 0.93, 1 L 0, 1 Z" />
+                </clipPath>
+              </defs>
+            </svg>
+            <span className={css['menu__button-content']}>
+              <Icon name="hand-a11y" />
+              <span>Activar Intérprete</span>
+            </span>
           </button>
         </div>
         <motion.div

@@ -1,6 +1,8 @@
 /* Menu */
 .menu {
     --transparent: 95%;
+    --padding: 1rem;
+
     display: flex;
     align-items: center;
     height: 100%;
@@ -17,7 +19,7 @@
 
 /* Hamburger button */
 .menu__button--hamburger {
-    width: 100px;
+    width: 5.75rem;
     display: grid;
     grid-template-areas: "stack";
     background-color: transparent;
@@ -48,6 +50,8 @@
 .svg-hamburger {
     --icon-size: 3rem;
 
+    margin-block-start: var(--padding);
+    justify-self: center;
     position: relative;
     display: block;
     width: var(--icon-size);
@@ -63,12 +67,7 @@
 /* Audio and Accessibility buttons */
 .menu__button--audio,
 .menu__button--accessibility {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .5rem;
     position: relative;
-    padding-inline: 1rem;
     border: 1px solid transparent;
     font-size: var(--fs-200);
     font-weight: bold;
@@ -76,7 +75,64 @@
     letter-spacing: 0.025em;
     color: var(--white);
     height: fit-content;
-    padding-block: 1rem;
+    padding-inline: var(--padding);
+    padding-block: var(--padding);
+}
+
+.menu__button--audio {
+    padding-inline: calc(var(--padding) / 2) var(--padding);
+    clip-path: url(#menu-diagonal-cut);
+}
+
+.menu__button--accessibility {
+    clip-path: url(#menu-doble-diagonal-cut);
+}
+
+.menu__button--audio_clip-path {
+    position: absolute;
+    pointer-events: none;
+}
+
+.menu__button-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.menu__button-content::after,
+.menu__button-content::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-color: var(--primary-50);
+    filter: drop-shadow(0 0 .125rem currentColor);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.menu__button-content::after {
+    bottom: -.3125rem;
+    height: .0625rem;
+    opacity: 0.3;
+}
+
+.menu__button-content::before {
+    --size: 2.5px;
+
+    bottom: calc(-.3125rem + (calc(var(--size) * -1)) / 3);
+    width: var(--size);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+}
+
+
+.menu__button-content svg {
+    --icon-size: 2rem;
+    filter: drop-shadow(0 0 .3125rem currentColor);
 }
 
 .menu__button--audio {
@@ -87,11 +143,7 @@
     background-color: var(--primary-700);
 }
 
-.menu__button--audio svg,
-.menu__button--accessibility svg {
-    --icon-size: 2rem;
-    filter: drop-shadow(0 0 .3125rem currentColor);
-}
+/* menu */
 
 .menu__wrapper {
 
