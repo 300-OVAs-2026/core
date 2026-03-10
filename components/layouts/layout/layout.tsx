@@ -20,7 +20,7 @@ export const Layout: React.FC<Props> = ({ children }) => {
   const [currentPage, setCurrentPage] = useState<number>(0);
 
   const [location] = useHashLocation();
-  const { titles, baseTitle } = useOvaContext();
+  const { pages, baseTitle } = useOvaContext();
 
   // Detecta si el usuario prefiere reducir la animación
   const reduceMotion = useReduceMotion();
@@ -31,14 +31,14 @@ export const Layout: React.FC<Props> = ({ children }) => {
    * Actualiza el título de la página según la página actual.
    */
   const updatePageTitle = useCallback(() => {
-    const currentPageTitle = titles[currentPage - 1];
+    const currentPageTitle = pages[currentPage - 1]?.title; // Ajustar índice para obtener el título correcto
 
     if (currentPageTitle) {
       document.title = currentPageTitle.replace(REMOVE_HTML_TAGS_REGEX, '');
     } else {
       document.title = baseTitle.replace(REMOVE_HTML_TAGS_REGEX, '');
     }
-  }, [titles, currentPage, baseTitle]);
+  }, [pages, currentPage, baseTitle]);
 
   /**
    * Actualiza el estado de la página actual basado en la URL.

@@ -16,7 +16,7 @@ export const PageTitle = () => {
   const uid = useId();
 
   const [location] = useHashLocation();
-  const { routes, titles } = useOvaContext();
+  const { pages, visitedPages } = useOvaContext();
 
   // Función para actualizar el título de la página
   const updateTitle = useCallback(
@@ -41,16 +41,16 @@ export const PageTitle = () => {
   );
 
   useEffect(() => {
-    if (routes.length === 0 || titles.length === 0) return;
+    if (pages.length === 0 ) return;
 
     // Encontrar el índice del título actual basado en la ubicación
-    const titleIndex = routes.findIndex((route) => route === location);
+    const titleIndex = pages.findIndex((page) => page.path === location);
 
     if (titleIndex >= 0) {
-      const currentTitle = titles[titleIndex];
+      const currentTitle = pages[titleIndex].title;
       updateTitle(currentTitle);
     }
-  }, [location, routes, titles, updateTitle]);
+  }, [location, pages, updateTitle]);
 
   useEffect(() => {
     /**
@@ -84,16 +84,16 @@ export const PageTitle = () => {
       <div className={css['title-slide__indicator']}>
         <div className={css['page-indicator']}>
           <Icon name="home" />
-         <span>2&nbsp;/&nbsp;10</span>
+         <span>{visitedPages.length}&nbsp;/&nbsp;{pages.length}</span>
         </div>
         <div
           className={css['progress-bar']}
           role="meter"
-          aria-valuemin={1}
-          aria-valuemax={100}
-          aria-valuenow={5}
+          aria-valuemin={0}
+          aria-valuemax={pages.length}
+          aria-valuenow={visitedPages.length}
           aria-label="Progreso de la unidad">
-          <div></div>
+          <div style={{ width: `${(visitedPages.length / pages.length) * 100}%` }}></div>
         </div>
       </div>
     </motion.div>
