@@ -22,6 +22,7 @@ export type ConfigA11y = {
   keyboardShortcuts: boolean;
   stopAnimations: boolean;
   audio: boolean;
+  interpreter: boolean;
 };
 
 export type ContrastValues = (typeof CONTRAST)[keyof typeof CONTRAST];
@@ -34,7 +35,8 @@ export enum ConfigA11yProperty {
   DarkMode = 'darkMode',
   StopAnimations = 'stopAnimations',
   Audio = 'audio',
-  KeyboardShortcuts = 'keyboardShortcuts'
+  KeyboardShortcuts = 'keyboardShortcuts',
+  Interpreter = 'interpreter'
 }
 
 export interface useModalType {

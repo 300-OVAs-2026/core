@@ -20,7 +20,8 @@ export const INITIAL_STATE: ConfigA11y = {
   darkMode: false,
   keyboardShortcuts: false,
   stopAnimations: false,
-  audio: false
+  audio: false,
+  interpreter: false
 };
 
 export const BASIC_VALUES = Object.freeze({
