@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { Content } from '@layouts';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { Audio, Col, Row } from 'books-ui';
@@ -6,11 +6,12 @@ import { Audio, Col, Row } from 'books-ui';
 import { useOvaContext } from '@/context/ova-context';
 
 import { NotePDFDocument } from '../components/NotePDFDocument';
-import { DownloadIcon } from '../notes-icons';
 import { useNotesStore } from '../store/notesStore';
 import { exportNotesToTXT, formatRelativeTime, groupNotesByPage, prepareNotesForPDF } from '../utils/exportNotes';
 
 import css from './all-notes-page.module.css';
+import { Button } from '@ui';
+import { RichTextNode } from '../types/types';
 
 export const AllNotes = () => {
   const { pageNotes, globalNotes } = useNotesStore();
@@ -75,6 +76,20 @@ export const AllNotes = () => {
     exportNotesToTXT(pageNotes, globalNotes);
   };
 
+  const extractText = (node?: RichTextNode): string => {
+    if (!node) return '';
+
+    if (node.text) {
+      return node.text;
+    }
+
+    if (node.content) {
+      return node.content.map(extractText).join(' ');
+    }
+
+    return '';
+  };
+
   return (
     <Content withOutTitle>
       <Audio a11y src="assets/audios/aud_des_ova-04_g4_sld-1.mp3" />
@@ -109,7 +124,7 @@ export const AllNotes = () => {
                       const mostRecentTime = getMostRecentTimestamp(notes);
 
                       return (
-                        <>
+                        <Fragment key={page}>
                           <tr key={page} className={css['table-row']}>
                             <td className={css['col-module']}>{getPageTitle(page)}</td>
                             <td className={css['col-lesson']}>{formatRelativeTime(mostRecentTime)}</td>
@@ -142,16 +157,14 @@ export const AllNotes = () => {
                                       {note.selectedText && (
                                         <div className={css['note-item-captured']}>"{note.selectedText}"</div>
                                       )}
-                                      <div className={css['note-item-preview']}>
-                                        {note.content?.content?.[0]?.content?.[0]?.text || 'Sin contenido'}
-                                      </div>
+                                      <div className={css['note-item-preview']}>{extractText(note.content as RichTextNode) || 'Sin contenido'}</div>
                                     </div>
                                   ))}
                                 </div>
                               </td>
                             </tr>
                           )}
-                        </>
+                        </Fragment>
                       );
                     })}
                   </tbody>
@@ -159,20 +172,18 @@ export const AllNotes = () => {
               </div>
 
               <div className={css['export-section']}>
-                <button type="button" className={css['export-button']} onClick={handleExportTXT}>
-                  <DownloadIcon />
-                  <span>Exportar TXT</span>
-                </button>
+                <Button uiType="download" label="Descargar TXT" onClick={handleExportTXT} />
 
                 <PDFDownloadLink
                   document={<NotePDFDocument notes={pdfData.notes} pageTitle={pdfData.title} />}
                   fileName={`notas-${Date.now()}.pdf`}
                   className={css['export-button-link']}>
                   {({ loading }) => (
-                    <>
-                      <DownloadIcon />
-                      <span>{loading ? 'Preparando PDF...' : 'Exportar PDF'}</span>
-                    </>
+                    <Button
+                      uiType="download"
+                      label={loading ? 'Preparando PDF...' : 'Exportar PDF'}
+                      disabled={loading}
+                    />
                   )}
                 </PDFDownloadLink>
               </div>
@@ -193,5 +204,3 @@ export const AllNotes = () => {
     </Content>
   );
 };
-
-

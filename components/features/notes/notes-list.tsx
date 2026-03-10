@@ -27,7 +27,7 @@ export const NotesList: React.FC<NotesListProps> = ({ notes, onSelectNote, onDel
             <p className={css['fn-empty-state-hint']}>
               Ver todas tus notas guardadas aquí.
               <br />
-              <a href="#/notas" className={css['fn-empty-state-link']}>
+              <a href="#/notes" className={css['fn-empty-state-link']}>
                 Ir a la página de notas
               </a>
             </p>

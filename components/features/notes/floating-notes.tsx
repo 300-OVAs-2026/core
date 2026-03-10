@@ -197,7 +197,7 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
                       className={`${css['fn-btn-control']} ${css['fn-btn-grab']} js-c-notes-draggable`}
                       aria-label="Mover ventana de notas"
                       title="Arrastra para mover">
-                      <MoveArrowIcon fill={'#1f2937'} width={28} height={28} />
+                      <MoveArrowIcon fill={'currentColor'} width={28} height={28} />
                     </button>
 
                     <button
@@ -206,7 +206,7 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
                       onClick={handleToggleOpen}
                       aria-label="Cerrar ventana de notas"
                       title="Cerrar notas">
-                      <CloseIcon fill={'#1f2937'} width={28} height={28} />
+                      <CloseIcon fill={'currentColor'} width={28} height={28} />
                     </button>
                   </div>
                 </div>

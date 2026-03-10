@@ -6,26 +6,26 @@ import type { Note } from '../types/types';
 // Variables de color
 const COLORS = {
   // Colores Primarios
-  primary: '#00294a',
-  primaryHover: '#003d6b',
+  primary: 'hsl(200, 100%, 21%)',
+  primaryHover: 'hsl(200, 100%, 29.4%)',
 
   // Colores de Fondo
-  bgWhite: '#ffffff',
-  bgGray50: '#f9fafb',
-  bgGray100: '#f7f7f7',
-  bgGray200: '#e7e7e7',
+  bgWhite: 'hsl(0, 0%, 100%)',
+  bgGray50: 'hsl(0, 0%, 98%)',
+  bgGray100: 'hsl(0, 0%, 94.9%)',
+  bgGray200: 'hsl(0, 0%, 90.2%)',
 
   // Colores de Texto
-  textDark: '#1f2937',
-  textMedium: '#374151',
-  textGray: '#6b7280',
-  textLight: '#9ca3af',
+  textDark: 'hsl(0, 0%, 10.2%)',
+  textMedium: 'hsl(0, 0%, 30.2%)',
+  textGray: 'hsl(0, 0%, 50.2%)',
+  textLight: 'hsl(0, 0%, 70.2%)',
 
   // Colores de Borde
-  borderGray: '#e5e7eb',
-  borderMedium: '#d1d5db',
-  borderDark: '#9ca3af',
-  borderBlockquote: '#676767'
+  borderGray: 'hsl(0, 0%, 90.2%)',
+  borderMedium: 'hsl(0, 0%, 80%)',
+  borderDark: 'hsl(0, 0%, 60%)',
+  borderBlockquote: 'hsl(0, 0%, 40%)'
 };
 
 // Estilos para el PDF
@@ -93,7 +93,8 @@ const styles = StyleSheet.create({
   },
   paragraph: {
     marginBottom: 8,
-    color: COLORS.textMedium
+    color: COLORS.textMedium,
+    flexWrap: 'wrap'
   },
   heading1: {
     fontSize: 18,
@@ -187,8 +188,8 @@ const renderTiptapNode = (node: any, key: number): JSX.Element | null => {
     }
 
     return (
-      <Text key={key} style={textStyle}>
-        {node.text}
+      <Text key={key} style={[textStyle, { flexWrap: 'wrap' }]}>
+        {breakLongWords(node.text)}
       </Text>
     );
   }
@@ -196,9 +197,9 @@ const renderTiptapNode = (node: any, key: number): JSX.Element | null => {
   // Nodo de párrafo
   if (node.type === 'paragraph') {
     return (
-      <View key={key} style={styles.paragraph}>
+      <Text key={key} style={styles.paragraph}>
         {node.content?.map((child: any, idx: number) => renderTiptapNode(child, idx))}
-      </View>
+      </Text>
     );
   }
 
@@ -208,9 +209,9 @@ const renderTiptapNode = (node: any, key: number): JSX.Element | null => {
     const headingStyle = level === 1 ? styles.heading1 : level === 2 ? styles.heading2 : styles.heading3;
 
     return (
-      <View key={key} style={headingStyle}>
+      <Text key={key} style={headingStyle}>
         {node.content?.map((child: any, idx: number) => renderTiptapNode(child, idx))}
-      </View>
+      </Text>
     );
   }
 
@@ -269,6 +270,19 @@ const renderTiptapNode = (node: any, key: number): JSX.Element | null => {
   }
 
   return null;
+};
+
+
+/**
+ * Reemplaza palabras largas (mayores a "max" caracteres) con espacios
+ * para que se ajusten a la anchura especificada.
+ * 
+ * @param {string} text Texto a reemplazar.
+ * @param {number} max Número máximo de caracteres permitidos en una palabra.
+ * @returns {string} Texto con palabras reemplazadas por espacios.
+ */
+const breakLongWords = (text: string, max = 50) => {
+  return text.replace(new RegExp(`(\\S{${max}})`, 'g'), '$1 ');
 };
 
 /**

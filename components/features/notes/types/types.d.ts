@@ -11,6 +11,12 @@ export interface Note {
   selectedText?: string;
 }
 
+export type RichTextNode = {
+  type?: string;
+  text?: string;
+  content?: RichTextNode[];
+};
+
 /**
  * Estado del store de notas
  */

@@ -117,7 +117,7 @@
   background: transparent;
   border: 1px solid transparent;
   border-radius: 4px;
-  color: var(--notes-text-white);
+  color: var(--notes-text-dark);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -193,7 +193,7 @@
   --outline-offset: var(--notes-outline-offset);
 
   background: var(--notes-bg-gray-100);
-  color: var(--notes-text-secondary);
+  color: var(--notes-text-dark);
   border: 1px solid transparent;
   padding: 4px 8px;
   border-radius: 6px;
@@ -333,7 +333,7 @@
 .fn-btn--delete:hover {
   gap: 0.5rem;
   padding: 0 1rem;
-  background-color: var(--notes-delete-bg);
+  background-color: color-mix(in srgb, var(--notes-delete-bg) 20%, white 80%);
   color: var(--notes-delete-text);
 }
 
@@ -451,6 +451,7 @@
   width: 100%;
   padding: 10px 12px;
   border: 1px solid var(--notes-border-gray);
+  background: var(--notes-bg-gray-50);
   border-radius: 6px;
   font-size: 15px;
   font-weight: 600;
@@ -500,7 +501,7 @@
 .fn-toolbar-select {
   --outline-offset: var(--notes-outline-offset);
 
-  background: white;
+  background: var(--notes-bg-white);
   border: 1px solid var(--notes-border-gray);
   padding: 4px 8px;
   border-radius: 4px;
@@ -555,8 +556,8 @@
 }
 
 .fn-toolbar-button.is-active {
-  background: var(--notes-text-dark);
-  color: var(--notes-bg-gray-200);
+  background: var(--primary-700);;
+  color: var(--notes-text-white);
 }
 
 .fn-toolbar-divider {
@@ -691,8 +692,8 @@
 }
 
 .fn-btn--save-note {
-  background: var(--notes-text-dark);
-  color: var(--notes-bg-gray-50);
+  background: var(--primary-800);
+  color: var(--notes-text-white);
 }
 
 .fn-btn--save-note:hover {
@@ -700,7 +701,7 @@
 }
 
 .fn-btn--cancel-note {
-  background: var(--notes-border-gray);
+  background: var(--secondary-500);
   color: var(--notes-text-dark);
 }
 

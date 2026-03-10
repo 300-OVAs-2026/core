@@ -31,10 +31,11 @@
   width: 100%;
   border-collapse: collapse;
   background: var(--notes-bg-white);
+  table-layout: auto;
 }
 
 .notes-table thead {
-  background: var(--notes-text-dark);
+  background: var(--primary);
   color: var(--notes-text-white);
 }
 
@@ -66,7 +67,7 @@
 
 /* ===== COLUMNS ===== */
 .col-module {
- text-align: start;
+  text-align: start;
   width: 40%;
   font-weight: 500;
 }
@@ -95,7 +96,7 @@
   min-width: 2rem;
   height: 2rem;
   padding: 0 0.5rem;
-  background: var(--notes-text-medium);
+  background: var(--primary-400);
   color: var(--notes-text-white);
   font-weight: 600;
   font-size: 0.875rem;
@@ -126,48 +127,17 @@
 /* ===== EXPORT SECTION ===== */
 .export-section {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 3rem;
   padding: 2rem 0;
 }
 
 .export-button,
 .export-button-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 0.875rem 2rem;
-  background: var(--notes-text-dark);
-  color: var(--notes-text-white);
-  border: none;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-  box-shadow: var(--notes-shadow-lg);
   text-decoration: none;
 }
-
-.export-button:hover,
-.export-button-link:hover {
-  background: var(--notes-text-medium);
-  box-shadow: var(--notes-shadow-xl);
-  transform: translateY(-1px);
-}
-
-.export-button:active,
-.export-button-link:active {
-  transform: translateY(0);
-}
-
-.export-button span:first-child,
-.export-button-link span:first-child {
-  font-size: 1.25rem;
-}
-
 /* ===== EMPTY STATE ===== */
 .empty-state {
   display: flex;
@@ -308,7 +278,7 @@
   .col-module::before {
     content: 'Sección: ';
     font-weight: 700;
-    color: var(--notes-text-gray);
+    color: var(--primary);
     margin-right: 0.5rem;
   }
 
@@ -406,16 +376,13 @@
 
   /* Export section en móvil */
   .export-section {
-    flex-direction: column;
     padding: 1.5rem 0;
-    gap: 0.75rem;
+    gap: 1rem;
   }
 
   .export-button,
   .export-button-link {
-    padding: 0.75rem 1.5rem;
     font-size: 0.9375rem;
-    width: 100%;
     justify-content: center;
   }
 
@@ -554,6 +521,9 @@
   color: var(--notes-text-medium);
   font-style: italic;
   border-radius: 0.25rem;
+
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .note-item-preview {
@@ -566,4 +536,8 @@
   -webkit-line-clamp: 2;
   line-clamp: 2;
   -webkit-box-orient: vertical;
+
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
