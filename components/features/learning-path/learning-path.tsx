@@ -65,17 +65,17 @@ function getType(index: number, total: number): PageType {
 }
 
 export const LearningPath = () => {
-  const { routes } = useOvaContext();
+  const { pages } = useOvaContext();
 
-  if (!routes || routes.length === 0) return null;
+  if (!pages || pages.length === 0) return null;
 
   return (
     <nav className={css['navigation']}>
       <div className={css['navigation__block']}>
         <ol className={css['list-wrapper']}>
-          {routes.map((route, i) => (
+          {pages.map((page, i) => (
             <li key={i} className={css['list-item']} style={getAllPositions(i)}>
-              <PageNode type={getType(i, routes.length)} title={route} />
+              <PageNode type={getType(i, pages.length)} title={page.title} />
             </li>
           ))}
         </ol>
