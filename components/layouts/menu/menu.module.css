@@ -1,6 +1,7 @@
 /* Menu */
 .menu {
     --transparent: 95%;
+    --increment: 2;
     --padding: 1rem;
 
     display: flex;
@@ -75,12 +76,12 @@
     letter-spacing: 0.025em;
     color: var(--white);
     height: fit-content;
-    padding-inline: var(--padding);
+    padding-inline: calc(var(--padding) * var(--increment));
     padding-block: var(--padding);
 }
 
 .menu__button--audio {
-    padding-inline: calc(var(--padding) / 2) var(--padding);
+    padding-inline: calc(var(--padding) / var(--increment)) calc(var(--padding) * var(--increment));
     clip-path: url(#menu-diagonal-cut);
 }
 
@@ -110,7 +111,7 @@
 
     filter: drop-shadow(0 0 .125rem currentColor);
     pointer-events: none;
-    
+
 }
 
 .menu__button-content::after {
@@ -150,12 +151,15 @@
 
 /* menu */
 
+.menu__overlay {
+    position: fixed;
+    inset: 0;
+    background-color:
+        color-mix(in srgb, var(--primary-800) var(--transparent), transparent);
+    backdrop-filter: blur(.375rem);
+}
+
 .menu__wrapper {
-
-
-    --bg-color: color-mix(in srgb, var(--primary-700) var(--transparent), transparent);
-    box-shadow: 0 0 0 100vh var(--bg-color);
-
     position: absolute;
     top: 100%;
     left: 0;
@@ -166,9 +170,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--bg-color);
+    background-color: transparent;
     color: var(--white);
-
+    isolation: isolate;
 }
 
 .menu__list {
@@ -206,8 +210,8 @@
 
 .menu__link:is(:hover, :focus-visible) {
     --transparent: 50%;
-    color: var(--accent-500);
-    background-color: color-mix(in srgb, var(--primary-800) var(--transparent), transparent);
+    color: var(--accent-300);
+    background-color: color-mix(in srgb, var(--primary-900) var(--transparent), transparent);
 }
 
 .menu__link svg {

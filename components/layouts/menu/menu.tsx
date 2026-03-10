@@ -97,7 +97,7 @@ export const Menu = () => {
             </span>
           </button>
           <button className={css['menu__button--accessibility']} aria-label="Activar intérprete">
-             <svg width="0" height="0" className={css['menu__button--audio_clip-path']}>
+            <svg width="0" height="0" className={css['menu__button--audio_clip-path']}>
               <defs>
                 <clipPath id="menu-doble-diagonal-cut" clipPathUnits="objectBoundingBox">
                   <path d="M 0.055,0 L 1,0 L 0.93, 1 L 0, 1 Z" />
@@ -110,51 +110,60 @@ export const Menu = () => {
             </span>
           </button>
         </div>
-        <motion.div
-          className={css['menu__wrapper']}
-          initial={false}
-          animate={{
-            opacity: isOpen ? 1 : 0,
-            y: isOpen ? 0 : -20,
-            pointerEvents: isOpen ? 'auto' : 'none'
-          }}
-          transition={{
-            duration: 0.4,
-            ease: [0.64, 0.01, 0.25, 1.0]
-          }}>
-          <ul role="list" className={css['menu__list']}>
-            <li className={css['menu__item']}>
-              <Link to="/" className={css['menu__link']}>
-                <Icon name="home" />
-                <span>{i18n[lang].home}</span>
-              </Link>
-            </li>
-            <li className={css['menu__item']}>
-              <Link to="/" className={css['menu__link']}>
-                <Icon name="menu" />
-                <span>{i18n[lang].menu}</span>
-              </Link>
-            </li>
-            <li className={css['menu__item']}>
-              <Link to="/" className={css['menu__link']}>
-                <Icon name="a11y" />
-                <span>{i18n[lang].a11y}</span>
-              </Link>
-            </li>
-            <li className={css['menu__item']}>
-              <Link to="/" className={css['menu__link']}>
-                <Icon name="notes" />
-                <span>{i18n[lang].notes}</span>
-              </Link>
-            </li>
-            <li className={css['menu__item']}>
-              <Link to="/" className={css['menu__link']}>
-                <Icon name="help" />
-                <span>{i18n[lang].help}</span>
-              </Link>
-            </li>
-          </ul>
-        </motion.div>
+
+        <div>
+          <motion.div
+            className={css['menu__overlay']}
+            initial={false}
+            animate={{ opacity: isOpen ? 1 : 0, pointerEvents: isOpen ? 'auto' : 'none' }}
+            transition={{ duration: 0.4, ease: [0.64, 0.01, 0.25, 1.0] }}
+          />
+          <motion.div
+            className={css['menu__wrapper']}
+            initial={false}
+            animate={{
+              opacity: isOpen ? 1 : 0,
+              y: isOpen ? 0 : -20,
+              pointerEvents: isOpen ? 'auto' : 'none'
+            }}
+            transition={{
+              duration: 0.4,
+              ease: [0.64, 0.01, 0.25, 1.0]
+            }}>
+            <ul role="list" className={css['menu__list']}>
+              <li className={css['menu__item']}>
+                <Link to="/" className={css['menu__link']}>
+                  <Icon name="home" />
+                  <span>{i18n[lang].home}</span>
+                </Link>
+              </li>
+              <li className={css['menu__item']}>
+                <Link to="/" className={css['menu__link']}>
+                  <Icon name="menu" />
+                  <span>{i18n[lang].menu}</span>
+                </Link>
+              </li>
+              <li className={css['menu__item']}>
+                <Link to="/" className={css['menu__link']}>
+                  <Icon name="a11y" />
+                  <span>{i18n[lang].a11y}</span>
+                </Link>
+              </li>
+              <li className={css['menu__item']}>
+                <Link to="/" className={css['menu__link']}>
+                  <Icon name="notes" />
+                  <span>{i18n[lang].notes}</span>
+                </Link>
+              </li>
+              <li className={css['menu__item']}>
+                <Link to="/" className={css['menu__link']}>
+                  <Icon name="help" />
+                  <span>{i18n[lang].help}</span>
+                </Link>
+              </li>
+            </ul>
+          </motion.div>
+        </div>
       </nav>
     </>
   );
