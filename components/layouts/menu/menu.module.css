@@ -107,26 +107,31 @@
     position: absolute;
     left: 0;
     right: 0;
-    background-color: var(--primary-50);
+
     filter: drop-shadow(0 0 .125rem currentColor);
     pointer-events: none;
-    z-index: -1;
+    
 }
 
 .menu__button-content::after {
     bottom: -.3125rem;
     height: .0625rem;
-    opacity: 0.3;
+    opacity: 0.8;
+    background: linear-gradient(90deg, transparent, var(--primary-50), transparent);
+    background-size: 200% 100%;
+    z-index: -1;
 }
 
 .menu__button-content::before {
-    --size: 2.5px;
+    --size: 5px;
 
     bottom: calc(-.3125rem + (calc(var(--size) * -1)) / 3);
     width: var(--size);
     height: auto;
     aspect-ratio: 1 / 1;
     border-radius: 100%;
+    background-color: var(--primary-50);
+    z-index: 1;
 }
 
 
