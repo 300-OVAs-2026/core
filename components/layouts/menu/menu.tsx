@@ -41,7 +41,7 @@ export const Menu = () => {
                 d="M 196.072 0 L 196.072 162.634 L 79.964 232.316 L 0 185.129"
                 fill="none"
                 stroke="#FFFFFF"
-                stroke-width="2"></path>
+                strokeWidth="2"></path>
             </svg>
             <svg viewBox="0 0 80 64" className={css['svg-hamburger']}>
               <motion.line

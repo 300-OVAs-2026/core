@@ -12,46 +12,37 @@ button.button {
   cursor: default;
   font-weight: bold;
   border-radius: 0rem;
-  clip-path: polygon(0 var(--corner),
-      var(--corner) 0,
-      calc(100% - var(--corner)) 0,
-      100% var(--corner),
-      100% calc(100% - var(--corner)),
-      calc(100% - var(--corner)) 100%,
-      var(--corner) 100%,
-      0 calc(100% - var(--corner)));
+  clip-path: polygon(
+    0 var(--corner),
+    var(--corner) 0,
+    calc(100% - var(--corner)) 0,
+    100% var(--corner),
+    100% calc(100% - var(--corner)),
+    calc(100% - var(--corner)) 100%,
+    var(--corner) 100%,
+    0 calc(100% - var(--corner))
+  );
   transition:
     background-color 120ms ease-in-out,
     transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-button.button[data-type='check'] {
+button.button[data-type='check'],
+button.button[data-type='secondary'] {
   --button-text-color: var(--white);
   --button-bg-color: var(--primary-900);
   --outline-color: var(--primary-900);
   --line: var(--primary-200);
 }
 
-/* button.button:is(:hover, :focus) {
-  --button-bg-color: color-mix(in srgb, var(--accent) 80%, white 20%);
-} */
-
-/* button.button:hover:not(:disabled) {
-  transform: translateY(-2px);
-} */
-
 button.button::first-letter {
   text-transform: uppercase;
 }
 
-html[data-dark-mode='true'] button.button {
-  --button-text-color: #ffff;
-}
-
 button.button:disabled {
-  --button-text-color: var(--clr-text-secondary);
-  --button-bg-color: var(--clr-accent-dark);
-
+  --button-text-color: var(--white);
+  --line: var(--white);
+  --button-bg-color: var(--secondary-700);
   cursor: not-allowed;
 }
 
@@ -61,6 +52,7 @@ button.button svg {
 }
 
 /* SVG decorativos */
+
 .wrapper {
   --linear-svg: var(--accent);
   --border-size: 2.5rem;
@@ -68,11 +60,15 @@ button.button svg {
   position: relative;
   width: fit-content;
   transition: color 200ms ease;
-
 }
 
-.wrapper:has(button[data-type='check']) {
+.wrapper:has(button[data-type='check']),
+.wrapper:has(button[data-type='secondary']) {
   --linear-svg: var(--primary-800);
+}
+
+.wrapper:has(button:disabled) {
+  --linear-svg: var(--secondary-700);
 }
 
 .leftBorder {
@@ -103,6 +99,11 @@ button.button svg {
 .wrapper:hover .leftBorder path,
 .wrapper:hover .rightBorder path {
   animation: border-loading 1.2s linear infinite;
+}
+
+.wrapper:has(button:disabled) .leftBorder path,
+.wrapper:has(button:disabled) .rightBorder path {
+  animation: none;
 }
 
 @keyframes border-loading {
@@ -136,6 +137,10 @@ button.button span::after {
 
 button.button:hover span::after {
   animation: line-loading 1.5s linear infinite;
+}
+
+button.button:disabled span::after {
+  animation: none;
 }
 
 @keyframes line-loading {
