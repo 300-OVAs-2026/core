@@ -702,7 +702,7 @@
 
 .fn-btn--cancel-note {
   background: var(--secondary-500);
-  color: var(--notes-text-dark);
+  color: var(--notes-text-white);
 }
 
 .fn-btn--cancel-note:hover {
