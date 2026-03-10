@@ -230,19 +230,19 @@ export const LearningPath = () => {
         {/* Capa SVG */}
         <div className={css['bridge-wrapper']}>
           <BridgeSvg
-            count={routes.length}
+            count={pages.length}
             itemsPerRow={DESKTOP.itemsPerRow}
             totalCols={DESKTOP.totalCols}
             svgClass={css['bridge-svg-d']}
           />
           <BridgeSvg
-            count={routes.length}
+            count={pages.length}
             itemsPerRow={TABLET.itemsPerRow}
             totalCols={TABLET.totalCols}
             svgClass={css['bridge-svg-t']}
           />
           <BridgeSvgMobile
-            count={routes.length}
+            count={pages.length}
             svgClass={css['bridge-svg-m']}
           />
         </div>
