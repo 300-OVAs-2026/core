@@ -36,7 +36,7 @@ export const SelectElement: React.FC<Props> = ({ id, addClass, options, placehol
    * Maneja el evento onSelectionChange.
    * @param selectedOption - Opción seleccionada
    */
-  const handleSelectionChange = (selectedOption: Key) => {
+  const handleSelectionChange = (selectedOption: Key | null) => {
     addSelectedValues({ id: uid, answer: selectedOption as string });
     setCurrentSelectedOption({ key: selectedOption, state: null });
   };
@@ -65,11 +65,11 @@ export const SelectElement: React.FC<Props> = ({ id, addClass, options, placehol
 
   return (
     <Select
-      selectedKey={currentSelectedOption.key}
+      value={currentSelectedOption.key}
       addClass={`${css['select']} ${validation ? css[`select--${currentSelectedOption.state}`] : ''} ${addClass ?? ''}`}
       disabledKeys={selectedOptions}
       isDisabled={validation}
-      onSelectionChange={handleSelectionChange}
+      onChange={handleSelectionChange}
       placeholder={placeholder}
       name={name}
       {...props}>
