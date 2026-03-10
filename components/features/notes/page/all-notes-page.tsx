@@ -76,7 +76,7 @@ export const AllNotes = () => {
   };
 
   return (
-    <Content>
+    <Content withOutTitle>
       <Audio a11y src="assets/audios/aud_des_ova-04_g4_sld-1.mp3" />
       <Row justifyContent="center" alignItems="center">
         <Col xs="11" mm="10" md="9" lg="8" hd="8" addClass="u-flow">
