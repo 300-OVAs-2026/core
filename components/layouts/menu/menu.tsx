@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useState } from 'react';
 import { useA11y } from '@features/a11y-overlay/hooks/useA11y';
 import { Icon } from '@ui';
 import { motion } from 'motion/react';
@@ -7,6 +7,7 @@ import { Link } from 'wouter';
 import { useOvaContext } from '@/context/ova-context';
 
 import { i18n } from './lib/constant';
+import { MenuButtonInterpreter } from './menu-button-interpreter';
 
 import css from './menu.module.css';
 
@@ -14,20 +15,15 @@ export const Menu = () => {
   const { lang } = useOvaContext();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  const { config, setConfig } = useA11y();
+
   const handleOpen = () => {
     setIsOpen(!isOpen);
   };
 
-  const { updateHTMLAttributesFromLocalStorage } = useA11y();
-
-  useLayoutEffect(() => {
-    /**
-     * Obtiene las opciones de accesiblidad que
-     * están en el localStorage y las aplica en el elemento HTML.
-     */
-    updateHTMLAttributesFromLocalStorage();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const setAudioDescription = (value: boolean) => {
+    setConfig('audio', value);
+  };
 
   return (
     <>
@@ -83,7 +79,11 @@ export const Menu = () => {
 
             <span className="u-sr-only">Menu</span>
           </button>
-          <button className={css['menu__button--audio']} aria-label="Activar audio">
+
+          <button
+            className={css['menu__button--audio']}
+            aria-label="Activar audio"
+            onClick={() => setAudioDescription(!config.audio)}>
             <svg width="0" height="0" className={css['menu__button--audio_clip-path']}>
               <defs>
                 <clipPath id="menu-diagonal-cut" clipPathUnits="objectBoundingBox">
@@ -92,23 +92,12 @@ export const Menu = () => {
               </defs>
             </svg>
             <span className={css['menu__button-content']}>
-              <Icon name="play" />
-              <span>Activar Audio</span>
+              {config.audio ? <Icon name="pause" /> : <Icon name="play" />}
+              <span>{config.audio ? i18n[lang].audioActive : i18n[lang].audioPause}</span>
             </span>
           </button>
-          <button className={css['menu__button--accessibility']} aria-label="Activar intérprete">
-            <svg width="0" height="0" className={css['menu__button--audio_clip-path']}>
-              <defs>
-                <clipPath id="menu-doble-diagonal-cut" clipPathUnits="objectBoundingBox">
-                  <path d="M 0.055,0 L 1,0 L 0.93, 1 L 0, 1 Z" />
-                </clipPath>
-              </defs>
-            </svg>
-            <span className={css['menu__button-content']}>
-              <Icon name="hand-a11y" />
-              <span>Activar Intérprete</span>
-            </span>
-          </button>
+
+          <MenuButtonInterpreter />
         </div>
 
         <div>
@@ -138,7 +127,7 @@ export const Menu = () => {
                 </Link>
               </li>
               <li className={css['menu__item']}>
-                <Link to="/" className={css['menu__link']}>
+                <Link to="/menu" className={css['menu__link']}>
                   <Icon name="menu" />
                   <span>{i18n[lang].menu}</span>
                 </Link>
@@ -150,13 +139,13 @@ export const Menu = () => {
                 </Link>
               </li>
               <li className={css['menu__item']}>
-                <Link to="/" className={css['menu__link']}>
+                <Link to="/notes" className={css['menu__link']}>
                   <Icon name="notes" />
                   <span>{i18n[lang].notes}</span>
                 </Link>
               </li>
               <li className={css['menu__item']}>
-                <Link to="/" className={css['menu__link']}>
+                <Link to="/help" className={css['menu__link']}>
                   <Icon name="help" />
                   <span>{i18n[lang].help}</span>
                 </Link>

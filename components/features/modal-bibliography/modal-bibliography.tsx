@@ -1,4 +1,3 @@
-
 import type { ModalCoreProps } from '@ui';
 import { Modal } from '@ui';
 import { Audio } from 'books-ui';
@@ -6,22 +5,19 @@ import { Audio } from 'books-ui';
 import { useOvaContext } from '@/context/ova-context';
 
 import { i18n } from './lib/constant';
-import { ModalBibliographyGeneralLink } from './modal-bibliography-general-link';
 import { ModalBibliographyLink } from './modal-bibliography-link';
 
 import css from './modal-bibliography.module.css';
-
 
 interface Props extends ModalCoreProps {
   addClass?: string;
   label?: string;
   audio?: string;
-  content?: JSX.Element | JSX.Element[];
+  multipleChildren?: boolean;
 }
 
 type SubComponents = {
   Link: typeof ModalBibliographyLink;
-  LinkGeneral: typeof ModalBibliographyGeneralLink;
 };
 
 const ModalBibliography: React.FC<Props> & SubComponents = ({
@@ -29,7 +25,7 @@ const ModalBibliography: React.FC<Props> & SubComponents = ({
   label,
   children,
   audio,
-  content,
+  multipleChildren = false,
   ...props
 }) => {
   const { lang } = useOvaContext();
@@ -37,9 +33,8 @@ const ModalBibliography: React.FC<Props> & SubComponents = ({
   return (
     <Modal {...props} addClass={`${css['modal']} u-py-4 ${addClass ?? ''}`}>
       <div className="u-flow">
-        <h2 className="u-text-center">{label || i18n[lang].title}</h2>
-        {content}
-        <ul className="u-list-shape u-flow">{children}</ul>
+        <h2 className="u-text-center u-text-upper">{label || i18n[lang].title}</h2>
+        {multipleChildren ? children : <ul className="u-flow">{children}</ul>}
         {audio ? <Audio src={audio} /> : null}
       </div>
     </Modal>
@@ -47,6 +42,5 @@ const ModalBibliography: React.FC<Props> & SubComponents = ({
 };
 
 ModalBibliography.Link = ModalBibliographyLink;
-ModalBibliography.LinkGeneral = ModalBibliographyGeneralLink;
 
 export { ModalBibliography };

@@ -15,7 +15,7 @@ interface Props extends ModalCoreProps {
   teachers: string[];
   audio?: string;
   lang?: 'es';
-  currentYear?: boolean;
+  year?: string;
 }
 
 export const ModalCredits: React.FC<Props> = ({
@@ -24,7 +24,7 @@ export const ModalCredits: React.FC<Props> = ({
   teachers,
   audio,
   course,
-  currentYear = false,
+  year = new Date().getFullYear().toString(),
   lang: langProp,
   ...props
 }) => {
@@ -33,7 +33,7 @@ export const ModalCredits: React.FC<Props> = ({
   return (
     <Modal {...props} addClass={`${css['modal']} u-py-4 ${addClass ?? ''}`}>
       <div className={`${css['modal-credits__wrapper']} u-flow u-text-center`}>
-        <h2>{i18n[lang].title}</h2>
+        <h2 className='u-text-upper'>{i18n[lang].title}</h2>
         <p>Vicerrectoría de Medios y Mediaciones Pedagógicas - VIMEP</p>
         <p>Red de Gestión Tecnopedagógica de Cursos y Recursos Educativos Digitales</p>
         <p>{school}</p>
@@ -41,7 +41,7 @@ export const ModalCredits: React.FC<Props> = ({
         {teachers.map((teacher, index) => (
           <Teacher key={`${index}-teacher`} teacher={teacher} />
         ))}
-        {currentYear ? <p>2025</p> : <p>2024</p>}
+        <p>{year}</p>
         <p>UNAD</p>
         <p className="u-font-bold u-font-italic">“{i18n[langProp || lang].license}”</p>
         {audio ? <Audio src={audio} /> : null}

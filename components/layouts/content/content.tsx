@@ -11,9 +11,10 @@ interface Props {
   addClass?: string;
   children: React.ReactNode;
   interpreter?: VideoURLs;
+  withOutTitle?: boolean;
 }
 
-export const Content: React.FC<Props> = ({ addClass, children, interpreter, ...props }) => {
+export const Content: React.FC<Props> = ({ addClass, children, interpreter, withOutTitle = false, ...props }) => {
   const [updateVideoSources] = useInterpreter();
 
   useEffect(() => {
@@ -28,7 +29,7 @@ export const Content: React.FC<Props> = ({ addClass, children, interpreter, ...p
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: 'easeIn', type: 'spring', stiffness: 100 }}
       {...props}>
-      <PageTitle />
+      {!withOutTitle && <PageTitle />}
       {children}
     </motion.section>
   );
