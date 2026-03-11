@@ -4,7 +4,7 @@ import { Icon } from '@ui';
 import { motion } from 'motion/react';
 import { Link } from 'wouter';
 
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { i18n } from './lib/constant';
 import { MenuButtonInterpreter } from './menu-button-interpreter';
@@ -12,7 +12,7 @@ import { MenuButtonInterpreter } from './menu-button-interpreter';
 import css from './menu.module.css';
 
 export const Menu = () => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const { config, setConfig } = useA11y();

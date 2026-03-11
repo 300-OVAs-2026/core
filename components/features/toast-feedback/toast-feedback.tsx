@@ -1,7 +1,7 @@
 import { Toast, type ToastCoreProps } from '@ui';
 import { Audio } from 'books-ui';
 
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { i18n } from './lib/constant';
 
@@ -15,7 +15,7 @@ interface ToastFeedbackProps extends ToastCoreProps {
 }
 
 export const ToastFeedback: React.FC<ToastFeedbackProps> = ({ type = 'success', label, audio, children, ...props }) => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
 
   return (
     <Toast {...props} addClass={`${css.toast} ${css[type]}`}>

@@ -2,7 +2,7 @@ import { useEffect, useId, useState } from 'react';
 import { Audio } from 'books-ui';
 import { AnimatePresence, motion } from 'motion/react';
 
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { i18n } from './lib/constant';
 import { useTableTrueFalseContext } from './table-true-false-context';
@@ -26,7 +26,7 @@ interface Props {
 }
 
 export const Feedback: React.FC<Props> = ({ id, success, wrong, addClass }) => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
   const { searchOptionResultById, validation } = useTableTrueFalseContext();
 
   const uid = useId();

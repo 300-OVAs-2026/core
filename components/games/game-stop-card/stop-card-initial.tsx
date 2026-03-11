@@ -1,6 +1,6 @@
 import { Panel as PanelUI } from 'books-ui';
 
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { background, i18n } from './lib/constant';
 
@@ -12,7 +12,8 @@ interface Props {
 }
 
 export const StopCardInitial = ({ textInitial, section = 1 }: Props) => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
+
   return (
     <svg
       id="svg-stop-game-initial"

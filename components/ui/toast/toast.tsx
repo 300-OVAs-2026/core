@@ -3,7 +3,7 @@ import type { VideoURLs } from '@shared/hooks';
 import { useInterpreter } from '@shared/hooks';
 
 import css from './toast.module.css';
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 import { i18n } from './lib/constant';
 import { Icon } from '../icon';
 
@@ -16,7 +16,7 @@ export interface ToastCoreProps {
 }
 
 export const Toast: React.FC<ToastCoreProps> = ({ isOpen, onClose, addClass, interpreter, children }) => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
   const [updateVideoSources, restoreLastVideoSources] = useInterpreter();
   const flagOpenToast = useRef(false);
 

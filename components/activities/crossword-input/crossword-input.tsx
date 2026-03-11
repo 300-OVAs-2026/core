@@ -1,7 +1,7 @@
 import React, { useId, useRef, useState } from 'react';
 import { Audio } from 'books-ui';
 
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { ArrowBack, ArrowForward } from './icons/Icons';
 import { i18n } from './lib/constant';
@@ -38,7 +38,7 @@ export const CrosswordInput: React.FC<CrosswordInputProps> = ({
 
   validation
 }) => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
   const id = useId();
   const [answer, setAnswer] = useState<string>('');
   const [message, setMessage] = useState<string | undefined>();

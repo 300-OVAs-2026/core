@@ -2,7 +2,7 @@ import type { CSSProperties } from 'react';
 import { Link } from 'wouter';
 import { useHashLocation } from 'wouter/use-hash-location';
 
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 import { getPageIcon } from '@/shared/utils/get-page-icon';
 
 import { Content } from '../../layouts';
@@ -205,7 +205,7 @@ const BridgeSvgMobile = ({ count, svgClass }: BridgeSvgMobileProps) => {
   );
 };
 export const LearningPath = () => {
-  const { pages } = useOvaContext();
+  const pages = useOvaStore((state) => state.pages);
 
   if (!pages || pages.length === 0) return null;
 

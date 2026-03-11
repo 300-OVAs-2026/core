@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useMemo, useRef } from 'react';
 import { Button } from '@ui';
 
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { i18n } from './lib/constant';
 import { RaceCardButton } from './race-card-button';
@@ -22,7 +22,7 @@ const HALF_DAY = 12;
 const PASSING_PERCENTAGE = 0.6;
 
 const RaceCard: React.FC<Props> = ({ question, id, drivers }) => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
   const { game, questionCount, validation } = useGameContext();
 
   const refQuestion = useRef<HTMLDivElement>(null);

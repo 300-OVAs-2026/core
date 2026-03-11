@@ -4,7 +4,7 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import { Button } from '@ui';
 import { Audio, Col, Row } from 'books-ui';
 
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { NotePDFDocument } from '../components/NotePDFDocument';
 import { useNotesStore } from '../store/notesStore';
@@ -16,7 +16,7 @@ import css from './all-notes-page.module.css';
 
 export const AllNotes = () => {
   const { pageNotes, globalNotes } = useNotesStore();
-  const { pages } = useOvaContext();
+  const pages = useOvaStore((state) => state.pages);
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
 
   const groupedNotes = groupNotesByPage(pageNotes, globalNotes);

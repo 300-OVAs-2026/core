@@ -6,7 +6,7 @@ import { MotionConfig } from 'motion/react';
 import { useHashLocation } from 'wouter/use-hash-location';
 
 import { useA11yAttribute, useReduceMotion } from '@shared/hooks';
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 import { REMOVE_HTML_TAGS_REGEX } from '@/shared/constants';
 
 
@@ -20,7 +20,8 @@ export const Layout: React.FC<Props> = ({ children }) => {
   const [currentPage, setCurrentPage] = useState<number>(0);
 
   const [location] = useHashLocation();
-  const { pages, baseTitle } = useOvaContext();
+  const pages = useOvaStore((state) => state.pages);
+  const baseTitle = useOvaStore((state) => state.baseTitle);
 
   // Detecta si el usuario prefiere reducir la animación
   const reduceMotion = useReduceMotion();

@@ -2,15 +2,15 @@ import { Content } from '@layouts';
 import { Button, Icon, Image } from '@ui';
 import { Col, Row } from 'books-ui';
 
-import { useOvaContext } from '@/context/ova-context';
 import { cn } from '@/shared/utils';
+import { useOvaStore } from '@/store/ova-store';
 
 import { SPANISH_LANGUAGE } from './lib/constant';
 
 import css from './help.module.css';
 
 export const Help = () => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
   const isEs = lang === SPANISH_LANGUAGE;
 
   return (
@@ -45,7 +45,7 @@ export const Help = () => {
                 <Button
                   uiType="next"
                   label={isEs ? 'Iniciar recorrido' : 'Start tour'}
-                  addClass='u-text-upper'
+                  addClass="u-text-upper"
                   onClick={() => {
                     (document.querySelector('.js-button-help') as HTMLElement)?.click();
                   }}

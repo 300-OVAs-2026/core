@@ -2,8 +2,8 @@ import { useCallback, useEffect, useId, useState } from 'react';
 import { motion } from 'motion/react';
 import { useHashLocation } from 'wouter/use-hash-location';
 
-import { useOvaContext } from '@/context/ova-context';
 import { EVENTS } from '@/shared/constants/events';
+import { useOvaStore } from '@/store/ova-store';
 
 import { Icon } from '../../ui';
 
@@ -16,7 +16,8 @@ export const PageTitle = () => {
   const uid = useId();
 
   const [location] = useHashLocation();
-  const { pages, visitedPages } = useOvaContext();
+  const pages = useOvaStore((state) => state.pages);
+  const visitedPages = useOvaStore((state) => state.visitedPages);
 
   // Función para actualizar el título de la página
   const updateTitle = useCallback(

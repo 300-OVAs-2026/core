@@ -1,6 +1,6 @@
 import { Image } from '@ui';
 
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { AVATARS } from './lib/constants';
 
@@ -18,7 +18,7 @@ interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {
 
 
 export const Avatar: React.FC<Props> = ({ variation, title = '', alt = '', size, hasHtml, noCaption, ...props }) => {
-  const { selectedAvatarId } = useOvaContext();
+  const selectedAvatarId = useOvaStore((state) => state.selectedAvatarId);
 
   const avatar = AVATARS.find(({ id }) => id === selectedAvatarId);
   const src = avatar ? `/assets/base/avatars/${avatar.id}/${avatar.name}-${variation}.webp` : '';

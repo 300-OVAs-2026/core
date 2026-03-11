@@ -2,8 +2,8 @@ import { Content } from '@layouts';
 import { Button, Icon } from '@ui';
 import { Panel } from 'books-ui';
 
-import { useOvaContext } from '@/context/ova-context';
 import { cn } from '@/shared/utils';
+import { useOvaStore } from '@/store/ova-store';
 
 import { AVATARS } from './lib/constants';
 
@@ -25,7 +25,8 @@ const chunkAvatars = (avatars: Avatar[], size: number): Avatar[][] =>
 
 export const ChoiceAvatar = () => {
   const sections = chunkAvatars(AVATARS, AVATARS_PER_SECTION);
-  const { selectAvatar, selectedAvatarId } = useOvaContext();
+  const selectAvatar = useOvaStore((state) => state.selectAvatar);
+  const selectedAvatarId = useOvaStore((state) => state.selectedAvatarId);
 
   return (
     <Content withOutTitle>

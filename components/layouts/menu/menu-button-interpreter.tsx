@@ -2,7 +2,7 @@ import { useA11y } from '@features/a11y-overlay/hooks/useA11y';
 import { EVENT } from '@features/interpreter/lib/constants';
 import { Icon } from '@ui';
 
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { i18n } from './lib/constant';
 
@@ -10,7 +10,7 @@ import css from './menu.module.css';
 
 export const MenuButtonInterpreter = () => {
   // TODO: Arreglar el estado, dado que cuando se cierra el inerprete desde el botón de cerrar, el estado del useA11y no se actualiza, lo que hace que el botón de menú quede desincronizado con el estado real del intérprete. Esto se debe a que el evento de cerrar el intérprete no actualiza el estado del useA11y, lo que provoca que el botón de menú no refleje correctamente si el intérprete está activo o no.
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
   const { config, setConfig } = useA11y();
 
   /**

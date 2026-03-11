@@ -2,7 +2,7 @@ import type { ModalCoreProps } from '@ui';
 import { Modal } from '@ui';
 import { Audio } from 'books-ui';
 
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { i18n } from './lib/constant';
 
@@ -28,7 +28,7 @@ export const ModalCredits: React.FC<Props> = ({
   lang: langProp,
   ...props
 }) => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
 
   return (
     <Modal {...props} addClass={`${css['modal']} u-py-4 ${addClass ?? ''}`}>

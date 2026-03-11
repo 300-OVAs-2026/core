@@ -1,6 +1,6 @@
 import { Icon } from '@ui';
 
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { i18n } from './consts';
 
@@ -11,7 +11,7 @@ interface Props {
 }
 
 export const FullScreenAlert: React.FC<Props> = ({ addClass, ...props }) => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
 
   return (
     <div

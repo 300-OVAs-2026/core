@@ -1,6 +1,6 @@
 import { useId } from 'react';
 
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { i18n } from './lib/constant';
 import { useTableTrueFalseContext } from './table-true-false-context';
@@ -19,7 +19,7 @@ export const TrueFalseOption: React.FC<Props> = ({ id, addClass, correct, label,
   const reactId = useId();
   const uid = id || reactId;
 
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
   const { addOptionValues, validation, selectedIds } = useTableTrueFalseContext();
 
   /**

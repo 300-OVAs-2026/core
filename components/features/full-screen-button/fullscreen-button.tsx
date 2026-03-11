@@ -4,7 +4,7 @@ import type { ButtonProps as ButtonPropsUI } from 'books-ui';
 import { Button, Tooltip } from 'books-ui';
 
 import { useFullScreen } from '@shared/hooks';
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { i18n } from './lib/constant';
 
@@ -25,7 +25,7 @@ export const FullScreenButton: React.FC<Props> = ({
   onClick,
   ...props
 }) => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
   const [isFullScreen, toggleFullScreen] = useFullScreen(elementId);
 
   // Verifica si el modo de pantalla completa está habilitado en el navegador

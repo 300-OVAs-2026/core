@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Panel as PanelUI } from 'books-ui';
 
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { BG, i18n } from './lib/constant';
 
@@ -13,7 +13,8 @@ interface GameCasinoInitProps {
 }
 
 export const GameCasinoInit: React.FC<GameCasinoInitProps> = ({ textInit, className }) => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
+  
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleModal = () => setIsOpen(!isOpen);

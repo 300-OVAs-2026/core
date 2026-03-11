@@ -1,12 +1,12 @@
 import { focusMainElement } from '@shared/utils';
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { i18n, KEYCODE } from './lib/constant';
 
 import css from './header.module.css';
 
 export const SkipToMain = () => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
 
   const handleNullSpaceKey = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     if (event.keyCode === KEYCODE.SPACE) {

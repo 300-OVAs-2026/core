@@ -7,7 +7,7 @@ import { Link } from 'wouter';
 import type { VideoURLs } from '@shared/hooks';
 import { useBackground, useInterpreter } from '@shared/hooks';
 import { focusMainElement } from '@shared/utils';
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { i18n } from './lib/constant';
 
@@ -33,7 +33,8 @@ export const CoverTitle: React.FC<Props> = ({
 }) => {
   const [, setBackground] = useBackground();
   const [updateVideoSources] = useInterpreter();
-  const { lang, selectedAvatarId } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
+  const selectedAvatarId = useOvaStore((state) => state.selectedAvatarId);
 
   const path = selectedAvatarId ? `/page-1` : '/avatar';
 

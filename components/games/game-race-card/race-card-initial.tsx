@@ -1,7 +1,7 @@
 import React from 'react';
 import { Panel as PanelUI } from 'books-ui';
 
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { i18n } from './lib/constant';
 
@@ -15,7 +15,8 @@ interface Props {
 const HALF_DAY = 12;
 
 export const RaceCardInitial: React.FC<Props> = ({ messageInitial, section = 1 }) => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
+  
   const IS_NOON = new Date().getHours() < HALF_DAY;
 
   return (

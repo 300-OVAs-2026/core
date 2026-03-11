@@ -5,7 +5,7 @@ import { Modal as ModalUI } from 'books-ui';
 
 import type { VideoURLs } from '@shared/hooks';
 import { useInterpreter } from '@shared/hooks';
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { i18n } from './lib/constant';
 
@@ -18,7 +18,7 @@ export interface ModalCoreProps extends ModalProps {
 }
 
 export const Modal: React.FC<ModalCoreProps> = ({ addClass, children, isOpen, onClose, interpreter, ...props }) => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
   const [updateVideoSources, restoreLastVideoSources] = useInterpreter();
   const flagOpenModal = useRef(false);
 

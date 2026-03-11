@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
-import { CardBack, CardFront, CardItem } from './card-item'; 
+import { CardBack, CardFront, CardItem } from './card-item';
 import { MemoryBoard } from './memory-board';
 import { MemoryCardButton } from './memory-card-button';
 import { MemoryActivityProvider } from './memory-card-context';
@@ -21,7 +21,8 @@ export const MemoryCardActivity: React.FC<Props> & {
   CardFront: typeof CardFront;
   CardBack: typeof CardBack;
 } = ({ onResult, children }) => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
+  
   const [cards, setCards] = useState<CardType[]>([]);
   const [selectedCards, setSelectedCards] = useState<number[]>([]);
   const [buttonsDisabled, setButtonsDisabled] = useState(true);

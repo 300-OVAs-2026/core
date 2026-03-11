@@ -4,7 +4,7 @@ import { Tooltip, useMedia, usePanelContext as usePanel } from 'books-ui';
 
 import { useInterpreter } from '@shared/hooks';
 import { eventUpdateTitle } from '@shared/utils';
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 import { REMOVE_HTML_TAGS_REGEX } from '@/shared/constants';
 
 import { usePaginationRange } from './hooks/usePaginationRange';
@@ -25,7 +25,7 @@ const KEYCODE = Object.freeze({
 });
 
 export const PanelProgress = () => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
   const { titles, interpreter } = usePanelCoreContext();
   const { validation, handleToggle, sectionsId, isOpen } = usePanel();
   const [updateVideoSources] = useInterpreter();
@@ -219,7 +219,7 @@ const PanelProgressItem = forwardRef<HTMLButtonElement, PanelProgresItemProps>(f
   { uid, section, isSelected, handleKeyDown, handleNavigation, disabledTooltip },
   ref: React.Ref<HTMLButtonElement>
 ) {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
   const { titles } = usePanelCoreContext();
   const { sectionsId } = usePanel();
 

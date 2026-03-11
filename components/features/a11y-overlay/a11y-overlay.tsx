@@ -4,7 +4,7 @@ import { Accordion, Filter, Kbd } from 'books-ui';
 import { AnimatePresence, motion } from 'motion/react';
 
 import { useKeyboardShortcuts } from '@shared/hooks';
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { A11yButtton } from './a11y-button';
 import { A11yCard } from './a11y-card';
@@ -43,7 +43,7 @@ const variants = {
 };
 
 export const A11yOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
   const refModal = useRef<HTMLDivElement>(null);
   const uid = useId();
 

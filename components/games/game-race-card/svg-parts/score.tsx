@@ -1,15 +1,17 @@
-import { useOvaContext } from '@/context/ova-context';
+import { useOvaStore } from '@/store/ova-store';
 
 import { i18n } from '../lib/constant';
 import { useGameContext } from '../race-card-context';
-import { DriversType } from '../types/types';
+
+import type { DriversType } from '../types/types';
 
 interface ScoreProps {
   drivers?: DriversType;
 }
 
 export const Score: React.FC<ScoreProps> = ({ drivers }) => {
-  const { lang } = useOvaContext();
+  const lang = useOvaStore((state) => state.lang);
+  
   const { game } = useGameContext();
 
   return (
