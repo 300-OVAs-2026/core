@@ -1,11 +1,31 @@
 .modal {
-    --border-radious: 1rem;
+    --border-radius: 1rem;
 
     background-color: var(--background);
-    border-radius: var(--border-radious);
+    border-radius: var(--border-radius);
     block-size: unset;
     z-index: var(--z-index-modal);
     box-shadow: -8px 8px 0 0 var(--modal-box-shadow-color, var(--clr-brand));
+}
+
+.modal[data-size="xs"] {
+    --modal-max-width: 20rem;
+}
+
+.modal[data-size="sm"] {
+    --modal-max-width: 28rem;
+}
+
+.modal[data-size="md"] {
+    --modal-max-width: 50rem;
+}
+
+.modal[data-size="lg"] {
+    --modal-max-width: 70rem;
+}
+
+.modal[data-size="xl"] {
+    --modal-max-width: 80rem;
 }
 
 
@@ -37,7 +57,7 @@
 
 @media screen and (max-width: 1280px) {
     div.modal {
-        --border-radious: 1rem;
+        --border-radius: 1rem;
         --modal-max-width: calc(100vw - 1rem);
         --modal-height: calc(100svh - 1rem);
         block-size: var(--modal-height);
@@ -63,7 +83,7 @@
     position: absolute;
     top: 0;
     right: 0;
-    width: clamp(1.5rem, 5%, 2.6rem);
+    width: clamp(2rem, 5%, 3rem);
     display: grid;
     place-content: center;
     aspect-ratio: 1 / 1;

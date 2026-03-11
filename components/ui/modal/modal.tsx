@@ -15,9 +15,18 @@ export interface ModalCoreProps extends ModalProps {
   isOpen: boolean;
   addClass?: string;
   interpreter?: VideoURLs;
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
-export const Modal: React.FC<ModalCoreProps> = ({ addClass, children, isOpen, onClose, interpreter, ...props }) => {
+export const Modal: React.FC<ModalCoreProps> = ({
+  addClass,
+  children,
+  isOpen,
+  onClose,
+  interpreter,
+  size,
+  ...props
+}) => {
   const lang = useOvaStore((state) => state.lang);
   const [updateVideoSources, restoreLastVideoSources] = useInterpreter();
   const flagOpenModal = useRef(false);
@@ -51,7 +60,7 @@ export const Modal: React.FC<ModalCoreProps> = ({ addClass, children, isOpen, on
   return (
     <ModalUI {...props} isOpen={isOpen} onClose={handleCloseModal}>
       <ModalUI.Overlay addClass={css['modal-overlay']} />
-      <ModalUI.Content addClass={`${css['modal']} u-p-3 ${addClass ?? ''}`}>
+      <ModalUI.Content addClass={`${css['modal']} u-p-3 ${addClass ?? ''}`} {...(size && { ['data-size']: size })}>
         <button onClick={handleCloseModal} aria-label={i18n[lang].btnModal} className={`${css['modal-button']}`}>
           <Icon name="close" />
         </button>
