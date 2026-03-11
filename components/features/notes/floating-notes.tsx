@@ -1,8 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 
 import { useDraggablePosition, useFloatingPanel, useNotesEditor, useTextSelection } from './hooks';
-import { CloseIcon, MoveArrowIcon, NewNoteIcon, NotesIcon } from './notes-icons';
+import { MoveArrowIcon, NewNoteIcon, NotesIcon } from './notes-icons';
 import { NotesList } from './notes-list';
 import { RichTextEditor } from './rich-text-editor';
 import { useNotesStore } from './store/notesStore';
@@ -10,12 +10,14 @@ import { useNotesStore } from './store/notesStore';
 import type { FloatingNotesProps } from './types/types';
 
 import css from './floating-notes.module.css';
+import { Icon } from '../../ui';
 
 export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' }) => {
   const dragRef = useRef(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerButtonRef = useRef<HTMLButtonElement>(null);
   const hasInitialFocusRef = useRef(false);
+    const [hasToggled, setHasToggled] = useState(false);
 
   // Custom hooks
   const { position, handleDrag, resetPosition } = useDraggablePosition();
@@ -52,6 +54,10 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
   useEffect(() => {
     setCurrentPage(currentPage);
   }, [currentPage, setCurrentPage]);
+
+  useEffect(() => {
+    if (isOpen) setHasToggled(true);
+  }, [isOpen]);
 
   // Manejar apertura/cierre y gestión de foco
   const handleToggleOpen = () => {
@@ -161,22 +167,47 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
         <button
           ref={triggerButtonRef}
           type="button"
-          className={css['fn-floating-trigger']}
+          className={`${css['fn-floating-trigger']} ${
+            isOpen ? css['is-closing'] : hasToggled ? css['is-opening'] : ''
+          }`}
           onClick={handleToggleOpen}
           disabled={isOpen}
           aria-label={isOpen ? 'Cerrar notas' : 'Abrir notas'}
           title={isOpen ? 'Cerrar notas' : 'Abrir notas'}>
-          <NotesIcon width={32} height={32} />
+          <svg xmlns="http://www.w3.org/2000/svg" className={css['fn-trigger-icon']} viewBox="0 0 400 400">
+            <circle cx="200" className={css['fn-trigger-icon__dash']} cy="200" r="115" />
+            <circle cx="200" cy="200" r="110" fill="var(--primary-700)" />
+            <circle cx="200" cy="200" r="70" fill="var(--primary-500)" />
+            <g className={css['fn-trigger-icon__shadow']} transform="translate(155, 155) scale(1.5)">
+              <path
+                fill="none"
+                stroke="white"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="3"
+                d="M58.69 26.98v18.36c0 8.67-7.03 15.7-15.7 15.7H1V19.05c0-8.67 7.03-15.7 15.7-15.7h26.29"
+              />
+              <path
+                fill="white"
+                d="M62.9 14.1L27.5 49.51l-12.45 1.15 1.15-12.45L51.6 2.8C54.03.37 58.53.93 61.65 4.05c3.12 3.12 3.68 7.62 1.25 10.05z"
+              />
+            </g>
+          </svg>
           {notesCount > 0 && <span className={css['fn-notes-badge']}>{notesCount}</span>}
+          <span className={css['fn-trigger-text']}>Notas</span>
         </button>
 
         {/* Panel de notas flotante */}
         <Draggable handle=".js-c-notes-draggable" nodeRef={dragRef} position={position} onDrag={handleDrag}>
-          <div ref={dragRef}>
+          <div ref={dragRef} style={{position: 'absolute'}}>
             {isOpen && (
               <div ref={containerRef} className={css['fn-floating-notes']}>
                 {/* Header con controles */}
-                <div className={css['fn-floating-header']}>
+                <div
+                  className={css['fn-floating-header']}
+                  style={{
+                    borderBottom: view === 'editor' ? '1px solid var(--notes-border-gray)' : 'none'
+                  }}>
                   {view === 'list' && (
                     <button
                       type="button"
@@ -206,7 +237,7 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
                       onClick={handleToggleOpen}
                       aria-label="Cerrar ventana de notas"
                       title="Cerrar notas">
-                      <CloseIcon fill={'currentColor'} width={28} height={28} />
+                      <Icon name="close" />
                     </button>
                   </div>
                 </div>
@@ -224,12 +255,15 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
                     ) : (
                       <div className={css['fn-editor-view']}>
                         {capturedText && (
-                          <div className={css['fn-selected-text-preview']}>
-                            <strong>Texto seleccionado:</strong>
-                            <blockquote>
-                              <p>"{capturedText}"</p>
-                            </blockquote>
-                          </div>
+                          <>
+                            <p className={css['fn-selected-text-preview-title']}>Texto seleccionado:</p>
+                            <div className={css['fn-selected-text-preview']}>
+                              <blockquote>
+                                <p>"{capturedText}"</p>
+                              </blockquote>
+                            </div>
+                            <p className={css['fn-selected-text-preview-title']}>Anotación:</p>
+                          </>
                         )}
 
                         <input
