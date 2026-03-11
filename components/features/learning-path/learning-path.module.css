@@ -96,21 +96,28 @@
 
 /* ── Estados específicos ── */
 
-.pageNode.inicio {
+.pageNode[data-kind="start"] {
   --node-ring-color: #4caf50;
   --node-icon-bg: #e8f5e9;
   --node-icon-color: #2e7d32;
   --node-halo: rgba(76, 175, 80, 0.2);
 }
 
-.pageNode.fin {
+.pageNode[data-kind="finish"] {
   --node-ring-color: #71d4fe;
   --node-icon-bg: #f0fbff;
   --node-icon-color: #004f71;
   --node-halo: rgba(55, 139, 175, 0.2);
 }
 
-.pageNode.contenido {
+.pageNode[data-kind="quiz"] {
+  --node-ring-color: var(--accent);
+  --node-icon-bg: var(--accent-100);
+  --node-icon-color: var(--accent-500);
+  --node-halo: var(--accent-200);
+}
+
+.pageNode:is([data-kind="objective"], [data-kind="video"], [data-kind="content"], [data-kind="resume"]) {
   --node-ring-color: #257a9e;
   --node-icon-bg: #f0f6ff;
   --node-icon-color: #005071;
@@ -223,9 +230,8 @@
   z-index: 2;
 }
 
-.icon {
-  width: 90%;
-  height: 90%;
+.iconContainer svg {
+  --icon-size: 3rem;
   /*color icono */
   color: var(--node-icon-color, #004f71);
 }
