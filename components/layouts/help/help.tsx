@@ -1,11 +1,14 @@
+import { Avatar } from '@features/avatar';
 import { Content } from '@layouts';
-import { Button, Icon, Image } from '@ui';
+import { Button, Icon } from '@ui';
 import { Col, Row } from 'books-ui';
 
 import { cn } from '@/shared/utils';
 import { useOvaStore } from '@/store/ova-store';
 
 import { SPANISH_LANGUAGE } from './lib/constant';
+
+import { AvatarVariation } from '@features/avatar/types/type';
 
 import css from './help.module.css';
 
@@ -17,11 +20,13 @@ export const Help = () => {
     <Content withOutTitle>
       <Row justifyContent="center" alignItems="center">
         <Col xs="11" mm="10" md="9" lg="5" hd="4">
-          <Image
-            src="assets/images/Ova_041_sld_01.webp"
-            size="37.5rem"
-            title="Image 1."
+          <Avatar
+            variation={AvatarVariation.GREETING}
+            size="28.125rem"
+            title="Imagen 1."
+            addClass={css['avatar']}
             alt="Personas mirando una diana."
+            noCaption
           />
         </Col>
         <Col xs="11" mm="10" md="9" lg="6" hd="6">
