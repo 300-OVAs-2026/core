@@ -20,15 +20,29 @@ interface Props {
 
 export const GamificationModal: React.FC<Props> = ({ id, isOpen, onClose, correct, total, onRestart }) => {
   const lang = useOvaStore((state) => state.lang);
+  const markPageVisited = useOvaStore((state) => state.markPageVisited);
+
   const activities = useGamificationStore((state) => state.activities);
+
   const activity = activities[id];
   const stars = activity?.stars ?? MAX_STARS;
   const medalIndex = activity?.medalIndex ?? 1;
 
   const t = i18n[lang];
 
+  /**
+   * Function to handle modal close,
+   * which also marks the page as visited in the OVA store.
+   * This ensures that when the user closes the gamification modal,
+   * the current page is marked as visited, allowing for proper tracking of user progress through the OVA.
+   */
+  const handleClose = () => {
+    onClose();
+    markPageVisited();
+  };
+
   return (
-    <Modal size="sm" isOpen={isOpen} onClose={onClose} addClass={css['modal']}>
+    <Modal size="sm" isOpen={isOpen} onClose={handleClose} addClass={css['modal']}>
       <div className={`u-flow ${css['modal__wrapper']}`}>
         <div className={css['modal__medal']} aria-hidden="true">
           <Icon name="award" />
@@ -57,14 +71,6 @@ export const GamificationModal: React.FC<Props> = ({ id, isOpen, onClose, correc
             {t.correctLabel}
           </p>
         )}
-
-        <p>
-          <span className={css['modal__score']}>
-            <strong>3</strong> / 4
-          </span>
-          <br />
-          {t.correctLabel}
-        </p>
 
         <p className={css['modal__medal-text']}>{t.medal(medalIndex)}</p>
 
