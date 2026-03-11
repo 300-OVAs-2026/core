@@ -3,9 +3,8 @@ import { motion } from 'motion/react';
 import { useHashLocation } from 'wouter/use-hash-location';
 
 import { EVENTS } from '@/shared/constants/events';
+import { getPageIcon } from '@/shared/utils/get-page-icon';
 import { useOvaStore } from '@/store/ova-store';
-
-import { Icon } from '../../ui';
 
 import { PATH_REGEX } from './lib/constant';
 
@@ -13,6 +12,7 @@ import css from './page-title.module.css';
 
 export const PageTitle = () => {
   const [title, setTitle] = useState<{ title: string; number: string }>({ title: '', number: '' });
+  const [index, setIndex] = useState(0);
   const uid = useId();
 
   const [location] = useHashLocation();
@@ -49,6 +49,7 @@ export const PageTitle = () => {
 
     if (titleIndex >= 0) {
       const currentTitle = pages[titleIndex].title;
+      setIndex(titleIndex);
       updateTitle(currentTitle);
     }
   }, [location, pages, updateTitle]);
@@ -84,7 +85,7 @@ export const PageTitle = () => {
       </div>
       <div className={css['title-slide__indicator']}>
         <div className={css['page-indicator']}>
-          <Icon name="home" />
+          {getPageIcon(pages[index].kind)}
          <span>{visitedPages.length}&nbsp;/&nbsp;{pages.length}</span>
         </div>
         <div
