@@ -17,6 +17,8 @@ export const PageNode: React.FC<Props> = ({ page, isLocked }) => {
   const [location] = useHashLocation();
   const isCurrent = location === page.path;
 
+  console.log(`Renderizando nodo: ${page.title} - Locked: ${isLocked} - Current: ${isCurrent}`);
+
   if (isLocked) {
     return (
       <span
