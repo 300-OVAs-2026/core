@@ -14,7 +14,7 @@ export const NotesList: React.FC<NotesListProps> = ({ notes, onSelectNote, onDel
   return (
     <div className={css['fn-notes-list']}>
       <div className={css['fn-notes-list-header']}>
-        <h3 className={css['fn-notes-list-title']}>Tus Notas</h3>
+        <h3 className={css['fn-notes-list-title']}>Notas</h3>
       </div>
 
       <div className={css['fn-notes-list-content']}>

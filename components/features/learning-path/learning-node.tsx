@@ -1,4 +1,4 @@
-import { Icon } from '@ui';
+import { Icon, Tooltip } from '@ui';
 import { Link } from 'wouter';
 import { useHashLocation } from 'wouter/use-hash-location';
 
@@ -38,20 +38,22 @@ export const PageNode: React.FC<Props> = ({ page, isLocked }) => {
   }
 
   return (
-    <Link
-      to={page.path}
-      className={`${css.pageNode}`}
-      data-kind={page.kind}
-      aria-label={page.title}
-      aria-current={isCurrent ? 'page' : undefined}>
-      {/* Contenedor principal del círculo visual — oculto a lectores de pantalla */}
-      <div className={css.nodeVisual} aria-hidden="true">
-        {/* Capa 1: El anillo (las rayitas) */}
-        <div className={css.nodeRing}></div>
+    <Tooltip label={page.title} orientation='bottom'>
+      <Link
+        to={page.path}
+        className={`${css.pageNode}`}
+        data-kind={page.kind}
+        aria-label={page.title}
+        aria-current={isCurrent ? 'page' : undefined}>
+        {/* Contenedor principal del círculo visual — oculto a lectores de pantalla */}
+        <div className={css.nodeVisual} aria-hidden="true">
+          {/* Capa 1: El anillo (las rayitas) */}
+          <div className={css.nodeRing}></div>
 
-        {/* Capa 2: El centro donde va el icono */}
-        <div className={css.iconContainer}>{getPageIcon(page.kind)}</div>
-      </div>
-    </Link>
+          {/* Capa 2: El centro donde va el icono */}
+          <div className={css.iconContainer}>{getPageIcon(page.kind)}</div>
+        </div>
+      </Link>
+    </Tooltip>
   );
 };

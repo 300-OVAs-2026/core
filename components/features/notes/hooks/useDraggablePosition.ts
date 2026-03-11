@@ -26,8 +26,8 @@ export const useDraggablePosition = (): UseDraggablePositionReturn => {
     const containerTop = window.innerHeight * 0.11;
 
     return {
-      x: 0 - 8,
-      y: windowHeight - containerTop - panelHeight - 55
+      x: 0 - 170,
+      y: windowHeight - containerTop - panelHeight - 180
     };
   };
 
