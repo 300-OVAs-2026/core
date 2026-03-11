@@ -5,6 +5,10 @@ import { useHashLocation } from 'wouter/use-hash-location';
 import { useOvaContext } from '@/context/ova-context';
 import { getPageIcon } from '@/shared/utils/get-page-icon';
 
+import { Content } from '../../layouts';
+import { Avatar } from '../avatar';
+
+import { AvatarVariation } from '../avatar/types/type';
 import type { OvaPageType } from '@/types/types';
 
 import css from './learning-path.module.css';
@@ -206,35 +210,50 @@ export const LearningPath = () => {
   if (!pages || pages.length === 0) return null;
 
   return (
-    <nav className={css['navigation']}>
-      <div className={css['navigation__block']}>
-        {/* Nodos */}
-        <ol className={css['list-wrapper']}>
-          {pages.map((page, i) => (
-            <li key={i} className={css['list-item']} style={getAllPositions(i)}>
-              <PageNode page={page} />
-            </li>
-          ))}
-        </ol>
+    <Content withOutTitle>
+      <div className={css['container']}>
+        <Avatar
+          variation={AvatarVariation.GREETING}
+          size="37.5rem"
+          title="Imagen 1."
+          addClass={css['avatar']}
+          alt="Personas mirando una diana."
+          noCaption
+        />
+        <nav className={css['navigation']} aria-label="Mapa de aprendizaje">
+          <p className={css['navigation__intro']}>
+            ¡Bienvenido! Este es tu mapa de aprendizaje. Completa cada sección en orden para avanzar y desbloquear nuevos contenidos. ¡Tú puedes lograrlo!
+          </p>
+          <div className={css['navigation__block']}>
+            {/* Nodos */}
+            <ol className={css['list-wrapper']}>
+              {pages.map((page, i) => (
+                <li key={i} className={css['list-item']} style={getAllPositions(i)}>
+                  <PageNode page={page} />
+                </li>
+              ))}
+            </ol>
 
-        {/* Capa SVG */}
-        <div className={css['bridge-wrapper']}>
-          <BridgeSvg
-            count={pages.length}
-            itemsPerRow={DESKTOP.itemsPerRow}
-            totalCols={DESKTOP.totalCols}
-            svgClass={css['bridge-svg-d']}
-          />
-          <BridgeSvg
-            count={pages.length}
-            itemsPerRow={TABLET.itemsPerRow}
-            totalCols={TABLET.totalCols}
-            svgClass={css['bridge-svg-t']}
-          />
-          <BridgeSvgMobile count={pages.length} svgClass={css['bridge-svg-m']} />
-        </div>
+            {/* Capa SVG */}
+            <div className={css['bridge-wrapper']}>
+              <BridgeSvg
+                count={pages.length}
+                itemsPerRow={DESKTOP.itemsPerRow}
+                totalCols={DESKTOP.totalCols}
+                svgClass={css['bridge-svg-d']}
+              />
+              <BridgeSvg
+                count={pages.length}
+                itemsPerRow={TABLET.itemsPerRow}
+                totalCols={TABLET.totalCols}
+                svgClass={css['bridge-svg-t']}
+              />
+              <BridgeSvgMobile count={pages.length} svgClass={css['bridge-svg-m']} />
+            </div>
+          </div>
+        </nav>
       </div>
-    </nav>
+    </Content>
   );
 };
 
@@ -248,7 +267,7 @@ const PageNode = ({ page }: { page: OvaPageType }) => {
 
   return (
     <Link
-      href={page.path}
+      to={page.path}
       className={`${css.pageNode}`}
       data-kind={page.kind}
       aria-label={page.title}
