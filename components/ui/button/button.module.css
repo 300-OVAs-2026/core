@@ -58,6 +58,7 @@ button.button svg {
   --border-size: 2.5rem;
 
   position: relative;
+  padding: 0.2rem;
   width: fit-content;
   transition: color 200ms ease;
 }
@@ -72,11 +73,11 @@ button.button svg {
 }
 
 .leftBorder {
-  left: -3px;
+  left: 0px;
 }
 
 .rightBorder {
-  right: -3px;
+  right: 0px;
 }
 
 .leftBorder,
