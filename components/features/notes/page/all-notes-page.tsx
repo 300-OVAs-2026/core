@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react';
 import { Content } from '@layouts';
 import { PDFDownloadLink } from '@react-pdf/renderer';
+import { Button } from '@ui';
 import { Audio, Col, Row } from 'books-ui';
 
 import { useOvaContext } from '@/context/ova-context';
@@ -9,13 +10,13 @@ import { NotePDFDocument } from '../components/NotePDFDocument';
 import { useNotesStore } from '../store/notesStore';
 import { exportNotesToTXT, formatRelativeTime, groupNotesByPage, prepareNotesForPDF } from '../utils/exportNotes';
 
+import type { RichTextNode } from '../types/types';
+
 import css from './all-notes-page.module.css';
-import { Button } from '@ui';
-import { RichTextNode } from '../types/types';
 
 export const AllNotes = () => {
   const { pageNotes, globalNotes } = useNotesStore();
-  const { titles, routes } = useOvaContext();
+  const { pages } = useOvaContext();
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
 
   const groupedNotes = groupNotesByPage(pageNotes, globalNotes);
@@ -32,10 +33,10 @@ export const AllNotes = () => {
     if (page === '/') return 'Portada';
 
     // Buscar el índice del route que coincide
-    const routeIndex = routes.findIndex((route) => route === page);
+    const routeIndex = pages.findIndex((route) => route.path === page);
 
-    if (routeIndex !== -1 && titles[routeIndex]) {
-      return titles[routeIndex];
+    if (routeIndex !== -1 && pages[routeIndex]) {
+      return pages[routeIndex].title;
     }
 
     // Fallback: extraer número de página
