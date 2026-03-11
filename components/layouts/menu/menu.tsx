@@ -4,6 +4,8 @@ import { Icon } from '@ui';
 import { motion } from 'motion/react';
 import { Link } from 'wouter';
 
+import { cn } from '@/shared/utils';
+import { useGamificationStore } from '@/store/gamification-store';
 import { useOvaStore } from '@/store/ova-store';
 
 import { i18n } from './lib/constant';
@@ -13,6 +15,7 @@ import css from './menu.module.css';
 
 export const Menu = () => {
   const lang = useOvaStore((state) => state.lang);
+  const medals = useGamificationStore((state) => state.totalMedals);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const { config, setConfig } = useA11y();
@@ -81,16 +84,10 @@ export const Menu = () => {
           </button>
 
           <button
-            className={css['menu__button--audio']}
+            className={cn(css['menu__button'], css['menu__button--diagonal-cut'])}
+            style={{ '--bg-color': 'var(--primary-400)' } as React.CSSProperties}
             aria-label="Activar audio"
             onClick={() => setAudioDescription(!config.audio)}>
-            <svg width="0" height="0" className={css['menu__button--audio_clip-path']}>
-              <defs>
-                <clipPath id="menu-diagonal-cut" clipPathUnits="objectBoundingBox">
-                  <path d="M 0,0 L 1,0 L 0.93, 1 L 0, 1 Z" />
-                </clipPath>
-              </defs>
-            </svg>
             <span className={css['menu__button-content']}>
               {config.audio ? <Icon name="pause" /> : <Icon name="play" />}
               <span>{config.audio ? i18n[lang].audioActive : i18n[lang].audioPause}</span>
@@ -98,6 +95,17 @@ export const Menu = () => {
           </button>
 
           <MenuButtonInterpreter />
+
+          <div
+            className={cn(css['menu__button'], css['menu__button--double-diagonal-cut'])}
+            style={{ '--bg-color': 'var(--accent)' } as React.CSSProperties}>
+            <span className={css['menu__button-content']}>
+              <Icon name="award" />
+              <span>
+                {medals} {i18n[lang].badges}
+              </span>
+            </span>
+          </div>
         </div>
 
         <div>

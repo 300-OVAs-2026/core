@@ -2,6 +2,7 @@ import { useA11y } from '@features/a11y-overlay/hooks/useA11y';
 import { EVENT } from '@features/interpreter/lib/constants';
 import { Icon } from '@ui';
 
+import { cn } from '@/shared/utils';
 import { useOvaStore } from '@/store/ova-store';
 
 import { i18n } from './lib/constant';
@@ -31,16 +32,10 @@ export const MenuButtonInterpreter = () => {
 
   return (
     <button
-      onClick={() => toggleInterpreter(!config.interpreter)}
-      className={css['menu__button--accessibility']}
-      aria-label={config.interpreter ? i18n[lang].interpreterPause : i18n[lang].interpreterActive}>
-      <svg width="0" height="0" className={css['menu__button--audio_clip-path']}>
-        <defs>
-          <clipPath id="menu-doble-diagonal-cut" clipPathUnits="objectBoundingBox">
-            <path d="M 0.055,0 L 1,0 L 0.93, 1 L 0, 1 Z" />
-          </clipPath>
-        </defs>
-      </svg>
+      className={cn(css['menu__button'], css['menu__button--double-diagonal-cut'])}
+                   style={{ '--bg-color': 'var(--primary-800)' } as React.CSSProperties}
+      aria-label={config.interpreter ? i18n[lang].interpreterPause : i18n[lang].interpreterActive}
+      onClick={() => toggleInterpreter(!config.interpreter)}>
       <span className={css['menu__button-content']}>
         <Icon name="hand-a11y" />
         <span>{config.interpreter ? i18n[lang].interpreterPause : i18n[lang].interpreterActive}</span>

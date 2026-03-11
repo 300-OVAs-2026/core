@@ -1,7 +1,7 @@
 /* Menu */
 .menu {
     --transparent: 95%;
-    --increment: 2;
+    --increment: 1.5;
     --padding: 1rem;
 
     display: flex;
@@ -65,9 +65,8 @@
     z-index: 1;
 }
 
-/* Audio and Accessibility buttons */
-.menu__button--audio,
-.menu__button--accessibility {
+/* Menu   */
+.menu__button {
     position: relative;
     border: 1px solid transparent;
     font-size: var(--fs-200);
@@ -75,23 +74,19 @@
     text-transform: uppercase;
     letter-spacing: 0.025em;
     color: var(--white);
+    background-color: var(--bg-color, transparent);
     height: fit-content;
     padding-inline: calc(var(--padding) * var(--increment));
     padding-block: var(--padding);
 }
 
-.menu__button--audio {
+.menu__button--diagonal-cut {
     padding-inline: calc(var(--padding) / var(--increment)) calc(var(--padding) * var(--increment));
-    clip-path: url(#menu-diagonal-cut);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 1rem) 100%, 0 100%);
 }
 
-.menu__button--accessibility {
-    clip-path: url(#menu-doble-diagonal-cut);
-}
-
-.menu__button--audio_clip-path {
-    position: absolute;
-    pointer-events: none;
+.menu__button--double-diagonal-cut {
+    clip-path: polygon(1rem 0, 100% 0, calc(100% - 1rem) 100%, 0 100%);
 }
 
 .menu__button-content {
