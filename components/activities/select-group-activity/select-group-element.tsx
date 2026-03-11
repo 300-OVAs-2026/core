@@ -74,7 +74,7 @@ export const SelectElement: React.FC<Props> = ({ id, addClass, options, placehol
       name={name}
       {...props}>
       {options.map(({ id, option }) => (
-        <Item key={id}>
+        <Item key={id} textValue={option}>
           <span id={name} dangerouslySetInnerHTML={{ __html: option }}></span>
         </Item>
       ))}
