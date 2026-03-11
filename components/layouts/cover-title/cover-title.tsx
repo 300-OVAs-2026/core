@@ -33,7 +33,9 @@ export const CoverTitle: React.FC<Props> = ({
 }) => {
   const [, setBackground] = useBackground();
   const [updateVideoSources] = useInterpreter();
-  const { lang } = useOvaContext();
+  const { lang, selectedAvatarId } = useOvaContext();
+
+  const path = selectedAvatarId ? `/page-1` : '/avatar';
 
   useEffect(() => {
     setBackground(url);
@@ -56,7 +58,7 @@ export const CoverTitle: React.FC<Props> = ({
           {audio ? <Audio src={audio.title} /> : null}
           <h1 dangerouslySetInnerHTML={{ __html: title }}></h1>
           <Link
-            to="/page-1"
+            to={path}
             className={css['cover-title__link']}
             aria-label={i18n[lang].label}
             onClick={focusMainElement}>
