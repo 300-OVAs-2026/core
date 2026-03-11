@@ -1,9 +1,11 @@
 import { Toast, type ToastCoreProps } from '@ui';
+import { Audio } from 'books-ui';
+
+import { useOvaContext } from '@/context/ova-context';
+
+import { i18n } from './lib/constant';
 
 import css from './toast-feedback.module.css';
-import { Audio } from 'books-ui';
-import { useOvaContext } from '@/context/ova-context';
-import { i18n } from './lib/constant';
 
 interface ToastFeedbackProps extends ToastCoreProps {
   addClass?: string;
@@ -19,11 +21,11 @@ export const ToastFeedback: React.FC<ToastFeedbackProps> = ({ type = 'success', 
     <Toast {...props} addClass={`${css.toast} ${css[type]}`}>
       <div className={css.container}>
         <div className={css.icon}>{type === 'success' ? '✓' : '✕'}</div>
-        <div className={`u-flow ${css['toast__response-wrapper']}`}>
+        <div className={` ${css['toast__response-wrapper']}`}>
+          {audio ? <Audio data-audio src={audio} addClass={`${css['modal__audio']} u-m-0`} size="small" /> : null}
           <p className={css['title']} data-title>
             {label || i18n[lang][type]}
           </p>
-          {audio ? <Audio data-audio src={audio} addClass={`${css['modal__audio']} u-m-0`} size="small" /> : null}
           {children}
         </div>
       </div>
