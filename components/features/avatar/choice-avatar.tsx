@@ -2,6 +2,7 @@ import { Content } from '@layouts';
 import { Button, Icon } from '@ui';
 import { Panel } from 'books-ui';
 
+import { useOvaContext } from '@/context/ova-context';
 import { cn } from '@/shared/utils';
 
 import { AVATARS } from './lib/constants';
@@ -24,6 +25,7 @@ const chunkAvatars = (avatars: Avatar[], size: number): Avatar[][] =>
 
 export const ChoiceAvatar = () => {
   const sections = chunkAvatars(AVATARS, AVATARS_PER_SECTION);
+  const { selectAvatar, selectedAvatarId } = useOvaContext();
 
   return (
     <Content withOutTitle>
@@ -48,7 +50,11 @@ export const ChoiceAvatar = () => {
                         alt={avatar.name}
                         className={css['avatar-image']}
                       />
-                      <Button label="Seleccionar" />
+                      <Button
+                        label={selectedAvatarId === avatar.id ? 'Seleccionado' : 'Seleccionar'}
+                        disabled={selectedAvatarId === avatar.id}
+                        onClick={() => selectAvatar(avatar.id)}
+                      />
                     </li>
                   ))}
                 </ul>
