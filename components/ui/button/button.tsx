@@ -31,7 +31,7 @@ export const Button: React.FC<Props> = ({
         <defs>
           <linearGradient id={gradientLeft} gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="var(--linear-svg)" stopOpacity="1" />
-            <stop offset="100%" stopColor="var(--linear-svg)" stopOpacity="0" />
+            <stop offset="100%" stopColor="var(--white)" stopOpacity="0" />
           </linearGradient>
         </defs>
 
@@ -62,7 +62,7 @@ export const Button: React.FC<Props> = ({
       <svg className={css.rightBorder} viewBox="0 0 60 60">
         <defs>
           <linearGradient id={gradientRight} gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="var(--linear-svg)" stopOpacity="0" />
+            <stop offset="0%" stopColor="var(--white)" stopOpacity="0" />
             <stop offset="100%" stopColor="var(--linear-svg)" stopOpacity="1" />
           </linearGradient>
         </defs>
