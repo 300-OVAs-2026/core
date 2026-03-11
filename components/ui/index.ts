@@ -8,3 +8,4 @@ export * from './img-container';
 export * from './loader';
 export * from './modal';
 export * from './video';
+export * from './toast';
