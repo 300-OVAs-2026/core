@@ -95,7 +95,7 @@ export const PageTitle = () => {
           aria-valuemax={pages.length}
           aria-valuenow={visitedPages.length}
           aria-label="Progreso de la unidad">
-          <div style={{ width: `${(visitedPages.length / pages.length) * 100}%` }}></div>
+          <div style={{ '--size': `${(visitedPages.length / pages.length) * 100}%` } as React.CSSProperties }></div>
         </div>
       </div>
     </motion.div>

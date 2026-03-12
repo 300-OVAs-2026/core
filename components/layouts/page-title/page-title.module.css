@@ -60,6 +60,8 @@
 }
 
 .progress-bar {
+    --size: 0%;
+
     display: flex;
     align-items: stretch;
     min-height: .8rem;
@@ -83,7 +85,7 @@
     mask-image: linear-gradient(90deg, #000 70%, rgba(0, 0, 0, 0.3) 100%);
     border-radius: 1rem;
     transition: flex-basis 1s ease;
-    flex-basis: 85%;
+    flex-basis: var(--size);
     animation: moveStripes 1s linear infinite;
 }
 
