@@ -1,9 +1,10 @@
 import { useEffect,useReducer, useRef } from 'react';
 
-import type { InitialState, Input } from './type/types';
 import { InputActivityProvider } from './input-activity-context';
 import { InputButton } from './input-button';
 import { InputElement } from './input-element';
+
+import type { InitialState, Input } from './type/types';
 
 
 const INITIAL_STATE = Object.freeze({

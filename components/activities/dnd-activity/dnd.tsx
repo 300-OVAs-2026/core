@@ -2,20 +2,13 @@ import React, { Children, cloneElement, isValidElement, useReducer } from 'react
 import type { DragAndDropProps } from 'books-ui';
 import { DragAndDrop } from 'books-ui';
 
-// import { loadCSS } from '@core/utils';
-import { useOvaContext } from '@/context/ova-context';
-
-import type { DndTypes, InitialState } from './types/types';
-import { defaultAnnouncements, DND_CLASSES, i18n, INITIAL_STATE } from './consts';
 import { DndButton } from './dnd-buttons';
 import { DndActivityProvider } from './dnd-context';
+import { DND_CLASSES, INITIAL_STATE } from './lib/constant';
+
+import type { DndTypes, InitialState } from './types/types';
 
 import css from './dnd.module.css';
-
-// const css = await loadCSS({
-//   ui: 'dnd-activity/dnd.module.css',
-//   local: 'dnd-activity/dnd.module.css'
-// });
 
 interface Props extends DragAndDropProps {
   onResult?: ({ result }: { result: boolean }) => void;
@@ -30,11 +23,9 @@ const DndActivity: React.FC<Props> & SubComponents = ({
   id,
   children,
   minCorrectDrags,
-  announcements = defaultAnnouncements,
   onResult,
   ...props
 }) => {
-  const { lang } = useOvaContext();
   const [activity, updatedActivity] = useReducer(
     (prev: InitialState, next: Partial<InitialState>) => ({ ...prev, ...next }),
     INITIAL_STATE
@@ -137,8 +128,6 @@ const DndActivity: React.FC<Props> & SubComponents = ({
         id={id}
         validate={activity.validation}
         onValidate={handleNewDrag}
-        announcements={announcements}
-        screenReaderInstructions={i18n[lang].screenReaderInstruction}
         {...props}>
         <div className={css['wrapper']}>{styleChildren(children)}</div>
       </DragAndDrop>

@@ -1,0 +1,46 @@
+import type { ModalCoreProps } from '@ui';
+import { Modal } from '@ui';
+import { Audio } from 'books-ui';
+
+import { useOvaStore } from '@/store/ova-store';
+
+import { i18n } from './lib/constant';
+import { ModalBibliographyLink } from './modal-bibliography-link';
+
+import css from './modal-bibliography.module.css';
+
+interface Props extends ModalCoreProps {
+  addClass?: string;
+  label?: string;
+  audio?: string;
+  multipleChildren?: boolean;
+}
+
+type SubComponents = {
+  Link: typeof ModalBibliographyLink;
+};
+
+const ModalBibliography: React.FC<Props> & SubComponents = ({
+  addClass,
+  label,
+  children,
+  audio,
+  multipleChildren = false,
+  ...props
+}) => {
+  const lang = useOvaStore((state) => state.lang);
+
+  return (
+    <Modal {...props} addClass={`${css['modal']} u-py-4 ${addClass ?? ''}`}>
+      <div className="u-flow">
+        <h2 className="u-text-center u-text-upper">{label || i18n[lang].title}</h2>
+        {multipleChildren ? children : <ul className="u-flow">{children}</ul>}
+        {audio ? <Audio src={audio} /> : null}
+      </div>
+    </Modal>
+  );
+};
+
+ModalBibliography.Link = ModalBibliographyLink;
+
+export { ModalBibliography };

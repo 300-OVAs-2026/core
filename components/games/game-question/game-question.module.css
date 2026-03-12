@@ -13,7 +13,7 @@
 }
 
 html[data-dark-mode='true'] .container-element {
-    opacity: 0.8;
+  opacity: 0.8;
 }
 
 .card-element {
@@ -169,8 +169,12 @@ html[data-dark-mode='true'] .container-element {
   }
 }
 
-/*** Dark mode ***/
+/* Dark mode */
 
 html[data-dark-mode='true'] .card-element {
   color: var(--clr-dark-mode);
+}
+
+html[data-dark-mode='true'] .wrong {
+  background-color: #641f08;
 }

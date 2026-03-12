@@ -1,0 +1,220 @@
+/* Menu */
+.menu {
+    --transparent: 95%;
+    --increment: 1.5;
+    --padding: 1rem;
+
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* Menu Controls */
+.menu__controls {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    height: 100%;
+    position: relative;
+}
+
+/* Hamburger button */
+.menu__button--hamburger {
+    width: 5.75rem;
+    display: grid;
+    grid-template-areas: "stack";
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    z-index: calc(var(--z-index-menu) + 2);
+}
+
+.menu__button--hamburger>* {
+    grid-area: stack;
+}
+
+.svg-background {
+    position: relative;
+    inset: 0;
+    pointer-events: none;
+}
+
+.svg-background polygon {
+    fill: var(--accent);
+}
+
+.menu__button--hamburger:is(:hover, :focus-visible) .svg-background polygon {
+    fill: var(--accent-400);
+}
+
+
+.svg-hamburger {
+    --icon-size: 3rem;
+
+    margin-block-start: var(--padding);
+    justify-self: center;
+    position: relative;
+    display: block;
+    width: var(--icon-size);
+    height: var(--icon-size);
+    forced-color-adjust: auto;
+    pointer-events: none;
+    stroke: var(--primary-700);
+    stroke-linecap: round;
+    stroke-width: 8;
+    z-index: 1;
+}
+
+/* Menu   */
+.menu__button {
+    position: relative;
+    border: 1px solid transparent;
+    font-size: var(--fs-200);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    color: var(--white);
+    background-color: var(--bg-color, transparent);
+    height: fit-content;
+    padding-inline: calc(var(--padding) * var(--increment));
+    padding-block: var(--padding);
+}
+
+.menu__button--diagonal-cut {
+    padding-inline: calc(var(--padding) / var(--increment)) calc(var(--padding) * var(--increment));
+    clip-path: polygon(0 0, 100% 0, calc(100% - 1rem) 100%, 0 100%);
+}
+
+.menu__button--double-diagonal-cut {
+    clip-path: polygon(1rem 0, 100% 0, calc(100% - 1rem) 100%, 0 100%);
+}
+
+.menu__button-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.menu__button-content::after,
+.menu__button-content::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+
+    filter: drop-shadow(0 0 .125rem currentColor);
+    pointer-events: none;
+
+}
+
+.menu__button-content::after {
+    bottom: -.3125rem;
+    height: .0625rem;
+    opacity: 0.8;
+    background: linear-gradient(90deg, transparent, var(--primary-50), transparent);
+    background-size: 200% 100%;
+    z-index: -1;
+}
+
+.menu__button-content::before {
+    --size: 5px;
+
+    bottom: calc(-.3125rem + (calc(var(--size) * -1)) / 3);
+    width: var(--size);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+    background-color: var(--primary-50);
+    z-index: 1;
+}
+
+
+.menu__button-content svg {
+    --icon-size: 2rem;
+    filter: drop-shadow(0 0 .3125rem currentColor);
+}
+
+.menu__button--audio {
+    background-color: var(--primary-400);
+}
+
+.menu__button--accessibility {
+    background-color: var(--primary-700);
+}
+
+/* menu */
+
+.menu__overlay {
+    position: fixed;
+    inset: 0;
+    background-color:
+        color-mix(in srgb, var(--primary-800) var(--transparent), transparent);
+    backdrop-filter: blur(.375rem);
+}
+
+.menu__wrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: calc(var(--z-index-menu) + 1);
+    overflow-y: auto;
+    width: 100%;
+    max-height: calc(100vh - 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    color: var(--white);
+    isolation: isolate;
+}
+
+.menu__list {
+    display: grid;
+    justify-content: stretch;
+    align-items: center;
+    row-gap: 1rem;
+    column-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(5rem, 100%), 1fr));
+    width: 100%;
+    max-width: 80rem;
+    min-height: 50vh;
+    padding: 1rem;
+}
+
+.menu__item {
+    width: 100%;
+}
+
+.menu__link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    padding: clamp(1rem, 3%, 1.5rem);
+    background-color: transparent;
+    font-size: var(--fs-300);
+    font-weight: bold;
+    color: currentColor;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color, background-color 120ms cubic-bezier(0.64, 0.01, 0.25, 1.00);
+}
+
+.menu__link:is(:hover, :focus-visible) {
+    --transparent: 50%;
+    color: var(--accent-300);
+    background-color: color-mix(in srgb, var(--primary-900) var(--transparent), transparent);
+}
+
+.menu__link svg {
+    --icon-size: 8ch;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: .125rem;
+    filter: drop-shadow(0 -1px .125rem currentColor);
+}

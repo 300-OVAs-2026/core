@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
+import { FullScreenAlert } from '@features/full-screen-alert';
 
-import { FullScreenAlert } from '../../ui';
-
-import { SpaceResult } from './types/types';
 import { useGameBalloonsContext } from './game-balloons-context';
 import { GameBalloonsElement } from './game-balloons-element';
 import { GameBalloonsParallax } from './game-balloons-parallax';
+
+import type { SpaceResult } from './types/types';
 
 import css from './game-balloons.module.css';
 
@@ -19,13 +19,13 @@ interface GameBalloonsLevelProps {
 export const GameBalloonsLevel: React.FC<GameBalloonsLevelProps> = ({ words, sentence }) => {
   const { validation, result, reset, addBallonsValues, setUserAnswer } = useGameBalloonsContext();
 
-  // 1) Registrar opción en context UNA sola vez (o cuando cambien props)
+
   useEffect(() => {
     addBallonsValues({ word: words, sentence });
     setUserAnswer(''); // al iniciar, respuesta vacía
   }, [addBallonsValues, setUserAnswer, words, sentence]);
 
-  // 2. Construye el estado inicial a partir de props.words
+
   const initialItems = useMemo<LetterItem[]>(
     () =>
       words.map((letter) => ({
@@ -114,9 +114,9 @@ export const GameBalloonsLevel: React.FC<GameBalloonsLevelProps> = ({ words, sen
   }, [reset, initialItems, words.length]);
 
   return (
-    <div>
+    <div className="u-flow">
       <FullScreenAlert />
-      <div id="fullscreen__section">
+      <div>
         <GameBalloonsParallax>
           <div className={css.container__sentence}>
             <div className={css.container__bottles}>
@@ -143,24 +143,36 @@ export const GameBalloonsLevel: React.FC<GameBalloonsLevelProps> = ({ words, sen
                 const isSelected = selectIndex === i;
                 const canRemove = !!obj && isSelected && !validation;
 
+                const letterLabel = obj?.letter ? `la letra ${obj.letter}` : 'este espacio';
+                const hintId = `remove-hint-${i}`;
+
                 return (
                   <div key={obj?.index || i} className={css.spaceWrap}>
                     <button
                       disabled={validation}
-                      className={isSelected ? css.select : undefined}
+                      className={!validation && isSelected ? css.select : undefined}
                       onClick={() => setSelectIndex(i)}
-                      type="button">
+                      type="button"
+                      aria-current={isSelected ? 'true' : undefined}
+                      aria-label={obj?.letter ? `Espacio ${i + 1}, contiene ${obj.letter}` : `Espacio ${i + 1}, vacío`}>
                       {obj?.letter || '____'}
                     </button>
 
                     {canRemove && (
-                      <button
-                        className={css.spaceRemove}
-                        onClick={() => removeLetter(i)}
-                        aria-label="eliminar palabra seleccionada"
-                        type="button">
-                        <span>&#10005;</span>
-                      </button>
+                      <>
+                        {/* Texto de ayuda solo para lectores de pantalla */}
+                        <span id={hintId} className="u-sr-only">
+                          {`Seleccionado. Puedes eliminar ${letterLabel} presionando el botón eliminar.`}
+                        </span>
+                        <button
+                          className={css.spaceRemove}
+                          onClick={() => removeLetter(i)}
+                          aria-label={`Eliminar ${letterLabel} del espacio ${i + 1}`}
+                          aria-describedby={hintId}
+                          type="button">
+                          <span>&#10005;</span>
+                        </button>
+                      </>
                     )}
                   </div>
                 );

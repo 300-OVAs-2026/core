@@ -19,7 +19,16 @@
   "dependencies": {
     "@dnd-kit/sortable": "^10.0.0",
     "@gsap/react": "^2.1.2",
-    "better-react-mathjax": "^2.0.4-beta1"
+    "@react-pdf/renderer": "^4.3.2",
+    "@tiptap/extension-text-align": "^3.18.0",
+    "@tiptap/extension-underline": "^3.18.0",
+    "@tiptap/pm": "^3.17.1",
+    "@tiptap/react": "^3.17.1",
+    "@tiptap/starter-kit": "^3.17.1",
+    "better-react-mathjax": "^2.0.4-beta1",
+    "motion": "^12.34.4",
+    "react-draggable": "^4.5.0",
+    "zustand": "^5.0.10"
   },
   "config": {
     "commitizen": {

@@ -4,16 +4,11 @@ import { Item } from 'react-stately';
 import type { SelectProps as SelectPropsUI } from 'books-ui';
 import { Select } from 'books-ui';
 
-// import { loadCSS } from '@core/utils';
-import { States } from './types/types';
 import { useSelectActivityContext } from './select-activity-context';
 
-import css from './select.module.css';
+import { States } from './types/types';
 
-// const css = await loadCSS({
-//   ui: 'select-activity/select.module.css',
-//   local: 'select-activity/select.module.css'
-// });
+import css from './select.module.css';
 
 type OptionType = {
   id: string;
@@ -51,14 +46,23 @@ export const SelectElement: React.FC<Props> = ({
    * Maneja el evento onSelectionChange.
    * @param selectedOption - Opción seleccionada
    */
-  const handleSelectionChange = (selectedOption: Key) => {
-    // Asegurar que `correctAnswer` siempre sea un array
+  const handleSelectionChange = (selectedOption: Key | null) => {
+    if (!selectedOption) return;
+
     const correctAnswers = Array.isArray(correctAnswer) ? correctAnswer : [correctAnswer];
 
     const selectionState = correctAnswers.includes(selectedOption as string) ? States.SUCCESS : States.WRONG;
 
-    addSelectedValues({ id: uid, answer: selectedOption as string, state: selectionState });
-    setCurrentSelectedOption({ key: selectedOption, state: selectionState });
+    addSelectedValues({
+      id: uid,
+      answer: selectedOption as string,
+      state: selectionState
+    });
+
+    setCurrentSelectedOption({
+      key: selectedOption,
+      state: selectionState
+    });
   };
 
   /**
@@ -83,16 +87,16 @@ export const SelectElement: React.FC<Props> = ({
 
   return (
     <Select
-      selectedKey={currentSelectedOption.key}
+      value={currentSelectedOption.key}
       addClass={`${css['select']} ${validation ? css[`select--${currentSelectedOption.state}`] : ''} ${addClass ?? ''}`}
       disabledKeys={disabledKeys}
       isDisabled={validation}
-      onSelectionChange={handleSelectionChange}
+      onChange={handleSelectionChange}
       placeholder={placeholder}
       name={name}
       {...props}>
       {options.map(({ id, option }) => (
-        <Item key={id}>
+        <Item key={id} textValue={option}>
           <span id={name} dangerouslySetInnerHTML={{ __html: option }}></span>
         </Item>
       ))}

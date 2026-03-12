@@ -1,0 +1,18 @@
+
+.modal {
+    --modal-max-width: 50.375rem;
+    font-size: var(--fs-300);
+}
+
+.modal h2 {
+    font-size: var(--fs-400);
+    font-weight: 800;
+}
+
+.modal strong {
+    color: var(--primary-800);
+}
+
+html[data-dark-mode="true"] .modal strong {
+    color: var(--clr-brand-light);
+}

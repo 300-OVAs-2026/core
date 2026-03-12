@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useA11y } from '@ui/components/a11y-overlay/hooks/useA11y';
-import { ConfigA11y } from '@ui/components/a11y-overlay/types/types';
+import { useA11y } from '@features/a11y-overlay/hooks/useA11y';
+
+import type { ConfigA11y } from '@features/a11y-overlay/types/types';
 
 // Atributos de accesibilidad que se van a observar
 const A11Y_ATTRIBUTES = [

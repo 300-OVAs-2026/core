@@ -1,0 +1,66 @@
+.accordion-item {
+  --accordion-border-radius: 0.7rem;
+  --accordion-color-hover: var(--primary-600);
+  --corner: 10px;
+  border: none;
+}
+
+.accordion-button {
+  --accordion-button-bg: var(--primary);
+  --outline-color: var(--accordion-button-bg);
+
+  background-color: var(--accordion-button-bg);
+  color: var(--white);
+  font-weight: bold;
+  padding: 0.4rem 1rem;
+  cursor: default;
+  transition:
+    border-radius 300ms ease-in-out,
+    background-color 200ms ease,
+    box-shadow 200ms ease;
+
+  clip-path: polygon(
+    0 var(--corner),
+    var(--corner) 0,
+    calc(100% - var(--corner)) 0,
+    100% var(--corner),
+    100% calc(100% - var(--corner)),
+    calc(100% - var(--corner)) 100%,
+    var(--corner) 100%,
+    0 calc(100% - var(--corner))
+  );
+}
+
+html[data-dark-mode='true'] .accordion-button {
+  --accordion-button-bg: var(--primary-950);
+  color: var(--white);
+}
+
+.accordion-button svg {
+  fill: currentColor;
+}
+
+.accordion-button:hover {
+  background-color: var(--accordion-color-hover);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-button[aria-expanded='true'] {
+  clip-path: polygon(
+    0 var(--corner),
+    var(--corner) 0,
+    calc(100% - var(--corner)) 0,
+    100% var(--corner),
+    100% 100%,
+    0 100%
+  );
+}
+
+.accordion-panel {
+  background-color: var(--acordion-panel-bg, #fffaeb);
+  border-radius: 0 0 var(--accordion-border-radius) var(--accordion-border-radius);
+}
+
+html[data-dark-mode='true'] .accordion-panel {
+  --acordion-panel-bg: #2a3a4a;
+}

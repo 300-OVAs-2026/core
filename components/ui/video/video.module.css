@@ -1,0 +1,4 @@
+
+.wrapper :global(.video-player) {
+    margin-inline: auto;
+}

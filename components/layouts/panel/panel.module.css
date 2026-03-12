@@ -1,0 +1,113 @@
+.panel {
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "title title"
+        "nav content";
+    place-content: initial;
+}
+
+
+.panel__section {
+    grid-area: content;
+    opacity: 0;
+    height: 100%;
+}
+
+.progress {
+    --wrapper-width: 140ch;
+    margin-inline: auto;
+    align-self: center;
+    grid-area: nav;
+}
+
+.progress__list {
+    margin-block: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .1875rem;
+}
+
+.progress__button {
+    --padding-inline: 1rem;
+    --outline-color: var(--clr-accent-dark);
+
+    padding-inline: 0;
+    text-transform: capitalize;
+    border-radius: 0.5rem;
+    background-color: transparent;
+    border: 1px solid transparent;
+    appearance: none;
+    transition: opacity 120ms ease;
+    display: inline-flex;
+    align-items: center;
+    color: inherit;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.progress__button svg {
+    color: var(--clr-brand);
+}
+
+.progress__button:disabled {
+    color: var(--clr-brand-dark);
+    cursor: not-allowed;
+}
+
+.progress__button:disabled svg {
+    color: var(--clr-brand-dark);
+}
+
+.progress__button--next {
+    margin-inline-start: var(--padding-inline);
+}
+
+.progress__button--prev {
+    margin-inline-end: var(--padding-inline);
+}
+
+.progress__button:disabled {
+    color: var(--secondary-300);
+    cursor: not-allowed;
+}
+
+.progress__item-button {
+    --button-size: 2.5rem;
+    --button-text-clr: currentColor;
+    --button-border-size: .1125rem;
+
+    position: relative;
+    width: var(--button-size);
+    height: 100%;
+    aspect-ratio: 1/1;
+    padding: .0625rem;
+    color: var(--button-text-clr);
+    font-size: var(--fs-400);
+    font-weight: 500;
+    border: 1px solid transparent;
+    background-color: transparent;
+    cursor: pointer;
+    appearance: none;
+}
+
+.progress__item-button[aria-selected="true"] {
+    --button-text-clr: var(--accent);
+}
+
+.progress__list li:not(:nth-last-child(-n+2)) .progress__item-button {
+    border-bottom: var(--button-border-size) solid currentColor;
+}
+
+.progress__item-button:focus-visible {
+    --outline-color: var(--accent-dark);
+    --button-clr: color-mix(in srgb, var(--accent) 80%, white 20%);
+}
+
+div.footer__nav-tooltip {
+    --tooltip-bg: var(--accent);
+    color: var(--clr-background);
+}

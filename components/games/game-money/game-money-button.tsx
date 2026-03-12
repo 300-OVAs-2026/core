@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
-import { cloneElement, FC } from 'react';
+import { cloneElement } from 'react';
 
 import { useGameMoneyActivityContext } from './game-money-context';
 
@@ -8,7 +7,7 @@ interface Props {
   children: React.ReactElement;
 }
 
-export const GameMoneytButton: FC<Props> = ({ type, children }) => {
+export const GameMoneytButton: React.FC<Props> = ({ type, children }) => {
   const { handleValidation, handleReset, button, validation, result } = useGameMoneyActivityContext();
 
   return cloneElement(children, {
@@ -18,7 +17,7 @@ export const GameMoneytButton: FC<Props> = ({ type, children }) => {
       if (children.props.onClick) {
         children.props.onClick(event);
       }
-      type === 'reset' ? handleReset() : handleValidation();
+      (type === 'reset' ? handleReset : handleValidation)();
     }
   });
 };

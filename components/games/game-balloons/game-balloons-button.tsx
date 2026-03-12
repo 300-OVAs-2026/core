@@ -1,6 +1,6 @@
 import { cloneElement } from 'react';
 
-import { SectionNavigation } from '@/shared/core/utils/section-navigation';
+import { SectionNavigation } from '@shared/utils/section-navigation';
 
 import { useGameBalloonsContext } from './game-balloons-context';
 

@@ -1,112 +1,137 @@
-import { FC, useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 
-import type { InitialState, Option as OptionType } from './types/types';
-import { SpaceButton } from './game-button';
-import { RadioSpace } from './game-element';
+import { GameSpaceButton } from './game-space-button';
 import { GameSpaceProvider } from './game-space-context';
+import { GameSpaceGalaxy } from './game-space-galaxy';
+import { GameSpaceRadio } from './game-space-radio';
+
+import type { InitialState, Option } from './types/types';
+import { States } from './types/types';
 
 // Estado inicial de la actividad
-const INITIAL_STATE: InitialState = {
-    validation: false,
-    button: true,
-    result: false,
-    options: [],
-    selectedId: null
-};
+const INITIAL_STATE: InitialState = Object.freeze({
+  validation: false,
+  button: true,
+  result: false,
+  options: [],
+});
 
 interface Props {
-    children: JSX.Element | JSX.Element[];
-    options: OptionType[];
+  children: JSX.Element | JSX.Element[];
+  onResult?: ({ result, options }: { result: boolean; options: Option[] }) => void;
+  minSelected?: number; // Número mínimo de opciones que deben seleccionarse
 }
 
 type SubComponents = {
-    Button: typeof SpaceButton;
-    Option: typeof RadioSpace;
+  Button: typeof GameSpaceButton;
+  Galaxy: typeof GameSpaceGalaxy;
+  Radio: typeof GameSpaceRadio;
 };
 
+/**
+ * Componente principal para manejar actividades de selección (como cuestionarios).
+ * Proporciona un contexto para gestionar el estado de la actividad y manejar la validación.
+ */
+const GameSpace: React.FC<Props> & SubComponents = ({ children, onResult, minSelected = 1 }) => {
+  // Hook useReducer para manejar el estado de la actividad
+  const [activity, updateActivity] = useReducer(
+    (prev: InitialState, next: Partial<InitialState>) => ({ ...prev, ...next }),
+    INITIAL_STATE
+  );
 
-// Componente principal GameSpace
-const GameSpace: FC<Props> & SubComponents = ({ children, options }) => {
-    // Combina el estado inicial con las preguntas pasadas como props
-    const initialStateWithOptions = { ...INITIAL_STATE, options };
+  const elementsId = useRef<string[]>([]); // useRef para almacenar los IDs de los elementos
+  
 
-    /**
-     * Reducer para manejar el estado de la actividad.
-     * @param {InitialState} state - Estado actual.
-     * @param {Partial<InitialState>} action - Acción a aplicar.
-     * @returns {InitialState} El nuevo estado.
-     */
-    const reducer = (state: InitialState, action: Partial<InitialState>): InitialState => {
-        return { ...state, ...action };
-    };
+  /**
+   * Añade un ID de elemento al estado de la actividad.
+   * Si el ID no está presente en el array `elementsId`, lo agrega.
+   * @param uid - El ID del elemento a agregar.
+   */
+  const addOptionElementsId = (uid: string): void => {
+    if (!elementsId.current.includes(uid)) {
+      elementsId.current = [...elementsId.current, uid];
+    }
+  };
 
-    // Hook useReducer para manejar el estado de la actividad
-    const [activity, updateActivity] = useReducer(reducer, initialStateWithOptions);
+  /**
+   * Añade un valor de radio seleccionado al estado de la actividad.
+   * Filtra las opciones anteriores por nombre y agrega la nueva opción seleccionada.
+   * @param option - El objeto opción que contiene id, nombre y estado.
+   */
+   const addOptionValues = ({ id, name, state }: Option) => {
+    updateActivity({
+      options: [...activity.options.filter((option) => option.name !== name), { id, name, state }]
+    });
+  };
 
-    /**
-     * Agrega o actualiza los valores de una opción.
-     * @param {OptionType} option - Opción a actualizar.
-     */
-    const addOptionValues = (option : OptionType) => {
-        const updatedOptions = activity.options.map(opt =>
-            opt.id === option.id ? { ...opt, state: option.state } : opt
-        );
-        updateActivity({ options: updatedOptions });
-    };
+  /**
+   * Maneja la validación de la actividad.
+   * Verifica si todas las opciones seleccionadas son correctas y actualiza el estado con el resultado.
+   */
+  const handleValidation = () => {
+    updateActivity({ validation: true, button: true });
 
-    /**
-     * Maneja la validación de la opción seleccionada.
-     */
-    const handleValidation = () => {
-        updateActivity({ validation: true, button: true }); 
+    const result = activity.options.every(({ state }) => state === States.SUCCESS);
 
-        const selectedOption = activity.options.find(opt => opt.id === activity.selectedId);
-        if (selectedOption) {
-            const isSuccess = selectedOption.state === 'success';
-            updateActivity({ result: isSuccess });
-        } else {
-            updateActivity({ result: false });
-        }
-    };
+    if (onResult) {
+      onResult({ result, options: activity.options });
+    }
 
-    /**
-     * Maneja el reinicio del estado de la actividad.
-     */
-    const handleReset = () => {
-        updateActivity({ ...INITIAL_STATE, options });
-    };
+    updateActivity({ result });
+  };
 
-    /**
-     * Agrega el ID del elemento seleccionado.
-     * @param {string | null} id - ID del elemento seleccionado.
-     */
-    const addOptionElementsId = (id: string | null): void => {
-        updateActivity({ selectedId: id });
-    };
+  /**
+   * Reinicia la actividad al estado inicial.
+   * Resetea el estado de la actividad y el ID del elemento seleccionado.
+   */
+  const handleReset = () => {
+    activity.options.forEach(({ id }) => {
+      // Busca el elemento del DOM correspondiente al nombre de opción y tipo de input 'radio'
+      const element = document.querySelector(`input[type='radio'][id='${id}']`) as HTMLInputElement;
 
-    // Efecto para habilitar el botón "Comprobar" solo si hay una opción seleccionada
-    useEffect(() => {
-        if (activity.selectedId!==null && !activity.validation) {
-            updateActivity({ button: false });
-        }
-    }, [activity.validation, activity.selectedId]);
+      if (element) {
+        // Si se encuentra el elemento, establece su propiedad 'checked' en false para deseleccionarlo
+        element.checked = false;
+      }
+    });
+    updateActivity(INITIAL_STATE);
+  };
 
-    return(
-        <GameSpaceProvider
-        value={{ 
-            ...activity, 
-            addOptionValues,
-            handleValidation,
-            handleReset,
-            addOptionElementsId, 
-        }}>
-            {children}
-        </GameSpaceProvider>
+  /**
+   * Monitorea los cambios en las opciones seleccionadas.
+   * Si se alcanza el número mínimo de opciones seleccionadas, activa el botón.
+   */
+  useEffect(() => {
+    if (!activity.options.length) return;
 
-    );
+    const MIN_SELECTED = minSelected || Math.ceil(elementsId.current.length / 2);
+
+    if (activity.options.length >= MIN_SELECTED && !activity.validation) {
+      updateActivity({ button: false });
+    }
+  }, [activity.options, activity.validation, elementsId, minSelected]);
+
+  return (
+    <GameSpaceProvider
+      value={{
+        addOptionElementsId,
+        addOptionValues,
+        handleValidation,
+        handleReset,
+        button: activity.button,
+        result: activity.result,
+        validation: activity.validation,
+        options: activity.options
+      }}
+    >
+      {children}
+    </GameSpaceProvider>
+  );
 };
 
-GameSpace.Button = SpaceButton;
-GameSpace.Option = RadioSpace;
+// Asignar los subcomponentes
+GameSpace.Button = GameSpaceButton;
+GameSpace.Galaxy = GameSpaceGalaxy;
+GameSpace.Radio = GameSpaceRadio;
 
 export { GameSpace };

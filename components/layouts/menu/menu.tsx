@@ -1,0 +1,167 @@
+import { useState } from 'react';
+import { useA11y } from '@features/a11y-overlay/hooks/useA11y';
+import { Icon } from '@ui';
+import { motion } from 'motion/react';
+import { Link } from 'wouter';
+
+import { cn } from '@/shared/utils';
+import { useGamificationStore } from '@/store/gamification-store';
+import { useOvaStore } from '@/store/ova-store';
+
+import { i18n } from './lib/constant';
+import { MenuButtonInterpreter } from './menu-button-interpreter';
+
+import css from './menu.module.css';
+
+export const Menu = () => {
+  const lang = useOvaStore((state) => state.lang);
+  const medals = useGamificationStore((state) => state.totalMedals);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const { config, setConfig } = useA11y();
+
+  const handleOpen = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const setAudioDescription = (value: boolean) => {
+    setConfig('audio', value);
+  };
+
+  return (
+    <>
+      <nav role="navigation" aria-label={i18n[lang].nav} className={css['menu']}>
+        <div className={css['menu__controls']}>
+          <button
+            className={css['menu__button--hamburger']}
+            aria-controls="main-menu"
+            aria-label="Menú principal"
+            aria-expanded={isOpen}
+            onClick={handleOpen}>
+            <svg viewBox="0 0 206.341 235.122" className={css['svg-background']} clipPathUnits="objectBoundingBox">
+              <polygon points="0 0 205.414 0 205.414 148.231 79.562 219.324 0 173.945"></polygon>
+              <path
+                d="M 196.072 0 L 196.072 162.634 L 79.964 232.316 L 0 185.129"
+                fill="none"
+                stroke="#FFFFFF"
+                strokeWidth="2"></path>
+            </svg>
+            <svg viewBox="0 0 80 64" className={css['svg-hamburger']}>
+              <motion.line
+                initial={false}
+                animate={{
+                  x1: isOpen ? 10 : 5,
+                  y1: isOpen ? 5 : 16,
+                  x2: isOpen ? 70 : 40,
+                  y2: isOpen ? 60 : 16
+                }}
+                transition={{ duration: 0.3, ease: [0.64, 0.01, 0.25, 1.0] }}
+              />
+              <motion.line
+                initial={false}
+                animate={{
+                  x1: 5,
+                  y1: 34.5,
+                  x2: isOpen ? 5 : 55,
+                  y2: 34.5,
+                  opacity: isOpen ? 0 : 1
+                }}
+                transition={{ duration: 0.3, ease: [0.64, 0.01, 0.25, 1.0] }}
+              />
+              <motion.line
+                initial={false}
+                animate={{
+                  x1: isOpen ? 10 : 5,
+                  y1: isOpen ? 60 : 53,
+                  x2: isOpen ? 70 : 40,
+                  y2: isOpen ? 5 : 53
+                }}
+                transition={{ duration: 0.3, ease: [0.64, 0.01, 0.25, 1.0] }}
+              />
+            </svg>
+
+            <span className="u-sr-only">Menu</span>
+          </button>
+
+          <button
+            className={cn(css['menu__button'], css['menu__button--diagonal-cut'])}
+            style={{ '--bg-color': 'var(--primary-400)' } as React.CSSProperties}
+            aria-label="Activar audio"
+            onClick={() => setAudioDescription(!config.audio)}>
+            <span className={css['menu__button-content']}>
+              {config.audio ? <Icon name="pause" /> : <Icon name="play" />}
+              <span>{config.audio ? i18n[lang].audioActive : i18n[lang].audioPause}</span>
+            </span>
+          </button>
+
+          <MenuButtonInterpreter />
+
+          <div
+            className={cn(css['menu__button'], css['menu__button--double-diagonal-cut'])}
+            style={{ '--bg-color': 'var(--accent)' } as React.CSSProperties}>
+            <span className={css['menu__button-content']}>
+              <Icon name="award" />
+              <span>
+                {medals} {i18n[lang].badges}
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <motion.div
+            className={css['menu__overlay']}
+            initial={false}
+            animate={{ opacity: isOpen ? 1 : 0, pointerEvents: isOpen ? 'auto' : 'none' }}
+            transition={{ duration: 0.4, ease: [0.64, 0.01, 0.25, 1.0] }}
+          />
+          <motion.div
+            className={css['menu__wrapper']}
+            initial={false}
+            animate={{
+              opacity: isOpen ? 1 : 0,
+              y: isOpen ? 0 : -20,
+              pointerEvents: isOpen ? 'auto' : 'none'
+            }}
+            transition={{
+              duration: 0.4,
+              ease: [0.64, 0.01, 0.25, 1.0]
+            }}>
+            <ul role="list" className={css['menu__list']}>
+              <li className={css['menu__item']}>
+                <Link to="/" className={css['menu__link']}>
+                  <Icon name="home" />
+                  <span>{i18n[lang].home}</span>
+                </Link>
+              </li>
+              <li className={css['menu__item']}>
+                <Link to="/menu" className={css['menu__link']}>
+                  <Icon name="menu" />
+                  <span>{i18n[lang].menu}</span>
+                </Link>
+              </li>
+              <li className={css['menu__item']}>
+                <Link to="/" className={css['menu__link']}>
+                  <Icon name="a11y" />
+                  <span>{i18n[lang].a11y}</span>
+                </Link>
+              </li>
+              <li className={css['menu__item']}>
+                <Link to="/notes" className={css['menu__link']}>
+                  <Icon name="notes" />
+                  <span>{i18n[lang].notes}</span>
+                </Link>
+              </li>
+              <li className={css['menu__item']}>
+                <Link to="/help" className={css['menu__link']}>
+                  <Icon name="help" />
+                  <span>{i18n[lang].help}</span>
+                </Link>
+              </li>
+            </ul>
+          </motion.div>
+        </div>
+      </nav>
+    </>
+  );
+};

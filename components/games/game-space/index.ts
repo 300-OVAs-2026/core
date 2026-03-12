@@ -1,1 +1,1 @@
-export { GameSpace } from "./game-space";
+export { GameSpace } from './game-space';

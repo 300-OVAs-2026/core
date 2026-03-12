@@ -1,24 +1,32 @@
-import { Row } from 'books-ui';
+import { cloneElement } from 'react';
 
-import { useOvaContext } from '@/context/ova-context';
-import { Button } from '@/shared/ui/components';
-
-import { i18n } from './const';
+import { useGameCasinoProvider } from './game-casino-context';
 
 interface Props {
-  disabledButton: { reset: boolean; activity: boolean };
-  handleValidate: () => void;
-  handleReset: () => void;
+  type?: 'reset';
+  children: React.ReactElement;
 }
 
-const GameCasinoButton = ({ disabledButton, handleValidate, handleReset }: Props) => {
-  const { lang } = useOvaContext();
-  return (
-    <Row justifyContent="center" alignItems="center" addClass="u-gap-4">
-      <Button disabled={disabledButton.activity} onClick={handleValidate} label={i18n[lang].check} />
-      <Button disabled={disabledButton.reset} onClick={handleReset} label={i18n[lang].reset} />
-    </Row>
-  );
-};
+export const GameCasinoButton = ({ type, children }: Props) => {
+  const { handleValidation, handleReset, button, validation } = useGameCasinoProvider();
 
-export default GameCasinoButton;
+  const handleClick = (e: React.MouseEvent) => {
+    // 1. Ejecutamos el onClick del hijo si existe
+    children.props.onClick?.(e);
+
+    // 2. Cambiamos el ternario por un if/else para que sea una instrucción válida
+    if (type === 'reset') {
+      handleReset();
+    } else {
+      handleValidation();
+    }
+  };
+
+  const isDisabled = type === 'reset' ? !validation : validation || button;
+
+  return cloneElement(children, {
+    ...children.props,
+    disabled: isDisabled,
+    onClick: handleClick
+  });
+};

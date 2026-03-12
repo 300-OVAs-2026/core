@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { FullScreenButton } from '@core/components';
-import { useA11yAttribute, useReduceMotion } from '@core/hooks';
 
-import { BUSH, CLOUDS, MOUNTAINS, SKY } from './const';
+import { useA11yAttribute, useReduceMotion } from '@shared/hooks';
+
+import { BUSH, CLOUDS, MOUNTAINS, SKY } from './lib/constant';
 
 import css from './game-balloons.module.css';
 
@@ -91,7 +91,6 @@ export const GameBalloonsParallax: React.FC<Props> = ({ children }) => {
 
       {/* Bush  */}
       <img src={safeSrc(BUSH)} className={css.image_depth} ref={refDeph1} alt="Arboles" />
-      <FullScreenButton elementId="fullscreen__section" addClass={css.fullScreen__button} />
 
       {children}
     </div>

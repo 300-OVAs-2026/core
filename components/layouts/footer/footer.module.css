@@ -1,0 +1,76 @@
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 160px;
+    min-height: 150px;
+}
+
+
+.figure-circle,
+.figure-triangle {
+    aspect-ratio: 1;
+    pointer-events: none;
+    position: absolute;
+    width: 200px;
+    height: auto;
+    background-color: var(--bg-color);
+}
+
+.figure-circle {
+    --bg-color: var(--secondary-100);
+    box-shadow: 0 0 .625rem 0 var(--secondary-300);
+    bottom: 60%;
+    left: 67%;
+    border-radius: 50%;
+}
+
+.figure-triangle {
+    --bg-color: var(--accent);
+    top: -13%;
+    left: 30%;
+    transform: rotate(45deg);
+}
+
+.button {
+    --padding-block: 1rem;
+    padding-block: var(--padding-block);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 1;
+    font-weight: 500;
+    color: currentColor;
+    text-decoration: none;
+    text-transform: capitalize;
+}
+
+.icon {
+    display: block;
+    width: auto;
+    height: 5rem;
+}
+
+.icon__dash {
+    fill: none;
+    stroke: hsl(0, 0%, 100%);
+    filter: drop-shadow(0 0 30px hsl(0, 0%, 100%));
+    stroke-width: 34;
+    stroke-dasharray: 75 60;
+    stroke-dashoffset: -50;
+    opacity: 0.5;
+}
+
+.icon__shadow {
+    filter: drop-shadow(0 0 6px #fff);
+}
+
+.button__text {
+    position: absolute;
+    bottom: calc(var(--padding-block) - .5rem);
+}

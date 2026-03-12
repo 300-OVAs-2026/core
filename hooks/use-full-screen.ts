@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react"
+
 
 /**
  * Hook personalizado para gestionar la funcionalidad de pantalla completa para un elemento específico identificado por su ID.
@@ -15,17 +16,17 @@ import { useEffect, useRef, useState } from 'react';
  * @returns {Array} isFullScreen - Booleano que indica si el elemento está en pantalla completa o no.
  * @returns {Array} toggleFullScreen - Función para alternar el estado de pantalla completa del elemento.
  */
-export const useFullScreen = (uid: HTMLDivElement | null): [boolean, () => void] => {
+export const useFullScreen = (uid: string): [boolean, () => void] => {
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
   const elementRef = useRef<HTMLElement>();
 
   // Función para obtener el elemento por su ID
-  const getElement = (uid: HTMLDivElement | null): HTMLElement | undefined => {
+  const getElement = (uid: string): HTMLElement | undefined => {
     if (!elementRef.current && uid) {
-      elementRef.current = uid;
+      elementRef.current = document.getElementById(uid) as HTMLElement;
     }
     return elementRef.current;
-  };
+  }
 
   // Función para alternar el estado de pantalla completa del elemento
   const handleFullScreen = () => {
@@ -43,6 +44,7 @@ export const useFullScreen = (uid: HTMLDivElement | null): [boolean, () => void]
       // Si no está en pantalla completa, solicitar pantalla completa para el elemento
       element.requestFullscreen();
       changeFullScreen = true;
+
     } else {
       // Si ya está en pantalla completa, salir de pantalla completa
       document.exitFullscreen();
@@ -50,21 +52,22 @@ export const useFullScreen = (uid: HTMLDivElement | null): [boolean, () => void]
     }
 
     setIsFullScreen(changeFullScreen);
-  };
+  }
 
   useEffect(() => {
     const handleFullScreenChange = () => {
       if (!document.fullscreenElement && isFullScreen) {
         setIsFullScreen(false);
       }
-    };
+    }
 
-    document.addEventListener('fullscreenchange', handleFullScreenChange);
+    document.addEventListener("fullscreenchange", handleFullScreenChange);
 
     return () => {
-      document.removeEventListener('fullscreenchange', handleFullScreenChange);
-    };
+      document.removeEventListener("fullscreenchange", handleFullScreenChange);
+    }
   }, [uid, isFullScreen]);
 
+
   return [isFullScreen, handleFullScreen];
-};
+}

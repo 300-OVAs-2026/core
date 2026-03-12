@@ -1,7 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react';
 
-import { BACKGROUND, POSTER } from './const';
 import { useGameQuestionContext } from './game-question-context';
+import { BACKGROUND, POSTER } from './lib/constant';
 
 import css from './game-question.module.css';
 

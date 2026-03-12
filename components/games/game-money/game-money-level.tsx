@@ -1,9 +1,8 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { FullScreenAlert } from '@features/full-screen-alert';
 
-import { FullScreenAlert, FullScreenButton } from '../../ui';
-
-import { BACKGROUND, CHARACTER, MONEY } from './const';
 import { useGameMoneyActivityContext } from './game-money-context';
+import { BACKGROUND, CHARACTER, MONEY } from './lib/constant';
 
 import css from './game-money.module.css';
 
@@ -119,10 +118,8 @@ export const GameMoneyLevel: React.FC<Props> = ({ children, label, addClass, ...
         className={` ${css['background']} u-flow ${addClass ? addClass : ''}`}
         {...props}
         role="group"
-        id="fullscreen_money"
         aria-labelledby="question-text"
         style={{ '--bg-image': `url("${bg}")` } as React.CSSProperties}>
-        <FullScreenButton elementId="fullscreen_money" addClass={css.fullScreen__button} />
         <div className={css['options-container']} ref={optionsRef}>
           {children}
         </div>
