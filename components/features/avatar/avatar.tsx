@@ -21,7 +21,7 @@ export const Avatar: React.FC<Props> = ({ variation, title = '', alt = '', size,
   const selectedAvatarId = useOvaStore((state) => state.selectedAvatarId);
 
   const avatar = AVATARS.find(({ id }) => id === selectedAvatarId);
-  const src = avatar ? `/assets/base/avatars/${avatar.id}/${avatar.name}-${variation}.webp` : '';
+  const src = avatar ? `assets/base/avatars/${avatar.id}/${avatar.name}-${variation}.webp` : '';
 
   return <Image title={title} alt={alt} size={size} hasHtml={hasHtml} noCaption={noCaption} src={src} {...props} />;
 };

@@ -47,7 +47,7 @@ export const ChoiceAvatar = () => {
                   {group.map((avatar) => (
                     <li key={avatar.id} className={css['avatar-item']}>
                       <img
-                        src={`/assets/base/avatars/${avatar.id}/${avatar.name}-${AvatarVariation.GREETING}.webp`}
+                        src={`assets/base/avatars/${avatar.id}/${avatar.name}-${AvatarVariation.GREETING}.webp`}
                         alt={avatar.name}
                         className={css['avatar-image']}
                       />
