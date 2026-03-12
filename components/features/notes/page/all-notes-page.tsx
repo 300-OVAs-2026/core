@@ -173,7 +173,7 @@ export const AllNotes = () => {
               </div>
 
               <div className={css['export-section']}>
-                <Button uiType="download" label="Descargar TXT" onClick={handleExportTXT} />
+                <Button variant="download" label="Descargar TXT" onClick={handleExportTXT} />
 
                 <PDFDownloadLink
                   document={<NotePDFDocument notes={pdfData.notes} pageTitle={pdfData.title} />}
@@ -181,7 +181,7 @@ export const AllNotes = () => {
                   className={css['export-button-link']}>
                   {({ loading }) => (
                     <Button
-                      uiType="download"
+                      variant="download"
                       label={loading ? 'Preparando PDF...' : 'Exportar PDF'}
                       disabled={loading}
                     />

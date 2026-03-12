@@ -24,7 +24,7 @@ export interface UseGamificationReturn {
    * @example
    * ```tsx
    * <Selects.Button type="reset">
-   *   <Button label="REINTENTAR" uiType="reset" onClick={notifyReset} />
+   *   <Button label="REINTENTAR" variant="reset" onClick={notifyReset} />
    * </Selects.Button>
    * ```
    */
@@ -45,7 +45,7 @@ export interface UseGamificationReturn {
  * <Stars />
  * <Selects onResult={({ result }) => reportResult(result)}>
  *   <Selects.Button type="reset">
- *     <Button label="REINTENTAR" uiType="reset" onClick={notifyReset} />
+ *     <Button label="REINTENTAR" variant="reset" onClick={notifyReset} />
  *   </Selects.Button>
  * </Selects>
  * {Modal}

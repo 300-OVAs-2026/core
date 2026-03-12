@@ -77,7 +77,7 @@ export const GamificationModal: React.FC<Props> = ({ id, isOpen, onClose, correc
         {onRestart && (
           <Button
             label={t.restart}
-            uiType="reset"
+            variant="reset"
             onClick={() => {
               onClose();
               onRestart();

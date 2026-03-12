@@ -48,7 +48,7 @@ export const Help = () => {
                     : 'To navigate the platform, activate the guided tour by clicking the button below. It will walk you through the main features and functions.'}
                 </p>
                 <Button
-                  uiType="next"
+                  variant="next"
                   label={isEs ? 'Iniciar recorrido' : 'Start tour'}
                   addClass="u-text-upper"
                   onClick={() => {
