@@ -22,25 +22,25 @@ interface Props {
   onClose: () => void;
 }
 
-const variants = {
-  hidden: { opacity: 0, x: -600 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      ease: 'easeOut',
-      duration: 0.25
-    }
-  },
-  exit: {
-    opacity: 0,
-    x: -600,
-    transition: {
-      ease: 'easeInOut',
-      duration: 0.2
-    }
-  }
-};
+// const variants = {
+//   hidden: { opacity: 0, x: -600 },
+//   visible: {
+//     opacity: 1,
+//     x: 0,
+//     transition: {
+//       ease: 'easeOut',
+//       duration: 0.25
+//     }
+//   },
+//   exit: {
+//     opacity: 0,
+//     x: -600,
+//     transition: {
+//       ease: 'easeInOut',
+//       duration: 0.2
+//     }
+//   }
+// };
 
 export const A11yOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
   const lang = useOvaStore((state) => state.lang);
@@ -99,7 +99,7 @@ export const A11yOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
             onKeyDown={handleKeyDown}
             aria-labelledby={`a11y-overlay-${uid}`}
             className={css['modal']}
-            variants={variants}
+            // variants={variants}
             initial="hidden"
             animate="visible"
             exit="exit">
