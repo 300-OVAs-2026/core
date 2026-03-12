@@ -81,10 +81,10 @@ export const BridgeSvg: React.FC<Props> = ({ count, itemsPerRow, totalCols, svgC
   return (
     <svg className={svgClass} viewBox={`0 0 ${vbW} ${vbH}`} xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       {/* 1. CAPA INFERIOR: Actúa como los bordes exteriores */}
-      <path d={pathD} className={css['bridge-path-outer']} />
+      <path d={pathD} className={css['learning-path__bridge-path--outer']} />
 
       {/* 2. CAPA SUPERIOR: Actúa como el relleno central */}
-      <path d={pathD} className={css['bridge-path-inner']} />
+      <path d={pathD} className={css['learning-path__bridge-path--inner']} />
     </svg>
   );
 };

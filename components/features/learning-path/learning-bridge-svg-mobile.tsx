@@ -69,8 +69,8 @@ export const BridgeSvgMobile: React.FC<Props> = ({ count, svgClass }) => {
 
   return (
     <svg className={svgClass} viewBox={`0 0 ${vbW} ${vbH}`} xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <path d={pathD} className={css['bridge-path-outer']} />
-      <path d={pathD} className={css['bridge-path-inner']} />
+      <path d={pathD} className={css['learning-path__bridge-path--outer']} />
+      <path d={pathD} className={css['learning-path__bridge-path--inner']} />
     </svg>
   );
 };

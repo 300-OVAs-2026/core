@@ -7,6 +7,5 @@ export * from './image';
 export * from './img-container';
 export * from './loader';
 export * from './modal';
-export * from './video';
 export * from './toast';
-export * from './tooltip';
+export * from './video';
