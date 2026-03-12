@@ -4,9 +4,9 @@ import type { Rule } from 'unocss';
 // DISPLAY UTILITIES
 // ============================================
 export const display: Rule[] = [
-  ['u-flex', { display: 'flex' }],
+  ['u-d-flex', { display: 'flex' }],
   ['u-inline-flex', { display: 'inline-flex' }],
-  ['u-grid', { display: 'grid' }],
+  ['u-d-grid', { display: 'grid' }],
   ['u-inline-grid', { display: 'inline-grid' }],
   ['u-block', { display: 'block' }],
   ['u-inline-block', { display: 'inline-block' }],
