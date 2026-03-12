@@ -10,8 +10,13 @@ export const colorNames = [
   'white',
   'black',
   'transparent',
+  'success',
+  'success-light',
+  'error',
+  'error-light',
   
   // Primary scale
+  'primary-50',
   'primary-100',
   'primary-200',
   'primary-300',
@@ -21,8 +26,10 @@ export const colorNames = [
   'primary-700',
   'primary-800',
   'primary-900',
+  'primary-950',  
   
   // Secondary scale
+  'secondary-50',
   'secondary-100',
   'secondary-200',
   'secondary-300',
@@ -32,8 +39,10 @@ export const colorNames = [
   'secondary-700',
   'secondary-800',
   'secondary-900',
+  'secondary-950',
   
   // Accent scale
+  'accent-50',
   'accent-100',
   'accent-200',
   'accent-300',
@@ -42,5 +51,6 @@ export const colorNames = [
   'accent-600',
   'accent-700',
   'accent-800',
-  'accent-900'
+  'accent-900',
+  'accent-950'
 ];
