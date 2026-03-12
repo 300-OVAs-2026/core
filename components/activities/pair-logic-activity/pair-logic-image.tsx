@@ -7,6 +7,13 @@ import { useGameJoinContext } from './pair-logic-context';
 
 import css from './pair-logic.module.css';
 
+interface ChildProps {
+  id: string;
+  children?: React.ReactNode;
+  disabled?: boolean;
+  onClick?: () => void;
+}
+
 export const PairLogicImage = ({ children }: { children: React.ReactNode }) => {
   const { imageSelected, lockedJoins, updateActivity, validation, endActivity } = useGameJoinContext();
   const imageRef = useRef<HTMLDivElement | null>(null);
@@ -24,7 +31,7 @@ export const PairLogicImage = ({ children }: { children: React.ReactNode }) => {
   };
 
   const enhancedChildren = React.Children.map(children, (child) => {
-    if (!React.isValidElement(child)) return child;
+    if (!React.isValidElement<ChildProps>(child)) return child;
     const join = child.props.id;
     const isLocked = lockedJoins.includes(join);
 

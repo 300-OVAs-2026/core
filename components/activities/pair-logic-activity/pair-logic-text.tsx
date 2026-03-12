@@ -6,6 +6,14 @@ import { useGameJoinContext } from './pair-logic-context';
 
 import css from './pair-logic.module.css';
 
+interface ChildProps {
+  id: string;
+  children?: React.ReactNode;
+  disabled?: boolean;
+  'aria-checked'?: boolean;
+  onClick?: () => void;
+}
+
 interface Props {
   children: React.ReactNode;
 }
@@ -22,7 +30,7 @@ export const PairLogicText = ({ children, ...props }: Props) => {
   };
   const enhancedChildren = React.Children.map(children, (child) => {
     const interactionLocked = validation !== null || endActivity;
-    if (!React.isValidElement(child)) return child;
+    if (!React.isValidElement<ChildProps>(child)) return child;
     const isLocked = lockedJoins.includes(child.props.id);
     return React.cloneElement(child, {
       disabled: isLocked || interactionLocked,
