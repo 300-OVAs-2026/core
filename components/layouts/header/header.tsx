@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useHashLocation } from 'wouter/use-hash-location';
 
 import { Menu } from '../menu';
 
 import { HeaderProvider } from './header-context';
+import { HOME_PATH } from './lib/constant';
 
 import type { PropertyType } from './types/types';
 import { type MenuExpanded, MenuOptions } from './types/types';
@@ -10,6 +12,7 @@ import { type MenuExpanded, MenuOptions } from './types/types';
 import css from './header.module.css';
 
 export const Header = () => {
+  const [location] = useHashLocation();
   const [expanded, setExpanded] = useState<MenuExpanded>({
     menu: false,
     help: false,
@@ -46,7 +49,7 @@ export const Header = () => {
           <Menu />
           <div className={css['logo']}>
             <img
-              src="assets/base/logo.svg"
+              src={`assets/base/${location === HOME_PATH ? 'logo-dark' : 'logo'}.svg`}
               alt="UNAD: Universidad Nacional Abierta y a Distancia"
               className="u-px-2"
               width={250}
