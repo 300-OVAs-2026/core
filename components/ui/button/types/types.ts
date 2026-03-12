@@ -1,8 +1,1 @@
-export type ButtonVariant =
-  | "primary"
-  | "secondary"
-  | "reset"
-  | "check"
-  | "select"
-  | "download"
-  | "next";
+export type ButtonVariant = 'secondary' | 'reset' | 'check' | 'select' | 'download' | 'next';

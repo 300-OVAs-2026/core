@@ -1,28 +1,38 @@
-import { useId } from "react";
-import type { ButtonProps as ButtonPropsUI } from "books-ui";
-import { Button as ButtonUI } from "books-ui";
+import { useId } from 'react';
+import type { ButtonProps as ButtonPropsUI } from 'books-ui';
+import { Button as ButtonUI } from 'books-ui';
 
-import { icons } from "./icons";
+import { cn } from '@/shared/utils';
 
-import type { ButtonVariant } from "./types/types";
+import { Icon } from '../icon';
 
-import css from "./button.module.css";
+import type { ButtonVariant } from './types/types';
 
-interface Props extends ButtonPropsUI {
+import css from './button.module.css';
+
+interface Props extends Omit<ButtonPropsUI, 'variant'> {
   addClass?: string;
-  uiType?: ButtonVariant;
+  variant?: ButtonVariant;
+  icon?: React.ReactNode;
+  iconPosition?: 'left' | 'right';
 }
 
-export const Button: React.FC<Props> = ({
-  addClass,
-  label,
-  uiType = "primary",
-  ...props
-}) => {
+export const Button: React.FC<Props> = ({ addClass, label, variant, icon, iconPosition, ...props }) => {
   const id = useId();
 
   const gradientLeft = `borderGradientLeft-${id}`;
   const gradientRight = `borderGradientRight-${id}`;
+
+  const ICON_MAP: Record<Exclude<ButtonVariant, 'secondary'>, JSX.Element> = {
+    reset: <Icon name="button-reset"/>,
+    check: <Icon name="button-reset"/>,
+    select: <Icon name="button-select"/>,
+    download: <Icon name="button-download"/>,
+    next: <Icon name="button-next"/>,
+  };
+
+  const resolvedIcon = icon ?? (variant && variant !== 'secondary' ? ICON_MAP[variant] : null);
+  const resolvedPosition = iconPosition ?? (variant === 'next' ? 'right' : 'left');
 
   return (
     <div className={css.wrapper}>
@@ -44,18 +54,9 @@ export const Button: React.FC<Props> = ({
       </svg>
 
       {/* BOTÓN */}
-      <ButtonUI
-        addClass={`${css.button} ${addClass ?? ""}`}
-        label={label}
-        {...props}
-        hasAriaLabel
-        data-type={uiType}
-      >
-        {uiType !== "next" && icons[uiType]}
-
-        <span>{label}</span>
-
-        {uiType === "next" && icons[uiType]}
+      <ButtonUI addClass={cn(css.button, addClass)} label={label} {...props} hasAriaLabel data-type={variant}>
+        {resolvedIcon && <span data-icon-position={resolvedPosition}>{resolvedIcon}</span>}
+        <span className={css['button__label']}>{label}</span>
       </ButtonUI>
 
       {/* SVG derecho */}
