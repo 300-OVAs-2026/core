@@ -1,3 +1,8 @@
+.instruction {
+    max-width: 80ch;
+    text-align: center;
+}
+
 .panel {
     display: flex;
     justify-content: center;

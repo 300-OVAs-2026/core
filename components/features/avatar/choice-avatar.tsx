@@ -30,7 +30,7 @@ export const ChoiceAvatar = () => {
 
   return (
     <Content withOutTitle>
-      <p>Selecciona un avatar para el transcurso del OVA. Esta elección es única.</p>
+      <p className={css['instruction']}>Selecciona un avatar para el transcurso del OVA. Puedes cambiarlo en cualquier momento. Una vez que selecciones un avatar, presiona el botón <strong>Menú</strong> para continuar.</p>
 
       <Panel>
         {sections.map((group, sectionIndex) => (
