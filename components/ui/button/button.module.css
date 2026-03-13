@@ -29,8 +29,7 @@ button.button {
     transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-button.button[data-type='check'],
-button.button[data-type='secondary'] {
+button.button:is([data-type='check'],[data-type='secondary'], [data-type='credits']) {
   --button-text-color: var(--white);
   --button-bg-color: var(--primary-900);
   --outline-color: var(--primary-900);
@@ -68,8 +67,7 @@ button.button svg {
   transition: color 200ms ease;
 }
 
-.wrapper:has(button[data-type='check']),
-.wrapper:has(button[data-type='secondary']) {
+.wrapper:has(button:is([data-type='check'],[data-type='secondary'], [data-type='credits'])) {
   --linear-svg: var(--primary-800);
 }
 
