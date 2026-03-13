@@ -15,6 +15,7 @@ button.button {
   cursor: default;
   font-weight: bold;
   border-radius: 0rem;
+  text-transform: uppercase;
   clip-path: polygon(0 var(--corner),
       var(--corner) 0,
       calc(100% - var(--corner)) 0,
