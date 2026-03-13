@@ -194,3 +194,8 @@ button.button .button__label::before {
   background: var(--line);
   border-radius: 50%;
 }
+
+.no-fill {
+  fill: none;
+  stroke: currentColor;
+}

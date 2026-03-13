@@ -1,6 +1,7 @@
 import { useId } from 'react';
 import type { ButtonProps as ButtonPropsUI } from 'books-ui';
-import { Button as ButtonUI } from 'books-ui';
+import { Button as ButtonUI, Icon as IconUI } from 'books-ui';
+import { FileText,User } from 'lucide-react'
 
 import { cn } from '@/shared/utils';
 
@@ -29,6 +30,8 @@ export const Button: React.FC<Props> = ({ addClass, label, variant, icon, iconPo
     select: <Icon name="button-select"/>,
     download: <Icon name="button-download"/>,
     next: <Icon name="button-next"/>,
+    bibliography: <IconUI><FileText className={css['no-fill']} /></IconUI>,
+    credits: <IconUI><User /></IconUI>,
   };
 
   const resolvedIcon = icon ?? (variant && variant !== 'secondary' ? ICON_MAP[variant] : null);
