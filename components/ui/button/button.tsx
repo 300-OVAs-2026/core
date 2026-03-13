@@ -25,7 +25,7 @@ export const Button: React.FC<Props> = ({ addClass, label, variant, icon, iconPo
 
   const ICON_MAP: Record<Exclude<ButtonVariant, 'secondary'>, JSX.Element> = {
     reset: <Icon name="button-reset"/>,
-    check: <Icon name="button-reset"/>,
+    check: <Icon name="button-check"/>,
     select: <Icon name="button-select"/>,
     download: <Icon name="button-download"/>,
     next: <Icon name="button-next"/>,

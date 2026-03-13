@@ -39,14 +39,33 @@ export const Option = ({ id, addClass, state, label, name, ...props }: Props) =>
     addRadioElementsId(uid);
   }, [uid, addRadioElementsId]);
 
+  const gradientLeft = useId();
+  const gradientRight = useId();
+
   return (
-    <div className={css['wrapper-radio']}>
+    <div className={css.wrapper}>
+      {/* SVG izquierdo */}
+      <svg className={css.leftBorder} viewBox="0 0 60 60">
+        <defs>
+          <linearGradient id={gradientLeft} gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="var(--linear-svg)" stopOpacity="1" />
+            <stop offset="100%" stopColor="var(--white)" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+
+        <path
+          d="M30 0 L18 0 L0 18 L0 42 L18 60 L30 60 L30 0"
+          stroke={`url(#${gradientLeft})`}
+          strokeWidth="2"
+          fill="none"
+        />
+      </svg>
+    <div className={`${css['wrapper-radio']}  ${addClass ?? ''}`}>
       <label htmlFor={reactId}>{label}</label>
       <input
         data-state={dataState}
         name={name}
         id={reactId}
-        className={`${addClass ?? ''}`}
         onChange={handleChange}
         disabled={validation}
         {...(validation && { state: STATES[state] })}
@@ -54,5 +73,24 @@ export const Option = ({ id, addClass, state, label, name, ...props }: Props) =>
         type="radio"
       />
     </div>
+
+    {/* SVG derecho */}
+      <svg className={css.rightBorder} viewBox="0 0 60 60">
+        <defs>
+          <linearGradient id={gradientRight} gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="var(--white)" stopOpacity="0" />
+            <stop offset="100%" stopColor="var(--linear-svg)" stopOpacity="1" />
+          </linearGradient>
+        </defs>
+
+        <path
+          d="M30 0 L42 0 L60 18 L60 42 L42 60 L30 60 L30 0"
+          stroke={`url(#${gradientRight})`}
+          strokeWidth="2"
+          fill="none"
+        />
+      </svg>
+    </div>
+    
   );
 };
