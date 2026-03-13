@@ -36,7 +36,7 @@ export const CoverTitle: React.FC<Props> = ({
   const lang = useOvaStore((state) => state.lang);
   const selectedAvatarId = useOvaStore((state) => state.selectedAvatarId);
 
-  const path = selectedAvatarId ? `/page-1` : '/avatar';
+  const path = selectedAvatarId ? `/menu` : '/avatar';
 
   useEffect(() => {
     setBackground(url);
