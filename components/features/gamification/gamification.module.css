@@ -5,10 +5,20 @@
 }
 
 /* Stars */
+.stars__wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
 .stars {
     display: inline-flex;
     align-items: center;
     gap: 0.125rem;
+    border-radius: 5rem;
+    padding-inline: 1rem;
+    background-color: var(--primary-700);
 }
 
 .star {
@@ -25,8 +35,8 @@
 
 .stars__count {
     font-weight: 700;
-    font-size: var(--fs-500, 1.125rem);
-    color: var(--clr-star);
+    font-size: var(--fs-400, 1.125rem);
+    color: white;
     margin-inline-start: 0.375rem;
 }
 
