@@ -1,6 +1,7 @@
 import { Content } from '@layouts';
-import { Button, Icon } from '@ui';
-import { Panel } from 'books-ui';
+import { Button } from '@ui';
+import { Icon, Panel } from 'books-ui';
+import { ChevronsLeft, ChevronsRight } from 'lucide-react';
 
 import { cn } from '@/shared/utils';
 import { useOvaStore } from '@/store/ova-store';
@@ -15,7 +16,7 @@ const AVATARS_PER_SECTION = 6;
 
 /**
  * Function to split the avatars into sections for the panel navigation.
- * 
+ *
  * @param avatars - List of avatars to be split into sections.
  * @param size - Number of avatars per section.
  * @returns An array of avatar sections, where each section is an array of avatars.
@@ -30,7 +31,10 @@ export const ChoiceAvatar = () => {
 
   return (
     <Content withOutTitle>
-      <p className={css['instruction']}>Selecciona un avatar para el transcurso del OVA. Puedes cambiarlo en cualquier momento. Una vez que selecciones un avatar, presiona el botón <strong>Menú</strong> para continuar.</p>
+      <p className={css['instruction']}>
+        Selecciona un avatar para el transcurso del OVA. Puedes cambiarlo en cualquier momento. Una vez que selecciones
+        un avatar, presiona el botón <strong>Menú</strong> para continuar.
+      </p>
 
       <Panel>
         {sections.map((group, sectionIndex) => (
@@ -39,7 +43,9 @@ export const ChoiceAvatar = () => {
               <div className={cn(css['panel__content'], 'u-wrapper')}>
                 <Panel.Button section={sectionIndex - 1}>
                   <button className={css['panel__navigation-button']} disabled={sectionIndex === 0}>
-                    <Icon name="chevrons-left" />
+                    <Icon>
+                      <ChevronsLeft className="u-fill-none" />
+                    </Icon>
                     <span className="u-sr-only">Anterior</span>
                   </button>
                 </Panel.Button>
@@ -61,7 +67,9 @@ export const ChoiceAvatar = () => {
                 </ul>
                 <Panel.Button section={sectionIndex + 1}>
                   <button className={css['panel__navigation-button']} disabled={sectionIndex === sections.length - 1}>
-                    <Icon name="chevrons-right" />
+                    <Icon>
+                      <ChevronsRight className="u-fill-none" />
+                    </Icon>
                     <span className="u-sr-only">Siguiente</span>
                   </button>
                 </Panel.Button>

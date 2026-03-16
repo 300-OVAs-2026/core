@@ -1,22 +1,51 @@
-import { Icon } from '@ui';
+import { Icon as IconUI } from 'books-ui';
+import { BookOpenText, Check, Flag, Medal, MonitorPlay, Puzzle, Sparkles } from 'lucide-react';
 
 import { OvaPageKind } from '@/types/types';
 
 export const getPageIcon = (kind: OvaPageKind) => {
   switch (kind) {
     case OvaPageKind.START:
-      return <Icon name="check" />;
+      return (
+        <IconUI>
+          <Check className="u-fill-none" />
+        </IconUI>
+      );
     case OvaPageKind.OBJECTIVE:
-      return <Icon name="sparkles" />;
+      return (
+        <IconUI>
+          <Sparkles className="u-fill-none" />
+        </IconUI>
+      );
     case OvaPageKind.VIDEO:
-      return <Icon name="video" />;
+      return (
+        <IconUI>
+          <MonitorPlay className="u-fill-none" />
+        </IconUI>
+      );
     case OvaPageKind.QUIZ:
-      return <Icon name="puzzle" />;
+      return (
+        <IconUI>
+          <Puzzle className="u-fill-none" />
+        </IconUI>
+      );
     case OvaPageKind.CONTENT:
-      return <Icon name="book-open-text" />;
+      return (
+        <IconUI>
+          <BookOpenText className="u-fill-none" />
+        </IconUI>
+      );
     case OvaPageKind.RESUME:
-        return <Icon name="medal" />;
+      return (
+        <IconUI>
+          <Medal className="u-fill-none" />
+        </IconUI>
+      );
     case OvaPageKind.FINISH:
-        return <Icon name="flag" />;
+      return (
+        <IconUI>
+          <Flag className="u-fill-none" />
+        </IconUI>
+      );
   }
 };

@@ -1,11 +1,11 @@
 import { forwardRef, useEffect, useMemo, useRef } from 'react';
-import { Icon } from '@ui';
-import { Tooltip, useMedia, usePanelContext as usePanel } from 'books-ui';
+import { Icon, Tooltip, useMedia, usePanelContext as usePanel } from 'books-ui';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { useInterpreter } from '@shared/hooks';
 import { eventUpdateTitle } from '@shared/utils';
-import { useOvaStore } from '@/store/ova-store';
 import { REMOVE_HTML_TAGS_REGEX } from '@/shared/constants';
+import { useOvaStore } from '@/store/ova-store';
 
 import { usePaginationRange } from './hooks/usePaginationRange';
 import { i18n } from './lib/constant';
@@ -176,7 +176,9 @@ export const PanelProgress = () => {
             className={`js-panel-previous-button ${css['progress__button']} ${css['progress__button--prev']}`}
             aria-label={i18n[lang].ariaPrev}
             disabled={currentSection <= FIRST_SECTION_INDEX}>
-            <Icon name="arrow-left-panel" />
+            <Icon>
+              <ChevronLeft />
+            </Icon>
             {i18n[lang].previous}
           </button>
         </li>
@@ -198,7 +200,9 @@ export const PanelProgress = () => {
             aria-label={i18n[lang].ariaNext}
             disabled={currentSection >= (LAST_SECTION_INDEX || 0)}>
             {i18n[lang].next}
-            <Icon name="arrow-right-panel" />
+            <Icon>
+              <ChevronRight />
+            </Icon>
           </button>
         </li>
       </ul>

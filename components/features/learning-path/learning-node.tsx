@@ -1,5 +1,5 @@
-import { Icon } from '@ui';
-import { Tooltip } from 'books-ui';
+import { Icon,Tooltip } from 'books-ui';
+import { Lock } from 'lucide-react';
 import { Link } from 'wouter';
 import { useHashLocation } from 'wouter/use-hash-location';
 
@@ -29,7 +29,9 @@ export const PageNode: React.FC<Props> = ({ page, isLocked }) => {
         <div className={css['learning-path__node-visual']} aria-hidden="true">
           <div className={css['learning-path__node-ring']}></div>
           <div className={css['learning-path__node-icon']}>
-            <Icon name="lock" />
+            <Icon>
+              <Lock className="u-fill-none" />
+            </Icon>
           </div>
         </div>
       </span>
