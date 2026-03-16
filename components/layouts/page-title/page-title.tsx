@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useId, useState } from 'react';
+import React, { useCallback, useEffect, useId, useState } from 'react';
 import { motion } from 'motion/react';
 import { useHashLocation } from 'wouter/use-hash-location';
 
@@ -10,7 +10,11 @@ import { PATH_REGEX } from './lib/constant';
 
 import css from './page-title.module.css';
 
-export const PageTitle = () => {
+interface Props {
+  stars?: React.ReactNode;
+}
+
+export const PageTitle: React.FC<Props> = ({ stars }) => {
   const [title, setTitle] = useState<{ title: string; number: string }>({ title: '', number: '' });
   const [index, setIndex] = useState(0);
   const uid = useId();
@@ -97,6 +101,7 @@ export const PageTitle = () => {
           aria-label="Progreso de la unidad">
           <div style={{ '--size': `${(visitedPages.length / pages.length) * 100}%` } as React.CSSProperties }></div>
         </div>
+        {stars}
       </div>
     </motion.div>
   );

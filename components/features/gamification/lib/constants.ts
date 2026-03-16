@@ -21,7 +21,8 @@ export const i18n = {
     correctLabel: 'Respuestas correctas.',
     medal: (n: number) => `Has ganado tu ${ordinales[n - 1] ?? `${n}ª`} insignia.`,
     restart: 'REINICIAR',
-    starsLabel: (n: number) => `${n} estrellas obtenidas`
+    starsLabel: (n: number) => `${n} estrellas obtenidas`,
+    gamificationStarsLabel: 'Estrellas de la actividad'
   },
   en: {
     title: 'GREAT!',
@@ -30,6 +31,7 @@ export const i18n = {
     correctLabel: 'Correct answers.',
     medal: (n: number) => `You earned your ${ordinals[n - 1] ?? `${n}th`} badge.`,
     restart: 'RESTART',
-    starsLabel: (n: number) => `${n} stars earned`
+    starsLabel: (n: number) => `${n} stars earned`,
+    gamificationStarsLabel: 'Activity stars'
   }
 };
