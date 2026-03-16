@@ -7,10 +7,6 @@ import { useOvaStore } from '@/store/ova-store';
 
 import css from './dev-toolbar.module.css';
 
-if (!import.meta.env.DEV) {
-  throw new Error('DevToolbar should only be rendered in development mode.');
-}
-
 export const DevToolbar: React.FC = () => {
   const [open, setOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
