@@ -44,7 +44,7 @@ export const ChoiceAvatar = () => {
                 <Panel.Button section={sectionIndex - 1}>
                   <button className={css['panel__navigation-button']} disabled={sectionIndex === 0}>
                     <Icon>
-                      <ChevronsLeft className="u-fill-none" />
+                      <ChevronsLeft />
                     </Icon>
                     <span className="u-sr-only">Anterior</span>
                   </button>
@@ -68,7 +68,7 @@ export const ChoiceAvatar = () => {
                 <Panel.Button section={sectionIndex + 1}>
                   <button className={css['panel__navigation-button']} disabled={sectionIndex === sections.length - 1}>
                     <Icon>
-                      <ChevronsRight className="u-fill-none" />
+                      <ChevronsRight />
                     </Icon>
                     <span className="u-sr-only">Siguiente</span>
                   </button>

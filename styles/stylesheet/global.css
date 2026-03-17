@@ -93,10 +93,6 @@ ul li::marker {
   width: min(100% - 1rem, 180ch);
 }
 
-.u-fill-none {
-  fill: none;
-}
-
 :is(.u-validation-success, .u-validation-wrong) {
   position: relative;
 }
