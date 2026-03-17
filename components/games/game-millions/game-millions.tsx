@@ -191,7 +191,7 @@ const GameMilions: React.FC<GameMilionsProps> & SubComponents = ({
 
         <fieldset className={css['wrapper-question']}>
           <legend className={`${css.question} u-mb-3`}>{question}</legend>
-          <div className={`u-grid ${css['wrapper-answer']}`}>{answerElements}</div>
+          <div className={`${css['wrapper-answer']}`}>{answerElements}</div>
         </fieldset>
       </div>
 

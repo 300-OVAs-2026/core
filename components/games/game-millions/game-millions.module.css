@@ -69,15 +69,23 @@ legend.question {
 }
 
 .wrapper-answer {
-  --grid-max: 40ch;
-  place-items: center;
+  display: grid;
+  place-content: center;
+  grid-template-columns: repeat(2, 420px);
+  gap: 0.5rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .wrapper-answer {
+    grid-template-columns: 1fr;
+  }
+  
 }
 
 .answer {
   display: flex;
   align-items: center;
-  min-width: 360px;
-  min-height: 120px;
+  min-height: 100px;
   --increment: 1.05;
 }
 
@@ -122,7 +130,7 @@ legend.question {
 .icon {
   --size: 1.8rem;
   position: absolute;
-  top: 50%;
+  top: 10%;
   right: 0.5%;
   display: none;
   width: var(--size);
