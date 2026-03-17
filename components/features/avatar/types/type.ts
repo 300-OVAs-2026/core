@@ -12,7 +12,5 @@ export enum AvatarVariation {
   PRESENTING_LEFT = 'presentando-izquierda',
   THINKING = 'pensando',
   CONCLUSIONS = 'conclusiones',
-  CONCLUSION_RIGHT = 'conclusion-derecha',
-  CONCLUSION_LEFT = 'conclusion-izquierda',
   GREETING = 'saludando'
 }

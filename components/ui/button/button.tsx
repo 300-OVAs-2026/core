@@ -1,6 +1,7 @@
 import { useId } from 'react';
 import type { ButtonProps as ButtonPropsUI } from 'books-ui';
-import { Button as ButtonUI } from 'books-ui';
+import { Button as ButtonUI, Icon as IconUI } from 'books-ui';
+import { ArrowRight, CircleCheckBig, Download, FileText, User } from 'lucide-react';
 
 import { cn } from '@/shared/utils';
 
@@ -24,11 +25,33 @@ export const Button: React.FC<Props> = ({ addClass, label, variant, icon, iconPo
   const gradientRight = `borderGradientRight-${id}`;
 
   const ICON_MAP: Record<Exclude<ButtonVariant, 'secondary'>, JSX.Element> = {
-    reset: <Icon name="button-reset"/>,
-    check: <Icon name="button-reset"/>,
-    select: <Icon name="button-select"/>,
-    download: <Icon name="button-download"/>,
-    next: <Icon name="button-next"/>,
+    reset: <Icon name="button-reset" />,
+    check: <Icon name="button-check" />,
+    select: (
+      <IconUI>
+        <CircleCheckBig className={css['no-fill']}/>
+      </IconUI>
+    ),
+    download: (
+      <IconUI>
+        <Download className={css['no-fill']} />
+      </IconUI>
+    ),
+    next: (
+      <IconUI>
+        <ArrowRight className={css['no-fill']} />
+      </IconUI>
+    ),
+    bibliography: (
+      <IconUI>
+        <FileText className={css['no-fill']} />
+      </IconUI>
+    ),
+    credits: (
+      <IconUI>
+        <User className={css['no-fill']} />
+      </IconUI>
+    )
   };
 
   const resolvedIcon = icon ?? (variant && variant !== 'secondary' ? ICON_MAP[variant] : null);

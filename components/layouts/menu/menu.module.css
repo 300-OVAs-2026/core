@@ -218,3 +218,7 @@
     stroke-width: .125rem;
     filter: drop-shadow(0 -1px .125rem currentColor);
 }
+
+.menu__link--avatar svg {
+    stroke-width: 1px;
+}

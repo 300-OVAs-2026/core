@@ -21,27 +21,23 @@ export const LearningPath = () => {
 
   return (
     <Content withOutTitle>
-      <div className={css['container']}>
-        <Avatar
-          variation={AvatarVariation.GREETING}
-          size="37.5rem"
-          title="Imagen 1."
-          addClass={css['avatar']}
-          alt="Personas mirando una diana."
-          noCaption
-        />
-        <nav className={css['navigation']} aria-label="Mapa de aprendizaje">
-          <p className={css['navigation__intro']}>
+      <div className={css['learning-path']}>
+        <div className={css['learning-path__avatar']}>
+          <Avatar variation={AvatarVariation.GREETING} size="28.125rem" title="Figure." alt="Avatar."  />
+        </div>
+
+        <nav className={css['learning-path__navigation']} aria-label="Mapa de aprendizaje">
+          <p className={css['learning-path__intro']}>
             ¡Bienvenido! Este es tu mapa de aprendizaje. Completa cada sección en orden para avanzar y desbloquear
             nuevos contenidos. ¡Tú puedes lograrlo!
           </p>
-          <div className={css['navigation__block']}>
+          <div className={css['learning-path__map']}>
             {/* Nodos */}
-            <ol className={css['list-wrapper']}>
+            <ol className={css['learning-path__list']}>
               {(() => {
                 const lastVisitedIndex = pages.reduce((acc, p, i) => (p.visited ? i : acc), -1);
                 return pages.map((page, i) => (
-                  <li key={i} className={css['list-item']} style={getAllPositions(i)}>
+                  <li key={i} className={css['learning-path__item']} style={getAllPositions(i)}>
                     <PageNode page={page} isLocked={i > lastVisitedIndex + 1} />
                   </li>
                 ));
@@ -49,20 +45,20 @@ export const LearningPath = () => {
             </ol>
 
             {/* Capa SVG */}
-            <div className={css['bridge-wrapper']}>
+            <div className={css['learning-path__bridge']}>
               <BridgeSvg
                 count={pages.length}
                 itemsPerRow={DESKTOP.itemsPerRow}
                 totalCols={DESKTOP.totalCols}
-                svgClass={css['bridge-svg-d']}
+                svgClass={css['learning-path__bridge-svg--desktop']}
               />
               <BridgeSvg
                 count={pages.length}
                 itemsPerRow={TABLET.itemsPerRow}
                 totalCols={TABLET.totalCols}
-                svgClass={css['bridge-svg-t']}
+                svgClass={css['learning-path__bridge-svg--tablet']}
               />
-              <BridgeSvgMobile count={pages.length} svgClass={css['bridge-svg-m']} />
+              <BridgeSvgMobile count={pages.length} svgClass={css['learning-path__bridge-svg--mobile']} />
             </div>
           </div>
         </nav>

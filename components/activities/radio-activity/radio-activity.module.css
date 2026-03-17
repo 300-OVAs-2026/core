@@ -3,15 +3,39 @@ div.radio {
   --input-radio-border-clr: var(--primary-600);
   --input-radio-bg: var(--primary-600);
   --input-size: 1.3rem;
-  --input-size-svg: 1.2em;
+  --input-size-svg: 1em;
   --input-radio-gap: 1rem;
+  --corner: 0.5em;
+
+  position: relative;
 
   padding: 0.5rem 1rem;
   justify-content: flex-start;
-  background-color: var(--white);
-  border-radius: 0.5rem;
-  box-shadow: 2px 2px 3px 0px #60606057;
+  background-color: transparent;
   color: var(--secondary);
+
+  /* sombra de tarjeta */
+  filter: drop-shadow(2px 2px 3px #60606057);
+}
+
+div.radio::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background: var(--white);
+
+  clip-path: polygon(
+    0 var(--corner),
+    var(--corner) 0,
+    calc(100% - var(--corner)) 0,
+    100% var(--corner),
+    100% calc(100% - var(--corner)),
+    calc(100% - var(--corner)) 100%,
+    var(--corner) 100%,
+    0 calc(100% - var(--corner))
+  );
 }
 
 div.radio label::first-letter {

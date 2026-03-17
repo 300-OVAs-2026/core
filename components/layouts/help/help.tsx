@@ -23,9 +23,9 @@ export const Help = () => {
           <Avatar
             variation={AvatarVariation.GREETING}
             size="28.125rem"
-            title="Imagen 1."
+            title="Figure."
             addClass={css['avatar']}
-            alt="Personas mirando una diana."
+            alt="Avatar."
             noCaption
           />
         </Col>

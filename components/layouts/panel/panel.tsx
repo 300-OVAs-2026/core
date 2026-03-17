@@ -13,13 +13,14 @@ import css from './panel.module.css';
 
 interface Props extends PanelProps {
   addClass?: string;
+  stars?: React.ReactNode;
 }
 
 type SubModules = {
   Section: typeof PanelSection;
 };
 
-const Panel: React.FC<Props> & SubModules = ({ addClass, children, ...props }) => {
+const Panel: React.FC<Props> & SubModules = ({ addClass, children, stars, ...props }) => {
   const [sectionTitles, setSectionTitles] = useState<string[]>([]);
   const [interpreterSources, setInterpreterSources] = useState<InterpreterSource[]>([]);
 
@@ -46,8 +47,10 @@ const Panel: React.FC<Props> & SubModules = ({ addClass, children, ...props }) =
         addNewVideoSource
       }}>
       <PanelUI type="carrousel" addClass={`${css['panel']} ${addClass ?? ''}`} {...props}>
-        <PageTitle />
+        <PageTitle stars={stars} />
+
         <PanelProgress />
+
         {children}
       </PanelUI>
     </PanelCoreProvider>

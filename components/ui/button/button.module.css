@@ -1,5 +1,5 @@
 button.button {
-  --button-text-color: var(--primary-900);
+  --button-text-color: var(--secondary-900);
   --button-bg-color: var(--accent);
   --outline-color: var(--accent);
   --button-icon-size: 1.1rem;
@@ -15,6 +15,7 @@ button.button {
   cursor: default;
   font-weight: bold;
   border-radius: 0rem;
+  text-transform: uppercase;
   clip-path: polygon(0 var(--corner),
       var(--corner) 0,
       calc(100% - var(--corner)) 0,
@@ -28,11 +29,10 @@ button.button {
     transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-button.button[data-type='check'],
-button.button[data-type='secondary'] {
+button.button:is([data-type='check'],[data-type='secondary'], [data-type='credits']) {
   --button-text-color: var(--white);
-  --button-bg-color: var(--primary-900);
-  --outline-color: var(--primary-900);
+  --button-bg-color: var(--primary-700);
+  --outline-color: var(--primary-700);
   --line: var(--primary-200);
 }
 
@@ -67,9 +67,8 @@ button.button svg {
   transition: color 200ms ease;
 }
 
-.wrapper:has(button[data-type='check']),
-.wrapper:has(button[data-type='secondary']) {
-  --linear-svg: var(--primary-800);
+.wrapper:has(button:is([data-type='check'],[data-type='secondary'], [data-type='credits'])) {
+  --linear-svg: var(--primary-700);
 }
 
 .wrapper:has(button:disabled) {
@@ -192,4 +191,9 @@ button.button .button__label::before {
   height: 5px;
   background: var(--line);
   border-radius: 50%;
+}
+
+.no-fill {
+  fill: none;
+  stroke: currentColor;
 }

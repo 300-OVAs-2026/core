@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { PageTitle } from '@layouts';
 import { motion } from 'motion/react';
 
@@ -12,9 +12,17 @@ interface Props {
   children: React.ReactNode;
   interpreter?: VideoURLs;
   withOutTitle?: boolean;
+  stars?: React.ReactNode;
 }
 
-export const Content: React.FC<Props> = ({ addClass, children, interpreter, withOutTitle = false, ...props }) => {
+export const Content: React.FC<Props> = ({
+  addClass,
+  children,
+  interpreter,
+  stars,
+  withOutTitle = false,
+  ...props
+}) => {
   const [updateVideoSources] = useInterpreter();
 
   useEffect(() => {
@@ -29,7 +37,7 @@ export const Content: React.FC<Props> = ({ addClass, children, interpreter, with
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: 'easeIn', type: 'spring', stiffness: 100 }}
       {...props}>
-      {!withOutTitle && <PageTitle />}
+      {!withOutTitle && <PageTitle stars={stars} />}
       {children}
     </motion.section>
   );

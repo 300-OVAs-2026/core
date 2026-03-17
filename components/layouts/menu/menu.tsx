@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useA11y } from '@features/a11y-overlay/hooks/useA11y';
 import { Icon } from '@ui';
+import { Icon as IconUI } from 'books-ui';
+import { SquareUser } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'wouter';
 
@@ -144,6 +146,14 @@ export const Menu = () => {
                 <Link to="/" className={css['menu__link']}>
                   <Icon name="a11y" />
                   <span>{i18n[lang].a11y}</span>
+                </Link>
+              </li>
+              <li className={css['menu__item']}>
+                <Link to="/avatar" className={cn(css['menu__link'], css['menu__link--avatar'])}>
+                  <IconUI>
+                    <SquareUser />
+                  </IconUI>
+                  <span>{i18n[lang].avatar}</span>
                 </Link>
               </li>
               <li className={css['menu__item']}>

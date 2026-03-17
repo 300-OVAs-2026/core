@@ -1,0 +1,139 @@
+.container {
+  --clr-font: #ffffff;
+  position: relative;
+  color: var(--clr-font);
+  min-height: 500px;
+  padding-block: 1.25rem;
+  overflow: hidden;
+  background-image: url('assets/images/game-million-background.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.logo {
+  margin-inline: auto;
+}
+
+.counter {
+  position: absolute;
+  top: 7vw;
+  right: 7vw;
+  background-image: url('assets/images/Contenedor_Dinero.webp');
+  background-size: 100% 100%;
+  padding: 10px 30px;
+}
+
+.counter-add {
+  padding: .1875rem;
+  background-color: green;
+  position: absolute;
+  top: 0;
+  width: 8.75rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  border-radius: 10px;
+}
+
+.wrapper-question {
+  border: 1px solid transparent;
+  width: min(100% - 1rem, 180ch);
+  isolation: isolate;
+}
+
+legend.question {
+  --increment: 1.5;
+  padding: 1rem 3rem;
+  text-align: center;
+  margin-inline: auto;
+}
+
+:is(.question, .answer) {
+  position: relative;
+  border-image-source: var(--border-img, url('data:image/svg+xml,<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 61" width="335" height="70"><defs><linearGradient id="g1" x2="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0,69.932,-389.331,0,169.491,14.484)"><stop offset="0" stop-color="%23271a40"/><stop offset="1" stop-color="%230b0214"/></linearGradient></defs><style>.s0 { fill: url(%23g1);stroke: %23ffffff;stroke-miterlimit:10;stroke-width: 1.2 } </style><path class="s0" d="m315.2 0.4h-291.4c-0.6 0-1.2 0.3-1.6 0.8l-19.9 28.2c-0.5 0.7-0.5 1.6 0 2.2l19.9 28.2c0.4 0.5 0.9 0.8 1.6 0.8h291.4c0.6 0 1.2-0.3 1.6-0.8l19.9-28.2c0.5-0.7 0.5-1.6 0-2.2l-19.9-28.2c-0.4-0.5-1-0.8-1.6-0.8z"/></svg>'));
+  border-image-slice: 1 fill;
+  padding-inline: 1.875rem;
+  padding-block: .625rem;
+}
+
+:is(.question, .answer)::after {
+  content: '';
+  width: calc(100% * var(--increment, 1.2));
+  height: .0625rem;
+  background-color: var(--clr-font);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+}
+
+.wrapper-answer {
+  display: grid;
+  place-content: center;
+  grid-template-columns: repeat(2, 420px);
+  gap: 0.5rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .wrapper-answer {
+    grid-template-columns: 1fr;
+  }
+  
+}
+
+.answer {
+  display: flex;
+  align-items: center;
+  min-height: 100px;
+  --increment: 1.05;
+}
+
+.answer-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.answer span::first-letter {
+  color: #fccc19;
+  font-size: var(--fs-300);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+
+.answer:has(.answer-input:disabled) {
+  cursor: not-allowed;
+}
+
+.answer:not(:has(.answer-input:disabled)):is([data-state="select"], :hover),
+.answer:has(.answer-input:is(:focus-visible, :focus)) {
+  --border-img: url('data:image/svg+xml,<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 61" width="335" height="70"><path fill="%23923e12" stroke="%23ffffff" stroke-miterlimit="10" stroke-width="1.2" d="m315.2 0.4h-291.4c-0.6 0-1.2 0.3-1.6 0.8l-19.9 28.2c-0.5 0.7-0.5 1.6 0 2.2l19.9 28.2c0.4 0.5 0.9 0.8 1.6 0.8h291.4c0.6 0 1.2-0.3 1.6-0.8l19.9-28.2c0.5-0.7 0.5-1.6 0-2.2l-19.9-28.2c-0.4-0.5-1-0.8-1.6-0.8z"/></svg> ');
+}
+
+.answer[data-state="success"] {
+  --border-img: url('data:image/svg+xml,<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 61" width="335" height="70"><path fill="%232a6122" stroke="%23ffffff" stroke-miterlimit="10" stroke-width="1.2" d="m315.2 0.4h-291.4c-0.6 0-1.2 0.3-1.6 0.8l-19.9 28.2c-0.5 0.7-0.5 1.6 0 2.2l19.9 28.2c0.4 0.5 0.9 0.8 1.6 0.8h291.4c0.6 0 1.2-0.3 1.6-0.8l19.9-28.2c0.5-0.7 0.5-1.6 0-2.2l-19.9-28.2c-0.4-0.5-1-0.8-1.6-0.8z"/></svg> ');
+}
+
+.answer[data-state="wrong"] {
+  --border-img: url('data:image/svg+xml,<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 61" width="335" height="70"><path fill="%23a82433" stroke="%23ffffff" stroke-miterlimit="10" stroke-width="1.2" d="m315.2 0.4h-291.4c-0.6 0-1.2 0.3-1.6 0.8l-19.9 28.2c-0.5 0.7-0.5 1.6 0 2.2l19.9 28.2c0.4 0.5 0.9 0.8 1.6 0.8h291.4c0.6 0 1.2-0.3 1.6-0.8l19.9-28.2c0.5-0.7 0.5-1.6 0-2.2l-19.9-28.2c-0.4-0.5-1-0.8-1.6-0.8z"/></svg> ');
+}
+
+.answer[data-state="success"] .icon--success,
+.answer[data-state="wrong"] .icon--wrong {
+  display: block;
+}
+
+.icon {
+  --size: 1.8rem;
+  position: absolute;
+  top: 10%;
+  right: 0.5%;
+  display: none;
+  width: var(--size);
+  height: var(--size);
+  transform: translateY(-50%);
+}

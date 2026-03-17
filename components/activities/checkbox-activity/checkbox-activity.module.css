@@ -1,55 +1,79 @@
 div.checkbox {
-    --input-check-clr: var(--white);
-    --input-check-border-clr: var(--primary-600);
-    --input-check-bg: var(--primary-600);
-    --input-size: 1.3rem;
-    --input-size-svg: 1.2em;
-    --input-check-gap: 1rem;
+  --input-check-clr: var(--white);
+  --input-check-border-clr: var(--primary-600);
+  --input-check-bg: var(--primary-600);
+  --input-size: 1.3rem;
+  --input-size-svg: 1.2em;
+  --input-check-gap: 1rem;
+  --corner: 0.5em;
 
-    padding: .5rem 1rem;
-    justify-content: flex-start;
-    background-color: var(--white);
-    border-radius: .5rem;
-    box-shadow: 2px 2px 3px 0px #60606057;
-    color: var(--secondary);
+  position: relative;
+
+  padding: 0.5rem 1rem;
+  justify-content: flex-start;
+  background-color: transparent;
+  color: var(--secondary);
+
+  /* sombra de tarjeta */
+  filter: drop-shadow(2px 2px 3px #60606057);
+}
+
+div.checkbox::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background: var(--white);
+
+  clip-path: polygon(
+    0 var(--corner),
+    var(--corner) 0,
+    calc(100% - var(--corner)) 0,
+    100% var(--corner),
+    100% calc(100% - var(--corner)),
+    calc(100% - var(--corner)) 100%,
+    var(--corner) 100%,
+    0 calc(100% - var(--corner))
+  );
 }
 
 div.checkbox label::first-letter {
-    color: var(--clr-text-main);
-    font-weight: bold;
+  color: var(--clr-text-main);
+  font-weight: bold;
 }
 
 .checkbox:has(input:checked) label::first-letter {
-    color: var(--primary);
+  color: var(--primary);
 }
 
-.checkbox[data-state="right"] {
-    --input-check-bg: var(--success);
+.checkbox[data-state='right'] {
+  --input-check-bg: var(--success);
 }
 
-.checkbox[data-state="wrong"] {
-    --input-check-bg: var(--wrong);
+.checkbox[data-state='wrong'] {
+  --input-check-bg: var(--wrong);
 }
 
 .checkbox :global(.c-input-check__box) {
-    min-inline-size: var(--input-size);
-    min-block-size: var(--input-size);
-    border: 1.8px solid var(--input-check-border-clr);
+  min-inline-size: var(--input-size);
+  min-block-size: var(--input-size);
+  border: 1.8px solid var(--input-check-border-clr);
 }
 
 .checkbox :global(.c-input-check__icon) svg {
-    width: var(--input-size-svg);
-    height: var(--input-size-svg);
+  width: var(--input-size-svg);
+  height: var(--input-size-svg);
 }
 
 html[data-dark-mode='true'] div.checkbox {
   background-color: var(--clr-background);
 }
 
-html[data-dark-mode="true"] .checkbox>div {
-    border: 2px solid var(--primary-100);
+html[data-dark-mode='true'] .checkbox > div {
+  border: 2px solid var(--primary-100);
 }
 
-html[data-dark-mode="true"] .checkbox>div:focus-within {
-    outline: max(2px, .08em) solid var(--primary-100);
+html[data-dark-mode='true'] .checkbox > div:focus-within {
+  outline: max(2px, 0.08em) solid var(--primary-100);
 }
