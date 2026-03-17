@@ -92,7 +92,9 @@ export const Menu = () => {
             onClick={() => setAudioDescription(!config.audio)}>
             <span className={css['menu__button-content']}>
               {config.audio ? <Icon name="pause" /> : <Icon name="play" />}
-              <span>{config.audio ? i18n[lang].audioActive : i18n[lang].audioPause}</span>
+              <span className={css['menu__button-label']}>
+                {config.audio ? i18n[lang].audioActive : i18n[lang].audioPause}
+              </span>
             </span>
           </button>
 
@@ -103,7 +105,8 @@ export const Menu = () => {
             style={{ '--bg-color': 'var(--accent)' } as React.CSSProperties}>
             <span className={css['menu__button-content']}>
               <Icon name="award" />
-              <span>
+              <span className={cn(css['menu__button-label'], css['menu__button-medal'])}>{medals}</span>
+              <span className={css['menu__button-label']}>
                 {medals} {i18n[lang].badges}
               </span>
             </span>
@@ -143,7 +146,9 @@ export const Menu = () => {
                 </Link>
               </li>
               <li className={css['menu__item']}>
-                <button className={cn(css['menu__link'], 'js-button-a11y')} onClick={() => handleExpanded(MenuOptions.A11Y)}>
+                <button
+                  className={cn(css['menu__link'], 'js-button-a11y')}
+                  onClick={() => handleExpanded(MenuOptions.A11Y)}>
                   <Icon name="a11y" />
                   <span>{i18n[lang].a11y}</span>
                 </button>

@@ -2,11 +2,32 @@
 .menu {
     --transparent: 95%;
     --increment: 1.5;
-    --padding: 1rem;
+    --padding: .75rem;
 
     display: flex;
     align-items: center;
     height: 100%;
+}
+
+@media screen and (min-width: 768px) {
+    .menu {
+        --padding: .8rem;
+    }
+
+}
+
+@media screen and (min-width: 1280px) {
+    .menu {
+        --padding: .9rem;
+    }
+
+}
+
+@media screen and (min-width: 1480px) {
+    .menu {
+        --padding: 1rem;
+    }
+
 }
 
 /* Menu Controls */
@@ -20,7 +41,9 @@
 
 /* Hamburger button */
 .menu__button--hamburger {
-    width: 5.75rem;
+    --size: 3.9rem;
+
+    width: var(--size);
     display: grid;
     grid-template-areas: "stack";
     background-color: transparent;
@@ -31,6 +54,28 @@
 
 .menu__button--hamburger>* {
     grid-area: stack;
+}
+
+
+@media screen and (min-width: 1024px) {
+    .menu__button--hamburger {
+        --size: 5.3rem;
+    }
+
+}
+
+@media screen and (min-width: 1220px) {
+    .menu__button--hamburger {
+        --size: 5.6rem;
+    }
+
+}
+
+@media screen and (min-width: 1480px) {
+    .menu__button--hamburger {
+        --size: 5.75rem;
+    }
+
 }
 
 .svg-background {
@@ -49,7 +94,7 @@
 
 
 .svg-hamburger {
-    --icon-size: 3rem;
+    --icon-size: 1.7rem;
 
     margin-block-start: var(--padding);
     justify-self: center;
@@ -65,9 +110,42 @@
     z-index: 1;
 }
 
+@media screen and (min-width: 768px) {
+    .svg-hamburger {
+        --icon-size: 1.8rem;
+    }
+
+}
+
+@media screen and (min-width: 1024px) {
+    .svg-hamburger {
+        --icon-size: 2.5rem;
+    }
+
+}
+
+@media screen and (min-width: 1220px) {
+    .svg-hamburger {
+        --icon-size: 2.8rem;
+    }
+
+}
+
+@media screen and (min-width: 1480px) {
+    .svg-hamburger {
+        --icon-size: 3rem;
+    }
+
+}
+
 /* Menu   */
 .menu__button {
+    --skew: .5rem;
+
     position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     border: 1px solid transparent;
     font-size: var(--fs-200);
     font-weight: bold;
@@ -80,13 +158,20 @@
     padding-block: var(--padding);
 }
 
+@media screen and (min-width: 1024px) {
+    .menu__button {
+        --skew: .8rem;
+    }
+
+}
+
 .menu__button--diagonal-cut {
     padding-inline: calc(var(--padding) / var(--increment)) calc(var(--padding) * var(--increment));
-    clip-path: polygon(0 0, 100% 0, calc(100% - 1rem) 100%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, calc(100% - var(--skew)) 100%, 0 100%);
 }
 
 .menu__button--double-diagonal-cut {
-    clip-path: polygon(1rem 0, 100% 0, calc(100% - 1rem) 100%, 0 100%);
+    clip-path: polygon(var(--skew) 0, 100% 0, calc(100% - var(--skew)) 100%, 0 100%);
 }
 
 .menu__button-content {
@@ -103,10 +188,8 @@
     position: absolute;
     left: 0;
     right: 0;
-
     filter: drop-shadow(0 0 .125rem currentColor);
     pointer-events: none;
-
 }
 
 .menu__button-content::after {
@@ -130,10 +213,27 @@
     z-index: 1;
 }
 
-
 .menu__button-content svg {
-    --icon-size: 2rem;
+    --icon-size: 1.2rem;
     filter: drop-shadow(0 0 .3125rem currentColor);
+}
+
+@media screen and (min-width: 1024px) {
+    .menu__button-content svg {
+        --icon-size: 2rem;
+    }
+
+}
+
+.menu__button-label {
+    display: none;
+}
+
+@media screen and (min-width: 1024px) {
+    .menu__button-label {
+        display: block;
+    }
+
 }
 
 .menu__button--audio {
@@ -162,6 +262,7 @@
     overflow-y: auto;
     width: 100%;
     max-height: calc(100vh - 100%);
+    padding-inline: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -172,15 +273,13 @@
 
 .menu__list {
     display: grid;
-    justify-content: stretch;
-    align-items: center;
-    row-gap: 1rem;
-    column-gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(min(5rem, 100%), 1fr));
+    place-items: center;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(11rem, 100%), 1fr));
     width: 100%;
     max-width: 80rem;
     min-height: 50vh;
-    padding: 1rem;
+    padding-inline-start: 0;
 }
 
 .menu__item {
@@ -188,6 +287,8 @@
 }
 
 .menu__link {
+
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -211,7 +312,7 @@
 }
 
 .menu__link svg {
-    --icon-size: 8ch;
+    --icon-size: clamp(2rem, 5vw, 8ch);
     fill: none;
     stroke: currentColor;
     stroke-linecap: round;
@@ -222,4 +323,15 @@
 
 .menu__link--avatar svg {
     stroke-width: 1px;
+}
+
+.menu__button-medal {
+    display: block;
+}
+
+/* Medal */
+@media screen and (min-width: 1024px) {
+    .menu__button-medal {
+        display: none;
+    }
 }

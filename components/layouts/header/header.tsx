@@ -54,7 +54,7 @@ export const Header = () => {
               alt="UNAD: Universidad Nacional Abierta y a Distancia"
               className="u-px-2"
               width={250}
-              height={250}
+              height={100}
             />
           </div>
         </div>
