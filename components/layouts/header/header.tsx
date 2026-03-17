@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { A11yOverlay } from '@features/a11y-overlay';
 import { useHashLocation } from 'wouter/use-hash-location';
 
 import { Menu } from '../menu';
@@ -58,7 +59,7 @@ export const Header = () => {
           </div>
         </div>
       </header>
-      {/* <A11yOverlay isOpen={expanded.a11y} onClose={() => handleExpanded(MenuOptions.A11Y)} /> */}
+      <A11yOverlay isOpen={expanded.a11y} onClose={() => handleExpanded(MenuOptions.A11Y)} />
     </HeaderProvider>
   );
 };

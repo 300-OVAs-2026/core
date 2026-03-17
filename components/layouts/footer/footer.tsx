@@ -1,5 +1,7 @@
 import { Link } from 'wouter';
 
+import { cn } from '@/shared/utils';
+
 import css from './footer.module.css';
 
 export const Footer = () => {
@@ -7,7 +9,7 @@ export const Footer = () => {
     <footer className={css.footer}>
       <div aria-hidden="true" className={css['figure-triangle']}></div>
       <div aria-hidden="true" className={css['figure-circle']}></div>
-      <Link to="/menu" className={css.button}>
+      <Link to="/menu" className={cn(css.button, 'js-menu-navigation')}>
         <svg xmlns="http://www.w3.org/2000/svg" className={css['icon']} viewBox="0 0 400 400">
           <circle cx="200" className={css['icon__dash']} cy="200" r="115" />
 

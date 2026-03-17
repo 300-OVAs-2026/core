@@ -195,6 +195,7 @@
     gap: .5rem;
     padding: clamp(1rem, 3%, 1.5rem);
     background-color: transparent;
+    border: none;
     font-size: var(--fs-300);
     font-weight: bold;
     color: currentColor;
