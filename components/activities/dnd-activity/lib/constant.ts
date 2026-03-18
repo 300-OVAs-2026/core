@@ -1,6 +1,6 @@
-import { DndClasses, DndTypes } from '../types/types';
+import type { DndClasses, DndTypes } from '../types/types';
 
-import css from './dnd.module.css';
+import css from '../dnd.module.css';
 
 export const INITIAL_STATE = Object.freeze({
   validation: false,
