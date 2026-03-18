@@ -151,7 +151,7 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
             left: `${tooltipPosition.x}px`,
             top: `${tooltipPosition.y}px`,
             transform: 'translateX(-50%)',
-            zIndex: 10000
+            zIndex: 10
           }}>
           <button
             type="button"
