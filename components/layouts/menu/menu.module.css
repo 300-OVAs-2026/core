@@ -1,43 +1,162 @@
 /* Menu */
 .menu {
     --transparent: 95%;
-    --increment: 1.5;
-    --padding: .75rem;
 
     display: flex;
     align-items: center;
     height: 100%;
 }
 
-@media screen and (min-width: 768px) {
-    .menu {
-        --padding: .8rem;
-    }
 
-}
-
-@media screen and (min-width: 1280px) {
-    .menu {
-        --padding: .9rem;
-    }
-
-}
-
-@media screen and (min-width: 1480px) {
-    .menu {
-        --padding: 1rem;
-    }
-
-}
 
 /* Menu Controls */
 .menu__controls {
+
+    --increment: 1.5;
+    --padding: .75rem;
+    --button-size: 2.8rem;
+
     display: flex;
     align-items: stretch;
     gap: 0;
     height: 100%;
     position: relative;
 }
+
+@media screen and (min-width: 768px) {
+    .menu__controls {
+        --padding: .8rem;
+    }
+
+}
+
+@media screen and (min-width: 1020px) {
+    .menu__controls {
+        --button-size: 3.8rem;
+    }
+
+}
+
+@media screen and (min-width: 1280px) {
+    .menu__controls {
+        --padding: .9rem;
+        --button-size: 4rem;
+    }
+
+}
+
+@media screen and (min-width: 1480px) {
+    .menu__controls {
+        --padding: 1rem;
+        --button-size: 4.2rem;
+    }
+
+}
+
+.menu__button {
+    --skew: .5rem;
+
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid transparent;
+    font-size: var(--fs-200);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    color: var(--white);
+    background-color: var(--bg-color, transparent);
+    padding-inline: calc(var(--padding) * var(--increment));
+    height: var(--button-size);
+}
+
+@media screen and (min-width: 1024px) {
+    .menu__button {
+        --skew: .8rem;
+    }
+
+}
+
+.menu__button--diagonal-cut {
+    padding-inline: calc(var(--padding) / var(--increment)) calc(var(--padding) * var(--increment));
+    clip-path: polygon(0 0, 100% 0, calc(100% - var(--skew)) 100%, 0 100%);
+}
+
+.menu__button--double-diagonal-cut {
+    clip-path: polygon(var(--skew) 0, 100% 0, calc(100% - var(--skew)) 100%, 0 100%);
+}
+
+.menu__button-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+.menu__button-content::after,
+.menu__button-content::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    filter: drop-shadow(0 0 .125rem currentColor);
+    pointer-events: none;
+}
+
+.menu__button-content::after {
+    bottom: -.3125rem;
+    height: .0625rem;
+    opacity: 0.8;
+    background: linear-gradient(90deg, transparent, var(--primary-50), transparent);
+    background-size: 200% 100%;
+    z-index: -1;
+}
+
+.menu__button-content::before {
+    --size: 5px;
+
+    bottom: calc(-.3125rem + (calc(var(--size) * -1)) / 3);
+    width: var(--size);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 100%;
+    background-color: var(--primary-50);
+    z-index: 1;
+}
+
+.menu__button-content svg {
+    --icon-size: 1.2rem;
+    filter: drop-shadow(0 0 .3125rem currentColor);
+}
+
+@media screen and (min-width: 1024px) {
+    .menu__button-content svg {
+        --icon-size: 2rem;
+    }
+
+}
+
+.menu__button-label {
+    display: none;
+}
+
+@media screen and (min-width: 1024px) {
+    .menu__button-label {
+        display: block;
+    }
+
+}
+
+.menu__button--audio {
+    background-color: var(--primary-400);
+}
+
+.menu__button--accessibility {
+    background-color: var(--primary-700);
+}
+
 
 /* Hamburger button */
 .menu__button--hamburger {
@@ -138,114 +257,9 @@
 
 }
 
-/* Menu   */
-.menu__button {
-    --skew: .5rem;
 
-    position: relative;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid transparent;
-    font-size: var(--fs-200);
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 0.025em;
-    color: var(--white);
-    background-color: var(--bg-color, transparent);
-    height: fit-content;
-    padding-inline: calc(var(--padding) * var(--increment));
-    padding-block: var(--padding);
-}
 
-@media screen and (min-width: 1024px) {
-    .menu__button {
-        --skew: .8rem;
-    }
-
-}
-
-.menu__button--diagonal-cut {
-    padding-inline: calc(var(--padding) / var(--increment)) calc(var(--padding) * var(--increment));
-    clip-path: polygon(0 0, 100% 0, calc(100% - var(--skew)) 100%, 0 100%);
-}
-
-.menu__button--double-diagonal-cut {
-    clip-path: polygon(var(--skew) 0, 100% 0, calc(100% - var(--skew)) 100%, 0 100%);
-}
-
-.menu__button-content {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .5rem;
-}
-
-.menu__button-content::after,
-.menu__button-content::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    filter: drop-shadow(0 0 .125rem currentColor);
-    pointer-events: none;
-}
-
-.menu__button-content::after {
-    bottom: -.3125rem;
-    height: .0625rem;
-    opacity: 0.8;
-    background: linear-gradient(90deg, transparent, var(--primary-50), transparent);
-    background-size: 200% 100%;
-    z-index: -1;
-}
-
-.menu__button-content::before {
-    --size: 5px;
-
-    bottom: calc(-.3125rem + (calc(var(--size) * -1)) / 3);
-    width: var(--size);
-    height: auto;
-    aspect-ratio: 1 / 1;
-    border-radius: 100%;
-    background-color: var(--primary-50);
-    z-index: 1;
-}
-
-.menu__button-content svg {
-    --icon-size: 1.2rem;
-    filter: drop-shadow(0 0 .3125rem currentColor);
-}
-
-@media screen and (min-width: 1024px) {
-    .menu__button-content svg {
-        --icon-size: 2rem;
-    }
-
-}
-
-.menu__button-label {
-    display: none;
-}
-
-@media screen and (min-width: 1024px) {
-    .menu__button-label {
-        display: block;
-    }
-
-}
-
-.menu__button--audio {
-    background-color: var(--primary-400);
-}
-
-.menu__button--accessibility {
-    background-color: var(--primary-700);
-}
-
-/* menu */
-
+/* Inside menu */
 .menu__overlay {
     position: fixed;
     inset: 0;
