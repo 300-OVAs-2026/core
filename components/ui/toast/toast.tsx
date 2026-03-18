@@ -1,11 +1,14 @@
 import { useEffect, useRef } from 'react';
+
 import type { VideoURLs } from '@shared/hooks';
 import { useInterpreter } from '@shared/hooks';
+import { useOvaStore } from '@/store/ova-store';
+
+import { Icon } from '../icon';
+
+import { i18n } from './lib/constant';
 
 import css from './toast.module.css';
-import { useOvaStore } from '@/store/ova-store';
-import { i18n } from './lib/constant';
-import { Icon } from '../icon';
 
 export interface ToastCoreProps {
   isOpen: boolean;

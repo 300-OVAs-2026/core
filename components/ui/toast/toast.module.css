@@ -40,6 +40,9 @@
   overflow-y: auto;
   max-height: calc(var(--toast-max-height) - 10px);
   padding-right: 8px;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-600) var(--primary-700); /* Firefox */
 }
 
 /* Scroll bonito */
@@ -49,9 +52,10 @@
 }
 
 .toast-content::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,.35);
+  background: var(--primary-900);
   border-radius: 4px;
 }
+
 
 /* Botón close */
 
