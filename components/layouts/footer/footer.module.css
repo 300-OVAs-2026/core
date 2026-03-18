@@ -10,7 +10,6 @@
     right: 0;
     width: 100%;
     min-height: var(--shape-height);
-    border: 1px solid red;
     isolation: isolate;
 }
 
