@@ -6,7 +6,7 @@ import css from './footer.module.css';
 
 export const Footer = () => {
   return (
-    <footer className={css.footer}>
+    <footer className={css.footer} aria-label="Navegación principal">
       <svg width="0" height="0" aria-hidden="true" style={{ position: 'absolute' }}>
         <defs>
           <clipPath id="mask0" clipPathUnits="objectBoundingBox">
@@ -31,7 +31,7 @@ export const Footer = () => {
 
         <div className={css['footer__shape-container']}>
           <Link to="/menu" aria-label="Menu" className={cn(css.button, 'js-menu-navigation')}>
-            <svg xmlns="http://www.w3.org/2000/svg" className={css['icon']} viewBox="60 60 280 280">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" className={css['icon']} viewBox="60 60 280 280">
               <circle cx="200" className={css['icon__dash']} cy="200" r="115" />
 
               <circle cx="200" cy="200" r="110" fill="var(--primary-700)" />
@@ -42,7 +42,9 @@ export const Footer = () => {
               <rect className={css['icon__shadow']} x="163" y="203" width="33" height="33" fill="white" />
               <rect className={css['icon__shadow']} x="203" y="203" width="33" height="33" rx="12" fill="white" />
             </svg>
-            <span className={css['button__text']}>Menu</span>
+            <span className={css['button__text']} aria-hidden="true">
+              Menu
+            </span>
           </Link>
         </div>
       </div>
