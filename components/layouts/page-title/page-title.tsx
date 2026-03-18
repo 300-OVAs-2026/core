@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useId, useState } from 'react';
+import { useCallback, useEffect, useId, useState } from 'react';
 import { motion } from 'motion/react';
 import { useHashLocation } from 'wouter/use-hash-location';
 

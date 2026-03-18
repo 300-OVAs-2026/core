@@ -18,7 +18,19 @@
 }
 
 .title-slide__title :is(h1, span) {
-    font-size: var(--fs-700);
+    font-size: var(--fs-300);
+}
+
+@media screen and (min-width: 1020px) {
+    .title-slide__title :is(h1, span) {
+        font-size: var(--fs-400);
+    }
+}
+
+@media screen and (min-width: 1480px) {
+    .title-slide__title :is(h1, span) {
+        font-size: var(--fs-700);
+    }
 }
 
 .title-slide__title h1 {
@@ -40,34 +52,34 @@
 }
 
 .page-indicator svg {
-    --icon-size: 1rem;
+    --icon-size: .7rem;
+
     color: var(--primary-700);
     display: inline-block;
-
 }
 
-@media screen and (max-width: 1536px) {
-    .title-slide :is(h1, span) {
-        font-size: var(--fs-400);
+@media screen and (min-width: 1020px) {
+    .page-indicator svg {
+        --icon-size: 1rem;
     }
 }
 
-@media screen and (max-width: 1240px) {
-    .title-slide h1 {
-        font-size: var(--fs-300);
-    }
-
-}
 
 .progress-bar {
     --size: 0%;
 
     display: flex;
     align-items: stretch;
-    min-height: .8rem;
+    min-height: .5rem;
     background-color: var(--secondary-100);
     border-radius: 1rem;
     width: 100%;
+}
+
+@media screen and (min-width: 1020px) {
+    .progress-bar {
+        min-height: .8rem;
+    }
 }
 
 .progress-bar div {
