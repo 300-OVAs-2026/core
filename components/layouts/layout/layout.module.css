@@ -1,0 +1,5 @@
+
+.main {
+    --wrapper-width: var(--main-wrapper-width);
+    margin-inline: auto;
+}

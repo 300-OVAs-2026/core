@@ -8,7 +8,10 @@ import { useHashLocation } from 'wouter/use-hash-location';
 
 import { useA11yAttribute, useReduceMotion } from '@shared/hooks';
 import { REMOVE_HTML_TAGS_REGEX } from '@/shared/constants';
+import { cn } from '@/shared/utils';
 import { useOvaStore } from '@/store/ova-store';
+
+import css from './layout.module.css';
 
 
 const HOME_PATH = '/';
@@ -57,7 +60,7 @@ export const Layout: React.FC<Props> = ({ children }) => {
       <Header />
       <Interpreter />
       {location !== '/notas' && location !== HOME_PATH && <FloatingNotes currentPage={location} />}
-      <main id="main" className='u-flex u-flex-1 u-px-2 u-py-2 h-full' data-home={location === HOME_PATH} tabIndex={-1}>
+      <main id="main" className={cn(css['main'], 'u-wrapper u-flex u-flex-1 u-px-2 u-py-2 h-full')} data-home={location === HOME_PATH} tabIndex={-1}>
         {children}
       </main>
       {location !== HOME_PATH ? <Footer /> : null}

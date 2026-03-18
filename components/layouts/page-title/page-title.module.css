@@ -1,5 +1,5 @@
 .title-slide {
-    --wrapper-width: 150ch;
+    --wrapper-width: var(--main-wrapper-width);
     grid-area: title;
     display: flex;
     align-items: center;

@@ -2,6 +2,7 @@
   --z-index-menu: 20;
   --z-index-modal: 30;
   --z-index-interpreter: 40;
+  --main-wrapper-width: 180ch;
 }
 
 *,

@@ -77,7 +77,7 @@ export const PageTitle: React.FC<Props> = ({ stars }) => {
   }, [updateTitle]);
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={`${css['title-slide']} u-wrapper u-mb-2`}>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={`${css['title-slide']} u-mb-2`}>
       <div className={css['title-slide__title']} aria-live="polite">
         <span aria-hidden="true">
           {title.number}.
