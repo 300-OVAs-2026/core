@@ -6,6 +6,7 @@ import { Menu } from '../menu';
 
 import { HeaderProvider } from './header-context';
 import { HOME_PATH } from './lib/constant';
+import { SkipToMain } from './skip-to-main';
 
 import type { PropertyType } from './types/types';
 import { type MenuExpanded, MenuOptions } from './types/types';
@@ -46,6 +47,7 @@ export const Header = () => {
   return (
     <HeaderProvider value={{ expanded, handleExpanded }}>
       <header id="header" className={css['header']}>
+        <SkipToMain/>
         <div className={css['header__container']}>
           <Menu />
           <div className={css['logo']}>

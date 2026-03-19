@@ -39,3 +39,43 @@
     }
 
 }
+
+/* Skip Link */
+.skip-link {
+    --outline-offset: -4px;
+    --radius: .6rem;
+
+    margin-inline: auto;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+    padding: 0.3em 1.5em;
+    background-color: var(--accent);
+    border: 1px solid transparent;
+    border-bottom-right-radius: var(--radius);
+    border-bottom-left-radius: var(--radius);
+    font-size: var(--fs-300);
+    font-weight: bold;
+    color: var(--primary-800);
+}
+
+.skip-link:not(:focus):not(:active) {
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    white-space: nowrap;
+}
+
+@media screen and (forced-colors: active) {
+
+    .skip-link {
+        color: LinkText;
+    }
+}
