@@ -50,6 +50,10 @@ button.button svg {
   --icon-size: var(--button-icon-size);
 }
 
+button.button:focus-visible {
+  outline: none;
+}
+
 /* SVG decorativos */
 
 .wrapper {

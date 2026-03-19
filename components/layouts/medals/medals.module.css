@@ -121,12 +121,18 @@
   align-items: center;
   gap: 0.3rem;
   background-color: #fef3d0;
-  color: #c47f17;
+  color: var(--accent-500);
   font-weight: 700;
   padding: 0.3rem 0.75rem;
   border-radius: 999px;
   min-width: 3rem;
   justify-content: center;
+}
+
+.starsBadgeGray {
+  background-color: var(--secondary-50);
+  color: var(--secondary-600);
+  filter: grayscale(1);
 }
 
 .starIcon {
@@ -181,11 +187,11 @@
 }
 
 .footer span:last-child strong {
-  color: var(--warning, #e6a817);
+  color: var(--accent-500);
 }
 
 .footer span:last-child svg {
-  color: var(--warning, #e6a817);
+  color: var(--accent-500);
 }
 
 /* Dark mode */
