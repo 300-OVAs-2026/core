@@ -1,5 +1,5 @@
 button.button {
-  --button-text-color: var(--secondary-900);
+  --button-text-color: var(--primary-700);
   --button-bg-color: var(--accent);
   --outline-color: var(--accent);
   --button-icon-size: 1.1rem;

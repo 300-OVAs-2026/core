@@ -12,7 +12,7 @@
   --success: hsl(165 55% 40%);
   --success-light: hsl(165 60% 70%);
 
-  --wrong: hsl(8 65% 52%);
+  --wrong: #cd4b37;
   --wrong-light: hsl(8 70% 75%);
 
   /* Primary scale - HSL fallback */

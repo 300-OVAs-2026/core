@@ -87,7 +87,7 @@ export const Menu = () => {
 
           <button
             className={cn(css['menu__button'], css['menu__button--diagonal-cut'])}
-            style={{ '--bg-color': 'var(--primary-400)' } as React.CSSProperties}
+            style={{ '--bg-color': 'var(--primary-500)' } as React.CSSProperties}
             aria-label="Activar audio"
             onClick={() => setAudioDescription(!config.audio)}>
             <span className={css['menu__button-content']}>
@@ -101,7 +101,7 @@ export const Menu = () => {
           <MenuButtonInterpreter />
 
           <div
-            className={cn(css['menu__button'], css['menu__button--double-diagonal-cut'])}
+            className={cn(css['menu__button'], css['menu__button--blue'],  css['menu__button--double-diagonal-cut'])}
             style={{ '--bg-color': 'var(--accent)' } as React.CSSProperties}>
             <span className={css['menu__button-content']}>
               <Icon name="award" />

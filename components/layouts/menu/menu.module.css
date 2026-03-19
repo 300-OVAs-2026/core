@@ -71,6 +71,12 @@
     height: var(--button-size);
 }
 
+.menu__button--blue {
+    --clr-shadow: white;
+    --clr-icon: var(--primary-700);
+    color: var(--primary-700);
+}
+
 @media screen and (min-width: 1024px) {
     .menu__button {
         --skew: .8rem;
@@ -101,7 +107,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    filter: drop-shadow(0 0 .125rem currentColor);
+    filter: drop-shadow(0 0 .125rem var(--clr-shadow, currentColor));
     pointer-events: none;
 }
 
@@ -128,7 +134,8 @@
 
 .menu__button-content svg {
     --icon-size: 1.2rem;
-    filter: drop-shadow(0 0 .3125rem currentColor);
+    color: var(--clr-icon, currentColor);
+    filter: drop-shadow(0 0 .3125rem var(--clr-shadow, currentColor));
 }
 
 @media screen and (min-width: 1024px) {

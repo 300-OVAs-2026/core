@@ -20,7 +20,7 @@ body {
   background-size: cover;
   font-size: var(--fs-300);
   font-family: 'BlenderPro', sans-serif;
-  color: var(--clr-text-main);
+  color: var(--secondary-900);
 }
 
 

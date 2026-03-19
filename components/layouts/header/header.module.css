@@ -59,7 +59,7 @@
     border-bottom-left-radius: var(--radius);
     font-size: var(--fs-300);
     font-weight: bold;
-    color: var(--primary-800);
+    color: var(--primary-700);
 }
 
 .skip-link:not(:focus):not(:active) {
