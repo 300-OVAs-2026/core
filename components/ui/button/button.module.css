@@ -51,12 +51,17 @@ button.button svg {
   --icon-size: var(--button-icon-size);
 }
 
+button.button:focus-visible {
+  outline: none;
+}
+
 /* SVG decorativos */
 
 .wrapper {
   --linear-svg: var(--accent);
   --border-size: clamp(2rem, 3vw, 3rem);
   --border-offset: 0.1rem;
+  --outline-color: var(--accent);
 
   display: inline-flex;
   align-items: center;
@@ -69,10 +74,16 @@ button.button svg {
 
 .wrapper:has(button:is([data-type='check'],[data-type='secondary'], [data-type='credits'])) {
   --linear-svg: var(--primary-700);
+  --outline-color: var(--primary-700);
 }
 
 .wrapper:has(button:disabled) {
   --linear-svg: var(--secondary-700);
+}
+
+.wrapper:has(button:focus-visible) {
+  box-shadow: 0 0 0 2px var(--outline-color);
+  border-radius: 0.25rem;
 }
 
 /* posicion */
