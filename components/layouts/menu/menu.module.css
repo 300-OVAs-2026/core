@@ -343,8 +343,9 @@
     align-items: center;
     gap: .5rem;
     padding: clamp(1rem, 3%, 1.5rem);
-    background-color: transparent;
-    border: none;
+    background-color: var(--primary-700);
+    border-radius: .5rem;
+    border: 1px solid var(--primary-600);
     font-size: var(--fs-300);
     font-weight: bold;
     color: currentColor;
