@@ -26,7 +26,6 @@
 }
 
 .progress {
-    --wrapper-width: var(--main-wrapper-width);
     margin-inline: auto;
     align-self: center;
     grid-area: nav;
