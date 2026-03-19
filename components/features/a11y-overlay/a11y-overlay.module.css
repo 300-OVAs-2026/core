@@ -15,7 +15,7 @@
     /* Versión muy clara para fondos */
     --border-rds: .5rem;
 
-    position: absolute;
+    position: fixed;
     left: 0;
     padding-block-end: 2rem;
     width: min(100%, 32.5rem);
