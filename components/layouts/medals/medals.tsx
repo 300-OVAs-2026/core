@@ -85,12 +85,13 @@ export const Medals = () => {
                         </td>
 
                         {/* Estrellas */}
+                        {/* Estrellas */}
                         <td data-label={t.colStars}>
-                          <span className={css['starsBadge']}>
+                          <span className={cn(css['starsBadge'], !activity.completed && css['starsBadgeGray'])}>
                             <span className={css['starIcon']} aria-hidden="true">
                               <Star size={16} fill="currentColor" />
                             </span>
-                            {activity.stars ?? maxStars}
+                            {activity.completed ? (activity.stars ?? maxStars) : 0}
                           </span>
                         </td>
 
@@ -120,7 +121,8 @@ export const Medals = () => {
               </span>
               <span>
                 <Star size={16} fill="currentColor" />
-                {t.footerStars} <strong>{activityEntries.reduce((acc, [, a]) => acc + (a.stars ?? 3), 0)}</strong>
+                {t.footerStars}{' '}
+                <strong>{activityEntries.reduce((acc, [, a]) => acc + (a.completed ? (a.stars ?? 3) : 0), 0)}</strong>
               </span>
             </div>
           )}
