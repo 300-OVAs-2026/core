@@ -146,6 +146,7 @@ html[data-dark-mode="true"] .u-white-bg {
   --audio-background-color: var(--secondary-200);
   --audio-icon-color: var(--secondary-700);
   --audio-border-radius: 2rem;
+  color: var(--secondary-700);
   font-size: var(--fs-300);
   padding: 0.2rem 0.4rem;
 }
