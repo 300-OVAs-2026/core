@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
+
+import { Icon } from '../../ui';
 
 import { useDraggablePosition, useFloatingPanel, useNotesEditor, useTextSelection } from './hooks';
 import { MoveArrowIcon, NewNoteIcon, NotesIcon } from './notes-icons';
@@ -10,7 +12,6 @@ import { useNotesStore } from './store/notesStore';
 import type { FloatingNotesProps } from './types/types';
 
 import css from './floating-notes.module.css';
-import { Icon } from '../../ui';
 
 export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' }) => {
   const dragRef = useRef(null);
@@ -60,7 +61,7 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
   }, [isOpen]);
 
   // Manejar apertura/cierre y gestión de foco
-  const handleToggleOpen = () => {
+  const handleToggleOpen = useCallback(() => {
     if (isOpen) {
       // Al cerrar, devolver el foco al botón trigger y resetear el flag
       triggerButtonRef.current?.focus();
@@ -72,7 +73,7 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
     if (!isOpen) {
       resetPosition();
     }
-  };
+  }, [isOpen, toggleOpen, resetPosition]);
   // Focus trap
   useEffect(() => {
     if (!isOpen || !containerRef.current) return;
@@ -150,7 +151,7 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
             left: `${tooltipPosition.x}px`,
             top: `${tooltipPosition.y}px`,
             transform: 'translateX(-50%)',
-            zIndex: 10000
+            zIndex: 10
           }}>
           <button
             type="button"
