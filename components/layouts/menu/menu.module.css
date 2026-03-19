@@ -65,6 +65,7 @@
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.025em;
+    text-decoration: none;
     color: var(--white);
     background-color: var(--bg-color, transparent);
     padding-inline: calc(var(--padding) * var(--increment));

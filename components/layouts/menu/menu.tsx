@@ -100,8 +100,10 @@ export const Menu = () => {
 
           <MenuButtonInterpreter />
 
-          <div
-            className={cn(css['menu__button'], css['menu__button--blue'],  css['menu__button--double-diagonal-cut'])}
+          <Link
+            to="/medals"
+            aria-label="Ver mis medallas"
+            className={cn(css['menu__button'], css['menu__button--blue'], css['menu__button--double-diagonal-cut'])}
             style={{ '--bg-color': 'var(--accent)' } as React.CSSProperties}>
             <span className={css['menu__button-content']}>
               <Icon name="award" />
@@ -110,7 +112,7 @@ export const Menu = () => {
                 {medals} {i18n[lang].badges}
               </span>
             </span>
-          </div>
+          </Link>
         </div>
 
         <div>
