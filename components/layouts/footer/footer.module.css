@@ -81,28 +81,12 @@
 }
 
 .button__text {
-    /* Visually hidden on mobile, but aria-label on the link covers AT */
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
+   display: none;
 }
 
 @media screen and (min-width: 768px) {
     .button__text {
-        position: static;
-        width: auto;
-        height: auto;
-        padding: 0;
-        margin: 0;
-        overflow: visible;
-        clip: auto;
-        white-space: normal;
+       display: inline-block;
     }
 }
 
