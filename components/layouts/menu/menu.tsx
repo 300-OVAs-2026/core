@@ -5,6 +5,7 @@ import { SquareUser } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'wouter';
 
+import { useFocusTrap } from '@/shared/hooks';
 import { cn } from '@/shared/utils';
 import { useGamificationStore } from '@/store/gamification-store';
 import { useOvaStore } from '@/store/ova-store';
@@ -23,6 +24,7 @@ export const Menu = () => {
   const medals = useGamificationStore((state) => state.totalMedals);
 
   const { expanded, handleExpanded } = useHeaderContext();
+  const focusTrapRef = useFocusTrap<HTMLDivElement>(expanded.menu, () => handleExpanded(MenuOptions.MENU));
 
   const { config, setConfig } = useA11y();
 
@@ -39,6 +41,7 @@ export const Menu = () => {
             aria-controls="main-menu"
             aria-label="Menú principal"
             aria-expanded={expanded.menu}
+            aria-keyshortcuts="Escape"
             onClick={() => handleExpanded(MenuOptions.MENU)}>
             <svg viewBox="0 0 206.341 235.122" className={css['svg-background']} clipPathUnits="objectBoundingBox">
               <polygon points="0 0 205.414 0 205.414 148.231 79.562 219.324 0 173.945"></polygon>
@@ -83,6 +86,11 @@ export const Menu = () => {
             </svg>
 
             <span className="u-sr-only">Menu</span>
+            {expanded.menu && (
+              <span className="u-sr-only" aria-live="polite">
+                {i18n[lang].menuEscHint}
+              </span>
+            )}
           </button>
 
           <button
@@ -123,8 +131,10 @@ export const Menu = () => {
             transition={{ duration: 0.4, ease: [0.64, 0.01, 0.25, 1.0] }}
           />
           <motion.div
+            ref={focusTrapRef}
             className={css['menu__wrapper']}
             initial={false}
+            {...(!expanded.menu && { inert: '' })}
             animate={{
               opacity: expanded.menu ? 1 : 0,
               y: expanded.menu ? 0 : -20,
