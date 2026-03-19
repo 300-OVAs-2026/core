@@ -41,7 +41,7 @@
 
 .learning-path__list {
   display: grid;
-  grid-template-columns: repeat(6, 10rem);
+  grid-template-columns: repeat(6, 9rem);
   position: relative;
   z-index: 2;
   width: max-content;
@@ -178,6 +178,7 @@ div.learning-path__tooltip {
 
 /* clases base para que consuman estas variables  */
 .learning-path__node-visual {
+  --size: 4rem;
   /* Fondo blanco para que no se vea el anillo TODO: cambiar */
   box-shadow: 0 0 0 0.4rem var(--node-halo, rgba(113, 212, 254, 0.2));
   will-change: transform;
@@ -188,11 +189,23 @@ div.learning-path__tooltip {
   align-items: center;
   position: relative;
   z-index: 2;
-  width: 7rem;
-  height: 7rem;
+  width: var(--size);
+  height: var(--size);
   transition: all 0.3s ease;
   background-color: #fcfcfc;
   border-radius: 50%;
+}
+
+@media screen and (min-width: 1024px) {
+  .learning-path__node-visual {
+    --size: 6rem;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .learning-path__node-visual {
+    --size: 6.5rem;
+  }
 }
 
 .learning-path__node:hover .learning-path__node-visual {
@@ -281,7 +294,7 @@ div.learning-path__tooltip {
 @media (max-width: 1023px) {
 
   .learning-path__list {
-    grid-template-columns: repeat(4, 10rem);
+    grid-template-columns: repeat(4, 9rem);
   }
 
   .learning-path__item {
@@ -306,17 +319,29 @@ div.learning-path__tooltip {
   }
 
   .learning-path__node-icon {
-    width: 45px;
-    height: 45px;
+    width: 2.3rem;
+    height: 2.3rem;
   }
 
+}
+
+@media (max-width: 768px) {
+
+  /* .learning-path__list {
+    grid-template-columns: repeat(4, 8rem);
+  } */
+
+  .learning-path__node-icon {
+    width: 2rem;
+    height: 2rem;
+  }
 }
 
 /* ── Mobile: 2 columnas, zigzag ────────────────────────────────── */
 @media (max-width: 639px) {
 
   .learning-path__list {
-    grid-template-columns: repeat(2, 10rem);
+    grid-template-columns: repeat(2, 7rem);
   }
 
   .learning-path__item {
@@ -344,7 +369,7 @@ div.learning-path__tooltip {
   }
 
   .learning-path__node-icon {
-    width: 38px;
-    height: 38px;
+    width: 2rem;
+    height: 2rem;
   }
 }
