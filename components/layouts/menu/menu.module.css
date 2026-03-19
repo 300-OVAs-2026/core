@@ -72,10 +72,34 @@
     height: var(--button-size);
 }
 
-.menu__button--blue {
-    --clr-shadow: white;
+.menu__button--light-blue {
+    --bg-color: var(--primary-500);
+}
+
+:is(.menu__button--light-blue, .menu__button--dark-blue):focus-visible {
+    --bg-color: var(--accent);
+    --clr-shadow: #f2f2f2;
     --clr-icon: var(--primary-700);
     color: var(--primary-700);
+}
+
+.menu__button--dark-blue {
+    --bg-color: var(--primary-800);
+}
+
+
+.menu__button--yellow {
+    --bg-color: var(--accent);
+    --clr-shadow: var(--white);
+    --clr-icon: var(--primary-700);
+    color: var(--primary-700);
+}
+
+.menu__button--yellow:focus-visible {
+    --bg-color: var(--primary-800);
+    --clr-shadow: var(--white);
+    --clr-icon: currentColor;
+    color: var(--white);
 }
 
 @media screen and (min-width: 1024px) {
@@ -169,6 +193,7 @@
 /* Hamburger button */
 .menu__button--hamburger {
     --size: 3.9rem;
+    --outline-color: var(--primary-700);
 
     width: var(--size);
     display: grid;
@@ -177,6 +202,7 @@
     border: none;
     padding: 0;
     z-index: calc(var(--z-index-menu) + 2);
+    border-radius: var(--outline-border-radius);
 }
 
 .menu__button--hamburger>* {
@@ -215,8 +241,8 @@
     fill: var(--accent);
 }
 
-.menu__button--hamburger:is(:hover, :focus-visible) .svg-background polygon {
-    fill: var(--accent-400);
+.menu__button--hamburger:focus-visible .svg-background polygon {
+    fill: var(--accent-200);
 }
 
 

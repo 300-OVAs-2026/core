@@ -68,6 +68,8 @@
 
 .button {
     --margin-block: 1rem;
+    --outline-color: var(--primary-700);
+
     margin-inline-start: var(--margin-block);
     display: flex;
     flex-direction: column;
@@ -78,6 +80,7 @@
     color: currentColor;
     text-decoration: none;
     text-transform: capitalize;
+    border-radius: var(--outline-border-radius);
 }
 
 .button__text {
@@ -88,12 +91,6 @@
     .button__text {
        display: inline-block;
     }
-}
-
-.button:focus-visible {
-    outline: 3px solid currentColor;
-    outline-offset: 4px;
-    border-radius: 4px;
 }
 
 .icon {

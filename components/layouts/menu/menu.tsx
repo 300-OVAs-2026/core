@@ -94,8 +94,7 @@ export const Menu = () => {
           </button>
 
           <button
-            className={cn(css['menu__button'], css['menu__button--diagonal-cut'])}
-            style={{ '--bg-color': 'var(--primary-500)' } as React.CSSProperties}
+            className={cn(css['menu__button'], css['menu__button--light-blue'], css['menu__button--diagonal-cut'])}
             aria-label="Activar audio"
             onClick={() => setAudioDescription(!config.audio)}>
             <span className={css['menu__button-content']}>
@@ -111,8 +110,7 @@ export const Menu = () => {
           <Link
             to="/medals"
             aria-label="Ver mis medallas"
-            className={cn(css['menu__button'], css['menu__button--blue'], css['menu__button--double-diagonal-cut'])}
-            style={{ '--bg-color': 'var(--accent)' } as React.CSSProperties}>
+            className={cn(css['menu__button'], css['menu__button--yellow'], css['menu__button--double-diagonal-cut'])}>
             <span className={css['menu__button-content']}>
               <Icon name="award" />
               <span className={cn(css['menu__button-label'], css['menu__button-medal'])}>{medals}</span>

@@ -19,7 +19,7 @@
 
 /* ===== BOTÓN FLOTANTE ===== */
 .fn-floating-trigger {
-  --outline-offset: var(--notes-outline-offset);
+  --outline-color: var(--primary-700);
 
   display: flex;
   flex-direction: column;
@@ -30,11 +30,7 @@
   border: 1px solid transparent;
   font-weight: 500;
   color: currentColor;
-}
-
-.fn-floating-trigger:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: var(--outline-offset);
+  border-radius: var(--outline-border-radius);
 }
 
 .fn-notes-badge {
