@@ -18,7 +18,7 @@ export const ToastFeedback: React.FC<ToastFeedbackProps> = ({ type = 'success', 
   const lang = useOvaStore((state) => state.lang);
 
   return (
-    <Toast {...props} addClass={`${css.toast} ${css[type]}`}>
+    <Toast {...props} addClass={`${css.toast} ${css[type]}`} label={label ?? i18n[lang][type]}>
       <div className={css.container}>
         <div className={css.icon}>{type === 'success' ? '✓' : '✕'}</div>
         <div className={`${css['toast__response-wrapper']}`}>

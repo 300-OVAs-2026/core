@@ -17,9 +17,10 @@ export interface ToastCoreProps {
   addClass?: string;
   interpreter?: VideoURLs;
   children: React.ReactNode;
+  label?: string;
 }
 
-export const Toast: React.FC<ToastCoreProps> = ({ isOpen, onClose, addClass, interpreter, children }) => {
+export const Toast: React.FC<ToastCoreProps> = ({ isOpen, onClose, addClass, label, interpreter, children }) => {
   const lang = useOvaStore((state) => state.lang);
   const [updateVideoSources, restoreLastVideoSources] = useInterpreter();
   const flagOpenToast = useRef(false);
@@ -59,7 +60,7 @@ export const Toast: React.FC<ToastCoreProps> = ({ isOpen, onClose, addClass, int
           className={`${css.toast} ${addClass ?? ''}`}
           role="dialog"
           aria-modal="true"
-          aria-label={i18n[lang].dialogLabel}
+          aria-label={label || i18n[lang].dialogLabel}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 16 }}
