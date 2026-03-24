@@ -27,7 +27,6 @@ export const Help = () => {
             title="Figure."
             addClass={css['avatar']}
             alt="Avatar."
-            noCaption
           />
         </Col>
         <Col xs="11" mm="10" md="9" lg="6" hd="6">
