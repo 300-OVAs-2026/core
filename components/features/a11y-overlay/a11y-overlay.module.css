@@ -25,39 +25,20 @@
     z-index: var(--z-index-menu);
 }
 
-html[data-dark-mode="true"] .modal {
-    --brand: #4d5d7a;
-    /* Versión más clara del brand original */
-    --brand-dark: #8391ab;
-    /* Versión más clara para contraste */
-    --accent: #5d6d8a;
-    /* Acento más claro para visibilidad */
-    --accent-light: #394863;
-    /* Versión más oscura para acentos en dark mode */
-    --color: #1a1f2a;
-    /* Color oscuro para textos */
-    --color-secondary: #e1e5ec;
-    /* Versión clara para contraste */
-    --background: #252d42;
-    /* Fondo oscuro basado en el brand */
-    background: linear-gradient(to right,
-            #4d5d7a,
-            /* Nueva base más clara */
-            #445270,
-            /* Transición */
-            #3b4766,
-            /* Transición */
-            #323c5c,
-            /* Transición */
-            #293352
-            /* El más oscuro */
-        );
-}
+
 
 @supports (height: 100svh) {
     .modal {
         height: 100svh;
     }
+}
+
+html[data-dark-mode='true'] .modal {
+    --background:      hsl(0, 2%, 10%);    
+    --color-secondary: var(--clr-text-main);
+    --accent:          var(--secondary-700);      
+    --accent-light:    hsl(220 22% 17%);     
+    --brand-dark:      var(--primary-700);    
 }
 
 .modal__header {
