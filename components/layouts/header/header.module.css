@@ -31,6 +31,7 @@
     justify-content: center;
     height: min(4.5rem, 5vw);
     margin-block: .75rem;
+     color: currentColor;
 }
 
 @media screen and (min-width: 1024px) {

@@ -2,6 +2,10 @@ html:not([data-dark-mode]) body:has(main[data-home="true"]) {
     background-color: var(--primary-800) !important;
 }
 
+html:not([data-dark-mode]) body:has(main[data-home="true"]) header  {
+    color: var(--white);
+}
+
 @media screen and (max-width: 1024px) {
     .cover-image-wrapper {
         display: none;
