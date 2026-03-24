@@ -24,6 +24,7 @@ html[data-dark-mode="true"] .modal__stars {
     gap: 0.125rem;
     border-radius: 5rem;
     padding-inline: .5rem;
+        color: var(--white);
     background-color: var(--primary-700);
 }
 
