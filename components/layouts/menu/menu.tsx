@@ -84,8 +84,7 @@ export const Menu = () => {
                 transition={{ duration: 0.3, ease: [0.64, 0.01, 0.25, 1.0] }}
               />
             </svg>
-
-            <span className="u-sr-only">Menu</span>
+            
             {expanded.menu && (
               <span className="u-sr-only" aria-live="polite">
                 {i18n[lang].menuEscHint}
@@ -134,6 +133,7 @@ export const Menu = () => {
             initial={false}
             {...(!expanded.menu && { inert: '' })}
             animate={{
+              display: expanded.menu ? 'flex' : 'none',
               opacity: expanded.menu ? 1 : 0,
               y: expanded.menu ? 0 : -20,
               pointerEvents: expanded.menu ? 'auto' : 'none'
