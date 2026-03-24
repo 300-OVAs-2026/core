@@ -89,6 +89,10 @@
     cursor: not-allowed;
 }
 
+html[data-dark-mode="true"] .progress__button:disabled {
+    color: var(--secondary-100);
+}
+
 .progress__item-button {
     --button-size: 1.8rem;
     --button-text-clr: currentColor;
@@ -125,6 +129,10 @@
 
 .progress__item-button[aria-selected="true"] {
     --button-text-clr: var(--primary-600);
+}
+
+html[data-dark-mode="true"] .progress__item-button[aria-selected="true"] {
+    --button-text-clr: var(--primary-300);
 }
 
 .progress__list li:not(:nth-last-child(-n+2)) .progress__item-button {

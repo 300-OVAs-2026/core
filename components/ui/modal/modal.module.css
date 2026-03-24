@@ -7,6 +7,10 @@
     z-index: var(--z-index-modal);
 }
 
+html[data-dark-mode="true"] .modal {
+    --background: hsl(0, 2%, 10%);
+}
+
 .modal[data-size="xs"] {
     --modal-max-width: 20rem;
 }

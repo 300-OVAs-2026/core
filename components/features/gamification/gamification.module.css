@@ -4,6 +4,12 @@
     --clr-star-empty: var(--secondary-200);
 }
 
+html[data-dark-mode="true"] .stars,
+html[data-dark-mode="true"] .modal__stars {
+    --clr-star: var(--accent);
+    --clr-star-empty: var(--secondary-50);
+}
+
 /* Stars */
 .stars__wrapper {
     width: 100%;
@@ -36,7 +42,7 @@
 .stars__count {
     font-weight: 700;
     font-size: var(--fs-200);
-    color: white;
+    color: currentColor;
     margin-inline-start: 0.375rem;
 }
 
@@ -106,6 +112,11 @@
     border: 1.5px solid var(--primary-500);
     color: var(--primary-500);
     font-weight: 600;
+}
+
+html[data-dark-mode="true"] .modal__medal-text {
+    border-color: var(--primary-300);
+    color: var(--primary-300);
 }
 
 .modal__medal {
