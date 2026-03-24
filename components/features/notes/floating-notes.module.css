@@ -92,12 +92,15 @@
 
 .fn-trigger-icon__dash {
   fill: none;
-  stroke: rgb(137, 221, 242);
-  filter: drop-shadow(0 0 30px hsl(0, 0%, 100%));
+  stroke: var(--primary-200);
   stroke-width: 34;
   stroke-dasharray: 75 60;
   stroke-dashoffset: -50;
   opacity: 0.5;
+}
+
+html[data-dark-mode="true"] .fn-trigger-icon__dash {
+  stroke: hsl(0, 0%, 100%);
 }
 
 .fn-trigger-icon__shadow {

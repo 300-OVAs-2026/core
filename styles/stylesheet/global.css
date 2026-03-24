@@ -15,14 +15,14 @@
 
 body {
   height: 100vh;
-  background-color: var(--clr-background);
+  background-color: var(--background);
   background-image: var(--bg-image, url('assets/base/background.webp'));
   background-repeat: repeat;
   background-position: center;
   background-size: cover;
   font-size: var(--fs-300);
   font-family: 'BlenderPro', sans-serif;
-  color: var(--secondary-900);
+  color: var(--text-main);
 }
 
 

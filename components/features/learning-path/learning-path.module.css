@@ -59,6 +59,11 @@
   z-index: 1;
 }
 
+html[data-dark-mode="true"] .learning-path__bridge {
+  --color-bridge-border: var(--primary-600);
+  --color-bridge-fill: var(--primary-900);
+}
+
 .learning-path__bridge-svg--desktop,
 .learning-path__bridge-svg--tablet,
 .learning-path__bridge-svg--mobile {
@@ -127,11 +132,25 @@
   --node-halo: #AFEAA9;
 }
 
+html[data-dark-mode="true"] .learning-path__node[data-kind="start"] {
+  --node-ring-color: #2E7B1B;
+  --node-icon-bg: #2E7B1B;
+  --node-icon-color: #8fca88;
+  --node-halo: #2E7B1B;
+}
+
 .learning-path__node[data-kind="finish"] {
   --node-ring-color: #A61C1C;
   --node-icon-bg: #F4BEBE;
-  --node-icon-color: #CD2323;
+  --node-icon-color: #c26d6d;
   --node-halo: #EFA4A4;
+}
+
+html[data-dark-mode="true"] .learning-path__node[data-kind="finish"] {
+  --node-ring-color: #7B1414;
+  --node-icon-bg: #7B1414;
+  --node-icon-color: #CD2323;
+  --node-halo: #7B1414;
 }
 
 .learning-path__node[data-kind="quiz"] {
@@ -141,11 +160,25 @@
   --node-halo: var(--accent-200);
 }
 
+html[data-dark-mode="true"] .learning-path__node[data-kind="quiz"] {
+  --node-ring-color: var(--accent-600);
+  --node-icon-bg: var(--accent-900);
+  --node-icon-color: var(--accent-300);
+  --node-halo: var(--accent-700);
+}
+
 .learning-path__node:is([data-kind="objective"], [data-kind="video"], [data-kind="content"], [data-kind="resume"]) {
   --node-ring-color: var(--primary-300);
   --node-icon-bg: var(--primary-100);
   --node-icon-color: var(--primary-500);
   --node-halo: var(--primary-200);
+}
+
+html[data-dark-mode="true"] .learning-path__node:is([data-kind="objective"], [data-kind="video"], [data-kind="content"], [data-kind="resume"]) {
+  --node-ring-color: var(--primary-600);
+  --node-icon-bg: var(--primary-900);
+  --node-icon-color: var(--primary-300);
+  --node-halo: var(--primary-800);
 }
 
 .learning-path__node[data-locked='true'] {
@@ -155,6 +188,14 @@
   --node-halo: var(--secondary-200);
   cursor: not-allowed;
 }
+
+html[data-dark-mode="true"] .learning-path__node[data-locked='true'] {
+  --node-ring-color: var(--secondary-700);
+  --node-icon-bg: var(--secondary-900);
+  --node-icon-color: var(--secondary-300);
+  --node-halo: var(--secondary-800);
+}
+
 
 .learning-path__node[data-locked='true']:hover .learning-path__node-visual {
   box-shadow: 0 0 0 0.4rem var(--node-halo);
@@ -179,6 +220,11 @@ div.learning-path__tooltip {
   font-size: var(--fs-200);
 }
 
+html[data-dark-mode="true"] div.learning-path__tooltip {
+  --tooltip-bg: var(--secondary-700);
+  --tooltip-arrow-bg: var(--secondary-700);
+}
+
 /* clases base para que consuman estas variables  */
 .learning-path__node-visual {
   --size: 4rem;
@@ -195,7 +241,7 @@ div.learning-path__tooltip {
   width: var(--size);
   height: var(--size);
   transition: all 0.3s ease;
-  background-color: #fcfcfc;
+  background-color: var(--background);
   border-radius: 50%;
 }
 

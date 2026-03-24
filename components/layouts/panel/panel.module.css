@@ -124,7 +124,7 @@
 }
 
 .progress__item-button[aria-selected="true"] {
-    --button-text-clr: var(--primary-500);
+    --button-text-clr: var(--primary-600);
 }
 
 .progress__list li:not(:nth-last-child(-n+2)) .progress__item-button {
@@ -147,4 +147,5 @@
 
 div.footer__nav-tooltip {
     --tooltip-bg: var(--accent);
+    color: var(--primary-700);
 }

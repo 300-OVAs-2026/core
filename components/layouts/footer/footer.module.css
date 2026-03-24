@@ -18,7 +18,7 @@
         --shape-width: 130px;
         --shape-height: 100px;
     }
-    
+
 }
 
 @media screen and (min-width: 1280px) {
@@ -26,7 +26,7 @@
         --shape-width: 150px;
         --shape-height: 120px;
     }
-    
+
 }
 
 @media screen and (min-width: 1480px) {
@@ -42,8 +42,6 @@
     width: var(--shape-width);
     height: 100%;
 }
-
-
 
 .footer__outline {
     position: absolute;
@@ -65,7 +63,6 @@
     clip-path: url(#mask0);
 }
 
-
 .button {
     --margin-block: 1rem;
     --outline-color: var(--primary-700);
@@ -77,19 +74,20 @@
     position: relative;
     z-index: 1;
     font-weight: 500;
-    color: currentColor;
+    color: var(--primary-700);
     text-decoration: none;
     text-transform: capitalize;
     border-radius: var(--outline-border-radius);
 }
 
+
 .button__text {
-   display: none;
+    display: none;
 }
 
 @media screen and (min-width: 768px) {
     .button__text {
-       display: inline-block;
+        display: inline-block;
     }
 }
 
@@ -103,14 +101,14 @@
 
 @media screen and (min-width: 1280px) {
     .icon {
-         height: 3.5rem;
+        height: 3.5rem;
     }
-    
+
 }
 
 @media screen and (min-width: 1480px) {
     .icon {
-         height: 4rem;
+        height: 4rem;
     }
 
 }

@@ -101,6 +101,10 @@
     animation: moveStripes 1s linear infinite;
 }
 
+html[data-dark-mode='true'] .progress-bar div {
+    background-color: var(--accent-300);
+}
+
 @keyframes moveStripes {
     0% {
         background-position: 0 0;
