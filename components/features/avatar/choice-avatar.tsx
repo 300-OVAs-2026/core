@@ -58,10 +58,15 @@ export const ChoiceAvatar = () => {
                         className={css['avatar-image']}
                       />
                       <Button
-                        label={selectedAvatarId === avatar.id ? 'Seleccionado' : 'Seleccionar'}
-                        disabled={selectedAvatarId === avatar.id}
-                        onClick={() => selectAvatar(avatar.id)}
-                      />
+                        label={
+                          selectedAvatarId === avatar.id
+                            ? `Seleccionado ${avatar.description}`
+                            : `Seleccionar ${avatar.description}`
+                        }
+                        {...(selectedAvatarId === avatar.id ? { variant: 'disabled' } : {})}
+                        onClick={() => selectAvatar(avatar.id)}>
+                        {selectedAvatarId === avatar.id ? 'Seleccionado' : 'Seleccionar'}
+                      </Button>
                     </li>
                   ))}
                 </ul>

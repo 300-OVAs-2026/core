@@ -15,16 +15,17 @@ interface Props extends Omit<ButtonPropsUI, 'variant'> {
   addClass?: string;
   variant?: ButtonVariant;
   icon?: React.ReactNode;
+  children?: React.ReactNode;
   iconPosition?: 'left' | 'right';
 }
 
-export const Button: React.FC<Props> = ({ addClass, label, variant, icon, iconPosition, ...props }) => {
+export const Button: React.FC<Props> = ({ addClass, label, variant, icon, iconPosition, children, ...props }) => {
   const id = useId();
 
   const gradientLeft = `borderGradientLeft-${id}`;
   const gradientRight = `borderGradientRight-${id}`;
 
-  const ICON_MAP: Record<Exclude<ButtonVariant, 'secondary'>, JSX.Element> = {
+  const ICON_MAP: Record<Exclude<ButtonVariant, 'secondary' | 'disabled'>, JSX.Element> = {
     reset: <Icon name="button-reset" />,
     check: <Icon name="button-check" />,
     select: (
@@ -54,7 +55,7 @@ export const Button: React.FC<Props> = ({ addClass, label, variant, icon, iconPo
     )
   };
 
-  const resolvedIcon = icon ?? (variant && variant !== 'secondary' ? ICON_MAP[variant] : null);
+  const resolvedIcon = icon ?? (variant && variant !== 'secondary' && variant !== 'disabled' ? ICON_MAP[variant] : null);
   const resolvedPosition = iconPosition ?? (variant === 'next' ? 'right' : 'left');
 
   return (
@@ -79,7 +80,7 @@ export const Button: React.FC<Props> = ({ addClass, label, variant, icon, iconPo
       {/* BOTÓN */}
       <ButtonUI addClass={cn(css.button, addClass)} label={label} {...props} hasAriaLabel data-type={variant}>
         {resolvedIcon && <span data-icon-position={resolvedPosition}>{resolvedIcon}</span>}
-        <span className={css['button__label']}>{label}</span>
+        <span className={css['button__label']}>{children ?? label}</span>
       </ButtonUI>
 
       {/* SVG derecho */}

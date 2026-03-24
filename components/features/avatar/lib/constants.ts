@@ -31,6 +31,7 @@ export const AVATARS: Avatar[] = [
   {
     id: '01',
     name: 'albino',
+    description: 'Avatar de un hombre joven de piel clara y cabello rubio corto, vestido con camiseta blanca tipo polo con logotipo institucional, jeans azules y zapatillas blancas. Está de pie, levantando una mano en señal de saludo y sosteniendo un bastón de apoyo con la otra mano.',
     variations: [
       AvatarVariation.GREETING,
       AvatarVariation.THINKING,
@@ -42,6 +43,7 @@ export const AVATARS: Avatar[] = [
   {
     id: '02',
     name: 'cafetero',
+    description: 'Avatar de un hombre joven con sombrero y vestimenta tradicional campesina. Lleva camisa clara, pantalón claro, una mochila cruzada y una ruana o banda tejida sobre el hombro. Está de pie, sonriendo y levantando una mano en señal de saludo.',
     variations: [
       AvatarVariation.THINKING,
       AvatarVariation.GREETING,
@@ -52,11 +54,13 @@ export const AVATARS: Avatar[] = [
   {
     id: '03',
     name: 'campesina',
+    description: 'Avatar de una mujer joven con sombrero de paja y trenzas. Lleva camiseta tipo polo con logotipo institucional y una falda negra con franjas de colores en la parte inferior. Está de pie, sonriendo y levantando una mano en señal de saludo.',
     variations: [AvatarVariation.GREETING, AvatarVariation.PRESENTING, AvatarVariation.THINKING]
   },
   {
     id: '04',
     name: 'campesino-abuelo',
+    description: 'Avatar de un hombre mayor con sombrero oscuro y ruana. Lleva pantalón oscuro y botas de caucho. Está de pie, sonriendo y levantando una mano en señal de saludo.',
     variations: [
       AvatarVariation.THINKING,
       AvatarVariation.GREETING,
@@ -67,6 +71,7 @@ export const AVATARS: Avatar[] = [
   {
     id: '05',
     name: 'chica-indigena',
+    description: 'Avatar de una mujer joven con cabello largo y oscuro. Lleva camiseta tipo polo con logotipo institucional, jeans azules y zapatillas blancas. Está de pie, sonriendo y levantando una mano en señal de saludo.',
     variations: [
       AvatarVariation.THINKING,
       AvatarVariation.GREETING,
@@ -77,6 +82,7 @@ export const AVATARS: Avatar[] = [
   {
     id: '06',
     name: 'chico-protesis',
+    description: 'Avatar de un hombre joven con cabello corto y oscuro. Lleva camiseta tipo polo con logotipo institucional, jeans azules y zapatillas blancas. Tiene una prótesis en la pierna derecha. Está de pie, sonriendo y levantando una mano en señal de saludo.',
     variations: [
       AvatarVariation.THINKING,
       AvatarVariation.GREETING,
@@ -87,11 +93,13 @@ export const AVATARS: Avatar[] = [
   {
     id: '07',
     name: 'costeno',
+    description: 'Avatar de un hombre joven con cabello corto y oscuro. Lleva camiseta tipo polo con logotipo institucional, jeans azules y zapatillas blancas. Está de pie, sonriendo y levantando una mano en señal de saludo.',
     variations: [AvatarVariation.GREETING, AvatarVariation.PRESENTING, AvatarVariation.THINKING]
   },
   {
     id: '08',
     name: 'cumbia',
+    description: 'Avatar de un hombre con traje típico de cumbia saludando con sombrero vueltiao y mochila arhuaca. Está de pie, sonriendo y levantando una mano en señal de saludo.',
     variations: [
       AvatarVariation.THINKING,
       AvatarVariation.GREETING,
@@ -102,6 +110,7 @@ export const AVATARS: Avatar[] = [
   {
     id: '09',
     name: 'morena',
+    description: 'Avatar de una mujer joven con cabello rizado y oscuro. Lleva camiseta tipo polo con logotipo institucional, jeans azules y zapatillas blancas. Está de pie, sonriendo y levantando una mano en señal de saludo.',
     variations: [
       AvatarVariation.THINKING,
       AvatarVariation.GREETING,
@@ -112,6 +121,7 @@ export const AVATARS: Avatar[] = [
   {
     id: '10',
     name: 'moreno',
+    description: 'Avatar de un hombre afrodescendiente de complexión atlética y cabeza rapada, con una expresión amable y sonriente. Lleva camiseta con logotipo institucional y pantalon color caqui. Está de pie, sonriendo y levantando una mano en señal de saludo.',
     variations: [
       AvatarVariation.THINKING,
       AvatarVariation.GREETING,
@@ -123,6 +133,7 @@ export const AVATARS: Avatar[] = [
   {
     id: '11',
     name: 'pelirojo',
+    description: 'Avatar de un hombre joven con cabello rojo y pecas. Lleva camiseta tipo polo con logotipo institucional, jeans azules y zapatillas blancas. Está de pie, sonriendo y levantando una mano en señal de saludo.',
     variations: [
       AvatarVariation.THINKING,
       AvatarVariation.GREETING,
@@ -133,6 +144,7 @@ export const AVATARS: Avatar[] = [
   {
     id: '12',
     name: 'wayuu',
+    description: 'Avatar de una mujer indígena Wayúu con manta roja tradicional y pintura facial. Está de pie, sonriendo y levantando una mano en señal de saludo.',
     variations: [AvatarVariation.GREETING, AvatarVariation.PRESENTING, AvatarVariation.THINKING]
   }
 ];

@@ -39,7 +39,7 @@ button.button::first-letter {
   text-transform: uppercase;
 }
 
-button.button:disabled {
+button.button:is(:disabled, [data-type='disabled']) {
   --button-text-color: var(--white);
   --line: var(--white);
   --button-bg-color: var(--secondary-700);
