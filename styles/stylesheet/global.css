@@ -1,5 +1,6 @@
 :root {
-  --z-index-menu: 20;
+  --z-index-header: 20;
+  --z-index-menu: 25;
   --z-index-modal: 30;
   --z-index-interpreter: 40;
   --main-wrapper-width: 180ch;
