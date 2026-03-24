@@ -95,7 +95,7 @@ export const Menu = () => {
 
           <button
             className={cn(css['menu__button'], css['menu__button--light-blue'], css['menu__button--diagonal-cut'])}
-            aria-label="Activar audio"
+            aria-label={config.audio ? i18n[lang].audioActive : i18n[lang].audioPause}
             onClick={() => setAudioDescription(!config.audio)}>
             <span className={css['menu__button-content']}>
               {config.audio ? <Icon name="pause" /> : <Icon name="play" />}
