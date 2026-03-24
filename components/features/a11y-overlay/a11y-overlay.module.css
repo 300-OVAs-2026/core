@@ -101,6 +101,11 @@ html[data-dark-mode="true"] .modal__title kbd {
     border: 1px solid transparent;
     border-radius: 50%;
     color: var(--color);
+    transition: background-color 120ms ease;
+}
+
+.modal__button:hover {
+    background-color: var(--brand);
 }
 
 .modal__button svg {
