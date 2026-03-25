@@ -1,6 +1,6 @@
 import { Content } from '@layouts';
 import { Button } from '@ui';
-import { Icon, Panel } from 'books-ui';
+import { Audio, Icon, Panel } from 'books-ui';
 import { ChevronsLeft, ChevronsRight } from 'lucide-react';
 
 import { cn } from '@/shared/utils';
@@ -31,6 +31,11 @@ export const ChoiceAvatar = () => {
 
   return (
     <Content withOutTitle>
+      <div className="u-flow u-my-2">
+        <Audio src="assets/audios/base/aud_des_choice-avatar.mp3" a11y />
+        <Audio src="assets/audios/base/aud_choice-avatar.mp3" />
+      </div>
+
       <p className={css['instruction']}>
         Selecciona un avatar para el transcurso del OVA. Puedes cambiarlo en cualquier momento. Una vez que selecciones
         un avatar, presiona el botón <strong>Menú</strong> para continuar.
