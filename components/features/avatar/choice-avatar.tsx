@@ -1,6 +1,6 @@
 import { Content } from '@layouts';
 import { Button } from '@ui';
-import { Icon, Panel } from 'books-ui';
+import { Audio, Icon, Panel } from 'books-ui';
 import { ChevronsLeft, ChevronsRight } from 'lucide-react';
 
 import { cn } from '@/shared/utils';
@@ -31,6 +31,11 @@ export const ChoiceAvatar = () => {
 
   return (
     <Content withOutTitle>
+      <div className="u-flow u-my-2">
+        <Audio src="assets/audios/base/aud_des_choice-avatar.mp3" a11y />
+        <Audio src="assets/audios/base/aud_choice-avatar.mp3" />
+      </div>
+
       <p className={css['instruction']}>
         Selecciona un avatar para el transcurso del OVA. Puedes cambiarlo en cualquier momento. Una vez que selecciones
         un avatar, presiona el botón <strong>Menú</strong> para continuar.
@@ -44,7 +49,7 @@ export const ChoiceAvatar = () => {
                 <Panel.Button section={sectionIndex - 1}>
                   <button className={css['panel__navigation-button']} disabled={sectionIndex === 0}>
                     <Icon>
-                      <ChevronsLeft className="u-fill-none" />
+                      <ChevronsLeft />
                     </Icon>
                     <span className="u-sr-only">Anterior</span>
                   </button>
@@ -58,17 +63,22 @@ export const ChoiceAvatar = () => {
                         className={css['avatar-image']}
                       />
                       <Button
-                        label={selectedAvatarId === avatar.id ? 'Seleccionado' : 'Seleccionar'}
-                        disabled={selectedAvatarId === avatar.id}
-                        onClick={() => selectAvatar(avatar.id)}
-                      />
+                        label={
+                          selectedAvatarId === avatar.id
+                            ? `Seleccionado ${avatar.description}`
+                            : `Seleccionar ${avatar.description}`
+                        }
+                        {...(selectedAvatarId === avatar.id ? { variant: 'disabled' } : {})}
+                        onClick={() => selectAvatar(avatar.id)}>
+                        {selectedAvatarId === avatar.id ? 'Seleccionado' : 'Seleccionar'}
+                      </Button>
                     </li>
                   ))}
                 </ul>
                 <Panel.Button section={sectionIndex + 1}>
                   <button className={css['panel__navigation-button']} disabled={sectionIndex === sections.length - 1}>
                     <Icon>
-                      <ChevronsRight className="u-fill-none" />
+                      <ChevronsRight />
                     </Icon>
                     <span className="u-sr-only">Siguiente</span>
                   </button>

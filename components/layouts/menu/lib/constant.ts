@@ -16,7 +16,8 @@ export const i18n = {
     notes: 'Notas',
     shortcuts: 'Atajos de teclado',
     specifications: 'Especificaciones técnicas',
-    btnCloseMenu: 'Cerrar modal'
+    btnCloseMenu: 'Cerrar modal',
+    menuEscHint: 'Menú abierto. Presiona Escape para cerrarlo.'
   },
   en: {
     nav: 'Main menu',
@@ -34,7 +35,8 @@ export const i18n = {
     notes: 'Notes',
     shortcuts: 'Keyboard shortcuts',
     specifications: 'Technical specifications',
-    btnCloseMenu: 'Close modal'
+    btnCloseMenu: 'Close modal',
+    menuEscHint: 'Menu open. Press Escape to close it.'
   }
 };
 

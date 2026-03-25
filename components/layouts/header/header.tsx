@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { A11yOverlay } from '@features/a11y-overlay';
 import { useHashLocation } from 'wouter/use-hash-location';
 
 import { Menu } from '../menu';
 
 import { HeaderProvider } from './header-context';
 import { HOME_PATH } from './lib/constant';
+import { SkipToMain } from './skip-to-main';
 
 import type { PropertyType } from './types/types';
 import { type MenuExpanded, MenuOptions } from './types/types';
@@ -45,6 +47,7 @@ export const Header = () => {
   return (
     <HeaderProvider value={{ expanded, handleExpanded }}>
       <header id="header" className={css['header']}>
+        <SkipToMain/>
         <div className={css['header__container']}>
           <Menu />
           <div className={css['logo']}>
@@ -53,12 +56,12 @@ export const Header = () => {
               alt="UNAD: Universidad Nacional Abierta y a Distancia"
               className="u-px-2"
               width={250}
-              height={250}
+              height={100}
             />
           </div>
         </div>
       </header>
-      {/* <A11yOverlay isOpen={expanded.a11y} onClose={() => handleExpanded(MenuOptions.A11Y)} /> */}
+      <A11yOverlay isOpen={expanded.a11y} onClose={() => handleExpanded(MenuOptions.A11Y)} />
     </HeaderProvider>
   );
 };

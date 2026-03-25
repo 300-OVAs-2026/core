@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { PageTitle } from '@layouts';
 import type { PanelProps } from 'books-ui';
 import { Panel as PanelUI } from 'books-ui';
+
+import { PageTitle } from '../page-title';
 
 import { PanelCoreProvider } from './panel-context';
 import { PanelProgress } from './panel-progress';

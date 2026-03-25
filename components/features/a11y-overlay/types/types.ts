@@ -18,7 +18,12 @@ export type ConfigA11y = {
   contrast: ContrastType;
   lineHeight: BasicValuesType;
   letterSpacing: BasicValuesType;
+  cursorSize: BasicValuesType;
   darkMode: boolean;
+  dyslexiaFont: boolean;
+  highlightLinks: boolean;
+  focusIndicator: boolean;
+  textAlign: boolean;
   keyboardShortcuts: boolean;
   stopAnimations: boolean;
   audio: boolean;
@@ -32,7 +37,12 @@ export enum ConfigA11yProperty {
   Contrast = 'contrast',
   LineHeight = 'lineHeight',
   LetterSpacing = 'letterSpacing',
+  CursorSize = 'cursorSize',
   DarkMode = 'darkMode',
+  DyslexiaFont = 'dyslexiaFont',
+  HighlightLinks = 'highlightLinks',
+  FocusIndicator = 'focusIndicator',
+  TextAlign = 'textAlign',
   StopAnimations = 'stopAnimations',
   Audio = 'audio',
   KeyboardShortcuts = 'keyboardShortcuts',

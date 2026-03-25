@@ -1,11 +1,15 @@
 import { useEffect, useRef } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
+
 import type { VideoURLs } from '@shared/hooks';
-import { useInterpreter } from '@shared/hooks';
+import { useFocusTrap,useInterpreter } from '@shared/hooks';
+import { useOvaStore } from '@/store/ova-store';
+
+import { Icon } from '../icon';
+
+import { i18n } from './lib/constant';
 
 import css from './toast.module.css';
-import { useOvaStore } from '@/store/ova-store';
-import { i18n } from './lib/constant';
-import { Icon } from '../icon';
 
 export interface ToastCoreProps {
   isOpen: boolean;
@@ -13,9 +17,10 @@ export interface ToastCoreProps {
   addClass?: string;
   interpreter?: VideoURLs;
   children: React.ReactNode;
+  label?: string;
 }
 
-export const Toast: React.FC<ToastCoreProps> = ({ isOpen, onClose, addClass, interpreter, children }) => {
+export const Toast: React.FC<ToastCoreProps> = ({ isOpen, onClose, addClass, label, interpreter, children }) => {
   const lang = useOvaStore((state) => state.lang);
   const [updateVideoSources, restoreLastVideoSources] = useInterpreter();
   const flagOpenToast = useRef(false);
@@ -28,6 +33,8 @@ export const Toast: React.FC<ToastCoreProps> = ({ isOpen, onClose, addClass, int
     onClose?.();
     restoreLastVideoSources();
   };
+
+  const containerRef = useFocusTrap<HTMLDivElement>(isOpen, handleCloseToast);
 
   /**
    * Efecto para actualizar las fuentes de video cuando el intérprete cambia o el toast se abre.
@@ -45,15 +52,27 @@ export const Toast: React.FC<ToastCoreProps> = ({ isOpen, onClose, addClass, int
     }
   }, [interpreter, isOpen, updateVideoSources]);
 
-  if (!isOpen) return null;
-
   return (
-    <div className={`${css.toast} ${addClass ?? ''}`}>
-      <button className={css.close} onClick={handleCloseToast} aria-label={i18n[lang].btnModal}>
-        <Icon name="close" />
-      </button>
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          ref={containerRef}
+          className={`${css.toast} ${addClass ?? ''}`}
+          role="dialog"
+          aria-modal="true"
+          aria-label={label || i18n[lang].dialogLabel}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 16 }}
+          transition={{ duration: 0.25, ease: 'easeInOut' }}
+        >
+          <button className={css['toast__close']} onClick={handleCloseToast} aria-label={i18n[lang].btnModal}>
+            <Icon name="close" />
+          </button>
 
-      <div className={css['toast-content']}>{children}</div>
-    </div>
+          <div className={css['toast__content']}>{children}</div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };

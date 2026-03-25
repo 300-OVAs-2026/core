@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { PageTitle } from '@layouts';
 import { motion } from 'motion/react';
 
 import type { VideoURLs } from '@shared/hooks';
 import { useInterpreter } from '@shared/hooks';
+
+import { PageTitle } from '../page-title';
 
 import css from './content.module.css';
 

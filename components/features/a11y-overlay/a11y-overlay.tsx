@@ -1,7 +1,7 @@
 import { useId, useRef } from 'react';
 import { Icon } from '@ui';
 import { Accordion, Filter, Kbd } from 'books-ui';
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, motion, type Variants } from 'motion/react';
 
 import { useKeyboardShortcuts } from '@shared/hooks';
 import { useOvaStore } from '@/store/ova-store';
@@ -22,25 +22,25 @@ interface Props {
   onClose: () => void;
 }
 
-// const variants = {
-//   hidden: { opacity: 0, x: -600 },
-//   visible: {
-//     opacity: 1,
-//     x: 0,
-//     transition: {
-//       ease: 'easeOut',
-//       duration: 0.25
-//     }
-//   },
-//   exit: {
-//     opacity: 0,
-//     x: -600,
-//     transition: {
-//       ease: 'easeInOut',
-//       duration: 0.2
-//     }
-//   }
-// };
+const variants: Variants = {
+  hidden: { opacity: 0, x: -600 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      ease: [0.33, 1, 0.68, 1] as [number, number, number, number],
+      duration: 0.25
+    }
+  },
+  exit: {
+    opacity: 0,
+    x: -600,
+    transition: {
+      ease: [0.66, 0, 0.34, 1] as [number, number, number, number],
+      duration: 0.2
+    }
+  }
+};
 
 export const A11yOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
   const lang = useOvaStore((state) => state.lang);
@@ -87,6 +87,14 @@ export const A11yOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
     setConfig(ConfigA11yProperty.LetterSpacing, value);
   };
 
+  /**
+   *  Función para establecer el tamaño del cursor.
+   * @param BasicValuesType value
+   */
+  const setCursorSize = (value: BasicValuesType) => () => {
+    setConfig(ConfigA11yProperty.CursorSize, value);
+  };
+
   return (
     <>
       <AnimatePresence>
@@ -99,7 +107,7 @@ export const A11yOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
             onKeyDown={handleKeyDown}
             aria-labelledby={`a11y-overlay-${uid}`}
             className={css['modal']}
-            // variants={variants}
+            variants={variants}
             initial="hidden"
             animate="visible"
             exit="exit">
@@ -130,6 +138,30 @@ export const A11yOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
                 isPressed={config.stopAnimations}
                 onClick={() => setConfig(ConfigA11yProperty.StopAnimations)}
               />
+              <A11yButtton
+                label={i18n[lang].dyslexiaFont}
+                icon="dyslexia-font"
+                isPressed={config.dyslexiaFont}
+                onClick={() => setConfig(ConfigA11yProperty.DyslexiaFont)}
+              />
+              <A11yButtton
+                label={i18n[lang].highlightLinks}
+                icon="highlight-links"
+                isPressed={config.highlightLinks}
+                onClick={() => setConfig(ConfigA11yProperty.HighlightLinks)}
+              />
+              <A11yButtton
+                label={i18n[lang].focusIndicator}
+                icon="focus-indicator"
+                isPressed={config.focusIndicator}
+                onClick={() => setConfig(ConfigA11yProperty.FocusIndicator)}
+              />
+              <A11yButtton
+                label={i18n[lang].textAlign}
+                icon="text-align-left"
+                isPressed={config.textAlign}
+                onClick={() => setConfig(ConfigA11yProperty.TextAlign)}
+              />
               <Accordion allowMultiple>
                 <Accordion.Item addClass={css['accordion']}>
                   <Accordion.Button
@@ -145,18 +177,9 @@ export const A11yOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
                     <ul className={`${css['shortcuts']} u-flow`}>
                       <li className={css['shortcuts__card']}>
                         <div className={css['shortcuts__card-content']}>
-                          <p>{i18n[lang].KBSCNextPage}</p>
+                          <p>{i18n[lang].KBSCLearningPath}</p>
                           <p>
                             <Kbd>Ctrl</Kbd> + <Kbd>Alt</Kbd> + <Kbd>D</Kbd>
-                          </p>
-                        </div>
-                      </li>
-
-                      <li className={css['shortcuts__card']}>
-                        <div className={css['shortcuts__card-content']}>
-                          <p>{i18n[lang].KBSCPrevPage}</p>
-                          <p>
-                            <Kbd>Ctrl</Kbd> + <Kbd>Alt</Kbd> + <Kbd>S</Kbd>
                           </p>
                         </div>
                       </li>
@@ -389,6 +412,44 @@ export const A11yOverlay: React.FC<Props> = ({ isOpen, onClose }) => {
                           icon="letter-spacing-big"
                           isPressed={config.letterSpacing === BASIC_VALUES['3']}
                           onClick={setLetterSpacing(BASIC_VALUES['3'])}
+                        />
+                      </li>
+                    </ul>
+                  </Accordion.Panel>
+                </Accordion.Item>
+
+                <Accordion.Item addClass={css['accordion']}>
+                  <Accordion.Button
+                    addClass={css['accordion__button']}
+                    expandedIcon={<Icon name="square-expand" />}
+                    closedIcon={<Icon name="square-close-expanded" />}>
+                    {i18n[lang].cursorSize}
+                  </Accordion.Button>
+                  <Accordion.Panel addClass={css['accordion__panel']}>
+                    <A11yCard icon="cursor" title={i18n[lang].cursorSizeTitle} main={i18n[lang].cursorSizeMain} />
+                    <ul className={css['button-list']}>
+                      <li>
+                        <A11yButtton
+                          label={i18n[lang].cursorSizeSmall}
+                          icon="cursor-small"
+                          isPressed={config.cursorSize === BASIC_VALUES['1']}
+                          onClick={setCursorSize(BASIC_VALUES['1'])}
+                        />
+                      </li>
+                      <li>
+                        <A11yButtton
+                          label={i18n[lang].cursorSizeMid}
+                          icon="cursor-medium"
+                          isPressed={config.cursorSize === BASIC_VALUES['2']}
+                          onClick={setCursorSize(BASIC_VALUES['2'])}
+                        />
+                      </li>
+                      <li>
+                        <A11yButtton
+                          label={i18n[lang].cursorSizeBig}
+                          icon="cursor-large"
+                          isPressed={config.cursorSize === BASIC_VALUES['3']}
+                          onClick={setCursorSize(BASIC_VALUES['3'])}
                         />
                       </li>
                     </ul>

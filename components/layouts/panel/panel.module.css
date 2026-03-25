@@ -8,6 +8,16 @@
     place-content: initial;
 }
 
+@media screen and (max-width: 1280px) {
+    .panel {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+        grid-template-areas: "title"
+            "nav"
+            "content";
+    }
+}
+
 
 .panel__section {
     grid-area: content;
@@ -16,7 +26,6 @@
 }
 
 .progress {
-    --wrapper-width: 140ch;
     margin-inline: auto;
     align-self: center;
     grid-area: nav;
@@ -25,15 +34,23 @@
 .progress__list {
     margin-block: 0;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: start;
     align-items: center;
     gap: .1875rem;
 }
 
+@media screen and (min-width: 1280px) {
+    .progress__list {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+}
+
 .progress__button {
-    --padding-inline: 1rem;
-    --outline-color: var(--clr-accent-dark);
+    --padding-inline: .5rem;
+    --outline-color: var(--primary-800);
 
     padding-inline: 0;
     text-transform: capitalize;
@@ -49,17 +66,14 @@
     font-weight: 600;
 }
 
+@media screen and (min-width: 1280px) {
+    .progress__button {
+        --padding-inline: 1rem;
+    }
+}
+
 .progress__button svg {
-    color: var(--clr-brand);
-}
-
-.progress__button:disabled {
-    color: var(--clr-brand-dark);
-    cursor: not-allowed;
-}
-
-.progress__button:disabled svg {
-    color: var(--clr-brand-dark);
+    --icon-size: 1.2rem;
 }
 
 .progress__button--next {
@@ -71,12 +85,16 @@
 }
 
 .progress__button:disabled {
-    color: var(--secondary-300);
+    color: var(--secondary-600);
     cursor: not-allowed;
 }
 
+html[data-dark-mode="true"] .progress__button:disabled {
+    color: var(--secondary-100);
+}
+
 .progress__item-button {
-    --button-size: 2.5rem;
+    --button-size: 1.8rem;
     --button-text-clr: currentColor;
     --button-border-size: .1125rem;
 
@@ -86,7 +104,7 @@
     aspect-ratio: 1/1;
     padding: .0625rem;
     color: var(--button-text-clr);
-    font-size: var(--fs-400);
+    font-size: var(--fs-300);
     font-weight: 500;
     border: 1px solid transparent;
     background-color: transparent;
@@ -94,12 +112,40 @@
     appearance: none;
 }
 
+@media screen and (min-width: 768px) {
+    .progress__item-button {
+        --button-size: 2rem;
+    }
+
+}
+
+@media screen and (min-width: 1280px) {
+    .progress__item-button {
+        --button-size: 2.5rem;
+        font-size: var(--fs-400);
+    }
+
+}
+
 .progress__item-button[aria-selected="true"] {
-    --button-text-clr: var(--accent);
+    --button-text-clr: var(--primary-600);
+}
+
+html[data-dark-mode="true"] .progress__item-button[aria-selected="true"] {
+    --button-text-clr: var(--primary-300);
 }
 
 .progress__list li:not(:nth-last-child(-n+2)) .progress__item-button {
-    border-bottom: var(--button-border-size) solid currentColor;
+    border-right: var(--button-border-size) solid currentColor;
+}
+
+@media screen and (min-width: 1280px) {
+    .progress__list li:not(:nth-last-child(-n+2)) .progress__item-button {
+        border-right: none;
+        border-bottom: var(--button-border-size) solid currentColor;
+    }
+
+
 }
 
 .progress__item-button:focus-visible {
@@ -109,5 +155,5 @@
 
 div.footer__nav-tooltip {
     --tooltip-bg: var(--accent);
-    color: var(--clr-background);
+    color: var(--primary-700);
 }

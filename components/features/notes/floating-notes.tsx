@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
+
+import { Icon } from '../../ui';
 
 import { useDraggablePosition, useFloatingPanel, useNotesEditor, useTextSelection } from './hooks';
 import { MoveArrowIcon, NewNoteIcon, NotesIcon } from './notes-icons';
@@ -10,7 +12,6 @@ import { useNotesStore } from './store/notesStore';
 import type { FloatingNotesProps } from './types/types';
 
 import css from './floating-notes.module.css';
-import { Icon } from '../../ui';
 
 export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' }) => {
   const dragRef = useRef(null);
@@ -60,7 +61,7 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
   }, [isOpen]);
 
   // Manejar apertura/cierre y gestión de foco
-  const handleToggleOpen = () => {
+  const handleToggleOpen = useCallback(() => {
     if (isOpen) {
       // Al cerrar, devolver el foco al botón trigger y resetear el flag
       triggerButtonRef.current?.focus();
@@ -72,7 +73,7 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
     if (!isOpen) {
       resetPosition();
     }
-  };
+  }, [isOpen, toggleOpen, resetPosition]);
   // Focus trap
   useEffect(() => {
     if (!isOpen || !containerRef.current) return;
@@ -150,7 +151,7 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
             left: `${tooltipPosition.x}px`,
             top: `${tooltipPosition.y}px`,
             transform: 'translateX(-50%)',
-            zIndex: 10000
+            zIndex: 10
           }}>
           <button
             type="button"
@@ -174,7 +175,7 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
           disabled={isOpen}
           aria-label={isOpen ? 'Cerrar notas' : 'Abrir notas'}
           title={isOpen ? 'Cerrar notas' : 'Abrir notas'}>
-          <svg xmlns="http://www.w3.org/2000/svg" className={css['fn-trigger-icon']} viewBox="0 0 400 400">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" className={css['fn-trigger-icon']} viewBox="60 60 280 280">
             <circle cx="200" className={css['fn-trigger-icon__dash']} cy="200" r="115" />
             <circle cx="200" cy="200" r="110" fill="var(--primary-700)" />
             <circle cx="200" cy="200" r="70" fill="var(--primary-500)" />

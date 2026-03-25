@@ -2,6 +2,10 @@ html:not([data-dark-mode]) body:has(main[data-home="true"]) {
     background-color: var(--primary-800) !important;
 }
 
+html:not([data-dark-mode]) body:has(main[data-home="true"]) header  {
+    color: var(--white);
+}
+
 @media screen and (max-width: 1024px) {
     .cover-image-wrapper {
         display: none;
@@ -67,6 +71,10 @@ html:not([data-dark-mode]) body:has(main[data-home="true"]) {
     box-shadow: inset .75rem 0px 0 0px var(--accent);
     font-weight: bold;
     transition: box-shadow 200ms cubic-bezier(0.13, 0, 0.39, 0);
+}
+
+html[data-dark-mode="true"] .cover-title__link {
+    background-color: var(--background);
 }
 
 .cover-title__link svg {

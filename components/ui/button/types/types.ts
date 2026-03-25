@@ -1,1 +1,1 @@
-export type ButtonVariant = 'secondary' | 'reset' | 'check' | 'select' | 'download' | 'next' | 'bibliography' | 'credits';
+export type ButtonVariant = 'secondary' | 'reset' | 'check' | 'select' | 'download' | 'next' | 'bibliography' | 'credits' | 'disabled';

@@ -30,7 +30,7 @@ export const PageNode: React.FC<Props> = ({ page, isLocked }) => {
           <div className={css['learning-path__node-ring']}></div>
           <div className={css['learning-path__node-icon']}>
             <Icon>
-              <Lock className="u-fill-none" />
+              <Lock />
             </Icon>
           </div>
         </div>

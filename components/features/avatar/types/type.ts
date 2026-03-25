@@ -3,6 +3,7 @@
 export type Avatar = {
   id: string;
   name: string;
+  description: string;
   variations: AvatarVariation[];
 };
 

@@ -1,6 +1,7 @@
 // Hooks barrel file
 export * from './use-a11y-attribute';
 export * from './use-background';
+export * from './use-focus-trap';
 export * from './use-full-screen';
 export * from './use-interpreter';
 export * from './use-keyboard-shortcuts';

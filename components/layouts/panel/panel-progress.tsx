@@ -157,7 +157,7 @@ export const PanelProgress = () => {
   }, [interpreter]);
 
   return (
-    <div className={`${css['progress']} u-wrapper u-mt-.5 u-pb-3`}>
+    <div className={`${css['progress']} u-mt-.5 u-pb-3`}>
       <h2 id="panel-progress-navigation" className="u-sr-only">
         {i18n[lang].role}
       </h2>

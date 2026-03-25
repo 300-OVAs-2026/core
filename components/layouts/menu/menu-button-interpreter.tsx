@@ -32,13 +32,14 @@ export const MenuButtonInterpreter = () => {
 
   return (
     <button
-      className={cn(css['menu__button'], css['menu__button--double-diagonal-cut'])}
-                   style={{ '--bg-color': 'var(--primary-800)' } as React.CSSProperties}
+      className={cn(css['menu__button'], css['menu__button--dark-blue'], css['menu__button--double-diagonal-cut'])}
       aria-label={config.interpreter ? i18n[lang].interpreterPause : i18n[lang].interpreterActive}
       onClick={() => toggleInterpreter(!config.interpreter)}>
       <span className={css['menu__button-content']}>
         <Icon name="hand-a11y" />
-        <span>{config.interpreter ? i18n[lang].interpreterPause : i18n[lang].interpreterActive}</span>
+        <span className={css['menu__button-label']}>
+          {config.interpreter ? i18n[lang].interpreterPause : i18n[lang].interpreterActive}
+        </span>
       </span>
     </button>
   );

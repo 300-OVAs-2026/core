@@ -5,7 +5,10 @@
     border-radius: var(--border-radius);
     block-size: unset;
     z-index: var(--z-index-modal);
-    box-shadow: -8px 8px 0 0 var(--modal-box-shadow-color, var(--clr-brand));
+}
+
+html[data-dark-mode="true"] .modal {
+    --background: hsl(0, 2%, 10%);
 }
 
 .modal[data-size="xs"] {
@@ -26,23 +29,6 @@
 
 .modal[data-size="xl"] {
     --modal-max-width: 80rem;
-}
-
-
-.modal :global(.c-modal-container)::-webkit-scrollbar {
-    border-radius: .625rem;
-    width: .625rem;
-    background-color: var(--secondary-100);
-}
-
-.modal :global(.c-modal-container)::-webkit-scrollbar-track {
-    background-color: transparent;
-}
-
-.modal :global(.c-modal-container)::-webkit-scrollbar-thumb {
-    background-color: var(--primary);
-    border: .125rem solid var(--secondary-100);
-    border-radius: .4375rem;
 }
 
 .modal :global(.c-modal-container) {
@@ -102,7 +88,13 @@
 }
 
 .modal-button:hover {
-    background-color: var(--accent-400);
+    background-color: var(--accent-200);
+    color: var(--primary-600);
+}
+
+.modal-button:focus-visible {
+    background-color: var(--primary-600);
+    color: var(--white);
 }
 
 .modal-button svg {

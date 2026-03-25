@@ -1,6 +1,5 @@
 const KEY_CODES = {
   D: 68,
-  S: 83,
   C: 67,
   A: 65,
   H: 72
@@ -13,6 +12,7 @@ const KEY_CODES = {
 const handleShortCut = (selector: string) => {
   const element = document.querySelector(selector) as HTMLElement | null;
   if (!element) return;
+  console.log(`Ejecutando atajo para el selector: ${selector}`, { element });
   element.click();
 };
 
@@ -24,15 +24,14 @@ export const keyboardShortcuts = (event: KeyboardEvent) => {
   const { ctrlKey, altKey, keyCode, which } = event;
   const KEY = keyCode || which;
 
+  console.log('Atajo de teclado presionado:', { ctrlKey, altKey, KEY });
+
   // Verificar si se presionan las teclas ctrl y alt simultáneamente
   if (ctrlKey && altKey) {
     // Ejecutar diferentes acciones dependiendo de la tecla presionada
     switch (KEY) {
       case KEY_CODES.D:
-        handleShortCut('.js-pagination-link-next');
-        break;
-      case KEY_CODES.S:
-        handleShortCut('.js-pagination-link-previous');
+        handleShortCut('.js-menu-navigation');
         break;
       case KEY_CODES.C:
         handleShortCut('.js-link-home');

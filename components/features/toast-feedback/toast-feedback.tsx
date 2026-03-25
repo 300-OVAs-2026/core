@@ -18,10 +18,10 @@ export const ToastFeedback: React.FC<ToastFeedbackProps> = ({ type = 'success', 
   const lang = useOvaStore((state) => state.lang);
 
   return (
-    <Toast {...props} addClass={`${css.toast} ${css[type]}`}>
+    <Toast {...props} addClass={`${css.toast} ${css[type]}`} label={label ?? i18n[lang][type]}>
       <div className={css.container}>
         <div className={css.icon}>{type === 'success' ? '✓' : '✕'}</div>
-        <div className={` ${css['toast__response-wrapper']}`}>
+        <div className={`${css['toast__response-wrapper']}`}>
           {audio ? <Audio data-audio src={audio} addClass={`${css['modal__audio']} u-m-0`} size="small" /> : null}
           <p className={css['title']} data-title>
             {label || i18n[lang][type]}
@@ -30,7 +30,7 @@ export const ToastFeedback: React.FC<ToastFeedbackProps> = ({ type = 'success', 
         </div>
       </div>
 
-      {audio && <audio src={audio} autoPlay />}
+      {audio && <audio src={audio} />}
     </Toast>
   );
 };

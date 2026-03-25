@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { DraggableEventHandler } from 'react-draggable';
 
 interface Position {
@@ -20,20 +20,42 @@ export const useDraggablePosition = (): UseDraggablePositionReturn => {
   /**
    * Calcula la posición inicial en el borde inferior derecho
    */
-  const getInitialPosition = (): Position => {
+  const getInitialPosition = useCallback((): Position => {
+    const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
     const panelHeight = 470;
     const containerTop = window.innerHeight * 0.11;
 
+    // Lógica para la posición responsiva
+
+    if (windowWidth < 500) {
+      // Posición inicial responsiva en móviles para anclarse en la parte inferior centrada
+      return {
+        x: windowWidth * 0.22 + 40,
+        y: -(windowHeight * 0.43)
+      };
+    }
+
+    // Posición original para pantallas más grandes
     return {
       x: 0 - 170,
       y: windowHeight - containerTop - panelHeight - 180
     };
-  };
+  }, []);
 
   const [positionDrag, setPositionDrag] = useState({
     deltaPosition: getInitialPosition()
   });
+
+  // Actualizar la posición si la ventana cambia de tamaño
+  useEffect(() => {
+    const handleResize = () => {
+      setPositionDrag({ deltaPosition: getInitialPosition() });
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [getInitialPosition]);
 
   /**
    * Maneja el evento de arrastre del elemento
@@ -52,11 +74,11 @@ export const useDraggablePosition = (): UseDraggablePositionReturn => {
   /**
    * Restablece la posición del elemento a la posición inicial
    */
-  const resetPosition = () => {
+  const resetPosition = useCallback(() => {
     setPositionDrag({
       deltaPosition: getInitialPosition()
     });
-  };
+  }, [getInitialPosition]);
 
   return {
     position: positionDrag.deltaPosition,

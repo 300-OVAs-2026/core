@@ -21,6 +21,37 @@ export const i18nTour = {
   }
 };
 
+export const i18nHelp = {
+  es: {
+    title: 'Centro de ayuda',
+    tip: 'Para navegar por la plataforma, activa el recorrido guiado haciendo clic en el botón de abajo. Te guiará por las principales características y funciones.',
+    tourButton: 'Iniciar recorrido',
+    specsTitle: 'Especificaciones técnicas',
+    techReqs: 'Requisitos técnicos',
+    hardware: 'Hardware',
+    browsers: 'Navegadores',
+    techList: ['Conexión a internet ≥ 3G.', 'Asistencia: NVDA, JAWS, VoiceOver.'],
+    hardwareList: ['RAM mínima 4 GB.', 'Dispositivo con internet.', 'Monitor SVGA, resolución WXGA o superior.', 'Smartphone con SO ≥:'],
+    browserList: ['Google Chrome v131', 'Safari v18', 'Mozilla Firefox v133', 'Microsoft Edge v131'],
+    headerSubtitle: 'Recursos y soporte',
+    headerBadge: 'Guía rápida',
+  },
+  en: {
+    title: 'Help Center',
+    tip: 'To navigate the platform, activate the guided tour by clicking the button below. It will walk you through the main features and functions.',
+    tourButton: 'Start tour',
+    specsTitle: 'Technical Specifications',
+    techReqs: 'Technical Requirements',
+    hardware: 'Hardware',
+    browsers: 'Browsers',
+    techList: ['Internet connection ≥ 3G.', 'Assistive: NVDA, JAWS, VoiceOver.'],
+    hardwareList: ['Minimum 4 GB RAM.', 'Device with internet.', 'SVGA monitor, WXGA resolution or higher.', 'Smartphone with OS ≥:'],
+    browserList: ['Google Chrome v131', 'Safari v18', 'Mozilla Firefox v133', 'Microsoft Edge v131'],
+    headerSubtitle: 'Resources & support',
+    headerBadge: 'Quick guide',
+  }
+} as const;
+
 
 
 export const SPANISH_LANGUAGE = 'es';
