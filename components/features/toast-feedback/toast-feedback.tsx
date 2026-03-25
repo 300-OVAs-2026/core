@@ -30,7 +30,7 @@ export const ToastFeedback: React.FC<ToastFeedbackProps> = ({ type = 'success', 
         </div>
       </div>
 
-      {audio && <audio src={audio} autoPlay />}
+      {audio && <audio src={audio} />}
     </Toast>
   );
 };
