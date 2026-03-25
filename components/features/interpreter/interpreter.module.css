@@ -4,7 +4,7 @@
     --interpreter-border-radious: .532rem;
     --interpreter-bg: #ffffff;
     --interpreter-border-ratio: 1.4;
-    --interpreter-zIndex: 5;
+    --interpreter-zIndex: var(--z-index-interpreter);
 
     position: fixed;
     top: 20%;
