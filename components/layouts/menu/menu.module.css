@@ -367,6 +367,7 @@
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: .125rem;
+    pointer-events: none;
     filter: drop-shadow(0 -1px .125rem currentColor);
 }
 
