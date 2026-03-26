@@ -81,6 +81,7 @@ html[data-dark-mode='true'] {
   --notes-text-secondary: var(--secondary-200);
 
   /* Primarios y accent */
+  --notes-primary: var(--primary-800);
   --notes-primary-active: var(--primary-500);
   --notes-primary-dark: var(--secondary-50);
   --notes-primary-dark-hover: var(--secondary-100);
