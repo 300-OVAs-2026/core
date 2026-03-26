@@ -15,7 +15,6 @@ import css from './help.module.css';
 
 export const Help = () => {
   const lang = useOvaStore((state) => state.lang);
-  const t = i18nHelp[lang as keyof typeof i18nHelp] ?? i18nHelp.es;
 
   return (
     <Content withOutTitle>
@@ -25,35 +24,32 @@ export const Help = () => {
             variation={AvatarVariation.GREETING}
             size="28.125rem"
             title="Figure."
-            addClass={css['avatar']}
+            addClass={css['help__avatar']}
             alt="Avatar."
           />
         </Col>
         <Col xs="11" mm="10" md="9" lg="6" hd="6">
-
-          {/* ── Header ── */}
-          <div className={cn(css['tableHeader'], 'u-shadow-md')}>
+          <div className={cn(css['help__header'], 'u-shadow-md')}>
             <div>
-              <h2 className={css['tableTitle']}>{t.title}</h2>
-              <p className={css['tableSubtitle']}>{t.headerSubtitle}</p>
+              <h2 className={css['help__header-title']}>{i18nHelp[lang].title}</h2>
+              <p className={css['help__header-subtitle']}>{i18nHelp[lang].headerSubtitle}</p>
             </div>
-            <span className={css['headerBadge']}>
+            <span className={css['help__header-badge']}>
               <HelpCircle />
-              <span>{t.headerBadge}</span>
+              <span>{i18nHelp[lang].headerBadge}</span>
             </span>
           </div>
 
-          <div className={cn(css['wrapper'], 'u-shadow-md')}>
-            {/* Navigation tip */}
-            <div className={css['tip']} role="note">
-              <span className={css['tip__icon']} aria-hidden="true">
+          <div className={cn(css['help__body'], 'u-shadow-md')}>
+            <div className={css['help__tip']} role="note">
+              <span className={css['help__tip-icon']} aria-hidden="true">
                 <Icon name="info" size="small" />
               </span>
-              <div className={css['tip__body']}>
-                <p>{t.tip}</p>
+              <div className={css['help__tip-body']}>
+                <p>{i18nHelp[lang].tip}</p>
                 <Button
                   variant="next"
-                  label={t.tourButton}
+                  label={i18nHelp[lang].tourButton}
                   addClass="u-text-upper"
                   onClick={() => {
                     (document.querySelector('.js-button-help') as HTMLElement)?.click();
@@ -64,32 +60,32 @@ export const Help = () => {
 
             {/* Technical specifications */}
             <section>
-              <h3 className={css['section__title']}>
+              <h3 className={css['help__section-title']}>
                 <Icon name="settings" size="small" aria-hidden="true" />
-                {t.specsTitle}
+                {i18nHelp[lang].specsTitle}
               </h3>
 
-              <div className={css['specs']}>
-                <article className={css['spec__card']}>
-                  <h4 className={css['spec__card__title']}>
+              <div className={css['help__specs']}>
+                <article className={css['help__spec-card']}>
+                  <h4 className={css['help__spec-card-title']}>
                     <Icon name="keyboard" size="small" aria-hidden="true" />
-                    {t.techReqs}
+                    {i18nHelp[lang].techReqs}
                   </h4>
-                  <ul className={css['spec__list']}>
-                    {t.techList.map((item) => (
+                  <ul className={css['help__spec-list']}>
+                    {i18nHelp[lang].techList.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
                 </article>
 
-                <article className={css['spec__card']}>
-                  <h4 className={css['spec__card__title']}>
+                <article className={css['help__spec-card']}>
+                  <h4 className={css['help__spec-card-title']}>
                     <Icon name="settings" size="small" aria-hidden="true" />
-                    {t.hardware}
+                    {i18nHelp[lang].hardware}
                   </h4>
-                  <ul className={css['spec__list']}>
-                    {t.hardwareList.map((item, i) =>
-                      i === t.hardwareList.length - 1 ? (
+                  <ul className={css['help__spec-list']}>
+                    {i18nHelp[lang].hardwareList.map((item, i) =>
+                      i === i18nHelp[lang].hardwareList.length - 1 ? (
                         <li key={item}>
                           {item}
                           <ul>
@@ -104,13 +100,13 @@ export const Help = () => {
                   </ul>
                 </article>
 
-                <article className={css['spec__card']}>
-                  <h4 className={css['spec__card__title']}>
+                <article className={css['help__spec-card']}>
+                  <h4 className={css['help__spec-card-title']}>
                     <Icon name="globe" size="small" aria-hidden="true" />
-                    {t.browsers}
+                    {i18nHelp[lang].browsers}
                   </h4>
-                  <ul className={css['spec__list']}>
-                    {t.browserList.map((item) => (
+                  <ul className={css['help__spec-list']}>
+                    {i18nHelp[lang].browserList.map((item) => (
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
