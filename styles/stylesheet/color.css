@@ -8,6 +8,7 @@
   --black: hsl(0, 0%, 0%);
   --transparent: transparent;
   --background: hsl(0, 0%, 98%);
+  --card: hsl(0, 0%,  98%);
   --text-main: var(--secondary-900);
 
   --success: hsl(165 55% 40%);
