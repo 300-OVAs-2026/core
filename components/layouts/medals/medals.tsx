@@ -131,7 +131,7 @@ export const Medals = () => {
           <Avatar
             variation={AvatarVariation.GREETING}
             size="28.125rem"
-            title="Figure."
+            title={t.avatar}
             addClass={css['medals__avatar']}
             alt="Avatar."
           />

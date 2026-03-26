@@ -7,3 +7,12 @@ export const COL_W = 9;
 export const ROW_H = 8;
 export const NODE_W = 5;
 export const MOBILE_COLS = 2;
+
+export const i18n = {
+  es: {
+    avatar: 'Figura.'
+  },
+  en: {
+    avatar: 'Figure.'
+  }
+}

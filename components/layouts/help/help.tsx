@@ -23,7 +23,7 @@ export const Help = () => {
           <Avatar
             variation={AvatarVariation.GREETING}
             size="28.125rem"
-            title="Figure."
+            title={i18nHelp[lang].avatar}
             addClass={css['help__avatar']}
             alt="Avatar."
           />

@@ -23,6 +23,7 @@ export const i18nTour = {
 
 export const i18nHelp = {
   es: {
+    avatar: 'Figura.',
     title: 'Centro de ayuda',
     tip: 'Para navegar por la plataforma, activa el recorrido guiado haciendo clic en el botón de abajo. Te guiará por las principales características y funciones.',
     tourButton: 'Iniciar recorrido',
@@ -37,6 +38,7 @@ export const i18nHelp = {
     headerBadge: 'Guía rápida',
   },
   en: {
+    avatar: 'Figure.',
     title: 'Help Center',
     tip: 'To navigate the platform, activate the guided tour by clicking the button below. It will walk you through the main features and functions.',
     tourButton: 'Start tour',
