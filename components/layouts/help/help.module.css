@@ -105,7 +105,7 @@ html[data-dark-mode="true"] .help__tip-icon {
 
 html[data-dark-mode="true"] .help__section-title {
     border-bottom-color: var(--accent-200);
-    color: var(--primary-400);
+    color: var(--white);
 }
 
 /* Specs grid */
@@ -141,7 +141,7 @@ html[data-dark-mode="true"] .help__spec-card {
 
 html[data-dark-mode="true"] .help__spec-card-title {
     border-bottom-color: var(--accent-200);
-    color: var(--primary-400);
+    color: var(--white);
 }
 
 /* Spec list */
