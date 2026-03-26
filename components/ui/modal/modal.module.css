@@ -1,15 +1,12 @@
 .modal {
     --border-radius: 1rem;
 
-    background-color: var(--background);
+    background-color: var(--card);
     border-radius: var(--border-radius);
     block-size: unset;
     z-index: var(--z-index-modal);
 }
 
-html[data-dark-mode="true"] .modal {
-    --background: hsl(0, 2%, 10%);
-}
 
 .modal[data-size="xs"] {
     --modal-max-width: 20rem;
