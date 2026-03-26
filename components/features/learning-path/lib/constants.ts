@@ -10,9 +10,11 @@ export const MOBILE_COLS = 2;
 
 export const i18n = {
   es: {
-    avatar: 'Figura.'
+    avatar: 'Figura.',
+    instruction: '¡Bienvenido! Este es tu mapa de aprendizaje. Completa cada sección en orden para avanzar y desbloquear nuevos contenidos. ¡Tú puedes lograrlo!',
   },
   en: {
-    avatar: 'Figure.'
+    avatar: 'Figure.',
+    instruction: 'Welcome! This is your learning map. Complete each section in order to progress and unlock new content. You can do it!',
   }
 }

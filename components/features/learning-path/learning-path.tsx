@@ -34,8 +34,7 @@ export const LearningPath = () => {
             <Audio src="assets/audios/base/aud_learning-path.mp3" />
           </div>
           <p className={css['learning-path__intro']}>
-            ¡Bienvenido! Este es tu mapa de aprendizaje. Completa cada sección en orden para avanzar y desbloquear
-            nuevos contenidos. ¡Tú puedes lograrlo!
+            {i18n[lang].instruction}
           </p>
           <div className={css['learning-path__map']}>
             {/* Nodos */}

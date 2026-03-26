@@ -7,13 +7,23 @@ export const VARIATION_FALLBACK: Partial<Record<AvatarVariation, AvatarVariation
   [AvatarVariation.CONCLUSIONS]: AvatarVariation.GREETING
 };
 
-export const AVATAR_TITLE: Record<AvatarVariation, string> = {
-  [AvatarVariation.PRESENTING]: 'Avatar presentando la información.',
-  [AvatarVariation.PRESENTING_RIGHT]: 'Avatar presentando la información.',
-  [AvatarVariation.PRESENTING_LEFT]: 'Avatar presentando la información.',
-  [AvatarVariation.THINKING]: 'Avatar pensando.',
-  [AvatarVariation.CONCLUSIONS]: 'Avatar presentando la información.',
-  [AvatarVariation.GREETING]: 'Avatar saludando.'
+export const AVATAR_TITLE: Record<string, Record<AvatarVariation, string>> = {
+  es: {
+    [AvatarVariation.PRESENTING]: 'Avatar presentando la información.',
+    [AvatarVariation.PRESENTING_RIGHT]: 'Avatar presentando la información.',
+    [AvatarVariation.PRESENTING_LEFT]: 'Avatar presentando la información.',
+    [AvatarVariation.THINKING]: 'Avatar pensando.',
+    [AvatarVariation.CONCLUSIONS]: 'Avatar presentando la información.',
+    [AvatarVariation.GREETING]: 'Avatar saludando.'
+  },
+  en: {
+    [AvatarVariation.PRESENTING]: 'Avatar presenting information.',
+    [AvatarVariation.PRESENTING_RIGHT]: 'Avatar presenting information.',
+    [AvatarVariation.PRESENTING_LEFT]: 'Avatar presenting information.',
+    [AvatarVariation.THINKING]: 'Avatar thinking.',
+    [AvatarVariation.CONCLUSIONS]: 'Avatar presenting information.',
+    [AvatarVariation.GREETING]: 'Avatar greeting.'
+  }
 };
 
 export const resolveVariation = (variations: AvatarVariation[], requested: AvatarVariation): AvatarVariation => {
@@ -148,3 +158,17 @@ export const AVATARS: Avatar[] = [
     variations: [AvatarVariation.GREETING, AvatarVariation.PRESENTING, AvatarVariation.THINKING]
   }
 ];
+
+
+export const i18n = {
+  es: {
+    select: 'Seleccionar',
+    selected: 'Seleccionado',
+    instruction: 'Selecciona un avatar para el transcurso del OVA. Puedes cambiarlo en cualquier momento. Una vez que selecciones un avatar, presiona el botón <strong>Menú</strong> para continuar.'
+  },
+  en: {
+    select: 'Select',
+    selected: 'Selected',
+    instruction: 'Select an avatar for the duration of the OVA. You can change it at any time. Once you select an avatar, press the <strong>Menu</strong> button to continue.'
+  }
+}
