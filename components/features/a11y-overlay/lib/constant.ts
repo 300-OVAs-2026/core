@@ -26,7 +26,7 @@ export const INITIAL_STATE: ConfigA11y = {
   keyboardShortcuts: false,
   stopAnimations: false,
   audio: false,
-  interpreter: false
+  interpreter: true
 };
 
 export const BASIC_VALUES = Object.freeze({

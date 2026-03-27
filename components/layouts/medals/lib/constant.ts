@@ -1,5 +1,6 @@
 export const i18nMedals = {
     es: {
+        avatar: 'Figura.',
         title: 'Mis Actividades',
         subtitle: 'Progreso de aprendizaje',
         badges: 'Insignias',
@@ -17,6 +18,7 @@ export const i18nMedals = {
         badgeNotEarned: 'Insignia no obtenida',
     },
     en: {
+        avatar: 'Figure.',
         title: 'My Activities',
         subtitle: 'Learning progress',
         badges: 'Badges',

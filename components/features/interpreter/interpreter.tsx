@@ -3,6 +3,7 @@ import type { DraggableEventHandler } from 'react-draggable';
 import Draggable from 'react-draggable';
 import { AnimatePresence, motion } from 'motion/react';
 
+import { KEY_LOCAL_STORAGE_A11Y } from '@/shared/constants';
 import { cn } from '@/shared/utils';
 
 import { VideoPlayer } from './interpreter-video-player';
@@ -13,7 +14,18 @@ import type { InterpreterProps, InterpreterVideoProps, URLs } from './types/type
 import css from './interpreter.module.css';
 
 export const Interpreter: React.FC<InterpreterProps> = ({ className, ...props }) => {
-  const [hidden, setHidden] = useState<boolean>(true);
+  const [hidden, setHidden] = useState<boolean>(() => {
+    try {
+      const stored = localStorage.getItem(KEY_LOCAL_STORAGE_A11Y);
+      if (stored) {
+        const config = JSON.parse(stored);
+        return config.interpreter ?? true;
+      }
+    } catch {
+      // empty 
+    }
+    return true;
+  });
   const [URLs, setURls] = useState<URLs>({
     accesibilityURL: undefined,
     contentURL: undefined

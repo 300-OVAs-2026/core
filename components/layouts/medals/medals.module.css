@@ -1,25 +1,29 @@
-.tableHeader {
+.medals__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--primary);
+  background-color: var(--primary);
   border-radius: 0.875rem;
   padding: 1.25rem 1.5rem;
   margin-bottom: 0.75rem;
   color: var(--white);
 }
 
-.tableTitle {
+html[data-dark-mode="true"] .medals__header {
+  background-color: var(--primary-800);
+}
+
+.medals__header-title {
   font-weight: 700;
   color: var(--white);
   margin-bottom: 0.2rem;
 }
 
-.tableSubtitle {
+.medals__header-subtitle {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.medalsBadge {
+.medals__header-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -30,35 +34,43 @@
   color: var(--white);
 }
 
-.medalsBadge svg {
+.medals__header-badge svg {
   color: #e6a817;
 }
 
-.medalsBadge strong {
+.medals__header-badge strong {
   font-weight: 700;
   font-size: 1.05rem;
 }
 
 /* ── Table medals ── */
-.medals-table-wrapper {
+.medals__table-wrapper {
   overflow-x: auto;
   margin: 2rem auto;
   border-radius: 0.75rem;
 }
 
-.medals-table {
+.medals__table {
   width: 100%;
   border-collapse: collapse;
   background: var(--white);
   table-layout: auto;
 }
 
-.medals-table thead {
+html[data-dark-mode="true"] .medals__table {
+  background: var(--secondary-900);
+}
+
+.medals__table thead {
   background: var(--primary);
   color: var(--white);
 }
 
-.medals-table thead th {
+html[data-dark-mode="true"] .medals__table thead {
+  background: var(--primary-800);
+}
+
+.medals__table thead th {
   padding: 1rem;
   font-weight: 600;
   font-size: 0.875rem;
@@ -66,57 +78,78 @@
   letter-spacing: 0.05em;
 }
 
-.medals-table tbody tr {
+.medals__table tbody tr {
   border-bottom: 1px solid var(--secondary-100);
   transition: background-color 0.2s;
 }
 
-.medals-table tbody tr:hover {
+html[data-dark-mode="true"] .medals__table tbody tr {
+  border-bottom-color: var(--secondary-700);
+}
+
+.medals__table tbody tr:hover {
   background-color: var(--secondary-50);
 }
 
-.medals-table tbody tr:last-child {
+html[data-dark-mode="true"] .medals__table tbody tr:hover {
+  background-color: var(--secondary-800);
+}
+
+.medals__table tbody tr:last-child {
   border-bottom: none;
 }
 
-.medals-table td {
+.medals__table td {
   padding: 1rem;
   color: var(--secondary);
 }
 
-.medals-table tbody td:not(:first-child) {
+html[data-dark-mode="true"] .medals__table td {
+  color: var(--card);
+}
+
+html[data-dark-mode="true"] .medals__table td[colspan] {
+  color: var(--secondary-400);
+}
+
+.medals__table tbody td:not(:first-child) {
   text-align: center;
 }
 
 /* ===== COLUMNS ===== */
 
-.col-activity {
+.medals__col--activity {
   text-align: start;
   font-weight: 500;
 }
 
-.col-medal,
-.col-start,
-.col-completed {
+.medals__col--medal,
+.medals__col--start,
+.medals__col--completed {
   text-align: center;
 }
 
 /* ── Activity name ── */
-.activityName {
+.medals__activity-name {
   font-weight: 500;
   color: var(--secondary);
 }
 
+html[data-dark-mode="true"] .medals__activity-name {
+  color: var(--secondary-100);
+}
+
 /* ── Medal badge ── */
-.medalIcon{
+.medals__medal-icon {
   font-size: 1.45rem;
 }
-.medalGray {
+
+.medals__medal-icon--gray {
   filter: grayscale(1);
 }
 
 /* ── Stars badge ── */
-.starsBadge {
+.medals__stars-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
@@ -129,19 +162,24 @@
   justify-content: center;
 }
 
-.starsBadgeGray {
+html[data-dark-mode="true"] .medals__stars-badge {
+  background-color: var(--accent-900);
+  color: var(--accent-200);
+}
+
+.medals__stars-badge--gray {
   background-color: var(--secondary-50);
   color: var(--secondary-600);
   filter: grayscale(1);
 }
 
-.starIcon {
+.medals__star-icon {
   font-size: 1rem;
   line-height: 1;
 }
 
 /* ── Completed icon ── */
-.completedIcon {
+.medals__completed-icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -154,18 +192,18 @@
   line-height: 1;
 }
 
-.completedIcon.yes {
+.medals__completed-icon--yes {
   background-color: var(--success);
   color: var(--white);
 }
 
-.completedIcon.no {
+.medals__completed-icon--no {
   background-color: var(--wrong);
   color: var(--white);
 }
 
 /* ── Footer summary ── */
-.footer {
+.medals__footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -175,113 +213,76 @@
   background: var(--white);
 }
 
-.footer span {
+html[data-dark-mode="true"] .medals__footer {
+  background: var(--secondary-900);
+  color: var(--secondary-200);
+}
+
+.medals__footer span {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
 }
 
-.footer strong {
+.medals__footer strong {
   color: var(--primary);
   font-weight: 700;
 }
 
-.footer span:last-child strong {
+html[data-dark-mode="true"] .medals__footer strong {
+  color: var(--primary-300);
+}
+
+.medals__footer span:last-child strong {
   color: var(--accent-500);
 }
 
-.footer span:last-child svg {
+html[data-dark-mode="true"] .medals__footer span:last-child strong {
+  color: var(--accent-300);
+}
+
+.medals__footer span:last-child svg {
   color: var(--accent-500);
 }
 
-/* Dark mode */
-
-html[data-dark-mode="true"] {
-  /* Table */
-  .medals-table {
-    background: var(--secondary-900);
-  }
-
-  .medals-table tbody tr {
-    border-bottom-color: var(--secondary-700);
-  }
-
-  .medals-table tbody tr:hover {
-    background-color: var(--secondary-800);
-  }
-
-  .medals-table td {
-    color: var(--secondary-100);
-  }
-
-  .activityName {
-    color: var(--secondary-100);
-  }
-
-  /* Stars badge */
-  .starsBadge {
-    background-color: var(--accent-900);
-    color: var(--accent-200);
-  }
-
-  /* Footer */
-  .footer {
-    background: var(--secondary-900);
-    color: var(--secondary-200);
-  }
-
-  .footer strong {
-    color: var(--primary-300);
-  }
-
-  .footer span:last-child strong {
-    color: var(--accent-300);
-  }
-
-  .footer span:last-child svg {
-    color: var(--accent-300);
-  }
-
-  /* Empty state */
-  .medals-table td[colspan] {
-    color: var(--secondary-400);
-  }
+html[data-dark-mode="true"] .medals__footer span:last-child svg {
+  color: var(--accent-300);
 }
-
 
 /* Responsive */
 
-@media (max-width: 36rem) {
+@media screen and (max-width: 36rem) {
+
   /* Header */
-  .tableHeader {
+  .medals__header {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
     border-radius: 1rem;
   }
 
-  .medalsBadge {
+  .medals__header-badge {
     border-radius: 999px;
   }
 
   /* Footer */
-  .footer {
+  .medals__footer {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
     padding: 1rem;
   }
 
-  .medals-table-wrapper {
+  .medals__table-wrapper {
     border-radius: 0.75rem;
     overflow: hidden;
   }
 
-  .medals-table thead {
+  .medals__table thead {
     display: none;
   }
 
-  .medals-table tbody tr {
+  .medals__table tbody tr {
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-rows: auto auto auto;
@@ -291,19 +292,19 @@ html[data-dark-mode="true"] {
   }
 
   /* Actividad — fila 1, col 1 */
-  .medals-table tbody tr td:nth-child(1) {
+  .medals__table tbody tr td:nth-child(1) {
     grid-column: 1;
     grid-row: 1;
     padding: 0;
   }
 
-  .activityName {
+  .medals__activity-name {
     color: var(--primary);
     font-weight: 600;
   }
 
   /* Completada — col 2, ocupa todas las filas */
-  .medals-table tbody tr td:nth-child(4) {
+  .medals__table tbody tr td:nth-child(4) {
     grid-column: 2;
     grid-row: 1 / 4;
     padding: 0;
@@ -313,8 +314,8 @@ html[data-dark-mode="true"] {
   }
 
   /* Insignia y Estrellas — col 1, filas 2 y 3 */
-  .medals-table tbody tr td:nth-child(2),
-  .medals-table tbody tr td:nth-child(3) {
+  .medals__table tbody tr td:nth-child(2),
+  .medals__table tbody tr td:nth-child(3) {
     grid-column: 1;
     padding: 0;
     display: inline-flex;
@@ -323,21 +324,21 @@ html[data-dark-mode="true"] {
     justify-content: flex-start;
   }
 
-  .medals-table tbody tr td:nth-child(2) {
+  .medals__table tbody tr td:nth-child(2) {
     grid-row: 2;
   }
 
-  .medals-table tbody tr td:nth-child(3) {
+  .medals__table tbody tr td:nth-child(3) {
     grid-row: 3;
   }
 
-  .medals-table tbody td:not(:first-child) {
+  .medals__table tbody td:not(:first-child) {
     text-align: left;
   }
 
   /* Labels */
-  .medals-table tbody tr td:nth-child(2)::before,
-  .medals-table tbody tr td:nth-child(3)::before {
+  .medals__table tbody tr td:nth-child(2)::before,
+  .medals__table tbody tr td:nth-child(3)::before {
     content: attr(data-label);
     font-size: 0.7rem;
     font-weight: 600;

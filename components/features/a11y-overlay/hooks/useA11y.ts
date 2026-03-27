@@ -73,6 +73,7 @@ export const useA11y = (): useA11y => {
     }
 
     const newConfig = { ...config, [property]: propertyValue };
+    console.log('Updating config:', newConfig.interpreter);
     setConfigState(newConfig);
     
     // Guardar en localStorage
