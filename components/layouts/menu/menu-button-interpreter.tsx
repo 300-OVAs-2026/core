@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useA11y } from '@features/a11y-overlay/hooks/useA11y';
 import { EVENT } from '@features/interpreter/lib/constants';
 import { Icon } from '@ui';
@@ -19,7 +20,7 @@ export const MenuButtonInterpreter = () => {
    * @param value - A boolean indicating whether the interpreter should be hidden (true) or shown (false).
    */
   const toggleInterpreter = (value: boolean) => {
-    setConfig('interpreter', value);
+    console.log('Toggling interpreter. New value:', value);
 
     // Dispatch custom event to toggle interpreter visibility
     const event = new CustomEvent(EVENT.VISIBILITY, {
@@ -28,7 +29,23 @@ export const MenuButtonInterpreter = () => {
       cancelable: true
     });
     document.dispatchEvent(event);
+
+    setConfig('interpreter', value);
   };
+
+  useEffect(() => {
+    // Handler to update state when the interpreter is closed from within the interpreter component
+    const handleInterpreterClosed = () => {
+      console.log('Interpreter closed event received');
+      setConfig('interpreter', true);
+    };
+
+    document.addEventListener(EVENT.CLOSED, handleInterpreterClosed as EventListener);
+
+    return () => {
+      document.removeEventListener(EVENT.CLOSED, handleInterpreterClosed as EventListener);
+    };
+  }, []);
 
   return (
     <button

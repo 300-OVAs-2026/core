@@ -103,6 +103,10 @@
   border-radius: 0.5rem;
 }
 
+html[data-dark-mode="true"] .count-badge {
+  background: var(--notes-primary);
+} 
+
 /* ===== EXPAND BUTTON ===== */
 .expand-button {
   padding: 0.5rem 1rem;

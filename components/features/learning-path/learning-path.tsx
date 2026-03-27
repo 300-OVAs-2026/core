@@ -8,7 +8,7 @@ import { Avatar } from '../avatar';
 import { BridgeSvg } from './learning-bridge-svg';
 import { BridgeSvgMobile } from './learning-bridge-svg-mobile';
 import { PageNode } from './learning-node';
-import { DESKTOP, TABLET } from './lib/constants';
+import { DESKTOP, i18n, TABLET } from './lib/constants';
 import { getAllPositions } from './lib/get-all-positionts';
 
 import { AvatarVariation } from '../avatar/types/type';
@@ -17,6 +17,7 @@ import css from './learning-path.module.css';
 
 export const LearningPath = () => {
   const pages = useOvaStore((state) => state.pages);
+  const lang = useOvaStore((state) => state.lang);
 
   if (!pages || pages.length === 0) return null;
 
@@ -24,7 +25,7 @@ export const LearningPath = () => {
     <Content withOutTitle>
       <div className={css['learning-path']}>
         <div className={css['learning-path__avatar']}>
-          <Avatar variation={AvatarVariation.GREETING} size="28.125rem" title="Figure." alt="Avatar." />
+          <Avatar variation={AvatarVariation.GREETING} size="28.125rem" title={i18n[lang].avatar} alt="Avatar." />
         </div>
 
         <nav className={css['learning-path__navigation']} aria-label="Mapa de aprendizaje">
@@ -33,8 +34,7 @@ export const LearningPath = () => {
             <Audio src="assets/audios/base/aud_learning-path.mp3" />
           </div>
           <p className={css['learning-path__intro']}>
-            ¡Bienvenido! Este es tu mapa de aprendizaje. Completa cada sección en orden para avanzar y desbloquear
-            nuevos contenidos. ¡Tú puedes lograrlo!
+            {i18n[lang].instruction}
           </p>
           <div className={css['learning-path__map']}>
             {/* Nodos */}

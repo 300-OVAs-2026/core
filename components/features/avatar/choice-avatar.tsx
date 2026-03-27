@@ -6,7 +6,7 @@ import { ChevronsLeft, ChevronsRight } from 'lucide-react';
 import { cn } from '@/shared/utils';
 import { useOvaStore } from '@/store/ova-store';
 
-import { AVATARS } from './lib/constants';
+import { AVATARS, i18n } from './lib/constants';
 
 import { type Avatar, AvatarVariation } from './types/type';
 
@@ -28,6 +28,7 @@ export const ChoiceAvatar = () => {
   const sections = chunkAvatars(AVATARS, AVATARS_PER_SECTION);
   const selectAvatar = useOvaStore((state) => state.selectAvatar);
   const selectedAvatarId = useOvaStore((state) => state.selectedAvatarId);
+  const lang = useOvaStore((state) => state.lang);
 
   return (
     <Content withOutTitle>
@@ -36,10 +37,7 @@ export const ChoiceAvatar = () => {
         <Audio src="assets/audios/base/aud_choice-avatar.mp3" />
       </div>
 
-      <p className={css['instruction']}>
-        Selecciona un avatar para el transcurso del OVA. Puedes cambiarlo en cualquier momento. Una vez que selecciones
-        un avatar, presiona el botón <strong>Menú</strong> para continuar.
-      </p>
+      <p className={css['instruction']} dangerouslySetInnerHTML={{ __html: i18n[lang].instruction }}></p>
 
       <Panel>
         {sections.map((group, sectionIndex) => (
@@ -70,7 +68,7 @@ export const ChoiceAvatar = () => {
                         }
                         {...(selectedAvatarId === avatar.id ? { variant: 'disabled' } : {})}
                         onClick={() => selectAvatar(avatar.id)}>
-                        {selectedAvatarId === avatar.id ? 'Seleccionado' : 'Seleccionar'}
+                        {selectedAvatarId === avatar.id ? i18n[lang].selected : i18n[lang].select}
                       </Button>
                     </li>
                   ))}

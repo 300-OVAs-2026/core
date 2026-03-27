@@ -11,7 +11,7 @@
     /* Color claro para textos sobre fondos oscuros */
     --color-secondary: var(--primary-800);
     /* Versión muy oscura para contraste */
-    --background: hsl(0, 0%, 98%);
+    --background: var(--card);
     /* Versión muy clara para fondos */
     --border-rds: .5rem;
 
@@ -34,11 +34,10 @@
 }
 
 html[data-dark-mode='true'] .modal {
-    --background:      hsl(0, 2%, 10%);    
     --color-secondary: var(--clr-text-main);
-    --accent:          var(--secondary-700);      
-    --accent-light:    hsl(220 22% 17%);     
-    --brand-dark:      var(--primary-700);    
+    --accent: var(--secondary-700);
+    --accent-light: hsl(220 22% 17%);
+    --brand-dark: var(--primary-700);
 }
 
 .modal__header {

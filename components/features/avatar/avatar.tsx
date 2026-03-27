@@ -23,12 +23,13 @@ export const Avatar: React.FC<Props> = ({
   ...props
 }) => {
   const selectedAvatarId = useOvaStore((state) => state.selectedAvatarId);
+  const lang = useOvaStore((state) => state.lang);
 
   const avatar = AVATARS.find(({ id }) => id === selectedAvatarId);
   const resolvedVariation = avatar ? resolveVariation(avatar.variations, variation) : variation;
 
   const src = avatar ? `assets/base/avatars/${avatar.id}/${avatar.name}-${resolvedVariation}.webp` : '';
-  const alt = AVATAR_TITLE[variation] || 'Avatar.';
+  const alt = AVATAR_TITLE[lang]?.[variation] || 'Avatar.';
 
   return <Image {...props} title={title} size={size} noCaption={noCaption} src={src} alt={alt} />;
 };
