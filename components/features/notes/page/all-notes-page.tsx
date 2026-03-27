@@ -1,12 +1,16 @@
-import { Fragment, useState } from 'react';
+import { Fragment, Suspense, lazy, useState } from 'react';
 import { Content } from '@layouts';
-import { PDFDownloadLink } from '@react-pdf/renderer';
 import { Button } from '@ui';
 import { Audio, Col, Row } from 'books-ui';
 
 import { useOvaStore } from '@/store/ova-store';
 
-import { NotePDFDocument } from '../components/NotePDFDocument';
+const LazyPDFDownloadLink = lazy(() =>
+  import('@react-pdf/renderer').then((m) => ({ default: m.PDFDownloadLink }))
+);
+const LazyNotePDFDocument = lazy(() =>
+  import('../components/NotePDFDocument').then((m) => ({ default: m.NotePDFDocument }))
+);
 import { useNotesStore } from '../store/notesStore';
 import { exportNotesToTXT, formatRelativeTime, groupNotesByPage, prepareNotesForPDF } from '../utils/exportNotes';
 
@@ -175,18 +179,20 @@ export const AllNotes = () => {
               <div className={css['export-section']}>
                 <Button variant="download" label="Descargar TXT" onClick={handleExportTXT} />
 
-                <PDFDownloadLink
-                  document={<NotePDFDocument notes={pdfData.notes} pageTitle={pdfData.title} />}
-                  fileName={`notas-${Date.now()}.pdf`}
-                  className={css['export-button-link']}>
-                  {({ loading }) => (
-                    <Button
-                      variant="download"
-                      label={loading ? 'Preparando PDF...' : 'Exportar PDF'}
-                      disabled={loading}
-                    />
-                  )}
-                </PDFDownloadLink>
+                <Suspense fallback={<Button variant="download" label="Cargando PDF..." disabled />}>
+                  <LazyPDFDownloadLink
+                    document={<LazyNotePDFDocument notes={pdfData.notes} pageTitle={pdfData.title} />}
+                    fileName={`notas-${Date.now()}.pdf`}
+                    className={css['export-button-link']}>
+                    {({ loading }: { loading: boolean }) => (
+                      <Button
+                        variant="download"
+                        label={loading ? 'Preparando PDF...' : 'Exportar PDF'}
+                        disabled={loading}
+                      />
+                    )}
+                  </LazyPDFDownloadLink>
+                </Suspense>
               </div>
             </>
           )}
