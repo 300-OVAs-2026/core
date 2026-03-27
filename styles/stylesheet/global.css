@@ -179,7 +179,8 @@ html[data-dark-mode="true"] .u-white-bg {
   font-style: italic;
 }
 
-.video-player {
+/* TODO: Change video player colors */
+/* .video-player {
   --video-color: #cacaca;
   --video-bg: #1a1f2a;
   --video-caption-bg: #1a1f2a;
@@ -190,7 +191,7 @@ html[data-dark-mode="true"] .u-white-bg {
   --video-transcription-cue-hover: #19578d;
   --video-transcription-cue-active: #39393c;
   --video-transcription-color: var(--clr-text-main);
-}
+} */
 
 .video-player__transcription-header>p {
   font-weight: bold;
