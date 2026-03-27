@@ -193,6 +193,7 @@ html[data-dark-mode="true"] .u-white-bg {
   --video-transcription-color: var(--clr-text-main);
 } */
 
+/* TODO: Change video player colors */
 .video-player__transcription-header>p {
   font-weight: bold;
   font-size: var(--fs-300);
