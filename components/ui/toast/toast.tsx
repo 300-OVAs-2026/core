@@ -1,8 +1,9 @@
 import { useEffect, useRef } from 'react';
+import { Portal } from 'books-ui';
 import { AnimatePresence, motion } from 'motion/react';
 
 import type { VideoURLs } from '@shared/hooks';
-import { useFocusTrap,useInterpreter } from '@shared/hooks';
+import { useFocusTrap, useInterpreter } from '@shared/hooks';
 import { useOvaStore } from '@/store/ova-store';
 
 import { Icon } from '../icon';
@@ -12,6 +13,7 @@ import { i18n } from './lib/constant';
 import css from './toast.module.css';
 
 export interface ToastCoreProps {
+  id?: string;
   isOpen: boolean;
   onClose?: () => void;
   addClass?: string;
@@ -20,7 +22,15 @@ export interface ToastCoreProps {
   label?: string;
 }
 
-export const Toast: React.FC<ToastCoreProps> = ({ isOpen, onClose, addClass, label, interpreter, children }) => {
+export const Toast: React.FC<ToastCoreProps> = ({
+  id = 'js-toast',
+  isOpen,
+  onClose,
+  addClass,
+  label,
+  interpreter,
+  children
+}) => {
   const lang = useOvaStore((state) => state.lang);
   const [updateVideoSources, restoreLastVideoSources] = useInterpreter();
   const flagOpenToast = useRef(false);
@@ -55,23 +65,24 @@ export const Toast: React.FC<ToastCoreProps> = ({ isOpen, onClose, addClass, lab
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          ref={containerRef}
-          className={`${css.toast} ${addClass ?? ''}`}
-          role="dialog"
-          aria-modal="true"
-          aria-label={label || i18n[lang].dialogLabel}
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 16 }}
-          transition={{ duration: 0.25, ease: 'easeInOut' }}
-        >
-          <button className={css['toast__close']} onClick={handleCloseToast} aria-label={i18n[lang].btnModal}>
-            <Icon name="close" />
-          </button>
+        <Portal id={id}>
+          <motion.div
+            ref={containerRef}
+            className={`${css.toast} ${addClass ?? ''}`}
+            role="dialog"
+            aria-modal="true"
+            aria-label={label || i18n[lang].dialogLabel}
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 16 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}>
+            <button className={css['toast__close']} onClick={handleCloseToast} aria-label={i18n[lang].btnModal}>
+              <Icon name="close" />
+            </button>
 
-          <div className={css['toast__content']}>{children}</div>
-        </motion.div>
+            <div className={css['toast__content']}>{children}</div>
+          </motion.div>
+        </Portal>
       )}
     </AnimatePresence>
   );
