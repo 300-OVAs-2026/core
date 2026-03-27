@@ -1,12 +1,12 @@
-import { Fragment, lazy, Suspense, useState } from 'react';
-import { Content } from '@layouts';
-import { Button } from '@ui';
+import { Fragment, useState } from 'react';
 import { Audio, Col, Row } from 'books-ui';
 
+import { Content } from '@layouts';
+import { Button } from '@ui';
 import { useOvaStore } from '@/store/ova-store';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 
-const LazyPDFDownloadLink = lazy(() => import('@react-pdf/renderer').then((m) => ({ default: m.PDFDownloadLink })));
-const LazyNotePDFDocument = lazy(() => import('../components/NotePDFDocument').then((m) => ({ default: m.NotePDFDocument })));
+import { NotePDFDocument } from '../components/NotePDFDocument';
 import { i18nNotes } from '../lib/constants';
 import { useNotesStore } from '../store/notesStore';
 import { exportNotesToTXT, formatRelativeTime, groupNotesByPage, prepareNotesForPDF } from '../utils/exportNotes';
@@ -174,20 +174,14 @@ export const AllNotes = () => {
               <div className={css['export-section']}>
                 <Button variant="download" label={t.downloadTXT} onClick={handleExportTXT} />
 
-                <Suspense fallback={<Button variant="download" label="Cargando PDF..." disabled />}>
-                  <LazyPDFDownloadLink
-                    document={<LazyNotePDFDocument notes={pdfData.notes} pageTitle={pdfData.title} />}
-                    fileName={`notas-${Date.now()}.pdf`}
-                    className={css['export-button-link']}>
-                    {({ loading }: { loading: boolean }) => (
-                      <Button
-                        variant="download"
-                        label={loading ? 'Preparando PDF...' : 'Exportar PDF'}
-                        disabled={loading}
-                      />
-                    )}
-                  </LazyPDFDownloadLink>
-                </Suspense>
+                <PDFDownloadLink
+                  document={<NotePDFDocument notes={pdfData.notes} pageTitle={pdfData.title} />}
+                  fileName={`notas-${Date.now()}.pdf`}
+                  className={css['export-button-link']}>
+                  {({ loading }) => (
+                    <Button variant="download" label={loading ? t.preparingPDF : t.exportPDF} disabled={loading} />
+                  )}
+                </PDFDownloadLink>
               </div>
             </>
           )}
