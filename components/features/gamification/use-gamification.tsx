@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+import type { VideoURLs } from '@/shared/hooks';
 import { useGamificationStore } from '@/store/gamification-store';
 
 import { GamificationModal } from './gamification-modal';
@@ -31,8 +32,8 @@ export interface UseGamificationReturn {
   notifyReset: () => void;
   /** Elemento JSX listo para insertar donde quieras mostrar las estrellas. */
   Stars: JSX.Element;
-  /** Modal de completado. Insertar en el JSX; se abre automáticamente al completar. */
-  Modal: JSX.Element;
+  /** Modal de completado. Usarlo como componente; acepta `audio` e `interpreter` opcionales. */
+  Modal: React.FC<{ audio?: string; interpreter?: VideoURLs }>;
 }
 
 /**
@@ -48,7 +49,7 @@ export interface UseGamificationReturn {
  *     <Button label="REINTENTAR" variant="reset" onClick={notifyReset} />
  *   </Selects.Button>
  * </Selects>
- * {Modal}
+ * <Modal audio="assets/audios/base/completado.mp3" interpreter="completado.mp4" />
  * ```
  *
  * @example — game
@@ -57,7 +58,7 @@ export interface UseGamificationReturn {
  *
  * <Stars />
  * <GameBalloons onResult={reportResult} onReset={notifyReset} />
- * {Modal}
+ * <Modal />
  * ```
  */
 export const useGamification = ({
@@ -117,7 +118,7 @@ export const useGamification = ({
     reportResult,
     notifyReset,
     Stars: <GamificationStars stars={stars} maxStars={maxStars} />,
-    Modal: (
+    Modal: ({ audio, interpreter }) => (
       <GamificationModal
         id={id}
         isOpen={isModalOpen}
@@ -125,6 +126,8 @@ export const useGamification = ({
         correct={lastResult.correct}
         total={lastResult.total}
         onRestart={onRestart}
+        audio={audio}
+        interpreter={interpreter}
       />
     )
   };
