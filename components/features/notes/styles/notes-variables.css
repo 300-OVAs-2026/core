@@ -26,7 +26,7 @@
 
   --notes-text-dark: var(--secondary-900);
   --notes-text-medium: var(--secondary-700);
-  --notes-text-gray: var(--secondary-500);
+  --notes-text-gray: var(--secondary-600);
   --notes-text-light: var(--secondary-400);
   --notes-text-secondary: var(--secondary-700);
   --notes-text-white: var(--white);
@@ -75,9 +75,9 @@ html[data-dark-mode='true'] {
 
   /* Textos: escala invertida de secondary (claros) */
   --notes-text-dark: var(--secondary-50);
-  --notes-text-medium: var(--secondary-200);
-  --notes-text-gray: var(--secondary-300);
-  --notes-text-light: var(--secondary-400);
+  --notes-text-medium: var(--secondary-100);
+  --notes-text-gray: var(--secondary-200);
+  --notes-text-light: var(--secondary-200);
   --notes-text-secondary: var(--secondary-200);
 
   /* Primarios y accent */

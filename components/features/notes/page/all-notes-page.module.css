@@ -96,16 +96,16 @@
   min-width: 2rem;
   height: 2rem;
   padding: 0 0.5rem;
-  background: var(--notes-primary-mid);
+  background: var(--notes-primary);
   color: var(--notes-text-white);
   font-weight: 600;
   font-size: 0.875rem;
   border-radius: 0.5rem;
 }
 
-html[data-dark-mode="true"] .count-badge {
+html[data-dark-mode='true'] .count-badge {
   background: var(--notes-primary);
-} 
+}
 
 /* ===== EXPAND BUTTON ===== */
 .expand-button {
