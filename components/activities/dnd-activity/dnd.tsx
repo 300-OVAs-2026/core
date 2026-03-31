@@ -31,20 +31,17 @@ const DndActivity: React.FC<Props> & SubComponents = ({ id, children, minCorrect
    *
    * @param {string[]} value - ID del drag
    */
-  // ✅ Diferir el setState con setTimeout(0)
   const handleNewDrag = ({ validate: drags, active }: { validate: string[]; active: boolean }) => {
     const newListDrags = [...drags];
     const TOTAL_DRAGS_TO_THROW_CORRECT_MODAL = minCorrectDrags;
 
-    setTimeout(() => {
-      if (active && activity.button) {
-        updatedActivity({ button: !activity.button });
-      }
+    if (active && activity.button) {
+      updatedActivity({ button: !activity.button });
+    }
 
-      if (newListDrags.length === TOTAL_DRAGS_TO_THROW_CORRECT_MODAL) {
-        updatedActivity({ result: true });
-      }
-    }, 0);
+    updatedActivity({
+      result: newListDrags.length === TOTAL_DRAGS_TO_THROW_CORRECT_MODAL
+    });
   };
 
   /**
