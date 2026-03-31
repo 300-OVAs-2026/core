@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { A11yOverlay } from '@features/a11y-overlay';
 import { useHashLocation } from 'wouter/use-hash-location';
+
+import { A11yOverlay } from '@features/a11y-overlay';
 
 import { Menu } from '../menu';
 

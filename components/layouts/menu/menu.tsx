@@ -1,10 +1,10 @@
-import { useA11y } from '@features/a11y-overlay/hooks/useA11y';
-import { Icon } from '@ui';
 import { Icon as IconUI } from 'books-ui';
 import { SquareUser } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'wouter';
 
+import { useA11y } from '@features/a11y-overlay/hooks/useA11y';
+import { Icon } from '@ui';
 import { useFocusTrap } from '@/shared/hooks';
 import { cn } from '@/shared/utils';
 import { useGamificationStore } from '@/store/gamification-store';
@@ -37,7 +37,7 @@ export const Menu = () => {
       <nav role="navigation" aria-label={i18n[lang].nav} className={css['menu']}>
         <div className={css['menu__controls']}>
           <button
-            className={css['menu__button--hamburger']}
+            className={cn(css['menu__button--hamburger'], 'js-menu-button--hamburger')}
             aria-controls="main-menu"
             aria-label="Menú principal"
             aria-expanded={expanded.menu}
@@ -93,7 +93,7 @@ export const Menu = () => {
           </button>
 
           <button
-            className={cn(css['menu__button'], css['menu__button--light-blue'], css['menu__button--diagonal-cut'])}
+            className={cn(css['menu__button'], css['menu__button--light-blue'], css['menu__button--diagonal-cut'], 'js-button-audio-a11y')}
             aria-label={config.audio ? i18n[lang].audioActive : i18n[lang].audioPause}
             onClick={() => setAudioDescription(!config.audio)}>
             <span className={css['menu__button-content']}>
@@ -109,7 +109,7 @@ export const Menu = () => {
           <Link
             to="/medals"
             aria-label="Ver mis medallas"
-            className={cn(css['menu__button'], css['menu__button--yellow'], css['menu__button--double-diagonal-cut'])}>
+            className={cn(css['menu__button'], css['menu__button--yellow'], css['menu__button--double-diagonal-cut'], 'js-button-medals')}>
             <span className={css['menu__button-content']}>
               <Icon name="award" />
               <span className={cn(css['menu__button-label'], css['menu__button-medal'])}>{medals}</span>

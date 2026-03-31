@@ -168,7 +168,7 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
         <button
           ref={triggerButtonRef}
           type="button"
-          className={`${css['fn-floating-trigger']} ${
+          className={`js-button-notes ${css['fn-floating-trigger']} ${
             isOpen ? css['is-closing'] : hasToggled ? css['is-opening'] : ''
           }`}
           onClick={handleToggleOpen}

@@ -235,3 +235,47 @@ html[data-dark-mode="true"] .help__spec-list>li::before {
         padding-top: 0;
     }
 }
+
+/* Tour */
+.tour__layer {
+    box-shadow: 0 0 4px 1px var(--white);
+    opacity: .5;
+    border: 1px solid var(--white);
+}
+
+.tour__layer :global(.c-tour-number) {
+    top: 0;
+    left: 0;
+    background-color: var(--primary-700);
+    border: 2px solid var(--white);
+}
+
+div.tour__element {
+    --tour-color: var(--accent);
+    --tour-color-hover: var(--accent-400);
+}
+
+html[data-dark-mode="true"] div.tour__element {
+    background-color: var(--background);
+}
+
+div.tour__element button {
+    --button-bg-color: var(--accent);
+    --button-padding: .3rem;
+    width: 2.4rem;
+    height: 2.4rem;
+    color: var(--primary-700);
+}
+
+div.tour__element :global(.tour-description) {
+    margin-block: .5rem;
+}
+
+.tour__element svg {
+    fill: currentColor;
+    pointer-events: none;
+}
+
+[data-class="c-layout"] {
+    backdrop-filter: none;
+}
