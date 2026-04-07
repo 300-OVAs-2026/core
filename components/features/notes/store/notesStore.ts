@@ -1,6 +1,8 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
+import { OVA_STORAGE_KEY } from '@/shared/utils';
+
 import type { Note, NotesState } from '../types/types';
 
 /**
@@ -143,7 +145,7 @@ export const useNotesStore = create<NotesState>()(
       }
     }),
     {
-      name: 'ova-notes-storage',
+      name: `${OVA_STORAGE_KEY}:ova-notes-storage`,
       storage: createJSONStorage(() => localStorage)
     }
   )
