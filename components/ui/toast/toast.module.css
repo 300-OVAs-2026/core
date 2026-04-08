@@ -3,6 +3,7 @@
   --toast-max-width: 70vh;
   --toast-padding: 20px;
   --toast-max-height: 30vh;
+  --toast-background: var(--primary);
 
   display: flex;
   flex-direction: column;
@@ -15,13 +16,13 @@
   max-width: var(--toast-max-width);
   max-height: var(--toast-max-height);
   padding: var(--toast-padding);
-  background: var(--primary);
+  background-color: var(--toast-background);
   border-radius: var(--toast-radius);
   color: var(--white);
 }
 
 html[data-dark-mode='true'] .toast {
-  background: var(--primary-700);
+  --toast-background: var(--primary-700);
 }
 
 .toast__content {
@@ -44,7 +45,7 @@ html[data-dark-mode='true'] .toast {
   width: 34px;
   height: auto;
   transition: background-color 120ms ease-in-out;
-  background-color: transparent;
+  background-color: var(--toast-background);
   border: 1px solid transparent;
   border-radius: 50%;
   color: var(--white);
