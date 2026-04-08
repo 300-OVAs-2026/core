@@ -381,7 +381,6 @@ html[data-dark-mode="true"] .fn-trigger-icon__dash {
   background-color: var(--notes-accent);
   border: 1px solid var(--notes-accent-border);
   font-weight: bold;
-  color: var(--notes-primary-dark);
 }
 
 .fn-btn--edit::before,
@@ -465,6 +464,11 @@ html[data-dark-mode="true"] .fn-trigger-icon__dash {
   font-weight: 500;
   color: var(--notes-primary);
   text-decoration: none;
+}
+
+html[data-dark-mode='true'] .fn-empty-state-link {
+  color: var(--primary-300);
+  border-bottom: 2px solid var(--primary-300);
 }
 
 .prefix__cls-2-stroke {
@@ -750,7 +754,6 @@ html[data-dark-mode="true"] .fn-trigger-icon__dash {
 .fn-btn--save-note,
 .fn-btn--cancel-note {
   background: var(--notes-accent);
-  color: var(--notes-primary-dark);
 }
 
 .fn-btn--save-note::before,
@@ -770,10 +773,6 @@ html[data-dark-mode="true"] .fn-trigger-icon__dash {
   animation: rippleOut 1.2s ease-in-out infinite alternate;
 }
 
-.fn-btn--save-note:hover,
-.fn-btn--cancel-note:hover {
-  color: var(--notes-primary-dark-hover);
-}
 
 @keyframes rippleOut {
   0% {
@@ -811,7 +810,7 @@ html[data-dark-mode="true"] .fn-trigger-icon__dash {
 }
 
 .fn-tooltip-capture-btn {
-  margin-top: 4px;
+  margin-top: -2px;
   background: transparent;
   cursor: pointer;
   border: none;

@@ -4,6 +4,7 @@ import gsap from 'gsap';
 import { GameMillionProvider } from './game-million-context';
 import { GameMillionElement } from './game-million-element';
 import { GameMillionButton } from './game-millions-button';
+import mainIcon from './public/assets/main_icon.webp';
 import { STATES } from './utils/consts';
 import { convertNumber } from './utils/convert-number';
 
@@ -176,11 +177,7 @@ const GameMilions: React.FC<GameMilionsProps> & SubComponents = ({
         handleVerify
       }}>
       <div className={css.container}>
-        <img
-          className={css['logo']}
-          src="assets/images/main_icon.webp"
-          alt="Logotipo del programa How wants to be millionaire"
-        />
+        <img className={css['logo']} src={mainIcon} alt="Logotipo del programa How wants to be millionaire" />
         <p ref={counterRef} className={css.counter} aria-live="polite" aria-atomic="true" role="status">
           <span className={css['counter-add']} ref={refAddCounter} aria-hidden="true" hidden>
             +100$

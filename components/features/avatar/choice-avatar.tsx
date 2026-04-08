@@ -1,8 +1,8 @@
-import { Content } from '@layouts';
-import { Button } from '@ui';
 import { Audio, Icon, Panel } from 'books-ui';
 import { ChevronsLeft, ChevronsRight } from 'lucide-react';
 
+import { Content } from '@layouts';
+import { Button } from '@ui';
 import { cn } from '@/shared/utils';
 import { useOvaStore } from '@/store/ova-store';
 

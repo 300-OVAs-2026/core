@@ -76,7 +76,7 @@ button.button:focus-visible {
   --outline-color: var(--primary-700);
 }
 
-.wrapper:has(button:disabled) {
+.wrapper:has(button:is(:disabled, [data-type='disabled'])) {
   --linear-svg: var(--secondary-700);
 }
 

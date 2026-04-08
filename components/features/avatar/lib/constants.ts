@@ -164,11 +164,11 @@ export const i18n = {
   es: {
     select: 'Seleccionar',
     selected: 'Seleccionado',
-    instruction: 'Selecciona un avatar para el transcurso del OVA. Puedes cambiarlo en cualquier momento. Una vez que selecciones un avatar, presiona el botón <strong>Menú</strong> para continuar.'
+    instruction: 'Selecciona un avatar para el transcurso del OVA. Puedes cambiarlo en cualquier momento. Una vez que selecciones un avatar, presiona el botón <strong>Contenido</strong> para continuar.'
   },
   en: {
     select: 'Select',
     selected: 'Selected',
-    instruction: 'Select an avatar for the duration of the OVA. You can change it at any time. Once you select an avatar, press the <strong>Menu</strong> button to continue.'
+    instruction: 'Select an avatar for the duration of the OVA. You can change it at any time. Once you select an avatar, press the <strong>Contents</strong> button to continue.'
   }
 }

@@ -1,15 +1,14 @@
-import { Avatar } from '@features/avatar';
-import { Content } from '@layouts';
-import { Button, Icon } from '@ui';
 import { Col, Row } from 'books-ui';
 import { HelpCircle } from 'lucide-react';
 
+import { Avatar, AvatarVariation } from '@features/avatar';
+import { Content } from '@layouts';
+import { Icon } from '@ui';
 import { cn } from '@/shared/utils';
 import { useOvaStore } from '@/store/ova-store';
 
+import { HelpTour } from './help-tour';
 import { i18nHelp } from './lib/constant';
-
-import { AvatarVariation } from '@features/avatar/types/type';
 
 import css from './help.module.css';
 
@@ -47,14 +46,7 @@ export const Help = () => {
               </span>
               <div className={css['help__tip-body']}>
                 <p>{i18nHelp[lang].tip}</p>
-                <Button
-                  variant="next"
-                  label={i18nHelp[lang].tourButton}
-                  addClass="u-text-upper"
-                  onClick={() => {
-                    (document.querySelector('.js-button-help') as HTMLElement)?.click();
-                  }}
-                />
+                <HelpTour />
               </div>
             </div>
 

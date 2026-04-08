@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
-import { Icon } from '@ui';
 import type { ModalProps } from 'books-ui';
 import { Modal as ModalUI } from 'books-ui';
 
+import { Icon } from '@ui';
 import type { VideoURLs } from '@shared/hooks';
 import { useInterpreter } from '@shared/hooks';
 import { useOvaStore } from '@/store/ova-store';

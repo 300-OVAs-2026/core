@@ -5,7 +5,7 @@
   min-height: 500px;
   padding-block: 1.25rem;
   overflow: hidden;
-  background-image: url('assets/images/game-million-background.webp');
+  background-image: url('public/assets/game-million-background.webp');
   background-size: cover;
   background-position: center;
 }
@@ -18,7 +18,7 @@
   position: absolute;
   top: 7vw;
   right: 7vw;
-  background-image: url('assets/images/Contenedor_Dinero.webp');
+  background-image: url('public/assets/Contenedor_Dinero.webp');
   background-size: 100% 100%;
   padding: 10px 30px;
 }
@@ -79,7 +79,7 @@ legend.question {
   .wrapper-answer {
     grid-template-columns: 1fr;
   }
-  
+
 }
 
 .answer {

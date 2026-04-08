@@ -1,5 +1,7 @@
-import { Button, Icon, Modal } from '@ui';
+import { Audio } from 'books-ui';
 
+import { Button, Icon, Modal } from '@ui';
+import type { VideoURLs } from '@/shared/hooks';
 import { useGamificationStore } from '@/store/gamification-store';
 import { useOvaStore } from '@/store/ova-store';
 
@@ -16,9 +18,20 @@ interface Props {
   correct?: number;
   total?: number;
   onRestart?: () => void;
+  audio?: string;
+  interpreter?: VideoURLs;
 }
 
-export const GamificationModal: React.FC<Props> = ({ id, isOpen, onClose, correct, total, onRestart }) => {
+export const GamificationModal: React.FC<Props> = ({
+  id,
+  isOpen,
+  onClose,
+  correct,
+  total,
+  onRestart,
+  audio,
+  interpreter
+}) => {
   const lang = useOvaStore((state) => state.lang);
   const markPageVisited = useOvaStore((state) => state.markPageVisited);
 
@@ -42,7 +55,7 @@ export const GamificationModal: React.FC<Props> = ({ id, isOpen, onClose, correc
   };
 
   return (
-    <Modal size="sm" isOpen={isOpen} onClose={handleClose} addClass={css['modal']}>
+    <Modal size="sm" isOpen={isOpen} onClose={handleClose} addClass={css['modal']} interpreter={interpreter}>
       <div className={`u-flow ${css['modal__wrapper']}`}>
         <div className={css['modal__medal']} aria-hidden="true">
           <Icon name="award" />
@@ -73,6 +86,8 @@ export const GamificationModal: React.FC<Props> = ({ id, isOpen, onClose, correc
         )}
 
         <p className={css['modal__medal-text']}>{t.medal(medalIndex)}</p>
+
+        {audio && <Audio src={audio} />}
 
         {onRestart && (
           <Button

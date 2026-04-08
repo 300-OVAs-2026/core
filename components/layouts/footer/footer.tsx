@@ -1,10 +1,15 @@
 import { Link } from 'wouter';
 
 import { cn } from '@/shared/utils';
+import { useOvaStore } from '@/store/ova-store';
+
+import { i18n } from './lib/constant';
 
 import css from './footer.module.css';
 
 export const Footer = () => {
+  const lang = useOvaStore((state) => state.lang);
+
   return (
     <footer className={css.footer} aria-label="Navegación principal">
       <svg width="0" height="0" aria-hidden="true" style={{ position: 'absolute' }}>
@@ -30,7 +35,10 @@ export const Footer = () => {
         </svg>
 
         <div className={css['footer__shape-container']}>
-          <Link to="/menu" aria-label="Menu" className={cn(css.button, 'js-menu-navigation')}>
+          <Link
+            to="/menu"
+            aria-label="Ir al contenido del OVA"
+            className={cn(css.button, 'js-menu-navigation')}>
             <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" className={css['icon']} viewBox="60 60 280 280">
               <circle cx="200" className={css['icon__dash']} cy="200" r="115" />
 
@@ -43,7 +51,7 @@ export const Footer = () => {
               <rect className={css['icon__shadow']} x="203" y="203" width="33" height="33" rx="12" fill="white" />
             </svg>
             <span className={css['button__text']} aria-hidden="true">
-              Menu
+              {i18n[lang].menu}
             </span>
           </Link>
         </div>
