@@ -810,7 +810,7 @@ html[data-dark-mode='true'] .fn-empty-state-link {
 }
 
 .fn-tooltip-capture-btn {
-  margin-top: 4px;
+  margin-top: -2px;
   background: transparent;
   cursor: pointer;
   border: none;
