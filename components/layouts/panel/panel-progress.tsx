@@ -96,6 +96,22 @@ export const PanelProgress = () => {
   };
 
   /**
+   * Función que pausa todos los elementos de video en la página, excepto
+   * los que funcionan como GIFs (autoplay, loop, playsinline). Se utiliza
+   * para asegurar que no haya videos reproduciéndose en segundo plano
+   * cuando el usuario navega entre secciones.
+   */
+  const pauseAllMediaElements = () => {
+    const mediaElements = document.querySelectorAll('video:not([autoplay][loop][playsinline])');
+    mediaElements.forEach((media) => {
+      const mediaEl = media as HTMLMediaElement;
+      if (!mediaEl.paused) {
+        mediaEl.pause();
+      }
+    });
+  };
+
+  /**
    * Maneja el evento onClick para mostrar la sección correspondiente.
    *
    * @param {string} section - Identificador de la sección que se desea mostrar.
@@ -105,6 +121,7 @@ export const PanelProgress = () => {
     handleToggle(section);
     handleInterpreterSectionChange(section);
     handleSectionTitleChange(section);
+    pauseAllMediaElements();
   };
 
   /**
