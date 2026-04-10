@@ -1,4 +1,4 @@
-import { Icon,Tooltip } from 'books-ui';
+import { Icon, Tooltip } from 'books-ui';
 import { Lock } from 'lucide-react';
 import { Link } from 'wouter';
 import { useHashLocation } from 'wouter/use-hash-location';
@@ -10,7 +10,7 @@ import type { OvaPageType } from '@/types/types';
 import css from './learning-path.module.css';
 
 interface Props {
-  page: OvaPageType;
+  page: OvaPageType & { counter: number };
   isLocked: boolean;
 }
 
@@ -39,12 +39,12 @@ export const PageNode: React.FC<Props> = ({ page, isLocked }) => {
   }
 
   return (
-    <Tooltip label={page.title} placement="top" addClass={css['learning-path__tooltip']} hasArrow distance={13}>
+    <Tooltip label={`${page.counter}. ${page.title}`} placement="top" addClass={css['learning-path__tooltip']} hasArrow distance={13}>
       <Link
         to={page.path}
         className={css['learning-path__node']}
         data-kind={page.kind}
-        aria-label={page.title}
+        aria-label={`Página ${page.counter}. ${page.title}`}
         aria-current={isCurrent ? 'page' : undefined}>
         {/* Contenedor principal del círculo visual — oculto a lectores de pantalla */}
         <div className={css['learning-path__node-visual']} aria-hidden="true">
