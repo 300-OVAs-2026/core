@@ -142,7 +142,7 @@ html[data-dark-mode="true"] .learning-path__node[data-kind="start"] {
 .learning-path__node[data-kind="finish"] {
   --node-ring-color: #A61C1C;
   --node-icon-bg: #F4BEBE;
-  --node-icon-color: #c26d6d;
+  --node-icon-color: #c24949;
   --node-halo: #EFA4A4;
 }
 
