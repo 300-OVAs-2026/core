@@ -1,4 +1,3 @@
-
 import { cloneElement } from 'react';
 
 import { useGameFishActivityContext } from './game-fish-context';
@@ -9,25 +8,18 @@ interface Props {
 }
 
 export const GameFishButton: React.FC<Props> = ({ type, children }) => {
-  const { handleValidation, handleReset, button, validation } = useGameFishActivityContext();
+  const { handleValidation, handleReset, button, validation, result } = useGameFishActivityContext();
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (children.props.onClick) {
-      children.props.onClick(event);
-    }
-
-    if (type === 'reset') {
-      handleReset();
-    } else {
-      handleValidation();
-    }
-  };
-
-  const isDisabled = type === 'reset' ? !validation : validation || button;
+  console.log(validation, result);
 
   return cloneElement(children, {
     ...children.props,
-    disabled: isDisabled,
-    onClick: handleClick
+    disabled: type !== 'reset' ? button : validation ? result : true,
+    onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
+      if (children.props.onClick) {
+        children.props.onClick(event);
+      }
+      (type === 'reset' ? handleReset : handleValidation)();
+    }
   });
 };
