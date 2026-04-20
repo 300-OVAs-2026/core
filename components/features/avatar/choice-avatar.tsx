@@ -31,7 +31,12 @@ export const ChoiceAvatar = () => {
   const lang = useOvaStore((state) => state.lang);
 
   return (
-    <Content withOutTitle>
+    <Content
+      withOutTitle
+      interpreter={{
+        contentURL: 'assets/videos/interpreter/content/choice-avatar.mp4',
+        a11yURL: 'assets/videos/interpreter/descriptives/choice-avatar-a11y.mp4'
+      }}>
       <div className="u-flow u-my-2">
         <Audio src="assets/audios/base/aud_des_choice-avatar.mp3" a11y />
         <Audio src="assets/audios/base/aud_choice-avatar.mp3" />

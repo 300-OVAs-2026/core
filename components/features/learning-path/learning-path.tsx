@@ -22,7 +22,12 @@ export const LearningPath = () => {
   if (!pages || pages.length === 0) return null;
 
   return (
-    <Content withOutTitle>
+    <Content
+      withOutTitle
+      interpreter={{
+        contentURL: 'assets/videos/interpreter/content/learning-path.mp4',
+        a11yURL: 'assets/videos/interpreter/descriptives/learning-path-a11y.mp4'
+      }}>
       <div className={css['learning-path']}>
         <div className={css['learning-path__avatar']}>
           <Avatar variation={AvatarVariation.GREETING} size="28.125rem" title={i18n[lang].avatar} alt="Avatar." />
