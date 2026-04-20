@@ -11,6 +11,8 @@ export interface InitialState {
   validation: boolean;
   button: boolean;
   result: boolean;
+  reset: boolean;
+  
   options: Option[];
   selectedLabel: string; // - Estado para el texto en la pregunta
 }
