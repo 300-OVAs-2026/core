@@ -34,8 +34,8 @@ export const ChoiceAvatar = () => {
     <Content
       withOutTitle
       interpreter={{
-        contentURL: 'assets/videos/interpreter/content/choice-avatar.mp4',
-        a11yURL: 'assets/videos/interpreter/descriptives/choice-avatar-a11y.mp4'
+        contentURL: 'content/choice-avatar.mp4',
+        a11yURL: 'descriptives/choice-avatar-a11y.mp4'
       }}>
       <div className="u-flow u-my-2">
         <Audio src="assets/audios/base/aud_des_choice-avatar.mp3" a11y />
