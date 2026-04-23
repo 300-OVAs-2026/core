@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useMemo, useRef } from 'react';
-import { Button } from '@ui';
 
+import { Button } from '@ui';
 import { useOvaStore } from '@/store/ova-store';
 
 import { i18n } from './lib/constant';
@@ -16,12 +16,13 @@ interface Props {
   question: string;
   id: string;
   drivers?: DriversType;
+  notifyReset?: () => void;
 }
 
 const HALF_DAY = 12;
 const PASSING_PERCENTAGE = 0.6;
 
-const RaceCard: React.FC<Props> = ({ question, id, drivers }) => {
+const RaceCard: React.FC<Props> = ({ question, id, drivers, notifyReset }) => {
   const lang = useOvaStore((state) => state.lang);
   const { game, questionCount, validation } = useGameContext();
 
@@ -413,10 +414,10 @@ const RaceCard: React.FC<Props> = ({ question, id, drivers }) => {
             {/* Button check */}
             <div className={css['question__validation-buttons']}>
               <RaceCardButton sceneId={id}>
-                <Button label={i18n[lang]['check-button']} />
+                <Button variant='check' label={i18n[lang]['check-button']} />
               </RaceCardButton>
               <RaceCardButton type="reset" sceneId={id}>
-                <Button label={i18n[lang]['restar-button']} />
+                <Button onClick={notifyReset} variant='reset' label={i18n[lang]['restar-button']} />
               </RaceCardButton>
             </div>
           </div>
