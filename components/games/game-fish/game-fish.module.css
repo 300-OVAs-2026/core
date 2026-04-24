@@ -245,6 +245,10 @@
   font-size: 1.1rem;
 }
 
+html[data-dark-mode='true'] .question-text {
+  color: #000;
+}
+
 .fill-blank {
   display: inline-block;
   min-width: 100px;

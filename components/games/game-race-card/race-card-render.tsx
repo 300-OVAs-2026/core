@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+
 import { FullScreenAlert } from '@features/full-screen-alert';
 import { FullScreenButton } from '@features/full-screen-button';
 
@@ -16,6 +17,7 @@ interface Props {
   onResult?: ({ result, options }: { result: boolean; options: Radio[] }) => void;
   id: string;
   drivers?: DriversType;
+  notifyReset?: () => void;
 }
 
 export const RaceCardRender: React.FC<Props> = ({ question, id, children, onResult, ...props }) => {
@@ -34,13 +36,15 @@ export const RaceCardRender: React.FC<Props> = ({ question, id, children, onResu
   useEffect(() => {
     if (!onResult) return;
 
-    // Dispara SOLO cuando answeredCount aumenta (es decir, hubo una validación)
+    // Solo dispara si esta escena fue la que se validó
+    if (game.lastValidatedSceneId !== id) return;
+
     if (game.answeredCount > prevAnsweredCountRef.current) {
       onResult({ result, options: radios });
     }
 
     prevAnsweredCountRef.current = game.answeredCount;
-  }, [game.answeredCount, result, radios, onResult]);
+  }, [game.answeredCount, game.lastValidatedSceneId, result, radios, onResult, id]);
 
   useEffect(() => {
     if (!gameEl) return;
@@ -63,10 +67,16 @@ export const RaceCardRender: React.FC<Props> = ({ question, id, children, onResu
     <div className={css['game']}>
       <FullScreenAlert />
       {/* TODO: Fix this problem */}
-      <FullScreenButton elementId='test' />
-      <div id={id} className={css['game-wrapper']} ref={setRef}  data-fullscreen>
+      <FullScreenButton elementId="test" />
+      <div id={id} className={css['game-wrapper']} ref={setRef} data-fullscreen>
         <div className={css['game-wrapper__scene']}>
-          <RaceCardScene question={question} {...props} id={id} drivers={props.drivers} />
+          <RaceCardScene
+            question={question}
+            {...props}
+            id={id}
+            drivers={props.drivers}
+            notifyReset={props.notifyReset}
+          />
         </div>
         <div className={css['game-wrapper__options']}>{children}</div>
       </div>

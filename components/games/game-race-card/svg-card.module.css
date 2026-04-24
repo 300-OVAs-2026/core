@@ -81,7 +81,7 @@
   background-size: 200% 200%;
   border: 2px solid var(--border-color);
   border-radius: 0.8rem;
-  font-size: clamp(0.1rem, -0.25rem + 3.333vw, 0.8rem);
+  font-size: clamp(0.1rem, -0.25rem + 3.333vw, 1rem);
   font-weight: 500;
   color: var(--border-color);
 }
@@ -112,21 +112,23 @@
 
 .radio__svg input:checked:is([data-state='correct'], [data-state='incorrect']) + label {
   --border-color: #ffff;
-  color: #121212;
   background-image: none;
 }
 
 .radio__svg input:checked[data-state='correct'] + label {
-  background-color: var(--clr-activity-success);
+  background-color: var(--success);
+  color: var(--secondary-900);
 }
 
 .radio__svg input:checked[data-state='incorrect'] + label {
-  background-color: var(--clr-activity-wrong);
+  background-color: var(--wrong);
+  color: var(--white);
 }
 
 .radio__svg input:checked:is([data-state='correct'], [data-state='incorrect']) + label::before {
   aspect-ratio: 1;
   place-content: center;
+  background-color: var(--white);
   display: grid;
   position: absolute;
   top: -0.3rem;
@@ -141,14 +143,12 @@
 
 .radio__svg input:checked[data-state='incorrect'] + label::before {
   content: '✖';
-  background-color: var(--clr-background);
-  color: var(--clr-activity-wrong);
+  color: var(--wrong);
 }
 
 .radio__svg input:checked[data-state='correct'] + label::before {
   content: '✔';
-  background-color: var(--clr-background);
-  color: var(--clr-activity-success);
+  color: var(--success);
 }
 
 .button-play-again {
@@ -421,7 +421,7 @@
 
 .card-final-feedback__header p {
   padding-inline: 0.3rem;
-  color: var(--clr-background);
+  color: var(--black);
   border-radius: 0.125rem;
   background-color: color-mix(in srgb, var(--header-bg-color) 70%, #121212 30%);
 }
@@ -441,6 +441,7 @@
 
 .card-final-feedback__text {
   font-size: var(--fs-300);
+  color: var(--black);
   font-weight: bold;
 }
 
