@@ -1,3 +1,5 @@
+import { Audio } from 'books-ui';
+
 import { DRIVER_CHEER_UP, DRIVER_SAD } from './base64-images';
 
 import css from '../svg-card.module.css';
@@ -11,6 +13,7 @@ export const Feedback: React.FC<FeedbackProps> = ({ isRight }) => {
     <article className={css['card-final-feedback']}>
       <img alt="" src={DRIVER_CHEER_UP} className={css['card-final-feedback__image']} />
       <div className="u-flow">
+        <Audio src="assets/audios/base/aud_felicidades.mp3" size='small' />
         <div className={`${css['card-final-feedback__header']} ${css['card-final-feedback__header--success']}`}>
           <div>
             <p>Felicidades</p>
@@ -25,6 +28,7 @@ export const Feedback: React.FC<FeedbackProps> = ({ isRight }) => {
       <img alt="" src={DRIVER_SAD} className={css['card-final-feedback__image']} />
 
       <div className="u-flow">
+        <Audio src="assets/audios/base/aud_has-perdido.mp3" size='small' />
         <div className={`${css['card-final-feedback__header']} ${css['card-final-feedback__header--failure']}`}>
           <div>
             <p>Has perdido</p>
