@@ -10,8 +10,6 @@ interface Props {
 export const GameFishButton: React.FC<Props> = ({ type, children }) => {
   const { handleValidation, handleReset, button, validation, result } = useGameFishActivityContext();
 
-  console.log(validation, result);
-
   return cloneElement(children, {
     ...children.props,
     disabled: type !== 'reset' ? button : validation ? result : true,
