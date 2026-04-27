@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import type { DraggableEventHandler } from 'react-draggable';
 import Draggable from 'react-draggable';
+import { Portal } from 'books-ui';
 import { AnimatePresence, motion } from 'motion/react';
 
 import { KEY_LOCAL_STORAGE_A11Y } from '@/shared/constants';
@@ -22,7 +23,7 @@ export const Interpreter: React.FC<InterpreterProps> = ({ className, ...props })
         return config.interpreter ?? true;
       }
     } catch {
-      // empty 
+      // empty
     }
     return true;
   });
@@ -38,7 +39,7 @@ export const Interpreter: React.FC<InterpreterProps> = ({ className, ...props })
   const toggleHidden = () => {
     const newHiddenState = !hidden;
     setHidden(newHiddenState);
-    
+
     // Dispatch custom event to notify other components
     const event = new CustomEvent(EVENT.VISIBILITY, {
       detail: { hidden: newHiddenState },
@@ -52,7 +53,7 @@ export const Interpreter: React.FC<InterpreterProps> = ({ className, ...props })
     /**
      * Function to handle interpreter visibility changes from external events.
      */
-    const handleInterpreterVisibility = ({ detail }: CustomEvent<{ hidden: boolean}>): void => {
+    const handleInterpreterVisibility = ({ detail }: CustomEvent<{ hidden: boolean }>): void => {
       // Only update if the new state is different from current state
       // This prevents infinite loops and unnecessary re-renders
       if (detail.hidden !== hidden) {
@@ -89,9 +90,11 @@ export const Interpreter: React.FC<InterpreterProps> = ({ className, ...props })
   }, []);
 
   return (
-    <div className={cn(css['c-interpreter__container'], className)} {...props}>
-      <Video URLs={URLs} show={hidden} onClose={toggleHidden} />
-    </div>
+    <Portal id="js-interpreter">
+      <div className={cn(css['c-interpreter__container'], className)} {...props}>
+        <Video URLs={URLs} show={hidden} onClose={toggleHidden} />
+      </div>
+    </Portal>
   );
 };
 
