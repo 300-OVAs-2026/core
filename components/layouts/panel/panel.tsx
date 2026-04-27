@@ -4,6 +4,7 @@ import { Panel as PanelUI } from 'books-ui';
 
 import { PageTitle } from '../page-title';
 
+import { PanelButton } from './panel-button';
 import { PanelCoreProvider } from './panel-context';
 import { PanelProgress } from './panel-progress';
 import { PanelSection } from './panel-section';
@@ -19,6 +20,7 @@ interface Props extends PanelProps {
 
 type SubModules = {
   Section: typeof PanelSection;
+  Button: typeof PanelButton;
 };
 
 const Panel: React.FC<Props> & SubModules = ({ addClass, children, stars, ...props }) => {
@@ -59,5 +61,6 @@ const Panel: React.FC<Props> & SubModules = ({ addClass, children, stars, ...pro
 };
 
 Panel.Section = PanelSection;
+Panel.Button = PanelButton;
 
 export { Panel };

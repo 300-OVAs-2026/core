@@ -26,7 +26,10 @@ const INITIAL_VIDEO_STATE: VideoURLs = {
 };
 
 export const useInterpreter = (): [(videoSource: VideoSourceChange) => void, () => void, VideoURLs] => {
-  const [sources, setSources, getCurrentValueFromSessionStorage] = useSessionStorage<VideoURLs>('interpreter-video-source', INITIAL_VIDEO_STATE);
+  const [sources, setSources, getCurrentValueFromSessionStorage] = useSessionStorage<VideoURLs>(
+    'interpreter-video-source',
+    INITIAL_VIDEO_STATE
+  );
   const lastVideoSources = useRef<VideoURLs>({ ...sources });
 
   const BASE_PATH = import.meta.env.VITE_INTERPRETER_URL || 'assets/videos/interprete/';
@@ -41,8 +44,8 @@ export const useInterpreter = (): [(videoSource: VideoSourceChange) => void, () 
     const { a11yURL: lastA11yURL, contentURL: lastContentURL } = lastVideoSources.current;
 
     // Si las nuevas URLs son iguales a las últimas, no hacer nada
-    if (lastA11yURL === a11yURL && lastContentURL === contentURL) return;
-
+    if (lastA11yURL === `${BASE_PATH}${a11yURL}` && lastContentURL === `${BASE_PATH}${contentURL}`) return;
+    
     // Actualizar las últimas fuentes de video
     lastVideoSources.current = { a11yURL, contentURL };
 
@@ -69,7 +72,7 @@ export const useInterpreter = (): [(videoSource: VideoSourceChange) => void, () 
   const restoreLastVideoSources = () => {
     const updatedSource = getCurrentValueFromSessionStorage();
     if (!Object.values(updatedSource).includes(undefined)) {
-      const { a11yURL, contentURL } = updatedSource
+      const { a11yURL, contentURL } = updatedSource;
 
       // Actualizar las últimas fuentes de video
       lastVideoSources.current = { a11yURL, contentURL };
