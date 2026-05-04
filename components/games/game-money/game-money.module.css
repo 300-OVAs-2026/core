@@ -46,8 +46,6 @@ html[data-dark-mode='true'] .background {
   align-items: start;
 }
 
-
-
 /** Opciones **/
 
 .disabled {
@@ -60,7 +58,7 @@ html[data-dark-mode='true'] .background {
   width: 0;
 }
 
-.options-container>div{
+.options-container > div {
   height: 100%;
 }
 
@@ -85,13 +83,16 @@ html[data-dark-mode='true'] .background {
   margin: 5px;
   cursor: pointer;
   box-sizing: border-box;
-  transition: background-color 0.3s, border 0.3s;
+  transition:
+    background-color 0.3s,
+    border 0.3s;
   height: 100%;
 }
 
 .button {
   color: #121212;
   font-weight: bold;
+  text-align: center;
 }
 
 .options-container > div:not(.disabled) .radio:checked + label {
@@ -175,13 +176,13 @@ html[data-dark-mode='true'] .background {
 }
 
 .question-text {
-  font-size: 1rem;
   background: #c9ea81;
   padding: 1rem;
   border-radius: 1rem;
   border: 4px solid #8fb741;
   font-weight: bold;
   color: #121212;
+  text-align: center;
 }
 
 /* Media queries */
