@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  color: var(--clr-text-secondary);
+  color: var(--white);
   padding: 1rem;
 }
 
@@ -190,14 +190,14 @@
     /* Estilo para éxito */
     &.success::after {
       content: '✔';
-      background-color: var(--clr-activity-success);
+      background-color: var(--success);
       color: inherit;
     }
 
     /* Estilo para error */
     &.wrong::after {
       content: '✖';
-      background-color: var(--clr-activity-wrong);
+      background-color: var(--wrong);
       color: inherit;
     }
   }
