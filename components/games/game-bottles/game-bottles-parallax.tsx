@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import { FullScreenButton } from '@features/full-screen-button';
 
+import { FullScreenButton } from '@features/full-screen-button';
 import { useA11yAttribute, useReduceMotion } from '@shared/hooks';
 
 import Crab from './game-bottles-crab';

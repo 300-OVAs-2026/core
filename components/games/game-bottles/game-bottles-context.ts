@@ -1,6 +1,6 @@
 import { createContext } from 'books-ui';
 
-import { letterProp, spaceProp } from './types/types';
+import type { letterProp, spaceProp } from './types/types';
 
 type GameBottleContextType = {
   targetWord: string;
