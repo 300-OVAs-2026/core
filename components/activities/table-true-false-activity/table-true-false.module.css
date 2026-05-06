@@ -1,193 +1,261 @@
 .optionContainer {
-    display: grid;
-    grid-template-columns: 1fr 26ch;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 26ch;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .radioButton {
-    opacity: 0;
-    position: fixed;
-    width: 0;
+  opacity: 0;
+  position: fixed;
+  width: 0;
 }
 
-.buttons>div:focus-within label {
-    outline: 2px solid var(--clr-accent);
-    outline-offset: 4px;
-    border-radius: 2rem;
+.buttons > div:focus-within label {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 4px;
 }
 
 .disabled {
-    pointer-events: none;
-    opacity: 0.8;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* Agrega la variable --corner al :root o al contenedor */
+.buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  --corner: 10px; /* ← define aquí el tamaño del octágono */
 }
 
 .button {
-    display: inline-block;
-    padding: 0.2rem 0;
-    min-width: 7rem;
-    border-radius: 2rem;
-    background-color: var(--clr-brand);
-    color: #ffffff;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    text-align: center;
-    font-weight: bold;
+  display: inline-block;
+  padding: 0.4rem 0.5rem;
+  min-width: 7rem;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  background-color: var(--clr-background, #fff); /* ← necesita fondo para verse */
+  color: var(--clr-brand);
+
+  clip-path: polygon(
+    0 var(--corner),
+    var(--corner) 0,
+    calc(100% - var(--corner)) 0,
+    100% var(--corner),
+    100% calc(100% - var(--corner)),
+    calc(100% - var(--corner)) 100%,
+    var(--corner) 100%,
+    0 calc(100% - var(--corner))
+  );
+}
+
+/* ✅ La sombra debe ir en el div que ENVUELVE el input+label */
+.buttons > div {
+  position: relative;
+  filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+/* Cuando tiene focus, reemplaza drop-shadow por outline en el padre */
+.buttons > div:focus-within {
+  filter: drop-shadow(0 0 0 3px var(--clr-accent));
+}
+
+.buttons > div:focus-within label {
+  outline: none; /* quita el outline anterior, ya lo maneja el padre */
 }
 
 .button:hover {
-    background-color: var(--clr-accent);
+  filter: drop-shadow(2px 6px 10px var(--accent));
+  transform: translateY(-2px);
+}
+.buttons > div:hover {
+  filter: drop-shadow(2px 6px 10px hsla(42, 87%, 40%, 0.45));
 }
 
-.radioButton:checked+.button {
-    background-color: var(--clr-accent);
+.radioButton:checked + .button {
+  background: var(--accent);
+  color: var(--primary-800);
 }
+
+/* ✅ Hover deshabilitado cuando ya está validado */
+.disabled .button:hover {
+  background-color: var(--clr-brand);
+}
+
+/* ── Correct ── */
 
 .correct {
-    background-color: transparent !important;
-    border: 3px solid var(--clr-activity-success);
-    color: var(--clr-brand);
-    position: relative;
+  background-image: linear-gradient(105deg, var(--success-light) 50%, transparent 50%);
+  background-position: 0% 0;
+  color: var(--primary-800);
 }
 
-.correct::after {
-    content: '✔';
-    color: var(--clr-activity-success);
-    background-color: var(--clr-background);
-    box-shadow: 2px 2px 3px 0px #60606057;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    font-size: 1rem;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: -8px;
-    right: -8px;
+.correct::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  background-color: var(--success);
+  clip-path: polygon(
+    0 var(--corner),
+    var(--corner) 0,
+    calc(100% - var(--corner)) 0,
+    100% var(--corner),
+    100% calc(100% - var(--corner)),
+    calc(100% - var(--corner)) 100%,
+    var(--corner) 100%,
+    0 calc(100% - var(--corner))
+  );
+  z-index: -1;
 }
+
+/* ── Incorrect ── */
 
 .incorrect {
-    background-color: transparent !important;
-    border: 3px solid var(--clr-activity-wrong);
-    color: var(--clr-brand);
-    position: relative;
+  background-image: linear-gradient(105deg, var(--wrong-light) 50%, transparent 50%);
+  background-position: 0% 0;
+  color: var(--primary-800);
 }
 
-.incorrect::after {
-    content: '✖';
-    color: var(--clr-activity-wrong);
-    background-color: var(--clr-background);
-    box-shadow: 2px 2px 3px 0px #60606057;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    display: flex;
-    font-size: 1rem;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: -8px;
-    right: -8px;
+.incorrect::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  background-color: var(--wrong);
+  clip-path: polygon(
+    0 var(--corner),
+    var(--corner) 0,
+    calc(100% - var(--corner)) 0,
+    100% var(--corner),
+    100% calc(100% - var(--corner)),
+    calc(100% - var(--corner)) 100%,
+    var(--corner) 100%,
+    0 calc(100% - var(--corner))
+  );
+  z-index: -1;
 }
+
+/* ── Badge check/x en el div padre ── */
+
+.buttons > div:has(.correct)::after,
+.buttons > div:has(.incorrect)::after {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  border-radius: 50%;
+  background-color: var(--white);
+  box-shadow: 2px 2px 3px 0px #60606057;
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  z-index: 1;
+}
+
+.buttons > div:has(.correct)::after {
+  content: '✔';
+  color: var(--success);
+}
+
+.buttons > div:has(.incorrect)::after {
+  content: '✖';
+  color: var(--wrong);
+}
+
+/* ── Feedback ── */
 
 .feedback {
-    display: grid;
-    grid-template-columns: 1fr;
-    place-items: center;
-    border-radius: 1rem;
-    padding-block: .3rem;
-    padding-inline: .5em;
-    background-color: var(--clr-background);
-    color: inherit;
-    border: 1px solid var(--clr-feedback-bg);
-    box-shadow: -5px 5px 0 0 var(--clr-feedback-bg, var(--clr-brand));
-    transition: 120ms box-shadow ease-in-out;
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+  border-radius: 1rem;
+  padding-block: 0.3rem;
+  padding-inline: 0.5em;
+  background-color: var(--white);
+  color: inherit;
+  border: 1px solid var(--clr-feedback-bg);
+  box-shadow: -5px 5px 0 0 var(--clr-feedback-bg, var(--clr-brand));
+  transition: 120ms box-shadow ease-in-out;
 }
 
 .feedback:has(.feedback__video-interpreter) {
-    grid-template-columns: 2fr 1fr;
+  grid-template-columns: 2fr 1fr;
 }
 
 @media screen and (max-width: 768px) {
-    .feedback:has(.feedback__video-interpreter) {
-        gap: .5rem;
-        grid-template-columns: 1fr;
-    }
+  .feedback:has(.feedback__video-interpreter) {
+    gap: 0.5rem;
+    grid-template-columns: 1fr;
+  }
 }
 
 .feedback__title {
-    font-size: var(--fs-400);
-    text-align: center;
-    font-weight: bold;
-    color: var(--clr-feedback-title, var(--clr-text-main));
+  font-size: var(--fs-400);
+  text-align: center;
+  font-weight: bold;
+  color: var(--clr-feedback-title, var(--clr-text-main));
 }
 
-.feedback[data-result="true"] {
-    --clr-feedback-bg: var(--clr-activity-success);
+.feedback[data-result='true'] {
+  --clr-feedback-bg: var(--success);
 }
 
-.feedback[data-result="false"] {
-    --clr-feedback-bg: var(--clr-activity-wrong);
+.feedback[data-result='false'] {
+  --clr-feedback-bg: var(--wrong);
 }
 
-.feedback[data-result="true"] .feedback__title {
-    --clr-feedback-title:  var(--clr-activity-success);
+.feedback[data-result='true'] .feedback__title {
+  --clr-feedback-title: var(--success);
 }
 
-.feedback[data-result="false"] .feedback__title {
-    --clr-feedback-title: var(--clr-activity-wrong);
+.feedback[data-result='false'] .feedback__title {
+  --clr-feedback-title: var(--wrong);
 }
 
 .feedback__video-interpreter {
-    width: 100%;
-    height: 100%;
-    border-radius: .5625rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5625rem;
 }
-
-
 
 /** Dark mode **/
 
-html[data-dark-mode="true"] .correct,
-html[data-dark-mode="true"] .incorrect {
-    color: var(--clr-text-main);
+html[data-dark-mode='true'] .correct,
+html[data-dark-mode='true'] .incorrect {
+  color: var(--clr-text-main);
 }
 
 /**MARKER**/
 
 .list {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-.list>span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 1.8rem;
-    height: 1.2rem;
-    background-color: var(--clr-accent);
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    border-right: 0.125rem solid #ecb503;
-    border-radius: 45%;
-    flex-shrink: 0;
+.list > span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-900);
+  font-weight: bold;
 }
 
 /**END MARKER**/
 
 @media screen and (max-width: 1280px) {
-    .optionContainer {
-        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-    }
+  .optionContainer {
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  }
 }
