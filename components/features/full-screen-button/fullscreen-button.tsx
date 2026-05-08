@@ -1,8 +1,8 @@
 import { useEffect, useMemo } from 'react';
-import { Icon } from '@ui';
 import type { ButtonProps as ButtonPropsUI } from 'books-ui';
 import { Button, Tooltip } from 'books-ui';
 
+import { Icon } from '@ui';
 import { useFullScreen } from '@shared/hooks';
 import { useOvaStore } from '@/store/ova-store';
 
