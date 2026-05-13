@@ -97,19 +97,19 @@
 }
 
 .wrapper-container > div input:focus-visible + label {
-  outline: 2px solid var(--clr-background);
+  outline: 2px solid var(--white);
   outline-offset: 4px;
 }
 
 .success {
-  background-color: var(--clr-activity-success);
-  border: 3px solid var(--clr-background) !important;
+  background-color: var(--success);
+  border: 3px solid var(--white) !important;
 }
 
 .success::after {
   content: '✔';
-  color: var(--clr-activity-success);
-  background-color: var(--clr-background);
+  color: var(--success);
+  background-color: var(--white);
   box-shadow: 2px 2px 3px 0px #60606057;
   border-radius: 50%;
   width: 1.6rem;
@@ -124,14 +124,15 @@
 }
 
 .wrong {
-  background-color: var(--clr-activity-wrong);
-  border: 0.18rem solid var(--clr-background) !important;
+  background-color: var(--wrong);
+  color: var(--white);
+  border: 0.18rem solid var(--white) !important;
 }
 
 .wrong::after {
   content: '✖';
-  color: var(--clr-activity-wrong);
-  background-color: var(--clr-background);
+  color: var(--wrong);
+  background-color: var(--white);
   box-shadow: 2px 2px 3px 0px #60606057;
   border-radius: 50%;
   width: 1.6rem;

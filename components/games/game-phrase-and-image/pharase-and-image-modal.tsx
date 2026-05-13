@@ -3,7 +3,7 @@ import { Modal } from '@ui';
 import { usePhraseAndImageContext } from './game-phrase-context';
 
 interface Props {
-  children: React.ReactElement;
+  children: React.ReactElement | React.ReactElement[];
 }
 
 export const PhraseAndImageModal: React.FC<Props> = ({ children }) => {

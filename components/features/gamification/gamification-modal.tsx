@@ -20,12 +20,17 @@ interface Props {
   onRestart?: () => void;
   audio?: string;
   interpreter?: VideoURLs;
+  label?: {
+    title?: string;
+    subtitle?: string;
+  };
 }
 
 export const GamificationModal: React.FC<Props> = ({
   id,
   isOpen,
   onClose,
+  label,
   correct,
   total,
   onRestart,
@@ -72,8 +77,8 @@ export const GamificationModal: React.FC<Props> = ({
           </span>
         </div>
 
-        <p className={css['modal__title']}>{t.title}</p>
-        <p>{t.subtitle}</p>
+        <p className={css['modal__title']}>{label?.title ?? t.title}</p>
+        <p>{label?.subtitle ?? t.subtitle}</p>
 
         {correct != null && total != null && (
           <p>

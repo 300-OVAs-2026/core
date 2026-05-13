@@ -83,7 +83,7 @@ html[data-dark-mode='true'] .radios__container {
 
 /* Mostrar outline solo cuando el foco es "visible" (teclado) */
 .radio__options_container > div input:focus-visible + label {
-  outline: 2px solid var(--clr-background);
+  outline: 2px solid var(--white);
   outline-offset: 4px;
 }
 
@@ -119,16 +119,16 @@ html[data-dark-mode='true'] .radios__container {
 }
 
 .success {
-  background-color: var(--clr-activity-success);
-  border: 3px solid var(--clr-background) !important;
-  color: var(--clr-background);
+  background-color: var(--success);
+  border: 3px solid var(--white) !important;
+  color: var(--white);
   position: relative;
 }
 
 .success::after {
   content: '✔';
-  color: var(--clr-activity-success);
-  background-color: var(--clr-background);
+  color: var(--success);
+  background-color: var(--white);
   box-shadow: 2px 2px 3px 0px #60606057;
   border-radius: 50%;
   width: 1.6rem;
@@ -143,16 +143,16 @@ html[data-dark-mode='true'] .radios__container {
 }
 
 .wrong {
-  background-color: var(--clr-activity-wrong);
-  border: 0.18rem solid var(--clr-background) !important;
-  color: var(--clr-background);
+  background-color: var(--wrong);
+  border: 0.18rem solid var(--white) !important;
+  color: var(--white);
   position: relative;
 }
 
 .wrong::after {
   content: '✖';
-  color: var(--clr-activity-wrong);
-  background-color: var(--clr-background);
+  color: var(--wrong);
+  background-color: var(--white);
   box-shadow: 2px 2px 3px 0px #60606057;
   border-radius: 50%;
   width: 1.6rem;
@@ -172,6 +172,7 @@ html[data-dark-mode='true'] .radios__container {
   background-color: black;
   color: white;
   padding: 0.8rem 1rem;
+  text-align: center;
 }
 
 .radio__question_container {

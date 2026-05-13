@@ -1,3 +1,5 @@
+
+
 export type Option = {
     id: string;
     label: string;
@@ -16,6 +18,7 @@ export interface InitialState {
 // Define la interfaz para el contexto de actividad de selección
 export interface RelationConceptActivityContextType {
     addSelectedPair: (pair: { id: string; label: string; pair: number }) => void;
+    removeSelectedPair: (id: string) => void;
     handleValidation: () => void;
     handleReset: () => void;
     selectedPairs: { id: string; label: string; pair: number }[];

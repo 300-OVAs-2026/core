@@ -1,11 +1,11 @@
 import { useCallback, useLayoutEffect, useState } from 'react';
+import { MotionConfig } from 'motion/react';
+import { useHashLocation } from 'wouter/use-hash-location';
+
 import { DevToolbar } from '@features/dev-toolbar';
 import { Interpreter } from '@features/interpreter';
 import { FloatingNotes } from '@features/notes';
 import { Footer, Header } from '@layouts';
-import { MotionConfig } from 'motion/react';
-import { useHashLocation } from 'wouter/use-hash-location';
-
 import { useA11yAttribute, useReduceMotion } from '@shared/hooks';
 import { REMOVE_HTML_TAGS_REGEX } from '@/shared/constants';
 import { cn } from '@/shared/utils';

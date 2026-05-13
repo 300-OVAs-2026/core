@@ -2,8 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background:
-    url('assets/images/Ova_02_sld_15-1.webp'),
+  background: url('assets/images/Ova_02_sld_15-1.webp'),
     linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));
   background-size: cover;
   background-position: center;
@@ -11,8 +10,6 @@
   padding: 20px;
   border-radius: 20px;
   width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
   position: relative;
   gap: 1rem;
   box-sizing: border-box;
@@ -22,11 +19,12 @@
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 2;
 }
 
 .grid-title {
   text-align: center;
-  color: var(--clr-text-secondary);
+  color: var(--white);
   background-color: var(--clr-brand-light);
   padding: 5px 20px;
   border-radius: 50px;
@@ -53,11 +51,11 @@
 }
 
 .card {
-  border: 2px solid var(--clr-text-secondary);
+  border: 2px solid var(--white);
   border-radius: 20px;
   padding: 10px;
   background: linear-gradient(to right, #354a81, #435c9c);
-  color: var(--clr-text-secondary);
+  color: var(--white);
   text-align: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -70,8 +68,8 @@
 }
 
 .card.selected {
-  background: var(--clr-accent-dark);
-  color: #121212;
+  color: var(--white);
+  border: 4px solid #e7b71f;
 }
 
 .card.correct,
@@ -80,16 +78,16 @@
 }
 
 .card.correct {
-  background: #398431;
+  border: 4px solid var(--success);
 }
 
 .card.correct::after {
   content: '✔';
-  background-color: #85a321;
+  background-color: var(--success);
 }
 
 .card.incorrect {
-  background: var(--clr-activity-wrong);
+  background: var(--wrong);
 }
 
 .card.incorrect::after {
@@ -111,6 +109,14 @@
   right: -10px;
   font-size: 18px;
   z-index: 1;
+}
+
+.divider-line {
+  grid-column: 1 / -1; /* Ocupa todas las columnas */
+  height: 4px;
+  width: 100%;
+  background: #d68a1d;
+  border-radius: 10rem;
 }
 
 /* Responsivo */

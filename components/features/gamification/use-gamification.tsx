@@ -33,7 +33,7 @@ export interface UseGamificationReturn {
   /** Elemento JSX listo para insertar donde quieras mostrar las estrellas. */
   Stars: JSX.Element;
   /** Modal de completado. Usarlo como componente; acepta `audio` e `interpreter` opcionales. */
-  Modal: React.FC<{ audio?: string; interpreter?: VideoURLs }>;
+  Modal: React.FC<{ audio?: string; interpreter?: VideoURLs, label?: { title?: string; subtitle?: string } }>;
 }
 
 /**
@@ -118,10 +118,11 @@ export const useGamification = ({
     reportResult,
     notifyReset,
     Stars: <GamificationStars stars={stars} maxStars={maxStars} />,
-    Modal: ({ audio, interpreter }) => (
+    Modal: ({ audio, interpreter, label }) => (
       <GamificationModal
         id={id}
         isOpen={isModalOpen}
+        label={label}
         onClose={() => setIsModalOpen(false)}
         correct={lastResult.correct}
         total={lastResult.total}

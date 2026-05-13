@@ -57,7 +57,7 @@
   &::after {
     position: absolute;
     content: '✔';
-    background-color: color-mix(in srgb, var(--clr-activity-success) 100%, #121212 20%);
+    background-color: color-mix(in srgb, var(--success) 100%, #121212 20%);
     aspect-ratio: 1;
     place-content: center;
     display: grid;

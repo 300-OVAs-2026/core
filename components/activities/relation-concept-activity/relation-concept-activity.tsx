@@ -1,4 +1,5 @@
-import { FC, useEffect, useReducer } from 'react';
+import type { FC} from 'react';
+import { useEffect, useReducer } from 'react';
 
 import { RelationConceptActivityProvider } from './relation-concept-activity-context';
 import { RelationConceptButton } from './relation-concept-button';
@@ -73,6 +74,16 @@ const RelationConcept: FC<Props> & SubComponents = ({ children, onResult, pairs 
     updateActivity({ result });
   };
 
+
+  /**
+   * Elimina un par seleccionado del estado de la actividad.
+   * @param id - ID del par seleccionado.
+   */
+  const removeSelectedPair = (id: string) => {
+    const newSelectedPairs = activity.selectedPairs.filter((pair) => pair.id !== id);
+    updateActivity({ selectedPairs: newSelectedPairs });
+  };
+
   /**
    * Reinicia la actividad al estado inicial.
    */
@@ -96,6 +107,7 @@ const RelationConcept: FC<Props> & SubComponents = ({ children, onResult, pairs 
         handleValidation,
         handleReset,
         addSelectedPair,
+        removeSelectedPair,
         selectedPairs: activity.selectedPairs,
         validation: activity.validation,
         button: activity.button,

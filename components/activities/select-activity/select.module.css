@@ -71,12 +71,16 @@ html[data-dark-mode='true'] .select :global(.c-select-button) {
 
   background:
     linear-gradient(var(--clr-background), var(--clr-background)) padding-box,
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       var(--select-border-start),
       transparent,
-      var(--select-border-end)
-    ) border-box;
+      var(--select-border-end)) border-box;
+  background-color: var(--primary-600);
+}
+
+html[data-dark-mode='true'] .select :global(.c-select-button):focus-visible {
+  outline: 2px solid white;
+  outline-offset: 2px;
 }
 
 /* TEXT */

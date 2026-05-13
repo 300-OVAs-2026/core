@@ -1,4 +1,4 @@
-import { Panel as PanelUI } from 'books-ui';
+import { Panel } from '@layouts';
 
 import { GameParallax } from './game-parallax';
 import { BG } from './lib/constant';
@@ -23,11 +23,11 @@ export const GameFishInit: React.FC<Props> = ({
           <p className="u-text-center u-font-bold">{labelInstruction}</p>
           <img src={BG.ancla} className={css['anchor-icon']} alt="" />
         </div>
-        <PanelUI.Button section={1}>
+        <Panel.Button section={1}>
           <button className={css['btn-start']}>
             <p>{labelButton}</p>
           </button>
-        </PanelUI.Button>
+        </Panel.Button>
       </div>
     </div>
   );
