@@ -1,5 +1,5 @@
 button.button {
-    --button-text-color: var(--clr-text-secondary);
+    --button-text-color: var(--white);
     --button-bg-color: #252329;
     --button-padding: .2rem .3rem;
     --outline-color: #252329;
@@ -37,5 +37,5 @@ button.button>svg {
 div.tooltip {
     --tooltip-bg: #252329;
     --tooltip-arrow-bg: #252329;
-    color: var(--clr-text-secondary);
+    color: var(--white);
 }
