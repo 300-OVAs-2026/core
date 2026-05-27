@@ -1,6 +1,6 @@
 import React from 'react';
-import { Panel as PanelUI } from 'books-ui';
 
+import { Panel } from '@layouts';
 import { useOvaStore } from '@/store/ova-store';
 
 import { i18n } from './lib/constant';
@@ -5128,9 +5128,9 @@ export const RaceCardInitial: React.FC<Props> = ({ messageInitial, section = 1 }
         </foreignObject>
 
         <foreignObject x="320" y="345" width="140" height="55">
-          <PanelUI.Button section={section}>
+          <Panel.Button section={section}>
             <button className={css['instructions__button']}>{i18n[lang]['start-button']}</button>
-          </PanelUI.Button>
+          </Panel.Button>
         </foreignObject>
       </svg>
     </div>

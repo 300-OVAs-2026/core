@@ -18,7 +18,7 @@ export interface ToastCoreProps {
   onClose?: () => void;
   addClass?: string;
   interpreter?: VideoURLs;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   label?: string;
 }
 
