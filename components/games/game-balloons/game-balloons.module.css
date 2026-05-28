@@ -216,7 +216,7 @@
 .container_word.wrong::after {
   content: '✖';
   color: white;
-  background-color: var(--clr-activity-wrong);
+  background-color: var(--wrong);
   border: 1px solid white;
   border-radius: 50%;
   width: 30px;
@@ -237,7 +237,7 @@
 .container_word.success::after {
   content: '✔';
   color: white;
-  background-color: #899e2e;
+  background-color: var(--success);
   border: 1px solid white;
   border-radius: 50%;
   width: 30px;
