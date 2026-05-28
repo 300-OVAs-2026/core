@@ -43,7 +43,7 @@ export const Box: React.FC<Props> = ({
       onClick={() => addSelectAnswer(question)}>
       <img src={DATA_fishs[id].image} alt={question} />
       <div className={css.container_paragraph__fish}>
-        <p className={css.paragraph__fish}>{question}</p>
+        <p className={css.paragraph__fish} dangerouslySetInnerHTML={{ __html: question }} />
       </div>
       {isDisabled && isPressed ? isCorrect ? <CorrectIcon /> : <WrongIcon /> : null}
     </button>
