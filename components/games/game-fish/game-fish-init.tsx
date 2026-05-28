@@ -8,11 +8,13 @@ import css from './game-fish.module.css';
 interface Props {
   labelButton?: string;
   labelInstruction?: string;
+  section?: number;
 }
 
 export const GameFishInit: React.FC<Props> = ({
   labelButton = 'Jugar',
-  labelInstruction = 'Responde correctamente las preguntas.'
+  labelInstruction = 'Responde correctamente las preguntas.',
+  section = 1
 }) => {
   return (
     <div className={css['init-container']}>
@@ -23,7 +25,7 @@ export const GameFishInit: React.FC<Props> = ({
           <p className="u-text-center u-font-bold">{labelInstruction}</p>
           <img src={BG.ancla} className={css['anchor-icon']} alt="" />
         </div>
-        <Panel.Button section={1}>
+        <Panel.Button section={section}>
           <button className={css['btn-start']}>
             <p>{labelButton}</p>
           </button>

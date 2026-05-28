@@ -128,7 +128,7 @@ ul li::marker {
 }
 
 html[data-dark-mode="true"] .u-validation-success::after,
-html[data-dark-mode="true"] .u-validation-wrong::after{
+html[data-dark-mode="true"] .u-validation-wrong::after {
   background-color: var(--clr-background);
 }
 
@@ -137,6 +137,10 @@ html[data-dark-mode="true"] .u-validation-wrong::after{
   -webkit-transform: rotateY(-180deg);
   -ms-transform: rotateY(-180deg);
   transform: rotateY(-180deg);
+}
+
+.u-list-bold li::marker {
+  font-weight: bold;
 }
 
 html[data-dark-mode="true"] .u-white-bg {
