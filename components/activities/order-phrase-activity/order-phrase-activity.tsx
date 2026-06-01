@@ -5,7 +5,7 @@ import { OrderPhraseButton } from './order-phrase-button';
 import { OrderPhraseActivityProvider } from './order-phrase-context';
 import { OrderPhraseElement } from './order-phrase-element';
 
-import type { InitialState, SentenceItem } from './types/types';
+import type { InitialState, SentenceItem, SentenceState } from './types/types';
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -26,31 +26,35 @@ const OrderPhraseActivity: React.FC<Props> & SubComponents = ({ children, onResu
   // Referencia mutable para almacenar las sentences registradas por cada OrderPhraseElement
   const sentencesRef = useRef<SentenceItem[]>([]);
 
+  // Ref para acumular sentenceStates de forma síncrona, evitando el problema
+  // de closure stale cuando múltiples OrderPhraseElement se registran al mismo tiempo
+  const sentenceStatesRef = useRef<Record<number, SentenceState>>({});
+
   /**
    * Observa los cambios en sentenceStates para habilitar el botón
-   * de validación una vez que todas las oraciones registradas
-   * hayan tenido al menos un movimiento respecto a su orden original.
+   * de validación en cuanto se realice cualquier movimiento.
    */
   useEffect(() => {
-    const states = Object.values(activity.sentenceStates);
     const registered = sentencesRef.current;
 
-    if (!states.length || !registered.length) return;
+    if (!registered.length) return;
     if (activity.validation) return;
+    if (!activity.button) return;
 
-    const allMoved = registered.every((s) => {
+    const anyMoved = registered.some((s) => {
       const current = activity.sentenceStates[s.id]?.order;
       return current && current.join(' ') !== s.words.join(' ');
     });
 
-    if (allMoved) {
+    if (anyMoved) {
       updatedActivity({ button: false });
     }
-  }, [activity.sentenceStates, activity.validation]);
+  }, [activity.sentenceStates, activity.validation, activity.button]);
 
   /**
    * Registra una sentence desde el OrderPhraseElement.
-   * Inicializa su estado en sentenceStates si aún no existe.
+   * Usa sentenceStatesRef para acumular todos los estados de forma síncrona,
+   * evitando que registros simultáneos se sobreescriban entre sí por closure stale.
    *
    * @param {SentenceItem} sentence - La oración a registrar.
    */
@@ -59,16 +63,16 @@ const OrderPhraseActivity: React.FC<Props> & SubComponents = ({ children, onResu
 
     sentencesRef.current = [...sentencesRef.current, sentence];
 
-    updatedActivity({
-      sentenceStates: {
-        ...activity.sentenceStates,
-        [sentence.id]: {
-          order: sentence.words,
-          checked: false,
-          correct: null
-        }
+    sentenceStatesRef.current = {
+      ...sentenceStatesRef.current,
+      [sentence.id]: {
+        order: sentence.words,
+        checked: false,
+        correct: null
       }
-    });
+    };
+
+    updatedActivity({ sentenceStates: sentenceStatesRef.current });
   };
 
   /**
@@ -123,6 +127,7 @@ const OrderPhraseActivity: React.FC<Props> & SubComponents = ({ children, onResu
    */
   const handleReset = (): void => {
     sentencesRef.current = [];
+    sentenceStatesRef.current = {};
     updatedActivity(INITIAL_STATE);
   };
 

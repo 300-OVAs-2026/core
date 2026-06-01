@@ -1,8 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 
-import { combine } from '@atlaskit/pragmatic-drag-and-drop/combine';
-import { draggable, dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
-
+import { OrderPhraseChip } from './order-phrase-chip';
 import { useOrderPhraseActivityContext } from './order-phrase-context';
 
 import type { SentenceItem } from './types/types';
@@ -11,24 +9,22 @@ import css from './order-phrase.module.css';
 
 interface Props {
   sentence: SentenceItem;
+  addClass?: string;
 }
 
-interface ChipData {
-  sentenceId: number;
-  idx: number;
-}
+export const OrderPhraseElement: React.FC<Props> = ({ sentence, addClass }) => {
+  const { sentenceStates, registerSentence, moveWord, validation } = useOrderPhraseActivityContext();
 
-const CHIP_KEY = 'order-phrase-chip';
-
-export const OrderPhraseElement: React.FC<Props> = ({ sentence }) => {
-  const { sentenceStates, registerSentence, moveWord } = useOrderPhraseActivityContext();
-
-  /**
-   * Registra la sentence en el contexto al montar el componente.
-   */
   useEffect(() => {
     registerSentence(sentence);
-  }, [sentence, registerSentence]);
+  }, []);
+
+  // Re-registra cuando el estado desaparece tras un reset
+  useEffect(() => {
+    if (!sentenceStates[sentence.id]) {
+      registerSentence(sentence);
+    }
+  }, [sentenceStates, registerSentence, sentence]);
 
   const sentenceState = sentenceStates[sentence.id];
 
@@ -38,73 +34,26 @@ export const OrderPhraseElement: React.FC<Props> = ({ sentence }) => {
 
   const chipVariant = !checked ? css.chipDefault : correct ? css.chipCorrect : css.chipIncorrect;
 
+  const feedbackLabel = checked ? (correct ? 'Oración correcta' : 'Oración incorrecta') : undefined;
+
   return (
-    <div className={css.chipsRow}>
+    <div
+      className={`${css.chipsRow}${addClass ? ` ${addClass}` : ''}`}
+      role="group"
+      aria-label={`Oración ${sentence.id}${feedbackLabel ? `. ${feedbackLabel}` : ''}`}
+      aria-disabled={validation}>
       {order.map((word, idx) => (
         <OrderPhraseChip
           key={`${sentence.id}-${idx}`}
           word={word}
           idx={idx}
+          total={order.length}
           sentenceId={sentence.id}
           checked={checked}
           chipVariant={chipVariant}
           onMove={moveWord}
         />
       ))}
-    </div>
-  );
-};
-
-interface ChipProps {
-  word: string;
-  idx: number;
-  sentenceId: number;
-  checked: boolean;
-  chipVariant: string;
-  onMove: (sentenceId: number, fromIdx: number, toIdx: number) => void;
-}
-
-const OrderPhraseChip: React.FC<ChipProps> = ({ word, idx, sentenceId, checked, chipVariant, onMove }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [isOver, setIsOver] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || checked) return;
-
-    return combine(
-      draggable({
-        element: el,
-        getInitialData: () => ({ [CHIP_KEY]: true, sentenceId, idx } satisfies ChipData & { [key: string]: unknown }),
-        onDragStart: () => setIsDragging(true),
-        onDrop: () => setIsDragging(false)
-      }),
-      dropTargetForElements({
-        element: el,
-        canDrop: ({ source }) => source.data[CHIP_KEY] === true && source.data.sentenceId === sentenceId,
-        onDragEnter: () => setIsOver(true),
-        onDragLeave: () => setIsOver(false),
-        onDrop: ({ source }) => {
-          setIsOver(false);
-          const fromIdx = source.data.idx as number;
-          if (fromIdx !== idx) {
-            onMove(sentenceId, fromIdx, idx);
-          }
-        }
-      })
-    );
-  }, [checked, idx, sentenceId, onMove]);
-
-  return (
-    <div
-      ref={ref}
-      className={`${css.chip} ${chipVariant} ${isDragging ? css.chipDragging : ''} ${isOver ? css.chipOver : ''}`}
-      role="button"
-      tabIndex={checked ? -1 : 0}
-      aria-label={word}
-    >
-      {word}
     </div>
   );
 };
