@@ -7,6 +7,7 @@ import { Icon } from '@ui';
 import { cn } from '@/shared/utils';
 import { useOvaStore } from '@/store/ova-store';
 
+import { HelpReset } from './help-reset';
 import { HelpTour } from './help-tour';
 import { i18nHelp } from './lib/constant';
 
@@ -49,6 +50,24 @@ export const Help = () => {
                 <HelpTour />
               </div>
             </div>
+
+            {/* Reset section */}
+            <section>
+              <h3 className={css['help__section-title']}>
+                <Icon name="button-reset" size="small" />
+                {i18nHelp[lang].resetTitle}
+              </h3>
+
+              <div className={css['help__tip']} role="note">
+                <span className={css['help__tip-icon']} aria-hidden="true">
+                  <Icon name="refresh-cw" size="small" />
+                </span>
+                <div className={css['help__tip-body']}>
+                  <p>{i18nHelp[lang].resetTip}</p>
+                  <HelpReset />
+                </div>
+              </div>
+            </section>
 
             {/* Technical specifications */}
             <section>

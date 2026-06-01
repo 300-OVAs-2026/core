@@ -17,7 +17,14 @@ export const i18nHelp = {
     ],
     browserList: ['Google Chrome v131', 'Safari v18', 'Mozilla Firefox v133', 'Microsoft Edge v131'],
     headerSubtitle: 'Recursos y soporte',
-    headerBadge: 'Guía rápida'
+    headerBadge: 'Guía rápida',
+    resetTitle: 'Reiniciar OVA',
+    resetTip: 'Puedes reiniciar por separado el progreso de navegación (páginas visitadas) o el progreso de las actividades (estrellas y medallas). Esta acción no se puede deshacer.',
+    resetOvaButton: 'Reiniciar progreso',
+    resetActivitiesButton: 'Reiniciar actividades',
+    resetOvaConfirm: 'El progreso de navegación fue reiniciado correctamente.',
+    resetActivitiesConfirm: 'El progreso de las actividades fue reiniciado correctamente.',
+    resetFeedbackLabel: '¡Reiniciado!'
   },
   en: {
     avatar: 'Figure.',
@@ -37,7 +44,14 @@ export const i18nHelp = {
     ],
     browserList: ['Google Chrome v131', 'Safari v18', 'Mozilla Firefox v133', 'Microsoft Edge v131'],
     headerSubtitle: 'Resources & support',
-    headerBadge: 'Quick guide'
+    headerBadge: 'Quick guide',
+    resetTitle: 'Reset OVA',
+    resetTip: 'You can independently reset your navigation progress (visited pages) or your activity progress (stars and medals). This action cannot be undone.',
+    resetOvaButton: 'Reset progress',
+    resetActivitiesButton: 'Reset activities',
+    resetOvaConfirm: 'Navigation progress has been successfully reset.',
+    resetActivitiesConfirm: 'Activity progress has been successfully reset.',
+    resetFeedbackLabel: 'Reset!'
   }
 } as const;
 
