@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { EllipsisVertical } from 'lucide-react';
 
 import { combine } from '@atlaskit/pragmatic-drag-and-drop/combine';
 import { draggable, dropTargetForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
@@ -123,7 +124,7 @@ export const OrderPhraseChip: React.FC<ChipProps> = ({
           aria-haspopup="menu"
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((prev) => !prev)}>
-          ⋮
+          <EllipsisVertical size={16} />
         </button>
       )}
       <span aria-hidden="true">{word}</span>
