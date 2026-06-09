@@ -1,9 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Draggable from 'react-draggable';
 
+import { useOvaStore } from '@/store/ova-store';
+
 import { Icon } from '../../ui';
 
 import { useDraggablePosition, useFloatingPanel, useNotesEditor, useTextSelection } from './hooks';
+import { i18nNotes } from './lib/constants';
 import { MoveArrowIcon, NewNoteIcon, NotesIcon } from './notes-icons';
 import { NotesList } from './notes-list';
 import { RichTextEditor } from './rich-text-editor';
@@ -14,11 +17,12 @@ import type { FloatingNotesProps } from './types/types';
 import css from './floating-notes.module.css';
 
 export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' }) => {
+  const lang = useOvaStore((state) => state.lang);
   const dragRef = useRef(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const triggerButtonRef = useRef<HTMLButtonElement>(null);
   const hasInitialFocusRef = useRef(false);
-    const [hasToggled, setHasToggled] = useState(false);
+  const [hasToggled, setHasToggled] = useState(false);
 
   // Custom hooks
   const { position, handleDrag, resetPosition } = useDraggablePosition();
@@ -157,7 +161,7 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
             type="button"
             className={css['fn-tooltip-capture-btn']}
             onClick={handleCaptureText}
-            title="Capturar texto">
+            title={i18nNotes[lang].captureText}>
             <NotesIcon />
           </button>
         </div>
@@ -173,9 +177,13 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
           }`}
           onClick={handleToggleOpen}
           disabled={isOpen}
-          aria-label={isOpen ? 'Cerrar notas' : 'Abrir notas'}
-          title={isOpen ? 'Cerrar notas' : 'Abrir notas'}>
-          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" className={css['fn-trigger-icon']} viewBox="60 60 280 280">
+          aria-label={isOpen ? i18nNotes[lang].closeNotes : i18nNotes[lang].openNotes}
+          title={isOpen ? i18nNotes[lang].closeNotes : i18nNotes[lang].openNotes}>
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            className={css['fn-trigger-icon']}
+            viewBox="60 60 280 280">
             <circle cx="200" className={css['fn-trigger-icon__dash']} cy="200" r="115" />
             <circle cx="200" cy="200" r="110" fill="var(--primary-700)" />
             <circle cx="200" cy="200" r="70" fill="var(--primary-500)" />
@@ -195,12 +203,12 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
             </g>
           </svg>
           {notesCount > 0 && <span className={css['fn-notes-badge']}>{notesCount}</span>}
-          <span className={css['fn-trigger-text']}>Notas</span>
+          <span className={css['fn-trigger-text']}>{i18nNotes[lang].notes}</span>
         </button>
 
         {/* Panel de notas flotante */}
         <Draggable handle=".js-c-notes-draggable" nodeRef={dragRef} position={position} onDrag={handleDrag}>
-          <div ref={dragRef} style={{position: 'absolute'}}>
+          <div ref={dragRef} style={{ position: 'absolute' }}>
             {isOpen && (
               <div ref={containerRef} className={css['fn-floating-notes']}>
                 {/* Header con controles */}
@@ -214,21 +222,21 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
                       type="button"
                       className={css['fn-btn-new-note']}
                       onClick={handleNewNote}
-                      aria-label="Nueva nota">
+                      aria-label={i18nNotes[lang].newNote}>
                       <NewNoteIcon fill={'#1f2937'} width={24} height={24} />
 
-                      <span>Nueva nota</span>
+                      <span>{i18nNotes[lang].newNote}</span>
                     </button>
                   )}
                   {view === 'editor' && (
-                    <span className={css['fn-floating-title']}>{currentNoteId ? 'Editar Nota' : 'Nueva Nota'}</span>
+                    <span className={css['fn-floating-title']}>{currentNoteId ? i18nNotes[lang].editNote : i18nNotes[lang].newNote}</span>
                   )}
                   <div className={css['fn-header-controls']}>
                     <button
                       type="button"
                       className={`${css['fn-btn-control']} ${css['fn-btn-grab']} js-c-notes-draggable`}
-                      aria-label="Mover ventana de notas"
-                      title="Arrastra para mover">
+                      aria-label={i18nNotes[lang].moveWindow}
+                      title={i18nNotes[lang].dragToMove}>
                       <MoveArrowIcon fill={'currentColor'} width={28} height={28} />
                     </button>
 
@@ -236,8 +244,8 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
                       type="button"
                       className={css['fn-btn-control']}
                       onClick={handleToggleOpen}
-                      aria-label="Cerrar ventana de notas"
-                      title="Cerrar notas">
+                      aria-label={i18nNotes[lang].closeWindow}
+                      title={i18nNotes[lang].closeNotes}>
                       <Icon name="close" />
                     </button>
                   </div>
@@ -257,20 +265,20 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
                       <div className={css['fn-editor-view']}>
                         {capturedText && (
                           <>
-                            <p className={css['fn-selected-text-preview-title']}>Texto seleccionado:</p>
+                            <p className={css['fn-selected-text-preview-title']}>{i18nNotes[lang].selectedText}</p>
                             <div className={css['fn-selected-text-preview']}>
                               <blockquote>
                                 <p>"{capturedText}"</p>
                               </blockquote>
                             </div>
-                            <p className={css['fn-selected-text-preview-title']}>Anotación:</p>
+                            <p className={css['fn-selected-text-preview-title']}>{i18nNotes[lang].annotation}</p>
                           </>
                         )}
 
                         <input
                           type="text"
                           className={css['fn-note-title-input']}
-                          placeholder="Título de la nota..."
+                          placeholder={i18nNotes[lang].noteTitlePlaceholder}
                           value={noteTitle}
                           onChange={(e) => setNoteTitle(e.target.value)}
                         />
@@ -278,15 +286,15 @@ export const FloatingNotes: React.FC<FloatingNotesProps> = ({ currentPage = '/' 
                         <RichTextEditor
                           content={noteContent}
                           onChange={setNoteContent}
-                          placeholder="Escribe tu nota aquí..."
+                          placeholder={i18nNotes[lang].noteContentPlaceholder}
                         />
 
                         <div className={css['fn-editor-actions']}>
                           <button type="button" className={css['fn-btn--cancel-note']} onClick={handleBackToList}>
-                            Cancelar
+                            {i18nNotes[lang].cancel}
                           </button>
                           <button type="button" className={css['fn-btn--save-note']} onClick={handleSaveNote}>
-                            Guardar
+                            {i18nNotes[lang].save}
                           </button>
                         </div>
                       </div>
