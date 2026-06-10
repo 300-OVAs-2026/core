@@ -1,10 +1,10 @@
 export function parseLabel(label: string): { letter: string | null; text: string } {
   const trimmed = label.trim();
 
-  // Busca el primer punto
-  const dotIndex = trimmed.indexOf('.');
+  // Busca el primer espacio
+  const dotIndex = trimmed.indexOf(' ');
 
-  // Si no hay punto o el punto está al inicio o al final, no hay "letter" válido
+  // Si no hay espacio, no hay "letter"
   if (dotIndex <= 0 || dotIndex === trimmed.length - 1) {
     return { letter: null, text: trimmed };
   }
