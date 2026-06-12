@@ -102,7 +102,7 @@ html[data-dark-mode='true'] .background {
 
 .success {
   background-color: #a5c965;
-  border-color: var(--clr-background);
+  border-color: var(--white);
 }
 
 .success::after {
@@ -123,13 +123,13 @@ html[data-dark-mode='true'] .background {
 
 .wrong {
   background-color: #f8d7da;
-  border-color: var(--clr-background);
+  border-color: var(--white);
 }
 
 .wrong::after {
   content: '✖';
   color: white;
-  background-color: var(--clr-activity-wrong);
+  background-color: var(--wrong);
   border-radius: 50%;
   width: 26px;
   height: 26px;

@@ -71,6 +71,7 @@ html[data-dark-mode='true'] .lego__container {
   background-size: cover;
   background-position: center;
   border-radius: 0.5rem;
+  position: relative;
 }
 
 .disabled {
@@ -120,15 +121,11 @@ html[data-dark-mode='true'] .lego__container {
   align-self: center;
 }
 
-.option.correct {
-  background-image: var(--bg-image);
-}
-
 .option.correct::after {
   content: '✔';
-  color: white;
+  color: var(--white);
   background-color: #899e2e;
-  border: 2px solid whitesmoke;
+  border: 2px solid var(--white);
   border-radius: 50%;
   width: 30px;
   height: 30px;
@@ -140,15 +137,11 @@ html[data-dark-mode='true'] .lego__container {
   right: -10px;
 }
 
-.option.incorrect {
-  background-image: var(--bg-image);
-}
-
 .option.incorrect::after {
   content: '✖';
-  color: white;
-  background-color: var(--clr-activity-wrong);
-  border: 2px solid var(--clr-background);
+  color: var(--white);
+  background-color: var(--wrong);
+  border: 2px solid var(--white);
   border-radius: 50%;
   width: 30px;
   height: 30px;

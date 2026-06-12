@@ -60,15 +60,19 @@ export const LegoRadio: FC<Props> = ({ id, addClass, state, label, name, ...prop
    * Obtiene la clase CSS para un botón según su estado y si está seleccionado.
    * @returns {string} La clase CSS correspondiente
    */
-  const getLabelClass = (state: 'success' | 'wrong') => {
-    if (validation) return css.disabled;
-    if (isSelected) return css.focused;
-    return `${css.option} ${state === 'success' ? css.success : css.wrong}`;
+  const getLabelClass = () => {
+    if (validation) {
+      if (!isSelected) return css.disabled;
+
+      return state === 'success' ? `${css.option} ${css.correct}` : `${css.option} ${css.incorrect}`;
+    }
+
+    return isSelected ? css.focused : '';
   };
 
   return (
     <div
-      className={`${css.option} ${addClass ?? ''} ${getLabelClass(state)}`}
+      className={`${css.option} ${addClass ?? ''} ${getLabelClass()}`}
       style={{ '--bg-image': `url(${lego})` } as React.CSSProperties}>
       <input
         {...props}
