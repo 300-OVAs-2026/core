@@ -95,7 +95,7 @@ html[data-dark-mode='true'] .lego__container {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 2rem;
+  gap: 1rem;
   width: 100%;
   height: 100%;
 }
@@ -119,6 +119,12 @@ html[data-dark-mode='true'] .lego__container {
 
 .option input[type='radio'] {
   align-self: center;
+}
+
+.button span {
+  text-align: center;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .option.correct::after {
