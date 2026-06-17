@@ -62,7 +62,11 @@ export const GameThisOrThatRadio: React.FC<Props> = ({ id, addClass, state, labe
         onChange={handleChange}
       />
       <label htmlFor={uid} className={getLabelClass(state)}>
-        {letter && <span className={css['circle']}>{letter}</span>}
+        {letter && (
+          <span className={css['circle']} data-id="letter">
+            {letter}
+          </span>
+        )}
         <span>{text}</span>
       </label>
     </div>

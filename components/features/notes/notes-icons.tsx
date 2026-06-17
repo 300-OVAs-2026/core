@@ -1,16 +1,16 @@
 import css from './floating-notes.module.css';
 
 export const NotesIcon = ({ ...props }) => (
-<svg data-name="Capa 2" viewBox="0 0 65.7 62.04" {...props}>
-      <path
-        className={css['prefix__cls-1-fill']}
-        d="M58.69 26.98v18.36c0 8.67-7.03 15.7-15.7 15.7H1V19.05c0-8.67 7.03-15.7 15.7-15.7h26.29"
-      />
-      <path
-        className={css['prefix__cls-2-stroke']}
-        d="M62.9 14.1L27.5 49.51l-12.45 1.15 1.15-12.45L51.6 2.8C54.03.37 58.53.93 61.65 4.05c3.12 3.12 3.68 7.62 1.25 10.05z"
-      />
-    </svg>
+  <svg data-name="Capa 2" viewBox="0 0 65.7 62.04" {...props}>
+    <path
+      className={css['prefix__cls-1-fill']}
+      d="M58.69 26.98v18.36c0 8.67-7.03 15.7-15.7 15.7H1V19.05c0-8.67 7.03-15.7 15.7-15.7h26.29"
+    />
+    <path
+      className={css['prefix__cls-2-stroke']}
+      d="M62.9 14.1L27.5 49.51l-12.45 1.15 1.15-12.45L51.6 2.8C54.03.37 58.53.93 61.65 4.05c3.12 3.12 3.68 7.62 1.25 10.05z"
+    />
+  </svg>
 );
 
 export const CloseIcon = ({ ...props }) => (

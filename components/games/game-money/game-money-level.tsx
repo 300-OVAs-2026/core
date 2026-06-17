@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+
 import { FullScreenAlert } from '@features/full-screen-alert';
 
 import { useGameMoneyActivityContext } from './game-money-context';

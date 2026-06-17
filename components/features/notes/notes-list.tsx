@@ -1,3 +1,6 @@
+import { useOvaStore } from '@/store/ova-store';
+
+import { i18nNotes } from './lib/constants';
 import { ClockIcon, EditIcon, NotesIcon, TrashIcon } from './notes-icons';
 import { extractPlainText, formatDate, truncateText } from './utils/utils';
 
@@ -6,6 +9,8 @@ import type { NotesListProps } from './types/types';
 import css from './floating-notes.module.css';
 
 export const NotesList: React.FC<NotesListProps> = ({ notes, onSelectNote, onDeleteNote }) => {
+  const lang = useOvaStore((state) => state.lang);
+
   const handleDelete = (e: React.MouseEvent, noteId: string) => {
     e.stopPropagation();
     onDeleteNote(noteId);
@@ -14,7 +19,7 @@ export const NotesList: React.FC<NotesListProps> = ({ notes, onSelectNote, onDel
   return (
     <div className={css['fn-notes-list']}>
       <div className={css['fn-notes-list-header']}>
-        <h3 className={css['fn-notes-list-title']}>Notas</h3>
+        <h3 className={css['fn-notes-list-title']}>{i18nNotes[lang].title}</h3>
       </div>
 
       <div className={css['fn-notes-list-content']}>
@@ -23,12 +28,12 @@ export const NotesList: React.FC<NotesListProps> = ({ notes, onSelectNote, onDel
             <div className={css['fn-empty-state-icon']}>
               <NotesIcon />
             </div>
-            <p className={css['fn-empty-state-text']}>No tienes notas aún</p>
+            <p className={css['fn-empty-state-text']}>{i18nNotes[lang].noNotesYet}</p>
             <p className={css['fn-empty-state-hint']}>
-              Ver todas tus notas guardadas aquí.
+              {i18nNotes[lang].viewAllNotes}
               <br />
               <a href="#/notes" className={css['fn-empty-state-link']}>
-                Ir a la página de notas
+                {i18nNotes[lang].goToNotesPage}
               </a>
             </p>
           </div>
@@ -42,7 +47,7 @@ export const NotesList: React.FC<NotesListProps> = ({ notes, onSelectNote, onDel
                 <li key={note.id} className={css['fn-note-item']}>
                   <div className={css['fn-note-item-content']}>
                     <div className={css['fn-note-item-header']}>
-                      <h4 className={css['fn-note-item-title']}>{note.title || 'Sin título'}</h4>
+                      <h4 className={css['fn-note-item-title']}>{note.title || i18nNotes[lang].untitled}</h4>
                       <p className={css['fn-note-item-date']}>
                         <ClockIcon />
                         {formatDate(note.timestamp)}
@@ -54,17 +59,17 @@ export const NotesList: React.FC<NotesListProps> = ({ notes, onSelectNote, onDel
                         type="button"
                         className={css['fn-btn_note'] + ' ' + css['fn-btn--delete']}
                         onClick={(e) => handleDelete(e, note.id)}
-                        aria-label="Eliminar nota">
+                        aria-label={i18nNotes[lang].delete}>
                         <TrashIcon />
-                        <span className={css['fn-btn_note-text']}>Eliminar</span>
+                        <span className={css['fn-btn_note-text']}>{i18nNotes[lang].delete}</span>
                       </button>
                       <button
                         type="button"
                         className={css['fn-btn_note'] + ' ' + css['fn-btn--edit']}
                         onClick={() => onSelectNote(note.id)}
-                        aria-label="Editar nota">
+                        aria-label={i18nNotes[lang].edit}>
                         <EditIcon />
-                        <span className={css['fn-btn_note-text']}>Editar</span>
+                        <span className={css['fn-btn_note-text']}>{i18nNotes[lang].edit}</span>
                       </button>
                     </div>
                   </div>

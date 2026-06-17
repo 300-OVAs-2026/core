@@ -1,6 +1,6 @@
 import { useRef } from 'react';
-import { FullScreenAlert } from '@features/full-screen-alert';
 
+import { FullScreenAlert } from '@features/full-screen-alert';
 import { useA11yAttribute, useReduceMotion } from '@shared/hooks';
 
 import { ASTEROID, ASTRONAUT, ICON, UNIVERSE01, UNIVERSE02 } from './lib/constant';
