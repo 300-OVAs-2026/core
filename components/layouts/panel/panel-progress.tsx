@@ -96,13 +96,17 @@ export const PanelProgress = () => {
   };
 
   /**
-   * Función que pausa todos los elementos de video en la página, excepto
+   * Función que pausa todos los elementos de video incluido los audios descriptivos de esté en la página, excepto
    * los que funcionan como GIFs (autoplay, loop, playsinline). Se utiliza
    * para asegurar que no haya videos reproduciéndose en segundo plano
    * cuando el usuario navega entre secciones.
    */
   const pauseAllMediaElements = () => {
     const mediaElements = document.querySelectorAll('video:not([autoplay][loop][playsinline])');
+    const audioDescriptionVideo = document.querySelector('button.js-button-video-play') as HTMLButtonElement;
+    
+    audioDescriptionVideo?.click(); // Pausar el video de audio descripción si está reproduciéndose
+
     mediaElements.forEach((media) => {
       const mediaEl = media as HTMLMediaElement;
       if (!mediaEl.paused) {
