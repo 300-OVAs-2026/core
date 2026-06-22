@@ -103,7 +103,7 @@ ul li::marker {
 .u-validation-success::after,
 .u-validation-wrong::after {
   place-content: center;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1;
   box-shadow: 1px 1px 3px 0 #60606057;
   display: grid;
   position: absolute;
@@ -111,8 +111,9 @@ ul li::marker {
   top: 0;
   right: 0;
   transform: translate(50%, -50%);
-  width: 1.6rem;
-  background-color: var(--white);
+  width: 1.8rem;
+  height: auto;
+  background-color: var(--card);
   border-radius: 50%;
   font-style: normal;
 }
@@ -129,7 +130,7 @@ ul li::marker {
 
 html[data-dark-mode="true"] .u-validation-success::after,
 html[data-dark-mode="true"] .u-validation-wrong::after {
-  background-color: var(--clr-background);
+  background-color: var(--card);
 }
 
 .u-do-flip {

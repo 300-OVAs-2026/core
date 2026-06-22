@@ -1,5 +1,7 @@
 import { useEffect, useId, useState } from 'react';
 
+import { cn } from '@/shared/utils';
+
 import { useInputActivityContext } from './input-activity-context';
 
 import css from './input-activity.module.css';
@@ -51,20 +53,21 @@ export const InputElement: React.FC<Props> = ({ id, correctAnswers, name, addCla
     }
   }, [validation]);
 
-  const inputClass = isCorrect === null ? '' : isCorrect ? css.correct : css.incorrect;
-
   return (
-    <div className={css.input}>
+    <div
+      className={cn(css['ínput__wrapper'], addClass, {
+        [css['ínput--success']]: isCorrect === true,
+        [css['input--wrong']]: isCorrect === false
+      })}>
       <input
         id={uid}
         type="text"
         name={name}
         value={userAnswer}
         onChange={handleInputChange}
-        className={`${addClass}`}
+        className={css['input__element']}
         disabled={validation}
       />
-      <span className={inputClass}></span>
     </div>
   );
 };
