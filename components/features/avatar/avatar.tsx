@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Image } from '@ui';
 
+import { Image } from '@ui';
 import { useOvaStore } from '@/store/ova-store';
 
 import { AVATAR_TITLE, AVATARS, resolveVariation } from './lib/constants';
