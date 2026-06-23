@@ -55,18 +55,26 @@
     list-style: none;
     padding-inline-start: 0;
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     gap: 1em;
-}
-
-.avatar-list>* {
-    flex: 1 1 30ch;
 }
 
 .avatar-item {
     display: grid;
     gap: .7rem;
     place-items: center;
+}
+
+.avatar-image {
+    max-width: auto;
+}
+
+@media screen and (min-width: 480px) {
+    .avatar-image {
+        max-width: 20.625rem;
+    }
 }
 
 .avatar-item button {
