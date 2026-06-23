@@ -1,35 +1,37 @@
-.input {
+.ínput__wrapper {
   position: relative;
   display: inline-block;
+  max-width: min(var(--input-width, 9.375rem), 100%);
 }
 
-
-.incorrect::after {
-  content: '✖';
-  color: var(--clr-activity-wrong);
-  background-color: var(--clr-text-secondary);
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: -5px;
-  right: -5px;
+.input__element {
+  --input-border-start: var(--primary-300);
+  --input-border-end: var(--primary);
 }
 
-.correct::after {
-  content: '✔';
-  color: #85a321;
-  background-color: var(--clr-text-secondary);
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  top: -5px;
-  right: -5px;
+.input__element {
+  width: 100%;
+  border: .125rem solid transparent;
+  border-radius: 1.5rem;
+  background:
+    linear-gradient(var(--white), var(--white)) padding-box,
+    linear-gradient(90deg, var(--input-border-start), transparent, var(--input-border-end)) border-box;
+}
+
+html[data-dark-mode='true'] .input__element {
+  background:
+    linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(90deg,
+      var(--input-border-start),
+      transparent,
+      var(--input-border-end)) border-box;
+  background-color: var(--card);
+}
+
+.ínput--success {
+  composes: u-validation-success from global;
+}
+
+.input--wrong {
+  composes: u-validation-wrong from global;
 }

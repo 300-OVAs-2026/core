@@ -103,7 +103,7 @@ export const PanelProgress = () => {
    */
   const pauseAllMediaElements = () => {
     const mediaElements = document.querySelectorAll('video:not([autoplay][loop][playsinline])');
-    const audioDescriptionVideo = document.querySelector('button.js-button-video-play') as HTMLButtonElement;
+    const audioDescriptionVideo = document.querySelector("button.js-button-video-play[aria-label='Pausar video']") as HTMLButtonElement;
     
     audioDescriptionVideo?.click(); // Pausar el video de audio descripción si está reproduciéndose
 

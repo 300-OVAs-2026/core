@@ -1,3 +1,5 @@
+
+import { useCallback, useMemo, useState } from 'react';
 import { Audio, Icon, Panel } from 'books-ui';
 import { ChevronsLeft, ChevronsRight } from 'lucide-react';
 
@@ -25,7 +27,18 @@ const chunkAvatars = (avatars: Avatar[], size: number): Avatar[][] =>
   Array.from({ length: Math.ceil(avatars.length / size) }, (_, i) => avatars.slice(i * size, i * size + size));
 
 export const ChoiceAvatar = () => {
-  const sections = chunkAvatars(AVATARS, AVATARS_PER_SECTION);
+  // State to keep track of unavailable avatars due to image loading errors
+  const [unavailableIds, setUnavailableIds] = useState<Set<string>>(new Set());
+
+  // Callback to handle image loading errors and mark avatars as unavailable
+  const handleImageError = useCallback((id: string) => {
+    setUnavailableIds((prev) => new Set([...prev, id]));
+  }, []);
+
+  // Filter out unavailable avatars based on the state
+  const availableAvatars = useMemo(() => AVATARS.filter(({ id }) => !unavailableIds.has(id)), [unavailableIds]);
+  const sections = chunkAvatars(availableAvatars, AVATARS_PER_SECTION);
+
   const selectAvatar = useOvaStore((state) => state.selectAvatar);
   const selectedAvatarId = useOvaStore((state) => state.selectedAvatarId);
   const lang = useOvaStore((state) => state.lang);
@@ -64,6 +77,7 @@ export const ChoiceAvatar = () => {
                         src={`assets/base/avatars/${avatar.id}/${avatar.name}-${AvatarVariation.GREETING}.webp`}
                         alt={avatar.name}
                         className={css['avatar-image']}
+                        onError={() => handleImageError(avatar.id)}
                       />
                       <Button
                         label={
