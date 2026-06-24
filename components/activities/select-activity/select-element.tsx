@@ -36,7 +36,7 @@ export const SelectElement: React.FC<Props> = ({
   const reactId = useId();
   const uid = id || reactId;
 
-  const { addSelectedValues, selectedOptions, addSelectElementsId, validation } = useSelectActivityContext();
+  const { addSelectedValues, selectedOptions, allowRepeatOptions, addSelectElementsId, validation } = useSelectActivityContext();
   const [currentSelectedOption, setCurrentSelectedOption] = useState<{ key: Key | null; state: string | null }>({
     key: null,
     state: null
@@ -70,9 +70,9 @@ export const SelectElement: React.FC<Props> = ({
    * para deshabilitarlas.
    */
   const disabledKeys = useMemo(() => {
-    if (selectedOptions.length === 0) return [];
+    if (allowRepeatOptions || selectedOptions.length === 0) return [];
     return selectedOptions.map(({ answer }) => answer);
-  }, [selectedOptions]);
+  }, [allowRepeatOptions, selectedOptions]);
 
   useEffect(() => {
     // Limpia el Select si todas las opciones seleccionadas son removidas

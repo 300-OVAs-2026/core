@@ -3,6 +3,7 @@ import { useEffect, useReducer, useRef } from 'react';
 import { SelectActivityProvider } from './select-activity-context';
 import { SelectButton } from './select-button';
 import { SelectElement } from './select-element';
+import { SelectFeedback } from './select-feedback';
 
 import type { InitialState, Option } from './types/types';
 import { States } from './types/types';
@@ -18,14 +19,16 @@ interface Props {
   children: JSX.Element | JSX.Element[];
   onResult?: ({ result, options }: { result: boolean; options: Option[] }) => void;
   minCorrect?: number;
+  allowRepeatOptions?: boolean;
 }
 
 type SubComponents = {
   Select: typeof SelectElement;
   Button: typeof SelectButton;
+  Feedback: typeof SelectFeedback;
 };
 
-const Selects: React.FC<Props> & SubComponents = ({ children, onResult }) => {
+const Selects: React.FC<Props> & SubComponents = ({ children, onResult, allowRepeatOptions }) => {
   const [activity, updateActivity] = useReducer(
     (prev: InitialState, next: Partial<InitialState>) => ({ ...prev, ...next }),
     INITIAL_STATE
@@ -113,7 +116,8 @@ const Selects: React.FC<Props> & SubComponents = ({ children, onResult }) => {
         button: activity.button,
         result: activity.result,
         validation: activity.validation,
-        selectedOptions: activity.options
+        selectedOptions: activity.options,
+        allowRepeatOptions
       }}>
       {children}
     </SelectActivityProvider>
@@ -122,5 +126,6 @@ const Selects: React.FC<Props> & SubComponents = ({ children, onResult }) => {
 
 Selects.Select = SelectElement;
 Selects.Button = SelectButton;
+Selects.Feedback = SelectFeedback;
 
 export { Selects };

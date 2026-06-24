@@ -23,6 +23,7 @@ export interface SelectActivityContextType {
   button: boolean;
   result: boolean;
   addSelectElementsId: (uid: string) => void;
+  allowRepeatOptions?: boolean;
 }
 
 // Enumeración para los estados posibles
