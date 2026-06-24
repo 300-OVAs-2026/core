@@ -19,6 +19,7 @@ interface Props {
   children: JSX.Element | JSX.Element[];
   onResult?: ({ result, options }: { result: boolean; options: Option[] }) => void;
   minCorrect?: number;
+  allowRepeatOptions?: boolean;
 }
 
 type SubComponents = {
@@ -27,7 +28,7 @@ type SubComponents = {
   Feedback: typeof SelectFeedback;
 };
 
-const Selects: React.FC<Props> & SubComponents = ({ children, onResult }) => {
+const Selects: React.FC<Props> & SubComponents = ({ children, onResult, allowRepeatOptions }) => {
   const [activity, updateActivity] = useReducer(
     (prev: InitialState, next: Partial<InitialState>) => ({ ...prev, ...next }),
     INITIAL_STATE
@@ -115,7 +116,8 @@ const Selects: React.FC<Props> & SubComponents = ({ children, onResult }) => {
         button: activity.button,
         result: activity.result,
         validation: activity.validation,
-        selectedOptions: activity.options
+        selectedOptions: activity.options,
+        allowRepeatOptions
       }}>
       {children}
     </SelectActivityProvider>
