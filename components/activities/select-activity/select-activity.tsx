@@ -3,6 +3,7 @@ import { useEffect, useReducer, useRef } from 'react';
 import { SelectActivityProvider } from './select-activity-context';
 import { SelectButton } from './select-button';
 import { SelectElement } from './select-element';
+import { SelectFeedback } from './select-feedback';
 
 import type { InitialState, Option } from './types/types';
 import { States } from './types/types';
@@ -23,6 +24,7 @@ interface Props {
 type SubComponents = {
   Select: typeof SelectElement;
   Button: typeof SelectButton;
+  Feedback: typeof SelectFeedback;
 };
 
 const Selects: React.FC<Props> & SubComponents = ({ children, onResult }) => {
@@ -122,5 +124,6 @@ const Selects: React.FC<Props> & SubComponents = ({ children, onResult }) => {
 
 Selects.Select = SelectElement;
 Selects.Button = SelectButton;
+Selects.Feedback = SelectFeedback;
 
 export { Selects };
