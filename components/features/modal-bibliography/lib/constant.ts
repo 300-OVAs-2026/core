@@ -4,7 +4,7 @@ export const i18n = {
       title: 'Bibliografía',
     },
     en: {
-      title: 'Bibliography',
+      title: 'References',
     }
   };
   
