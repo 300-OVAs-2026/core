@@ -142,6 +142,7 @@ html[data-dark-mode="true"] .u-validation-wrong::after {
 
 .u-list-bold li::marker {
   font-weight: bold;
+  font-size: var(--fs-400);
 }
 
 html[data-dark-mode="true"] .u-white-bg {
