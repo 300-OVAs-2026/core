@@ -1,5 +1,6 @@
 import { useEffect, useReducer, useRef } from 'react';
 
+import { GameBasketballInitial } from './game-backetball-initial';
 import { GameBasketballRadio } from './game-backetball-radio';
 import { GameBasketballButton } from './game-basketball-button';
 import { RadioBasketActivityProvider } from './game-basketball-context';
@@ -25,6 +26,7 @@ type SubComponents = {
   Radio: typeof GameBasketballRadio;
   Button: typeof GameBasketballButton;
   Provider: typeof GameBasketballLevel;
+  init: typeof GameBasketballInitial;
 };
 
 const GameBasketball: React.FC<Props> & SubComponents = ({ children, onResult, resultDelayMs = 900 }) => {
@@ -123,5 +125,6 @@ const GameBasketball: React.FC<Props> & SubComponents = ({ children, onResult, r
 GameBasketball.Radio = GameBasketballRadio;
 GameBasketball.Button = GameBasketballButton;
 GameBasketball.Provider = GameBasketballLevel;
+GameBasketball.init = GameBasketballInitial;
 
 export { GameBasketball };
