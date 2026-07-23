@@ -31,7 +31,7 @@ export const RadioElement: React.FC<Props> = ({ id, addClass, state, label, name
    * Maneja el evento onChange.
    */
   const handleChange = () => {
-    addRadiosValues({ id: uid, name: radioName, state });
+    addRadiosValues({ id: uid, name: radioName, state, value: label });
   };
 
   useEffect(() => {
