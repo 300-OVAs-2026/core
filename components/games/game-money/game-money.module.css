@@ -67,7 +67,7 @@ html[data-dark-mode='true'] .background {
 }
 
 .options-container > div input:focus-visible + label {
-  outline: 2px solid var(--clr-background);
+  outline: 2px solid var(--white);
   outline-offset: 4px;
 }
 
@@ -77,7 +77,7 @@ html[data-dark-mode='true'] .background {
   align-items: center;
 
   background: #fff8c7;
-  border: 3px solid var(--clr-background);
+  border: 3px solid var(--white);
   border-radius: 1rem;
   padding: 0.5rem;
   margin: 5px;
