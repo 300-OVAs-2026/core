@@ -8,7 +8,7 @@ import { i18n } from './lib/constant';
 import css from './svg-card.module.css';
 
 interface Props {
-  messageInitial: string;
+  messageInitial?: string;
   section?: number;
 }
 
@@ -16,7 +16,7 @@ const HALF_DAY = 12;
 
 export const RaceCardInitial: React.FC<Props> = ({ messageInitial, section = 1 }) => {
   const lang = useOvaStore((state) => state.lang);
-  
+
   const IS_NOON = new Date().getHours() < HALF_DAY;
 
   return (
@@ -5120,12 +5120,13 @@ export const RaceCardInitial: React.FC<Props> = ({ messageInitial, section = 1 }
             </g>
           </g>
         </g>
-
-        <foreignObject x="135" y="15" width="500" height="150">
-          <div className={`${css['instructions-container']}`}>
-            <p dangerouslySetInnerHTML={{ __html: messageInitial }}></p>
-          </div>
-        </foreignObject>
+        {messageInitial && (
+          <foreignObject x="135" y="15" width="500" height="150">
+            <div className={`${css['instructions-container']}`}>
+              <p dangerouslySetInnerHTML={{ __html: messageInitial }}></p>
+            </div>
+          </foreignObject>
+        )}
 
         <foreignObject x="320" y="345" width="140" height="55">
           <Panel.Button section={section}>
