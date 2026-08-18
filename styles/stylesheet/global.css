@@ -142,10 +142,58 @@ html[data-dark-mode="true"] .u-validation-wrong::after {
 
 .u-list-bold li::marker {
   font-weight: bold;
+  font-size: var(--fs-400);
 }
 
 html[data-dark-mode="true"] .u-white-bg {
   background-color: #fefefe;
+}
+
+.u-table {
+  --u-table-border-color: var(--primary-600);
+  --u-table-header-bg: var(--primary);
+  --u-table-header-color: var(--white);
+  --u-table-row-odd-bg: var(--background);
+  --u-table-row-even-bg: var(--background);
+
+  width: 100%;
+  border-collapse: collapse;
+  box-sizing: border-box;
+}
+
+.u-table thead tr th,
+.u-table tbody tr td {
+  border: 1px solid var(--u-table-border-color);
+  padding: 1rem;
+  text-align: center;
+}
+
+.u-table thead tr th {
+  background-color: var(--u-table-header-bg);
+  color: var(--u-table-header-color);
+  font-weight: 700;
+}
+
+.u-table tbody tr:nth-child(odd) td {
+  background-color: var(--u-table-row-odd-bg);
+}
+
+.u-table tbody tr:nth-child(even) td {
+  background-color: var(--u-table-row-even-bg);
+}
+
+html[data-dark-mode="true"] .u-table {
+  --u-table-header-bg: var(--primary-800);
+}
+
+.u-table--blue-odd-even {
+  --u-table-row-odd-bg: var(--primary-50);
+  --u-table-row-even-bg: var(--background);
+}
+
+html[data-dark-mode="true"] .u-table--blue-odd-even {
+  --u-table-row-odd-bg: var(--primary-900);
+  --u-table-row-even-bg: var(--background);
 }
 
 /* Elements */

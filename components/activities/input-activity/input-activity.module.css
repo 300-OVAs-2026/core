@@ -26,6 +26,7 @@ html[data-dark-mode='true'] .input__element {
       transparent,
       var(--input-border-end)) border-box;
   background-color: var(--card);
+  color: var(--white);
 }
 
 .ínput--success {

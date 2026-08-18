@@ -16,7 +16,6 @@
   font-weight: 500;
   cursor: grab;
   user-select: none;
-  white-space: nowrap;
   transition:
     transform 0.1s,
     opacity 0.15s,
@@ -25,6 +24,9 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
+
+  white-space: normal;
+  word-break: break-word;
 }
 
 .chipDragging {

@@ -21,7 +21,8 @@ const INITIAL_STATE = Object.freeze({
   level: 0,
   money: 0,
   selects: [],
-  isVerify: false
+  isVerify: false,
+  selectedLabel: ''
 });
 
 type SubComponents = {
@@ -79,7 +80,8 @@ const GameMilions: React.FC<GameMilionsProps> & SubComponents = ({
    */
   const addRadiosValues = ({ id, label, name, state }: gameMilionAnswer) => {
     updateActivity({
-      options: [...activity.options.filter((option) => option.name !== name), { id, name, label, state }]
+      options: [...activity.options.filter((option) => option.name !== name), { id, name, label, state }],
+      selectedLabel: label
     });
   };
 
@@ -129,7 +131,7 @@ const GameMilions: React.FC<GameMilionsProps> & SubComponents = ({
   };
 
   const handleReset = () => {
-    updateActivity({ selects: [], result: false, isVerify: false });
+    updateActivity({ selects: [], result: false, isVerify: false, selectedLabel: '' });
   };
 
   const verifySelect = () => {
@@ -162,6 +164,31 @@ const GameMilions: React.FC<GameMilionsProps> & SubComponents = ({
     previousMoney.current = money;
   }, [money]);
 
+  /**
+   * Renderiza la pregunta con soporte para espacios en blanco usando el marcador ___.
+   * Si la pregunta contiene ___, lo reemplaza con el label seleccionado o un placeholder.
+   */
+  const renderQuestion = () => {
+    // Si question no es un string, retornarlo tal cual
+    if (typeof question !== 'string') return question;
+
+    // Si no contiene el marcador, retornar la pregunta normal
+    if (!question.includes('___')) return question;
+
+    // Dividir la pregunta por el marcador
+    const parts = question.split('___');
+
+    return (
+      <>
+        {parts[0]}
+        <strong style={{ textDecoration: 'underline', color: 'var(--color-primary)' }}>
+          {activity.selectedLabel || '____'}
+        </strong>
+        {parts[1]}
+      </>
+    );
+  };
+
   return (
     <GameMillionProvider
       value={{
@@ -187,7 +214,7 @@ const GameMilions: React.FC<GameMilionsProps> & SubComponents = ({
         </p>
 
         <fieldset className={css['wrapper-question']}>
-          <legend className={`${css.question} u-mb-3`}>{question}</legend>
+          <legend className={`${css.question} u-mb-3`}>{renderQuestion()}</legend>
           <div className={`${css['wrapper-answer']}`}>{answerElements}</div>
         </fieldset>
       </div>

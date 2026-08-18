@@ -52,9 +52,9 @@ const Radios: React.FC<Props> & SubComponents = ({ children, onResult, minSelect
    * @param {String} id - id de la pregunta.
    * @param {Object} value - valor del radio seleccionado.
    */
-  const addRadiosValues = ({ id, name, state }: Option) => {
+  const addRadiosValues = ({ id, name, state, value }: Option) => {
     updateActivity({
-      options: [...activity.options.filter((option) => option.name !== name), { id, name, state }]
+      options: [...activity.options.filter((option) => option.name !== name), { id, name, state, value }]
     });
   };
 

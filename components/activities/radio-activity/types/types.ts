@@ -5,6 +5,7 @@ export type Option = {
   id: string;
   state: RadioStates;
   name: string;
+  value: string;
 };
 
 // Define la interfaz InitialState que representa el estado inicial de la actividad

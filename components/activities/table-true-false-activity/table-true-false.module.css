@@ -45,7 +45,7 @@
   font-weight: bold;
   text-align: center;
   background-color: var(--clr-background, #fff); /* ← necesita fondo para verse */
-  color: var(--clr-brand);
+  color: var(--black);
 
   clip-path: polygon(
     0 var(--corner),
@@ -84,7 +84,6 @@
 
 .radioButton:checked + .button {
   background: var(--accent);
-  color: var(--primary-800);
 }
 
 /* ✅ Hover deshabilitado cuando ya está validado */
@@ -97,7 +96,7 @@
 .correct {
   background-image: linear-gradient(105deg, var(--success-light) 50%, transparent 50%);
   background-position: 0% 0;
-  color: var(--primary-800);
+  color: var(--primary-900);
 }
 
 .correct::before {
@@ -123,7 +122,7 @@
 .incorrect {
   background-image: linear-gradient(105deg, var(--wrong-light) 50%, transparent 50%);
   background-position: 0% 0;
-  color: var(--primary-800);
+  color: var(--primary-900);
 }
 
 .incorrect::before {

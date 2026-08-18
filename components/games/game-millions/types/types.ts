@@ -14,6 +14,7 @@ export interface InitialState {
   money: number;
   selects: string[];
   isVerify: boolean;
+  selectedLabel: string;
 }
 
 export interface GameMillionsContextType {

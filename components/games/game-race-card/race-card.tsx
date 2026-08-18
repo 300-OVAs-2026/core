@@ -32,6 +32,7 @@ const INITIAL_GAME: RaceCardStateType = {
 interface RaceCardProviderProps {
   children: React.ReactNode;
   questionCount: number;
+  correctAnswerPoints?: number;
 }
 
 type SubComponents = {
@@ -45,7 +46,7 @@ const gameReducer = (prev: RaceCardStateType, next: Partial<RaceCardStateType>):
   ...next
 });
 
-const RaceCard: React.FC<RaceCardProviderProps> & SubComponents = ({ children, questionCount }) => {
+const RaceCard: React.FC<RaceCardProviderProps> & SubComponents = ({ children, questionCount, correctAnswerPoints = POINTS_FOR_CORRECT_ANSWER }) => {
   const [game, updateGame] = useReducer(gameReducer, INITIAL_GAME);
 
   const elementsId = useRef<string[]>([]); // useRef para almacenar los IDs de los elementos
@@ -113,7 +114,7 @@ const RaceCard: React.FC<RaceCardProviderProps> & SubComponents = ({ children, q
 
     if (selected === 'success') {
       updateGame({
-        pointplayer1: game.pointplayer1 + POINTS_FOR_CORRECT_ANSWER,
+        pointplayer1: game.pointplayer1 + correctAnswerPoints,
         move1: game.move1 + MOVE_DISTANCE,
         answeredCount: game.answeredCount + 1,
         rightAnswers: game.rightAnswers + 1,
@@ -126,7 +127,7 @@ const RaceCard: React.FC<RaceCardProviderProps> & SubComponents = ({ children, q
       });
     } else {
       updateGame({
-        pointplayer2: game.pointplayer2 + POINTS_FOR_CORRECT_ANSWER,
+        pointplayer2: game.pointplayer2 + correctAnswerPoints,
         move2: game.move2 + MOVE_DISTANCE,
         answeredCount: game.answeredCount + 1,
 
@@ -137,7 +138,7 @@ const RaceCard: React.FC<RaceCardProviderProps> & SubComponents = ({ children, q
         lastValidatedSceneId: sceneId
       });
     }
-  }, [game]);
+  }, [game, correctAnswerPoints]);
   
 
   /**
@@ -159,7 +160,7 @@ const RaceCard: React.FC<RaceCardProviderProps> & SubComponents = ({ children, q
 
     if (selected === 'success') {
       updateGame({
-        pointplayer1: Math.max(0, game.pointplayer1 - POINTS_FOR_CORRECT_ANSWER),
+        pointplayer1: Math.max(0, game.pointplayer1 - correctAnswerPoints),
         move1: Math.max(0, game.move1 - MOVE_DISTANCE),
         answeredCount: Math.max(0, game.answeredCount - 1),
         rightAnswers: Math.max(0, game.rightAnswers - 1),
@@ -171,7 +172,7 @@ const RaceCard: React.FC<RaceCardProviderProps> & SubComponents = ({ children, q
       });
     } else {
       updateGame({
-        pointplayer2: Math.max(0, game.pointplayer2 - POINTS_FOR_CORRECT_ANSWER),
+        pointplayer2: Math.max(0, game.pointplayer2 - correctAnswerPoints),
         move2: Math.max(0, game.move2 - MOVE_DISTANCE),
         answeredCount: Math.max(0, game.answeredCount - 1),
 
@@ -183,7 +184,7 @@ const RaceCard: React.FC<RaceCardProviderProps> & SubComponents = ({ children, q
     }
 
     lastAnsweredRef.current = null;
-  }, [game]);
+  }, [game, correctAnswerPoints]);
 
   return (
     <ContextGame

@@ -1,7 +1,7 @@
 .stars,
 .modal__stars {
-    --clr-star: var(--accent);
-    --clr-star-empty: var(--secondary-200);
+    --clr-star: var(--accent-300);
+    --clr-star-empty: var(--secondary-500);
 }
 
 html[data-dark-mode="true"] .stars,
@@ -110,8 +110,8 @@ html[data-dark-mode="true"] .modal__stars {
     padding-block: 0.4rem;
     padding-inline: 1.25rem;
     border-radius: 8rem;
-    border: 1.5px solid var(--primary-500);
-    color: var(--primary-500);
+    border: 1.5px solid var(--primary-600);
+    color: var(--primary-600);
     font-weight: 600;
 }
 
