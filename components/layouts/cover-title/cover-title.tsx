@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { Icon } from '@ui';
 import { Audio } from 'books-ui';
 import { motion } from 'motion/react';
 import { Link } from 'wouter';
 
+import { Icon } from '@ui';
 import type { VideoURLs } from '@shared/hooks';
 import { useBackground, useInterpreter } from '@shared/hooks';
 import { focusMainElement } from '@shared/utils';
