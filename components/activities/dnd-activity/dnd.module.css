@@ -80,6 +80,8 @@
   --popover-modal-bg: var(--white);
   --popover-modal-arrow-bg: var(--white);
 
+  min-width: 18rem;
+  max-width: fit-content;
   border-radius: 0.6rem;
   padding: 0.8rem 0.325rem;
   font-weight: bold;
@@ -111,7 +113,7 @@
   font-size: var(--fs-200);
   cursor: pointer;
   white-space: nowrap;
-   transition:
+  transition:
     background 200ms ease,
     color 200ms ease,
     border-radius 200ms ease;
