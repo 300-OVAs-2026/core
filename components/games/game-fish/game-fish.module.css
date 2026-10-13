@@ -35,7 +35,13 @@
   z-index: 5;
   width: 30px;
   opacity: 0;
-  animation: bubble-rise 7s linear infinite;
+}
+
+/* Las burbujas solo se animan si el usuario no pidió reducir el movimiento ni detuvo las animaciones */
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-stop-animations='true']) .bubble {
+    animation: bubble-rise 7s linear infinite;
+  }
 }
 
 @keyframes bubble-rise {
@@ -101,6 +107,21 @@ html[data-dark-mode='true'] .init-message-box {
   margin-top: 1rem;
 }
 
+.fishs-element-container {
+  position: relative;
+}
+
+/* El radio queda oculto visualmente pero sigue siendo enfocable; el <label> es el pez */
+.fish-radio {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
 .fish-item {
   position: relative;
   background: transparent;
@@ -108,18 +129,47 @@ html[data-dark-mode='true'] .init-message-box {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.3s ease;
+  cursor: pointer;
   width: 100%;
+}
+
+.fish-radio:disabled + .fish-item {
+  cursor: not-allowed;
+}
+
+/* --- INDICADOR DE FOCO (dos tonos para verse sobre el mar azul y sobre los bordes claros) --- */
+.fish-radio:focus-visible + .fish-item {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 7px #000;
+  border-radius: 1rem;
+}
+
+/* El indicador global de a11y.css cae sobre el input oculto, así que se replica en el pez */
+html[data-focus-indicator='true'] .fish-radio:focus-visible + .fish-item {
+  outline: 3px solid #ff6200;
+  box-shadow: 0 0 0 7px rgba(255, 98, 0, 0.25);
 }
 
 .fish-image {
   height: auto;
   z-index: 2;
-  animation: float-fish 3s ease-in-out infinite;
   filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3));
 }
 
+/* Movimiento: solo si el usuario no pidió reducirlo ni detuvo las animaciones (WCAG 2.2.2) */
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-stop-animations='true']) .fish-item {
+    transition: transform 0.3s ease;
+  }
+
+  html:not([data-stop-animations='true']) .fish-image {
+    animation: float-fish 3s ease-in-out infinite;
+  }
+}
+
 .fish-answer-box {
+  display: block;
   position: relative;
   margin-top: -15px;
   padding: 6px 12px;
@@ -208,7 +258,7 @@ html[data-dark-mode='true'] .init-message-box {
   transition: all 0.2s ease;
 }
 
-.btn-start p {
+.btn-start span {
   margin: 0;
   flex-grow: 1;
   text-align: center;
@@ -295,7 +345,12 @@ html[data-dark-mode='true'] .question-text {
   font-size: 18px;
   font-weight: bold;
   z-index: 10;
-  animation: popIcon 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-stop-animations='true']) .status-icon {
+    animation: popIcon 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
 }
 
 @keyframes popIcon {
@@ -333,12 +388,16 @@ html[data-dark-mode='true'] .question-text {
 
 /* --- NUEVOS ESTILOS PARA ESCALA DE GRISES --- */
 
+/* Solo es un estilo: los peces en gris siguen siendo seleccionables hasta comprobar la respuesta */
 .is-not-selected {
   filter: grayscale(100%);
-  opacity: 0.4;
-  pointer-events: none;
-  /* Evita que se pueda clickear mientras está en gris */
-  transition: all 0.5s ease;
+  opacity: 0.7;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html:not([data-stop-animations='true']) .is-not-selected {
+    transition: all 0.5s ease;
+  }
 }
 
 /* Aseguramos que el seleccionado o validado mantenga color */

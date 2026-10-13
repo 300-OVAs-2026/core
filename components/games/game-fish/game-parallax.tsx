@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import { useA11yAttribute, useReduceMotion } from '@shared/hooks';
 
@@ -14,6 +14,15 @@ export const GameParallax = () => {
   const refDeph2 = useRef<HTMLImageElement>(null);
   const refDeph3 = useRef<HTMLImageElement>(null);
   const refDeph4 = useRef<HTMLImageElement>(null);
+
+  // Se generan una sola vez: si se calcularan en el render, las burbujas saltarían en cada cambio de estado del juego
+  const [bubbles] = useState(() =>
+    Array.from({ length: 12 }, () => ({
+      left: Math.random() * 100,
+      delay: Math.random() * -15, // Delay negativo para que aparezcan al instante en distintas alturas
+      size: 15 + Math.random() * 25
+    }))
+  );
 
   const handleDepthMove: React.MouseEventHandler = (e) => {
     if (!cancelAnimation && !stopAnimations) {
@@ -47,26 +56,20 @@ export const GameParallax = () => {
       <img src={BG.arena} className={css.image_depth} ref={refDeph2} alt="" />
       <img src={BG.suelo} className={css.image_depth} ref={refDeph1} alt="" />
 
-      {/* 12 Burbujas con Delay Negativo para que aparezcan al instante */}
-      {[...Array(12)].map((_, index) => {
-        const randomLeft = Math.random() * 100;
-        const randomDelay = Math.random() * -15; // Esto las activa de inmediato en distintas alturas
-        const randomSize = 15 + Math.random() * 25;
-
-        return (
-          <img
-            key={`bubble-${index}`}
-            src={BG.burbuja}
-            className={css.bubble}
-            style={{
-              left: `${randomLeft}%`,
-              width: `${randomSize}px`,
-              animationDelay: `${randomDelay}s`
-            }}
-            alt=""
-          />
-        );
-      })}
+      {/* 12 Burbujas decorativas */}
+      {bubbles.map((bubble, index) => (
+        <img
+          key={`bubble-${index}`}
+          src={BG.burbuja}
+          className={css.bubble}
+          style={{
+            left: `${bubble.left}%`,
+            width: `${bubble.size}px`,
+            animationDelay: `${bubble.delay}s`
+          }}
+          alt=""
+        />
+      ))}
     </div>
   );
 };

@@ -1,7 +1,9 @@
-import { useMemo, useRef } from 'react';
+import { useContext, useId, useMemo, useRef } from 'react';
 
-import { useGameFishActivityContext } from './game-fish-context';
-import { BG } from './lib/constant';
+import { useOvaStore } from '@/store/ova-store';
+
+import { GameFishPositionContext, useGameFishActivityContext } from './game-fish-context';
+import { BG, i18n } from './lib/constant';
 
 import type { GameFishStates } from './types/types';
 
@@ -19,6 +21,10 @@ const fishState = { count: 0 };
 export const GameFishElement = ({ label, id, name, state }: Props) => {
   const { addSelectedOption, options, validation } = useGameFishActivityContext();
   const fishNumber = useRef<number | null>(null);
+  const position = useContext(GameFishPositionContext);
+  const lang = useOvaStore((state) => state.lang);
+  const inputId = useId();
+  const feedbackId = useId();
 
   if (fishNumber.current === null) {
     // Esto genera un número del 1 al 7
@@ -31,6 +37,9 @@ export const GameFishElement = ({ label, id, name, state }: Props) => {
 
   // Verifica si el usuario ya hizo clic en cualquier pez del nivel
   const isAnythingSelected = options.length > 0;
+
+  // Tras validar, solo el pez elegido muestra (y anuncia) si fue correcto o no
+  const showFeedback = validation && isSelected;
 
   const getStatusClass = () => {
     // LÓGICA DE ESCALA DE GRISES:
@@ -50,27 +59,42 @@ export const GameFishElement = ({ label, id, name, state }: Props) => {
 
   return (
     <div className={css['fishs-element-container']}>
-      <button
-        onClick={() => addSelectedOption({ id, name, state, label })}
-        // Bloqueamos el botón si ya se validó O si ya se eligió otra opción
-        disabled={validation || (isAnythingSelected && !isSelected)}
-        className={`${css['fish-item']} ${getStatusClass()}`}>
-        <img src={BG.peces[fishNumber.current - 1]} className={css['fish-image']} alt="Pez" />
+      <input
+        type="radio"
+        id={inputId}
+        name={`fish-${name}`}
+        className={css['fish-radio']}
+        checked={isSelected}
+        // Se puede cambiar de pez hasta que se valida la respuesta
+        disabled={validation}
+        onChange={() => addSelectedOption({ id, name, state, label })}
+        aria-label={position ? `${i18n[lang]['fish-number']} ${position}, ${label}` : label}
+        aria-describedby={showFeedback ? feedbackId : undefined}
+      />
 
-        <div className={css['fish-answer-box']}>
-          {/* Iconos de validación en la esquina */}
-          {validation && isSelected && (
-            <div className={css['status-icon']}>
+      <label htmlFor={inputId} className={`${css['fish-item']} ${getStatusClass()}`}>
+        <img src={BG.peces[fishNumber.current - 1]} className={css['fish-image']} alt="" />
+
+        <span className={css['fish-answer-box']}>
+          {/* Iconos de validación en la esquina (el estado se anuncia con el texto oculto) */}
+          {showFeedback && (
+            <span className={css['status-icon']} aria-hidden="true">
               {state === 'success' ? (
                 <span className={css['icon-check']}>✔</span>
               ) : (
                 <span className={css['icon-x']}>✖</span>
               )}
-            </div>
+            </span>
           )}
-          <label style={{ cursor: 'inherit' }}>{label}</label>
-        </div>
-      </button>
+          <span>{label}</span>
+        </span>
+      </label>
+
+      {showFeedback && (
+        <span id={feedbackId} className="u-sr-only">
+          {state === 'success' ? i18n[lang]['answer-correct'] : i18n[lang]['answer-wrong']}
+        </span>
+      )}
     </div>
   );
 };
