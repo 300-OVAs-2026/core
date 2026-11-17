@@ -26,15 +26,19 @@ type SubComponents = {
 };
 
 /**
- * Normaliza un texto para comparación
+ * Normaliza un texto para comparación.
+ * Conserva la puntuación (y su posición) para que un globo como "?" mal ubicado
+ * no se considere correcto. La puntuación de cierre se pega a la palabra anterior
+ * ("homework ?" -> "homework?") y la de apertura a la siguiente ("¿ Have" -> "¿Have").
  * @param s - cadena a normalizar
  * @returns cadena normalizada
  */
 function normalizeSentence(s: string) {
   return s
     .toLowerCase()
-    .replace(/[.,;:!?¿¡]/g, '')
     .replace(/\s+/g, ' ')
+    .replace(/\s+([.,;:!?])/g, '$1')
+    .replace(/([¿¡])\s+/g, '$1')
     .trim();
 }
 
