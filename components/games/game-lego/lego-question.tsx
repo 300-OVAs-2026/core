@@ -28,7 +28,7 @@ export const LegoQuestion: React.FC<Props> = ({ children, addClass, label, ...pr
       style={{ '--bg-image': `url(${bg})` } as React.CSSProperties}
       {...props}>
       <div className={`${css.lego__question} ${questionClass}`} role="heading" aria-level={2}>
-        <h2>{label}</h2>
+        <p dangerouslySetInnerHTML={{ __html: label }}/>
       </div>
       <div className={css.lego__options}>{children}</div>
     </div>
