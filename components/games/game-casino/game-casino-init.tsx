@@ -10,11 +10,12 @@ import css from './game-casino.module.css';
 interface GameCasinoInitProps {
   className?: string;
   textInit?: string;
+  section?: number;
 }
 
-export const GameCasinoInit: React.FC<GameCasinoInitProps> = ({ textInit, className }) => {
+export const GameCasinoInit: React.FC<GameCasinoInitProps> = ({ textInit, className, section = 1 }) => {
   const lang = useOvaStore((state) => state.lang);
-  
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleModal = () => setIsOpen(!isOpen);
@@ -66,7 +67,7 @@ export const GameCasinoInit: React.FC<GameCasinoInitProps> = ({ textInit, classN
                 className="u-text-center u-flow u-text-white u-font-bold"
                 style={{ color: '#ffffff', fontWeight: 'bold' }}>
                 <p>{i18n[lang].text}</p>
-                <PanelUI.Button section={1}>
+                <PanelUI.Button section={section}>
                   <button className={`u-font-bold ${css['button-init-game']}`}>¡{i18n[lang].goodLuck}!</button>
                 </PanelUI.Button>
               </div>

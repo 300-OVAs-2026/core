@@ -51,6 +51,9 @@ export const GameCasino = ({ children, onResult }: Props) => {
   };
 
   const handleReset = () => {
+    // No se permite reiniciar si la pregunta ya fue respondida correctamente
+    if (state.validation && state.result) return;
+
     dispatch({
       ...INITIAL_STATE,
       point: state.point < 10 ? 25 : state.point, // Recarga si se quedó sin nada

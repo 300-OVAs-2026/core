@@ -8,9 +8,14 @@ interface Props {
 }
 
 export const GameCasinoButton = ({ type, children }: Props) => {
-  const { handleValidation, handleReset, button, validation } = useGameCasinoProvider();
+  const { handleValidation, handleReset, button, validation, result } = useGameCasinoProvider();
+
+  // El reinicio solo se habilita cuando la respuesta fue validada y es incorrecta
+  const isDisabled = type === 'reset' ? !validation || result : validation || button;
 
   const handleClick = (e: React.MouseEvent) => {
+    if (isDisabled) return;
+
     // 1. Ejecutamos el onClick del hijo si existe
     children.props.onClick?.(e);
 
@@ -21,8 +26,6 @@ export const GameCasinoButton = ({ type, children }: Props) => {
       handleValidation();
     }
   };
-
-  const isDisabled = type === 'reset' ? !validation : validation || button;
 
   return cloneElement(children, {
     ...children.props,
